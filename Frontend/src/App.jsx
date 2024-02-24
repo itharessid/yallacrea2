@@ -1,6 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import About from './Pages/About/apropos';
+import Home from './Pages/Home/acceuil';
+import Contact from './Pages/Contact/contact';
+import Formation from './Pages/Formation/formation';
+import Createur  from './Pages/Createur/createur';
 import './App.css'
 
 function App() {
@@ -8,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div> ithar essid</div>
+      
     </>
   )
 }

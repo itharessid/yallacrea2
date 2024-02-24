@@ -1,9 +1,9 @@
 import React from 'react'
 
-function apropos() {
+function acceuil() {
   return (
     <div>
-        <header id="site-header" className="fixed-top">
+      <header id="site-header" className="fixed-top">
         <div className="container">
             <nav className="navbar navbar-expand-lg stroke">
                 <h1>
@@ -79,7 +79,6 @@ function apropos() {
             </nav>
         </div>
             </header>
-            
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
@@ -144,9 +143,8 @@ function apropos() {
           </div>
         </div>
       </footer>
-      
     </div>
   )
 }
 
-export default apropos
+export default acceuil
