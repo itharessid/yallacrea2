@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './apropos.css'
 function apropos() {
   return (
     <div>
@@ -79,6 +79,55 @@ function apropos() {
             </nav>
         </div>
             </header>
+            <div className="inner-banner">
+        <section className="w3l-breadcrumb">
+            <div className="container">
+                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">A Propos</h4>
+                <ul className="breadcrumbs-custom-path">
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>A Propos</li>
+                </ul>
+            </div>
+        </section>
+    </div>  <section className="about-block-3 py-5">
+        <div className="grids-w3ovt py-md-4 py-3">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-4 mb-md-0 mb-5">
+                        <div className="bg-color-block-2">
+                        <div class="cardBox">
+        <div class="card">
+           <div class="h4">Animated card</div>
+         
+          <div class="content">
+            <div class="h3">How's it goin Fam ?</div>
+            <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+          </div>
+        </div>
+      </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 mb-md-0 mb-5">
+                        <div className="bg-color-block-2">
+                            <h6 className="top-grid-text text-uppercase"><label>02.</label>Who We Are</h6>
+                            <h3 className="grid-one-text mt-2 mb-4">Nam vehicula neque id purus malesuada aliquam</h3>
+                            <p>Donec interdum magna ac libero mattis porta. Nulla in mauris aliquam convallis. Mauris
+                                vitae ante nec augue.</p>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="bg-color-block-2">
+                            <h6 className="top-grid-text text-uppercase"><label>03.</label>What We Do</h6>
+                            <h3 className="grid-one-text mt-2 mb-4">Nam vehicula neque id purus malesuada aliquam</h3>
+                            <p>Donec interdum magna ac libero mattis porta. Nulla in mauris aliquam convallis. Mauris
+                                vitae ante nec augue.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
             
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
