@@ -179,7 +179,7 @@ a {
 }
 
 a:hover {
-  color: var(--primary-color);
+  color: purple;
   text-decoration: underline;
 }
 
@@ -10933,7 +10933,12 @@ a.text-dark:focus {
 
   body {
     min-width: 992px !important;
-  }
+    margin: 0;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+  
 
   .container {
     min-width: 992px !important;
@@ -14141,6 +14146,7 @@ h6 {
   margin: 0;
   padding: 0;
   color: var(--heading-color);
+  color: black;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -14878,7 +14884,7 @@ div#small-dialog iframe {
   color: #fff;
   width: 40px;
   height: 40px;
-  background: var(--secondary-color);
+  background: #70218F;
   border-radius: 50px;
   -webkit-border-radius: 50px;
   -o-border-radius: 50px;
@@ -15078,6 +15084,7 @@ nav ul li a:hover {
 
 .nav-fixed .navbar-expand-lg .navbar-nav li.nav-item.active .nav-link {
   color: var(--secondary-color);
+  color: #70218F;
 }
 
 .nav-fixed .navbar-expand-lg .navbar-nav li.nav-item .nav-link:hover {
@@ -15362,7 +15369,7 @@ nav ul li a:hover {
     font-size: 20px;
     line-height: 1.2em;
     color: #fff;
-    background: var(--secondary-color);
+    background: #70218F;
     line-height: 34px;
   }
 
@@ -15468,7 +15475,7 @@ nav ul li a:hover {
   padding: 12px 30px;
   font-size: 16px;
   color: #fff;
-  background: var(--secondary-color);
+  background: #70218F;
   border-radius: 30px;
   font-weight: 500;
 }
@@ -15478,7 +15485,7 @@ nav ul li a:hover {
   height: 30px;
   line-height: 30px;
   background: rgb(255 255 255 / 18%);
-  margin-left: 8px;
+  margin-left: 10px;
   border-radius: 50%;
   text-align: center;
 }
@@ -15493,7 +15500,7 @@ nav ul li a:hover {
 }
 
 .button-2:hover {
-  background: var(--secondary-color);
+  background: #70218F;
 }
 
 /*-- //button style --*/
@@ -15511,8 +15518,8 @@ h3.title-main {
 /*-- //title style --*/
 /*-- banner --*/
 .w3l-banner {
-  background-color: pink;
-  background-size: cover;
+  background-color:#ff99c1;
+  background-size: contain;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -15815,6 +15822,7 @@ h3.title-big {
 
 .w3l-companies-hny-6 p.indentity {
   color: var(--secondary-color);
+  color: #70218F;
   font-size: 14px;
   margin-bottom: 18px;
 }
@@ -15885,7 +15893,10 @@ h3.title-big {
 .w3l-companies-hny-6 .owl-theme .owl-dots .owl-dot:hover span {
   background: var(--secondary-color);
   opacity: 1;
-}
+
+  background: #70218F;
+  opacity: 1;
+} 
 
 .w3l-companies-hny-6 .owl-carousel .owl-stage {
   padding-left: 0 !important;
@@ -16618,6 +16629,7 @@ h3.title-big {
 .breadcrumbs-custom-path a:active,
 .breadcrumbs-custom-path a:focus {
   color: var(--secondary-color);
+  color: #70218F;
 }
 
 @media (max-width: 800px) {
@@ -16943,97 +16955,6 @@ h3.title-big {
     line-height: 38px;
   }
 }
-.cardBox {
-  width: 250px;
-  height: 300px;
-  position: relative;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
-    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
-}
-
-.card {
-  position: absolute;
-  width: 95%;
-  height: 95%;
-  background: #000814;
-  border-radius: 20px;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  color: #ffffff;
-  overflow: hidden;
-  padding: 20px;
-  cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.5) 0px 18px 36px -18px inset;
-}
-
-.card .h4 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: 800;
-  pointer-events: none;
-  opacity: .5;
-}
-
-.card .content .h3 {
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.card .content p {
-  font-size: 14px;
-  line-height: 1.4em;
-}
-
-.card .content {
-  transform: translateY(100%);
-  opacity: 0;
-  transition: 0.3s ease-in-out;
-}
-
-.card:hover .content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.card:hover .h4 {
-  opacity: 0;
-}
-
-.cardBox::before {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 150%;
- background: #9400D3; /* violet */
-background: -webkit-linear-gradient(to right, #9400D3, #FF69B4); /* violet to rose */
-background: linear-gradient(to right, #9400D3, #FF69B4); /* violet to rose */
-  transform-origin: center;
-  animation: glowing_401 5s linear infinite;
-}
-
-@keyframes glowing_401 {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 
 /* //video section */
 

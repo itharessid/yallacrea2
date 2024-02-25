@@ -1,7 +1,16 @@
 import React from 'react';
 
 function Formation() {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const app = new Application(canvas);
+        app.load('https://prod.spline.design/fipyVGWAu8ENhdRi/scene.splinecode');
+    }, []);
+
   return (
+
     <div>
       <header id="site-header" className="fixed-top">
         <div className="container">
@@ -79,6 +88,7 @@ function Formation() {
           </nav>
         </div>
       </header>
+     
       {/* Page Content */}
       <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">

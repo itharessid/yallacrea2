@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+.smaller-text {
+    font-size: 14px; /* Adjust the font size as needed */
+    color: black;
+}
+.yalla-word {
+    color: #70218F;
+}
+.fa-tiktok {
+    color: white;
+}
+.bigger-word {
+    font-size: 1.2em; /* Taille de police souhaitée */
+    font-weight: bold; /* Mise en gras */
+
+}
+
+/* Ajoutez ces styles CSS à votre feuille de style */
+.testimonial-content {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .testimonial-content:hover {
+    transform: translatex(-10px); /* Déplace l'élément de 10px vers le haut au survol */
+  }
+  .social img {
+    vertical-align: middle; /* Centrez l'image verticalement */
+  }
+
+
+
+

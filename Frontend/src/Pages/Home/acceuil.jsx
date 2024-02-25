@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import { Application } from '@splinetool/runtime';
+import './acceuil.css';
 
 function acceuil() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const app = new Application(canvas);
+    app.load('https://prod.spline.design/IBs51OvNPwMudznz/scene.splinecode');
+  }, []); 
   return (
     <div>
       <header id="site-header" className="fixed-top">
@@ -79,6 +88,166 @@ function acceuil() {
             </nav>
         </div>
             </header>
+            <section id="home" className="w3l-banner py-5">
+      <div className="container pt-5 pb-md-4">
+        <div className="row align-items-center">
+          <div className="col-md-6 banner-left pt-md-0 pt-5">
+          <h3 className="mb-sm-5 mb-2 title">Yalla <br/>Digital <span className="type-js"><span
+                                        className="text-js">Academy</span></span></h3>
+                       <p className="smaller-text">Vous avez perturbé dans votre route, alors donnez vie à votre créativité.
+                      <br/> <strong><span className="bigger-word">Yalla,</span></strong> rejoignez-nous dès maintenant pour débuter votre parcours créatif.</p>
+            <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
+              <a className="btn button-style" href="About.jsx">S'inscrire<i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div className="col-md-6 banner-right mt-md-0 mt-4">
+            <canvas ref={canvasRef}  width="500" height="500"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section className="w3l-servicesblock py-md-5 py-4">
+        <div className="container pb-2">
+            <div className="row align-items-center">
+                <div className="col-lg-6 left-wthree-img pr-lg-4">
+                    <img src="assets/images/img1.jpg" alt="" className="img-fluid"/>
+                </div>
+                <div className="col-lg-6 about-right-faq align-self mb-lg-0 mb-5 pl-xl-5">
+                    
+                <h3 className="title-big mb-3">Découvrire <br/><span className="yalla-word">Yalla</span></h3>
+                    <p className="">Découvrez une révolution éducative en Tunisie avec la première école de créateurs de contenu,
+                     redéfinissant l'expérience éducative pour vous offrir une formation novatrice et inspirante.</p>
+                   
+                    <a className="btn button-style button-2 mt-lg-5 mt-4" href="apropos">Découvrir plus
+                    <i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section className="w3l-teams-32-main py-5">
+        <div className="teams-32 py-md-4">
+            <div className="container">
+                <div className="title-main text-center mx-auto mb-4">
+                    <h3 className="title-big">Nous Experts</h3>
+                    <p className="sub-title mt-2">Cum doctus civibus efficiantur in imperdiet deterruisset. Cras efficitur,
+                        metus
+                        gravida suscipit cursus, dui diam pre lorem id
+                        lectus.</p>
+                </div>
+                <div className="row main-contteam-32 mt-sm-5 pt-lg-2">
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img className="img-fluid" src="assets/images/team1.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" className="title-team-32">Chris Tina</a></h6>
+                            <p className="sm-text-32">Web Designer</p>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img className="img-fluid" src="assets/images/team2.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" className="title-team-32">Diego Mota</a></h6>
+                            <p className="sm-text-32">CSS, HTML</p>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img className="img-fluid" src="assets/images/team3.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" className="title-team-32">Anton Bone</a></h6>
+                            <p className="sm-text-32">UI/UX Designer</p>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img class="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" class="title-team-32">Neoye Achi</a></h6>
+                            <p className="sm-text-32">Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  className="w3l-companies-hny-6 position-relative">
+        <div  className="cusrtomer-layout py-5">
+        
+            <div  className="scontainer py-md-4 py-3">
+                <div  className="title-heading-w3 text-center mx-auto">
+                    <h3  className="title-big">Témoignage</h3>
+                </div>
+                <div id="owl-demo1"  className="owl-carousel owl-theme mt-5">
+                    <div  className="item">
+                        <div  className="testimonial-content">
+                            <div  className="testimonial">
+                                <div  className="testi-des">
+                                    <div  className="test-img"><img src="src/assets/images/testi2.jpg" class="img-fluid" alt="/"/>
+                                    </div>
+                                    <div  className="peopl">
+                                        <h3>Jenna John</h3>
+                                        <p  className="indentity">Washington</p>
+                                    </div>
+                                </div>
+                                <blockquote>
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque laudantium, totam rem aperiam.</p>
+                                </blockquote>
+                                <quote></quote>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <div  className="testimonial-content">
+                            <div  className="testimonial">
+                                <div  className="testi-des">
+                                    <div  className="test-img"><img src="src/assets/images/testi1.jpg" class="img-fluid" alt="/"/>
+                                    </div>
+                                    
+                                    <div  className="peopl">
+                                        <h3>Theo Hall</h3>
+                                        <p  className="indentity">Washington</p>
+                                    </div>
+                                </div>
+                                <blockquote>
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque laudantium, totam rem aperiam.</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div  className="item">
+                        <div className="testimonial-content">
+                            <div  className="testimonial">
+                                <div className="testi-des">
+                                    <div  className="test-img"><img src="src/assets/images/testi3.jpg" class="img-fluid" alt="/"/>
+                                    </div>
+                                    <div className ="peopl">
+                                        <h3>Linda Carini</h3>
+                                        <p  className="indentity">Washington</p>
+                                    </div>
+                                </div>
+                                <blockquote>
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque laudantium, totam rem aperiam,.</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="quote-special">
+                <i className="fa fa-instagram" aria-hidden="true"></i>
+            </div>
+           
+        </div>
+    </section>
+    
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
