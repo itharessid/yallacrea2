@@ -89,38 +89,102 @@ function apropos() {
                 </ul>
             </div>
         </section>
-    </div>  <section className="about-block-3 py-5">
+        
+    </div> 
+     <section className="about-block-3 py-5">
         <div className="grids-w3ovt py-md-4 py-3">
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
                         <div class="cardBox">
-        <div class="card">
-           <div class="h4">Animated card</div>
+                          <div class="card">
+                          <div class="h4">Animated card</div>
          
-          <div class="content">
-            <div class="h3">How's it goin Fam ?</div>
-            <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                           <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                               </div>
+                                </div>
+                               </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 mb-md-0 mb-5">
+                        <div className="bg-color-block-2">
+                        <div class="cardBox">
+                           <div class="card">
+                      <div class="h4">Animated card</div>
+         
+                     <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                      <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                       </div>
+                        </div>
+                           </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="bg-color-block-2">
+                        <div class="cardBox">
+                        <div class="card">
+                        <div class="h4">Animated card</div>
+         
+                     <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
           </div>
         </div>
       </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section className="about-block-3 py-5">
+        <div className="grids-w3ovt py-md-4 py-3">
+            <div className="container">
+                <div className="row">
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
-                            <h6 className="top-grid-text text-uppercase"><label>02.</label>Who We Are</h6>
-                            <h3 className="grid-one-text mt-2 mb-4">Nam vehicula neque id purus malesuada aliquam</h3>
-                            <p>Donec interdum magna ac libero mattis porta. Nulla in mauris aliquam convallis. Mauris
-                                vitae ante nec augue.</p>
+                        <div class="cardBox">
+                          <div class="card">
+                          <div class="h4">Animated card</div>
+         
+                           <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                               </div>
+                                </div>
+                               </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 mb-md-0 mb-5">
+                        <div className="bg-color-block-2">
+                        <div class="cardBox">
+                           <div class="card">
+                      <div class="h4">Animated card</div>
+         
+                     <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                      <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                       </div>
+                        </div>
+                           </div>
                         </div>
                     </div>
                     <div className="col-md-4">
                         <div className="bg-color-block-2">
-                            <h6 className="top-grid-text text-uppercase"><label>03.</label>What We Do</h6>
-                            <h3 className="grid-one-text mt-2 mb-4">Nam vehicula neque id purus malesuada aliquam</h3>
-                            <p>Donec interdum magna ac libero mattis porta. Nulla in mauris aliquam convallis. Mauris
-                                vitae ante nec augue.</p>
+                        <div class="cardBox">
+                        <div class="card">
+                        <div class="h4">Animated card</div>
+         
+                     <div class="content">
+                          <div class="h3">How's it goin Fam ?</div>
+                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+          </div>
+        </div>
+      </div>
                         </div>
                     </div>
                 </div>
