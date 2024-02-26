@@ -147,7 +147,7 @@ function Formation() {
         <div className="copyright-footer text-center">
           <div className="container">
             <div className="columns">
-              <p>@2020 Online Study. All rights reserved. Design by <a href="https://w3layouts.com/" target="_blank"> W3Layouts</a></p>
+              <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
 
               <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
             </div>

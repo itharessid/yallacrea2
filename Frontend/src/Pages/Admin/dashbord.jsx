@@ -1,6 +1,6 @@
 import React from 'react'
 
-function calendrier() {
+function dashbord() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function calendrier() {
   )
 }
 
-export default calendrier
+export default dashbord

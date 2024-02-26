@@ -47,9 +47,9 @@ function apropos() {
                                     </h4>
                                     <form action="#error" method="GET" className="search-box">
                                         <div className="input-search"> <span className="fa fa-search mr-2"
-                                                aria-hidden="true"></span><input type="search"
-                                                placeholder="Enter Keyword" name="search" required="required"
-                                                autofocus=""/>
+                                                aria-hidden="true"></span>
+                                          <input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus={true} />
+
                                         </div>
                                         <button type="submit" className="btn button-style">Search</button>
                                     </form>
@@ -65,7 +65,8 @@ function apropos() {
                 <div className="cont-ser-position">
                     <nav className="navigation">
                         <div className="theme-switch-wrapper">
-                            <label className="theme-switch" for="checkbox">
+                        <label className="theme-switch" htmlFor="checkbox">
+
                                 <input type="checkbox" id="checkbox"/>
                                 <div className="mode-container">
                                     <i className="gg-sun"></i>
@@ -97,12 +98,12 @@ function apropos() {
                 <div className="row">
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                          <div class="card">
-                          <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                          <div className="card">
+                          <div className="h4">Animated card</div>
          
-                           <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                           <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                           <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
                                </div>
                                 </div>
@@ -111,12 +112,12 @@ function apropos() {
                     </div>
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                           <div class="card">
-                      <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                           <div className="card">
+                      <div className="h4">Animated card</div>
          
-                     <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                     <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                       <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
                        </div>
                         </div>
@@ -125,12 +126,12 @@ function apropos() {
                     </div>
                     <div className="col-md-4">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                        <div class="card">
-                        <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                        <div className="card">
+                        <div className="h4">Animated card</div>
          
-                     <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                     <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                           <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
           </div>
         </div>
@@ -147,12 +148,12 @@ function apropos() {
                 <div className="row">
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                          <div class="card">
-                          <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                          <div className="card">
+                          <div className="h4">Animated card</div>
          
-                           <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                           <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                           <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
                                </div>
                                 </div>
@@ -161,12 +162,12 @@ function apropos() {
                     </div>
                     <div className="col-md-4 mb-md-0 mb-5">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                           <div class="card">
-                      <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                           <div className="card">
+                      <div className="h4">Animated card</div>
          
-                     <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                     <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                       <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
                        </div>
                         </div>
@@ -175,12 +176,12 @@ function apropos() {
                     </div>
                     <div className="col-md-4">
                         <div className="bg-color-block-2">
-                        <div class="cardBox">
-                        <div class="card">
-                        <div class="h4">Animated card</div>
+                        <div className="cardBox">
+                        <div className="card">
+                        <div className="h4">Animated card</div>
          
-                     <div class="content">
-                          <div class="h3">How's it goin Fam ?</div>
+                     <div className="content">
+                          <div className="h3">How's it goin Fam ?</div>
                           <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
           </div>
         </div>
@@ -250,7 +251,7 @@ function apropos() {
         <div className="copyright-footer text-center">
           <div className="container">
             <div className="columns">
-              <p>@2020 Online Study. All rights reserved. Design by <a href="https://w3layouts.com/" target="_blank"> W3Layouts</a></p>
+              <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
 
               <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
             </div>

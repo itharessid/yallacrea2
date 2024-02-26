@@ -56,9 +56,8 @@ function acceuil() {
                                     </h4>
                                     <form action="#error" method="GET" className="search-box">
                                         <div className="input-search"> <span className="fa fa-search mr-2"
-                                                aria-hidden="true"></span><input type="search"
-                                                placeholder="Enter Keyword" name="search" required="required"
-                                                autofocus=""/>
+                                                aria-hidden="true"></span><input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
+
                                         </div>
                                         <button type="submit" className="btn button-style">Search</button>
                                     </form>
@@ -74,7 +73,7 @@ function acceuil() {
                 <div className="cont-ser-position">
                     <nav className="navigation">
                         <div className="theme-switch-wrapper">
-                            <label className="theme-switch" for="checkbox">
+                            <label className="theme-switch" htmlFor="checkbox">
                                 <input type="checkbox" id="checkbox"/>
                                 <div className="mode-container">
                                     <i className="gg-sun"></i>
@@ -164,10 +163,10 @@ function acceuil() {
                     </div>
                     <div className="col-lg-3 col-6 team-main-19">
                         <div className="column-19">
-                            <a href="#team"><img class="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
+                            <a href="#team"><img className="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
-                            <h6><a href="#team" class="title-team-32">Neoye Achi</a></h6>
+                            <h6><a href="#team" className="title-team-32">Neoye Achi</a></h6>
                             <p className="sm-text-32">Web Developer</p>
                         </div>
                     </div>
@@ -187,7 +186,7 @@ function acceuil() {
                         <div  className="testimonial-content">
                             <div  className="testimonial">
                                 <div  className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi2.jpg" class="img-fluid" alt="/"/>
+                                    <div  className="test-img"><img src="src/assets/images/testi2.jpg" className="img-fluid" alt="/"/>
                                     </div>
                                     <div  className="peopl">
                                         <h3>Jenna John</h3>
@@ -198,7 +197,7 @@ function acceuil() {
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                                         doloremque laudantium, totam rem aperiam.</p>
                                 </blockquote>
-                                <quote></quote>
+                                <blockquote></blockquote>
                             </div>
                         </div>
                     </div>
@@ -206,7 +205,7 @@ function acceuil() {
                         <div  className="testimonial-content">
                             <div  className="testimonial">
                                 <div  className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi1.jpg" class="img-fluid" alt="/"/>
+                                    <div  className="test-img"><img src="src/assets/images/testi1.jpg" className="img-fluid" alt="/"/>
                                     </div>
                                     
                                     <div  className="peopl">
@@ -225,7 +224,7 @@ function acceuil() {
                         <div className="testimonial-content">
                             <div  className="testimonial">
                                 <div className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi3.jpg" class="img-fluid" alt="/"/>
+                                    <div  className="test-img"><img src="src/assets/images/testi3.jpg" className="img-fluid" alt="/"/>
                                     </div>
                                     <div className ="peopl">
                                         <h3>Linda Carini</h3>
@@ -305,7 +304,7 @@ function acceuil() {
         <div className="copyright-footer text-center">
           <div className="container">
             <div className="columns">
-              <p>@2020 Online Study. All rights reserved. Design by <a href="https://w3layouts.com/" target="_blank"> W3Layouts</a></p>
+              <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
 
               <p> <a href="https://w3layouts.com/" target="_blank"> </a></p>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Adminsidbar from '../sidbar/Adminsidbar';
+import Adminsidbar from '../Sidbar/Adminsidbar';
 
 function Bienvenue() {
   return (
