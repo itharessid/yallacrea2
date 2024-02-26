@@ -17,6 +17,7 @@ import Event from './Pages/Admin/evenementes/evenements';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css'
+import Createures from './Pages/Admin/Createures/createures.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,11 +32,17 @@ function App() {
         <Route path="/createur" element ={<Createur/>} />
         <Route path="/formation" element={<Formation/>} />
         <Route path="/sidbar" element={<Sidbar />} />
+
+
+
+
+
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/bienvenue" element={<Bienvenue/>} />
         <Route path="/etudiants" element={<Etudiants/>} /> 
         <Route path="/calendrier" element={<Calendrier />} />
         <Route path="/Event" element={<Event/>} />
+        <Route path="/createures" element={<Createures/>} />      
         
     </Routes>
     </BrowserRouter>
