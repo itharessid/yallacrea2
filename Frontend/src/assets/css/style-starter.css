@@ -14964,7 +14964,7 @@ a.navbar-brand:hover {
 
 a.dropdown-item {
   font-size: 16px;
-  color: var(--heading-color);
+  color: grey;
   letter-spacing: .5px;
   padding: 5px 24px;
 }
