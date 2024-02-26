@@ -61,7 +61,7 @@ function Adminsidbar() {
                 </Link>
               </li>
               <li className="dropdown">
-                <Link to="/createurs" className="dropdown-toggle">
+                <Link to="/createures" className="dropdown-toggle">
                   <FontAwesomeIcon icon={faBook} />{' '}
                   <span className="mtext">Créateurs</span>
                 </Link>

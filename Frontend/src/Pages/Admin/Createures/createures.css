@@ -1,0 +1,23 @@
+.dataTables_filter.text-right {
+    text-align: right;
+}
+.button1{
+    background-color: purple;
+    color: white;
+}
+.button1 .dropdown-toggle {
+    color: white;
+}
+
+.button2{
+    background-color: green;
+}
+.button2 .dropdown-toggle {
+    color: white;
+}
+.button3{
+    background-color: red;
+}
+.button3 .dropdown-toggle {
+    color: white;
+}

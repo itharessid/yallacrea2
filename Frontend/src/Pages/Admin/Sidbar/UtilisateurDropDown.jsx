@@ -12,11 +12,11 @@ function UtilisateurDropDown({ isOpen, toggleDropdown }) {
             <img src="src/assets/images/team2.jpg" alt=""/>
           </span>
           <span className="user-name">Wajdi Chabbane</span>
-        </a>
-        <div className={`dropdown-menu dropdown-menu-right dropdown-menu-icon-list ${isOpen ? 'show' : ''}`}>
+          <div className={`dropdown-menu dropdown-menu-right dropdown-menu-icon-list ${isOpen ? 'show' : ''}`}>
           <Link to="/settings" className="dropdown-item"><FontAwesomeIcon icon={faCog} /> Setting</Link>
           <Link to="/login" className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} /> Log Out</Link>
         </div>
+        </a>
       </div>
     </div>
   );
