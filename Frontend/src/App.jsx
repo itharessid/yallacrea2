@@ -7,7 +7,7 @@ import Createur  from './Pages/Createur/createur';
 
 import Sidbar from './Pages/Admin/Sidbar/Adminsidbar.jsx';
 import Dashbord from './Pages/Admin/dashbord';
-import Bienvenue from './Pages/Admin/Bienvenu/bienvenu';
+import Bienvenue from './Pages/Admin/Bienvenue/bienvenue';
 import Etudiants from './Pages/Admin/Etudiantes/etudiant';
 import Calendrier from './Pages/Admin/calendrier/calendrier';
 import Event from './Pages/Admin/evenementes/evenements';
