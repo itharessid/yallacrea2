@@ -85,8 +85,12 @@ function apropos() {
             <div className="container">
                 <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">A Propos</h4>
                 <ul className="breadcrumbs-custom-path">
-                    <li><a href="index.html">Acceuil</a></li>
+                    <li><a href="/">Acceuil</a></li>
                     <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>A Propos</li>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h3 className="inner-text-title font-weight-bold mb-sm-3 mb-2"> Nos Spécialités</h3>
                 </ul>
             </div>
         </section>
@@ -100,11 +104,11 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                           <div className="card">
-                          <div className="h4">Animated card</div>
+                          <div className="h4">Creative visionary</div>
          
                            <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                          <div className="h3">Creative visionary</div>
+                          <p>Création et manipulation de contenus visuels captivants pour raconter des histoires à travers l'art de l'image.</p>
                                </div>
                                 </div>
                                </div>
@@ -114,11 +118,11 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                            <div className="card">
-                      <div className="h4">Animated card</div>
+                      <div className="h4">sound sculptor</div>
          
                      <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                      <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                          <div className="h3">Sound sculptor</div>
+                      <p>Création, enregistrement et production de compositions musicales de qualité</p>
                        </div>
                         </div>
                            </div>
@@ -128,14 +132,14 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                         <div className="card">
-                        <div className="h4">Animated card</div>
+                        <div className="h4">Digital dynamo</div>
          
                      <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
-          </div>
-        </div>
-      </div>
+                          <div className="h3">Digital dynamo</div>
+                          <p>Création et diffusion de contenu de qualité pour attirer, engager et fidéliser un public, tout en renforçant la visibilité et l'autorité d'une marque ou d'une entreprise.</p>
+                        </div>
+                          </div>
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -150,11 +154,11 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                           <div className="card">
-                          <div className="h4">Animated card</div>
+                          <div className="h4">Copywriting luminary</div>
          
                            <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                          <div className="h3">Copywriting luminary</div>
+                          <p>Rédaction persuasive et convaincante pour une communication efficace avec le public cible.</p>
                                </div>
                                 </div>
                                </div>
@@ -164,11 +168,11 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                            <div className="card">
-                      <div className="h4">Animated card</div>
+                      <div className="h4">Graphical Genius</div>
          
                      <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                      <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
+                          <div className="h3">Graphical Genius</div>
+                      <p>Conception de supports visuels attractifs avec divers éléments et logiciels graphiques.</p>
                        </div>
                         </div>
                            </div>
@@ -178,14 +182,14 @@ function apropos() {
                         <div className="bg-color-block-2">
                         <div className="cardBox">
                         <div className="card">
-                        <div className="h4">Animated card</div>
+                        <div className="h4">Gameplay Innovator</div>
          
                      <div className="content">
-                          <div className="h3">How's it goin Fam ?</div>
-                          <p>This is Pradeep Saran, your tech mate!!! I love you all. Lets make this world a better place for all of us. Keep prospering...Keep learning!!!</p>
-          </div>
-        </div>
-      </div>
+                          <div className="h3">Gameplay Innovator</div>
+                          <p>Conception de personnages, programmation, animation et élaboration de scénarios pour les jeux vidéo.</p>
+                        </div>
+                        </div>
+                         </div>
                         </div>
                     </div>
                 </div>
