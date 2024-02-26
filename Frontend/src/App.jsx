@@ -4,6 +4,8 @@ import Home from './Pages/Home/acceuil';
 import Contact from './Pages/Contact/contact';
 import Formation from './Pages/Formation/formation';
 import Createur  from './Pages/Createur/createur';
+import Acceler from'./Pages/Accelere/accelere';
+import Complet  from './Pages/CourComplet/complet.jsx'
 
 import Sidbar from './Pages/Admin/Sidbar/Adminsidbar.jsx';
 import Dashbord from './Pages/Admin/dashbord';
@@ -30,6 +32,13 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/createur" element ={<Createur/>} />
         <Route path="/formation" element={<Formation/>} />
+        <Route path="/Accelerer" element={< Acceler />} />
+         <Route path="/complet" element={< Complet />} />
+
+
+
+
+
         <Route path="/sidbar" element={<Sidbar />} />
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/bienvenue" element={<Bienvenue/>} />

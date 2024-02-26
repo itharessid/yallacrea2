@@ -1,42 +1,33 @@
-import React from 'react';
+import React from 'react'
 
-function Formation() {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const app = new Application(canvas);
-        app.load('https://prod.spline.design/fipyVGWAu8ENhdRi/scene.splinecode');
-    }, []);
-
+function accelere() {
   return (
-
     <div>
-      <header id="site-header" className="fixed-top">
+       <header id="site-header" className="fixed-top">
         <div className="container">
-          <nav className="navbar navbar-expand-lg stroke">
-            <h1>
-              <a className="navbar-brand" href="index.html">
-                <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
-              </a>
-            </h1>
+            <nav className="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a className="navbar-brand" href="index.html">
+                    <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
+                    </a>
+                </h1>
+      
+                <button className="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span className="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
 
-            <button className="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
-              <span className="navbar-toggler-icon fa icon-close fa-times"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul className="navbar-nav ml-lg-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="apropos">Apropos</a>
-                </li>
-                <li className="nav-item dropdown">
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul className="navbar-nav ml-lg-auto">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="apropos">Apropos</a>
+                        </li>
+                        <li className="nav-item dropdown">
                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              Formation </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,58 +35,56 @@ function Formation() {
                      <a className="dropdown-item" href="/complet ">Cours Complet</a>
                     </div>
                      </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="createur">Créateur</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="contact">Contact</a>
-                </li>
 
-                <div className="search-right">
-                  <a href="#search" className="btn button-style" title="search">SeConnecter</a>
-
-                  <div id="search" className="pop-overlay">
-                    <div className="popup">
-                      <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your
+                        <li className="nav-item">
+                            <a className="nav-link" href="createur">Créateur</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="contact">Contact</a>
+                        </li>
+                        
+                        <div className="search-right">
+                            <a href="#search" className="btn button-style" title="search">SeConnecter</a>
+                            
+                            <div id="search" className="pop-overlay">
+                                <div className="popup">
+                                    <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your
                                         Online Course
                                     </h4>
-                      <form action="#error" method="GET" className="search-box">
-                        <div className="input-search"> <span className="fa fa-search mr-2"
-                          aria-hidden="true"></span><input type="search"
-                          placeholder="Enter Keyword" name="search" required="required"
-                          autoFocus="" />
+                                    <form action="#error" method="GET" className="search-box">
+                                        <div className="input-search"> <span className="fa fa-search mr-2"
+                                                aria-hidden="true"></span><input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
+
+                                        </div>
+                                        <button type="submit" className="btn button-style">Search</button>
+                                    </form>
+                                </div>
+                                <a className="close" href="#close">×</a>
+                            </div>
+                          
                         </div>
-                        <button type="submit" className="btn button-style">Search</button>
-                      </form>
-                    </div>
-                    <a className="close" href="#close">×</a>
-                  </div>
-
+                       
+                    </ul>
                 </div>
-
-              </ul>
-            </div>
-
-            <div className="cont-ser-position">
-              <nav className="navigation">
-                <div className="theme-switch-wrapper">
-                  <label className="theme-switch" htmlFor="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div className="mode-container">
-                      <i className="gg-sun"></i>
-                      <i className="gg-moon"></i>
-                    </div>
-                  </label>
+                
+                <div className="cont-ser-position">
+                    <nav className="navigation">
+                        <div className="theme-switch-wrapper">
+                            <label className="theme-switch" htmlFor="checkbox">
+                                <input type="checkbox" id="checkbox"/>
+                                <div className="mode-container">
+                                    <i className="gg-sun"></i>
+                                    <i className="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
                 </div>
-              </nav>
-            </div>
-
-          </nav>
+                
+            </nav>
         </div>
-      </header>
-     
-      {/* Page Content */}
-      <footer className="w3l-footer-22 position-relative mt-5 pt-5">
+            </header>
+            <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
             <div className="text-txt">
@@ -159,10 +148,8 @@ function Formation() {
           </div>
         </div>
       </footer>
-
-
     </div>
   )
 }
 
-export default Formation;
+export default accelere

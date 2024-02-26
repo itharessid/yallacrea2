@@ -10,7 +10,8 @@ Author URL: http://w3layouts.com
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ 
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -38,8 +39,9 @@ Author URL: http://w3layouts.com
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;   
+  }
+
 
 *,
 *::before,
@@ -8745,6 +8747,7 @@ button.bg-dark:focus {
 .pb-5,
 .py-5 {
   padding-bottom: 3rem !important;
+  background-color: white;
 }
 
 .pl-5,
@@ -14029,7 +14032,7 @@ a.text-dark:focus {
   --primary-dark: #ffc945;
   --secondary-color: #f50057;
   --font-color: #6b6768;
-  --bg-color: #fff;
+  --bg-color: white;
   --heading-color: #060606;
   --footer-color: #060e1f;
   --footer-cpy-color: #040a17;
@@ -16605,6 +16608,7 @@ h3.title-big {
   z-index: 100;
   padding-top: 150px;
   z-index: 99;
+  background-color: white;
 }
 
 .breadcrumbs-custom-path {

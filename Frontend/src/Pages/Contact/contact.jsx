@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './contact.css'
 function contact() {
   return (
     <div>
@@ -27,9 +27,14 @@ function contact() {
                         <li className="nav-item">
                             <a className="nav-link" href="apropos">Apropos</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="formation">Formation</a>
-                        </li>
+                        <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Formation </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <a className="dropdown-item" href="/Accelerer">Cours Accéléré</a>
+                     <a className="dropdown-item" href="/complet ">Cours Complet</a>
+                    </div>
+                     </li>
                         <li className="nav-item">
                             <a className="nav-link" href="createur">Créateur</a>
                         </li>
@@ -77,8 +82,78 @@ function contact() {
                 </div>
                 
             </nav>
+         </div>
+        </header>
+       
+        <section className="w3l-breadcrumb">
+            <div className="container">
+                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Contact </h4>
+                <ul className="breadcrumbs-custom-path">
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span> Contact </li>
+                </ul>
+            </div>
+        </section>
+   
+    <section class="contact py-5" id="contact">
+        <div class="container py-md-4 py-3">
+            
+            <div class="main-grid-contact">
+                <div class="row mt-5 mx-0">
+                  
+                    <div class="col-lg-6 map mt-lg-0 mt-3">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6380.985941731756!2d10.1925479!3d36.9024761!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb004b721297%3A0x5c7f3066db4365cf!2sYalla%20Digital%20Academy!5e0!3m2!1sfr!2stn!4v1708950730525!5m2!1sfr!2stn"
+                            allowfullscreen></iframe>
+                             <div className="social-links mt-3">
+                         <a href="#" className="https://www.facebook.com/profile.php?id=100095263917513&amp;mibextid=LQQJ4d"><span className="fa fa-facebook" aria-hidden="true"></span></a>
+                         <a href="#" className="https://instagram.com/yalla_digital_academy?igshid=MzRlODBiNWFlZA=="><span className="fa fa-instagram" aria-hidden="true"></span></a>
+                          <a href="#" className="https://www.linkedin.com/company/yalla-digital-academy/posts/?feedView=all"><span className="fa fa-linkedin" aria-hidden="true"></span></a>
+                         <a href="https://www.tiktok.com/@yalla.digital.academy?_t=8ekU1rsalE6&_r=1"> <img src="src/assets/images/tiktokNoire.png" alt="TikTok" /> </a>
+                        <a href="#" className="social-link"><span className="fa fa-tiktok" aria-hidden="true"></span></a>
+                    </div>
+                    </div>
+                    
+                    
+                    <div className="col-lg-6 content-form-right p-0">
+                        <div className="form-w3ls p-md-5 p-4">
+                            <h4 className="mb-4 sec-title-w3">Send us a message</h4>
+                            <form method="post" action="https://sendmail.w3layouts.com/submitForm">
+                                <div className="row">
+                                    <div className="col-sm-6 form-group pr-sm-1">
+                                        <input className="form-control" type="text" name="w3lName" id="w3lName"
+                                            placeholder="First Name" required=""/>
+                                    </div>
+                                    <div className="col-sm-6 form-group pl-sm-1">
+                                        <input className="form-control" type="text" name="w3lName" id="w3lName"
+                                            placeholder="Last Name" required=""/>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <input className="form-control" type="email" name="w3lSender" id="w3lSender"
+                                        placeholder="Email" required=""/>
+                                </div>
+                                <div className="form-group">
+                                    <input className="form-control" type="text" name="w3lName" id="w3lName"
+                                        placeholder="Phone Number" required=""/>
+                                </div>
+                                <div className="form-group">
+                                    <textarea className="form-control" name="w3lMessage" id="w3lMessage"
+                                        placeholder="Message" required=""></textarea>
+                                </div>
+                                <div className="input-group1 text-right">
+                                    <button className="btn button-style" type="submit">Submit
+                                        <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-            </header>
+    </section>
+            
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
