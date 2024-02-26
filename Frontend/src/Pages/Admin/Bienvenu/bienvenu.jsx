@@ -70,6 +70,16 @@ function Bienvenue() {
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data" style={{ width: "100%" }}>
+                    <div className="weight-600 font-14 text-purple text-center">Suivie sur Facebook</div>
+                    <div className="h6 mb-0 text-center">54.000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 mb-30">
+              <div className="card-box height-100-p widget-style1">
+                <div className="d-flex flex-wrap align-items-center">
+                  <div className="widget-data" style={{ width: "100%" }}>
                     <div className="weight-600 font-14 text-purple text-center">Suivie sur Instagram</div>
                     <div className="h6 mb-0 text-center">10.000</div>
                   </div>
