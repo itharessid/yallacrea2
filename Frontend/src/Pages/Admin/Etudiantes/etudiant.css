@@ -2,7 +2,7 @@
     text-align: right;
 }
 .button1{
-    background-color: purple;
+    background-color:  rgba(121, 21, 99, 0.671);
     color: white;
 }
 .button1 .dropdown-toggle {
@@ -10,14 +10,8 @@
 }
 
 .button2{
-    background-color: green;
+    background-color: purple
 }
 .button2 .dropdown-toggle {
-    color: white;
-}
-.button3{
-    background-color: red;
-}
-.button3 .dropdown-toggle {
     color: white;
 }
