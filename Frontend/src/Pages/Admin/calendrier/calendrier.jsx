@@ -1,10 +1,5 @@
 import React from 'react'
 import Adminsidbar from '../Sidbar/Adminsidbar'
-import './calendrier.css'
-import './calendar-setting.js'
-import './core.js'
-import './layout-settings.js'
-import './process.js'
 
 function Calendrier() {
   return (
