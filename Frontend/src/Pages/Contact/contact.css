@@ -1,10 +1,16 @@
+
 .social-links {
     display: flex;
-    justify-content: space-between; 
-   
+    gap: 20px; /* Adds 20px space between icons */
 }
-.social-link .fa,
-.social-link img {
+.social-link .fa {
     font-size: 24px; /* Increase the size of icons */
-    margin-right: 10px; /* Add space between icons */
+    color: black; /* Change the color of icons to black */
+}
+.social-link img {
+    height: 24px; /* Set the height of the TikTok image */
+    width: auto; /* Maintain aspect ratio */
+}
+.social-link:last-child .fa {
+    color: black; /* Set color of the last font-awesome icon to black */
 }
