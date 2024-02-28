@@ -20,6 +20,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css'
 import Createures from './Pages/Admin/Createures/createures.jsx';
+import NouveauEtud from './Pages/Admin/Etudiantes/nouveauEtud.jsx';
+import NouveauCrea from './Pages/Admin/Createures/nouveauCrea.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,7 +36,7 @@ function App() {
         <Route path="/createur" element ={<Createur/>} />
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
-         <Route path="/complet" element={< Complet />} />
+        <Route path="/complet" element={< Complet />} />
 
 
 
@@ -52,7 +54,8 @@ function App() {
         <Route path="/calendrier" element={<Calendrier />} />
         <Route path="/Event" element={<Event/>} />
         <Route path="/createures" element={<Createures/>} />      
-        
+        <Route path="/nouveauEtud" element={<NouveauEtud/>} />  
+        <Route path="/nouveauCrea" element={<NouveauCrea/>} />  
     </Routes>
     </BrowserRouter>
       

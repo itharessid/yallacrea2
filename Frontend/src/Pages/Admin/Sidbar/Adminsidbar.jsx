@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './dataTables.bootstrap4.min.css';
 import './responsive.bootstrap4.min.css';
-import './sidbar.css';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPerson, faBook, faBuilding, faCalendarAlt, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPerson, faBook, faBuilding, faCalendarAlt, faBell } from '@fortawesome/free-solid-svg-icons';import './sidbar.css';
+import { Link } from 'react-router-dom';
+
 import UtilisateurDropDown from './UtilisateurDropDown';
 import NotificationDropDown from './NotificationDropDown';
 
