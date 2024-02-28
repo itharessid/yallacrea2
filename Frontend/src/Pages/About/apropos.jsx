@@ -89,10 +89,10 @@ function apropos() {
             <div className="inner-banner">
         <section className="w3l-breadcrumb">
             <div className="container">
-                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">About Us</h4>
+                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">A Propos</h4>
                 <ul className="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>About Us</li>
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>A Propos</li>
                 </ul>
             </div>
         </section>
@@ -106,18 +106,106 @@ function apropos() {
                         <img src="assets/images/about.jpg" alt="" class="img-responsive img-fluid" />
                     </div>
                     <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
-                        <h6>Online Study</h6>
-                        <h2>Welcome to our <span>Website</span></h2>
-                        <p>Aenean pulvinar pharetra pellentesque. Cras dignissim, sapien ac tempus bibendum, eros massa
-                            fermentum
-                            massa, in eleifend ipsum quam vel magna.Maecenas viverra, leo eget semper ultrices.</p>
-                        <a href="#blog" className="btn button-style mt-sm-5 mt-4">Read More<i
-                                className="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                        <h6>QUI SOMMES NOUS ?</h6>
+                        <h2>Yalla   <span>DIGITAL Academy</span></h2>
+                        <p> est une école passionnée et novatrice dédiée à l'enseignement des 
+                          compétences essentielles pour produire un contenu inspirant de haute qualité.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+       </section>
+       <section className="w3l-teams-32-main py-5">
+    <div className="teams-32 py-md-4">
+        <div className="container">
+            <div className="title-main text-center mx-auto mb-4">
+                <h3 className="title-big">NOS ACTIVITÉS</h3>
+            </div>
+            <section className="topics-section section-padding pb-0" id="section_3">
+                <div className="container">
+                    <div className="row">
+
+
+
+                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-overlay">
+                                <a href="detail-page.html" class="custom-block-image-wrap">
+                                    <img src="images/topics/physician-consulting-his-patient-clinic.jpg" className="custom-block-image img-fluid" alt=""/>
+                                </a>
+
+                                <div className="custom-block-info custom-block-overlay-info">
+                                    <h5 className="mb-1">
+                                        <a href="listing-page.html">
+                                            Productivity
+                                        </a>
+                                    </h5>
+
+                                    <p className="badge mb-0">50 Episodes</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-overlay">
+                                <a href="detail-page.html" class="custom-block-image-wrap">
+                                    <img src="images/topics/repairman-doing-air-conditioner-service.jpg" className="custom-block-image img-fluid" alt=""/>
+                                </a>
+
+                                <div className="custom-block-info custom-block-overlay-info">
+                                    <h5 className="mb-1">
+                                        <a href="listing-page.html">
+                                            Technician
+                                        </a>
+                                    </h5>
+
+                                    <p className="badge mb-0">12 Episodes</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-overlay">
+                                <a href="detail-page.html" className="custom-block-image-wrap">
+                                    <img src="images/topics/woman-practicing-yoga-mat-home.jpg" className="custom-block-image img-fluid" alt=""/>
+                                </a>
+
+                                <div className="custom-block-info custom-block-overlay-info">
+                                    <h5 className="mb-1">
+                                        <a href="listing-page.html">
+                                            Mindfullness
+                                        </a>
+                                    </h5>
+
+                                    <p className="badge mb-0">35 Episodes</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-overlay">
+                                <a href="detail-page.html" className="custom-block-image-wrap">
+                                    <img src="images/topics/delicious-meal-with-sambal-arrangement.jpg" className="custom-block-image img-fluid" alt=""/>
+                                </a>
+
+                                <div className="custom-block-info custom-block-overlay-info">
+                                    <h5 className="mb-1">
+                                        <a href="listing-page.html">
+                                            Cooking
+                                        </a>
+                                    </h5>
+
+                                    <p className="badge mb-0">12 Episodes</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
           
             
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
