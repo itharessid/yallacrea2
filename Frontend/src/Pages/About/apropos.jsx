@@ -205,7 +205,115 @@ function apropos() {
         </div>
     </div>
 </section>
+<div className="w3l-grids-block-5 py-5">
+        <section id="grids5-block" class="pt-md-4 pb-md-5 py-4 mb-5">
+            <div className="container">
+                <div className="title-main text-center mx-auto mb-4">
+                    <h3 className="title-big">NOS CERTIFICATIONS</h3>
+                    <p className="sub-title mt-2"><strong>Yalla Digital Academy</strong> intègre des certifications dans sa démarche qualité,
+                           garantissant à ses étudiants une reconnaissance internationale de leurs compétences,
+                         en s'engageant fermement envers l'excellence académique</p>
 
+                </div>
+                <div className="row mt-sm-5 pt-lg-2">
+    <div className="col-lg-4 col-sm-6">
+        <div className="grids5-info">
+            <a href="#blog" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <img src="src/assets/images/logRO.png" alt="" style={{ maxWidth: '60%', maxHeight: '100%' }} />
+            </a>
+            <div className="blog-info">
+            <h5>Rosetta Stone</h5>
+            <br/>
+                <p>À Yalla Digital Academy, nous comprenons l'importance de choisir une formation 
+                    linguistique adaptée à vos besoins et à votre niveau.<br/> 
+                    Notre équipe est là pour vous guider dans le choix de la formation idéale. 
+                    Notre objectif est de vous aider à développer vos compétences linguistiques jusqu'à un niveau professionnel en écriture</p>
+               
+            </div>
+
+        </div>
+    </div>
+    <div className="col-lg-4 col-sm-6 mt-sm-0 mt-4">
+        <div className="grids5-info">
+            <a href="#blog" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <img src="src/assets/images/coursera.png" alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+            </a>
+            <div className="blog-info">
+            <h5>COURSERA</h5>
+            <br/>
+            
+                <h4><a href="#blog"></a></h4>
+                <p>Yalla Digital Academy encourage sans cesse de nouvelles opportunités d'apprentissage pour ses étudiants,
+                     nécessitant une pédagogie innovante de ses enseignants. <br/>En tant que partenaire officiel de Coursera, l'école mobilise
+                     son équipe pédagogique vers une culture numérique axée sur l'innovation grâce à la plateforme Coursera</p>
+            </div>
+            
+        </div>
+    </div>
+    <div className="col-lg-4 col-sm-6 mt-lg-0 mt-4">
+        <div className="grids5-info">
+            <a href="#blog" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <img src="src/assets/images/udemy.jpg" alt="" style={{ maxWidth: '70%', maxHeight: '100%' }} />
+            </a>
+            <div className="blog-info">
+                <h5>Udemy</h5>
+                <br/>
+               
+                <h4><a href="#blog"></a></h4>
+                <p>Yalla Digital Academy a récemment introduit un programme de certification Udemy 
+                    pour fournir des compétences clés dans le domaine technologique en constante évolution.<br/> 
+                    Cette certification vous donne les connaissances nécessaires pour utiliser efficacement les technologies associées, 
+                    ajoutant ainsi de la 
+                    valeur à votre entreprise et vous aidant à relever les défis pratiques au quotidien.</p>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </section>
+    </div>
+<section className="w3l-teams-32-main py-5">
+        <div className="teams-32 py-md-4">
+            <div className="container">
+                <div className="title-main text-center mx-auto mb-4">
+                    <h3 className="title-big">NOS PARTENAIRES</h3>
+                    <p className="sub-title mt-2">Nos partenaires académiques, technologiques et industriels sont toujours présents pour nos étudiants.</p>
+                </div>
+                <div className="row main-contteam-32 mt-sm-5 pt-lg-2">
+                <div className="col-lg-3 col-6 team-main-19 d-flex justify-content-center align-items-center">
+    <div className="column-19">
+        <a href="https://megapc.tn/"><img className="img-fluid" src="src/assets/images/LOGO-MEGA-PC-2.webp" alt=" " /></a>
+            </div>
+                        
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href=""><img className="img-fluid" src="src/assets/images/smc.png" alt=" "/></a>
+                        </div>
+                       
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img className="img-fluid" src="assets/images/team3.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" className="title-team-32">Anton Bone</a></h6>
+                            <p className="sm-text-32">UI/UX Designer</p>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-6 team-main-19">
+                        <div className="column-19">
+                            <a href="#team"><img className="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
+                        </div>
+                        <div className="right-team-9">
+                            <h6><a href="#team" className="title-team-32">Neoye Achi</a></h6>
+                            <p className="sm-text-32">Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
           
             
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">

@@ -16200,10 +16200,13 @@ h3.title-big {
 .w3l-grids-block-5 .grids5-info a img {
   display: block;
   background-color: #fdf2f6;
-  width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-}
+  display: flex;
+  justify-content: center; /* Pour centrer horizontalement */
+  align-items: center;
+  }
+  
 
 .w3l-grids-block-5 .grids5-info p {
   margin-top: 15px;
