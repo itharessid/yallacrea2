@@ -56,7 +56,7 @@ function etudiant() {
           </div>
         </div>
         <div className="DataTables_Table_2_filter" class="dataTables_filter">
-          <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Rechercher" aria-controls="DataTables_Table_2"/></label>
+          <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un étudiant" aria-controls="DataTables_Table_2"/></label>
           <button className="button1" style={{ marginLeft: '10px' }}>             
             <Link to="/nouveauEtud" className="dropdown-toggle">
             <span className="mtext">Nouveau</span>
@@ -65,7 +65,7 @@ function etudiant() {
         </div>
         <div className="card-box mb-30">
 					<div className="pd-20">
-						<h4 className="text-purple h4">Etudiants</h4>
+						<h4 className="h4">Etudiants</h4>
 					</div>
 					<div className="pb-20">
 						<table className="table hover multiple-select-row data-table-export nowrap">

@@ -13,7 +13,6 @@ function UtilisateurDropDown({ isOpen, toggleDropdown }) {
           </span>
           <span className="user-name">Wajdi Chabbane</span>
           <div className={`dropdown-menu dropdown-menu-right dropdown-menu-icon-list ${isOpen ? 'show' : ''}`}>
-            <Link to="/settings" className="dropdown-item"><FontAwesomeIcon icon={faCog} /> Setting</Link>
             <Link to="/login" className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} /> Log Out</Link>
           </div>
         </div>
