@@ -22,6 +22,7 @@ import './App.css'
 import Createures from './Pages/Admin/Createures/createures.jsx';
 import NouveauEtud from './Pages/Admin/Etudiantes/nouveauEtud.jsx';
 import NouveauCrea from './Pages/Admin/Createures/nouveauCrea.jsx';
+import Login from './Pages/Admin/ExtraPages/login.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -56,6 +57,7 @@ function App() {
         <Route path="/createures" element={<Createures/>} />      
         <Route path="/nouveauEtud" element={<NouveauEtud/>} />  
         <Route path="/nouveauCrea" element={<NouveauCrea/>} />  
+        <Route path="/login" element={<Login/>} />  
     </Routes>
     </BrowserRouter>
       
