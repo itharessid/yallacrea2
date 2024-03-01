@@ -1,4 +1,5 @@
 import React from 'react'
+import { Dropdown } from 'react-bootstrap';
 
 function accelere() {
   return (
@@ -12,12 +13,12 @@ function accelere() {
                     </a>
                 </h1>
       
-                <button className="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span className="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+                <button className="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+            data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
+            <span className="navbar-toggler-icon fa icon-close fa-times"></span>
+          </button>
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-lg-auto">
@@ -28,13 +29,15 @@ function accelere() {
                             <a className="nav-link" href="apropos">Apropos</a>
                         </li>
                         <li className="nav-item dropdown">
-               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Formation </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a className="dropdown-item" href="/Accelerer">Cours Accéléré</a>
-                     <a className="dropdown-item" href="/complet ">Cours Complet</a>
-                    </div>
-                     </li>
+                <Dropdown>
+                  <Dropdown.Toggle id="navbarDropdown">
+                    Formation
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
+                    <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown></li>
 
                         <li className="nav-item">
                             <a className="nav-link" href="createur">Créateur</a>
@@ -90,7 +93,7 @@ function accelere() {
             <div className="text-txt">
               <div className="row sub-columns align-items-center">
                 {/* Première colonne */}
-                <div className="col-lg-4 col-md-6 col-sm-12 sub-one-left">
+                <div className="col-lg-4 col-md-4 col-sm-12 sub-one-left">
                   <img
                     src="src/assets/images/yallalogo.png"
                     className="footer-image img-fluid"
@@ -113,7 +116,7 @@ function accelere() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-two-right">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
                       <h6>Quick links</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
@@ -124,7 +127,7 @@ function accelere() {
                     </div>
 
                     {/* Sous-colonne pour "Contact" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-one-left">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-one-left">
                       <h6>Contact</h6>
                       <div className="column2">
                         <div className="href1"><span className="fa fa-envelope-o" aria-hidden="true"></span><a href="mailto:info@example.com">Yalladigitalacademy@gmail.com</a></div>

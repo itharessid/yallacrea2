@@ -290,6 +290,8 @@ button:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled) {
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 button::-moz-focus-inner,
@@ -2767,37 +2769,52 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #ff4c4c;
+  color: black;
   border: none;
 }
 
 .btn-primary:hover {
-  color: #fff;
-  background-color: #956fef;
+  color:black;
   box-shadow: none;
+  padding: 10px 0;
+    font-size: 16px;
+    color: var(--heading-color);
+    letter-spacing: .5px
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  color: #fff;
-  background-color: #956fef;
-  border-color: #956fef;
+  color: black;
+  padding: 10px 0;
+    font-size: 16px;
+    color: var(--heading-color);
+    letter-spacing: .5px;
+ 
   box-shadow: 0 0 0 0.2rem rgb(102 16 242 / 35%);
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-  color: #fff;
-  background-color: #ff4c4c;
-  border-color: #ff4c4c;
+  color: black;
+  color: black;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--heading-color);
+  letter-spacing: .5px;
+  font-family: 'Roboto', sans-serif;
+
+
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #956fef;
-  border-color: #956fef;
+  color: #fff; 
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--heading-color);
+  letter-spacing: .5px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -14060,6 +14077,9 @@ a.text-dark:focus {
   --bg-grey: #0b0d0e;
   --bg-light: #27282b;
   --bg-dark-color: #27282b;
+}
+.noscroll {
+  overflow: hidden;
 }
 
 .noscroll {

@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Application } from '@splinetool/runtime';
 import './acceuil.css';
+import { Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 function acceuil() {
   const canvasRef = useRef(null);
@@ -12,93 +16,90 @@ function acceuil() {
   }, []); 
   return (
     <div>
-      <header id="site-header" className="fixed-top">
-        <div className="container">
-            <nav className="navbar navbar-expand-lg stroke">
-                <h1>
-                    <a className="navbar-brand" href="index.html">
+   <header id="site-header" className="fixed-top">
+    <div className="container">
+    <nav className="navbar navbar-expand-lg stroke">
+            <h1>
+                <a className="navbar-brand" href="index.html">
                     <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
-                    </a>
-                </h1>
-      
-                <button className="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span className="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+                </a>
+            </h1>
 
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul className="navbar-nav ml-lg-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="apropos">Apropos</a>
-                        </li>
-                        <li className="nav-item dropdown">
-               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Formation </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a className="dropdown-item" href="/Accelerer">Cours Accéléré</a>
-                     <a className="dropdown-item" href="/complet ">Cours Complet</a>
-                    </div>
-                     </li>
+            <button className="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon">
+                    <FontAwesomeIcon icon={faBars} />
+                </span>
+            </button>
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="createur">Créateur</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="contact">Contact</a>
-                        </li>
-                        
-                        <div className="search-right">
-                            <a href="#search" className="btn button-style" title="search">SeConnecter</a>
-                            
-                            <div id="search" className="pop-overlay">
-                                <div className="popup">
-                                    <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your
-                                        Online Course
-                                    </h4>
-                                    <form action="#error" method="GET" className="search-box">
-                                        <div className="input-search"> <span className="fa fa-search mr-2"
-                                                aria-hidden="true"></span><input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
-
-                                        </div>
-                                        <button type="submit" className="btn button-style">Search</button>
-                                    </form>
-                                </div>
-                                <a className="close" href="#close">×</a>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul className="navbar-nav ml-lg-auto">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="apropos">Apropos</a>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <Dropdown>
+                            <Dropdown.Toggle id="navbarDropdown">
+                                Formation
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
+                                <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="createur">Créateur</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="contact">Contact</a>
+                    </li>
+                    <div className="search-right">
+                        <a href="#search" className="btn button-style" title="search">SeConnecter</a>
+                        <div id="search" className="pop-overlay">
+                            <div className="popup">
+                                <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your Online Course</h4>
+                                <form action="#error" method="GET" className="search-box">
+                                    <div className="input-search">
+                                        <span className="fa fa-search mr-2" aria-hidden="true"></span>
+                                        <input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
+                                    </div>
+                                    <button type="submit" className="btn button-style">Search</button>
+                                </form>
                             </div>
-                          
+                            <a className="close" href="#close">×</a>
                         </div>
-                       
-                    </ul>
-                </div>
-                
-                <div className="cont-ser-position">
-                    <nav className="navigation">
-                        <div className="theme-switch-wrapper">
-                            <label className="theme-switch" htmlFor="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <div className="mode-container">
-                                    <i className="gg-sun"></i>
-                                    <i className="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                
-            </nav>
-        </div>
-            </header>
+                    </div>
+                </ul>
+            </div>
+
+            <div className="cont-ser-position">
+                <nav className="navigation">
+                    <div className="theme-switch-wrapper">
+                        <label className="theme-switch" htmlFor="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div className="mode-container">
+                                <i className="gg-sun"></i>
+                                <i className="gg-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</header>
             <section id="home" className="w3l-banner py-5">
       <div className="container pt-5 pb-md-4">
         <div className="row align-items-center">
-          <div className="col-md-6 banner-left pt-md-0 pt-5">
+          <div className="">
           <h3 className="mb-sm-5 mb-2 title">Yalla <br/>Digital <span className="type-js"><span
                                         className="text-js">Academy</span></span></h3>
+                                       
                        <p className="smaller-text">Vous avez perturbé dans votre route, alors donnez vie à votre créativité.
                       <br/> <strong><span className="bigger-word">Yalla,</span></strong> rejoignez-nous dès maintenant pour débuter votre parcours créatif.</p>
             <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
@@ -259,7 +260,7 @@ function acceuil() {
             <div className="text-txt">
               <div className="row sub-columns align-items-center">
                 {/* Première colonne */}
-                <div className="col-lg-4 col-md-6 col-sm-12 sub-one-left">
+                <div className="col-lg-4 col-md-4 col-sm-12 sub-one-left">
                   <img
                     src="src/assets/images/yallalogo.png"
                     className="footer-image img-fluid"
@@ -282,7 +283,7 @@ function acceuil() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-two-right">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
                       <h6>Quick links</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
@@ -293,7 +294,7 @@ function acceuil() {
                     </div>
 
                     {/* Sous-colonne pour "Contact" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-one-left">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-one-left">
                       <h6>Contact</h6>
                       <div className="column2">
                         <div className="href1"><span className="fa fa-envelope-o" aria-hidden="true"></span><a href="mailto:info@example.com">Yalladigitalacademy@gmail.com</a></div>

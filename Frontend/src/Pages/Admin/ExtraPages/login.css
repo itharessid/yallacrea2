@@ -41,7 +41,7 @@
 
 .card {
     max-width: 400px; /* Largeur maximale de la carte */
-    margin-top: 50px; /* Marge supérieure */
+    margin-top: 0px; /* Marge supérieure */
     padding: 20px; /* Espacement intérieur */
 }
 

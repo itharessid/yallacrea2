@@ -1,5 +1,6 @@
 import React from 'react'
 import './apropos.css'
+import { Dropdown } from 'react-bootstrap';
 function apropos() {
   return (
     <div>
@@ -12,12 +13,12 @@ function apropos() {
                     </a>
                 </h1>
       
-                <button className="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span className="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+                <button className="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+            data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
+            <span className="navbar-toggler-icon fa icon-close fa-times"></span>
+          </button>
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-lg-auto">
@@ -28,13 +29,16 @@ function apropos() {
                             <a className="nav-link" href="apropos">Apropos</a>
                         </li>
                         <li className="nav-item dropdown">
-                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Formation </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a className="dropdown-item" href="/Accelerer">Cours Accéléré</a>
-                     <a className="dropdown-item" href="/complet ">Cours Complet</a>
-                    </div>
-                     </li>
+                <Dropdown>
+                  <Dropdown.Toggle id="navbarDropdown">
+                    Formation
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
+                    <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown></li>
+
                         <li className="nav-item">
                             <a className="nav-link" href="createur">Créateur</a>
                         </li>
@@ -52,8 +56,7 @@ function apropos() {
                                     </h4>
                                     <form action="#error" method="GET" className="search-box">
                                         <div className="input-search"> <span className="fa fa-search mr-2"
-                                                aria-hidden="true"></span>
-                                          <input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus={true} />
+                                                aria-hidden="true"></span><input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
 
                                         </div>
                                         <button type="submit" className="btn button-style">Search</button>
@@ -70,8 +73,7 @@ function apropos() {
                 <div className="cont-ser-position">
                     <nav className="navigation">
                         <div className="theme-switch-wrapper">
-                        <label className="theme-switch" htmlFor="checkbox">
-
+                            <label className="theme-switch" htmlFor="checkbox">
                                 <input type="checkbox" id="checkbox"/>
                                 <div className="mode-container">
                                     <i className="gg-sun"></i>
@@ -316,13 +318,13 @@ function apropos() {
     </section>
           
             
-            <footer className="w3l-footer-22 position-relative mt-5 pt-5">
+    <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
             <div className="text-txt">
               <div className="row sub-columns align-items-center">
                 {/* Première colonne */}
-                <div className="col-lg-4 col-md-6 col-sm-12 sub-one-left">
+                <div className="col-lg-4 col-md-4 col-sm-12 sub-one-left">
                   <img
                     src="src/assets/images/yallalogo.png"
                     className="footer-image img-fluid"
@@ -345,7 +347,7 @@ function apropos() {
                 <div className="col-lg-6 col-md-6 col-sm-12">
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-two-right">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
                       <h6>Quick links</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
@@ -356,7 +358,7 @@ function apropos() {
                     </div>
 
                     {/* Sous-colonne pour "Contact" */}
-                    <div className="col-lg-6 col-md-6 col-sm-6 sub-one-left">
+                    <div className="col-lg-6 col-md- col-sm-6 sub-one-left">
                       <h6>Contact</h6>
                       <div className="column2">
                         <div className="href1"><span className="fa fa-envelope-o" aria-hidden="true"></span><a href="mailto:info@example.com">Yalladigitalacademy@gmail.com</a></div>
