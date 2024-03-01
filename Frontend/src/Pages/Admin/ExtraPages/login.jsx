@@ -23,7 +23,7 @@ function Login() {
                         <div className="row justify-content-center">
                             <div className="col-md-10">
                                 <img className="logo-img2" src="/src/assets/images/yallalogo.png" alt="Logo" />
-                                <h5 className="card-title text-center">Connexion</h5>
+                                <h5 className="card-title text-center"> Se Connecter</h5>
                                 <hr className="my-2" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.1)' }} />
                                 <div className="card-body">
                                     <form>
