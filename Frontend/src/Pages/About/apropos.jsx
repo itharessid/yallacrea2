@@ -47,7 +47,7 @@ function apropos() {
                         </li>
                         
                         <div className="search-right">
-                            <a href="#search" className="btn button-style" title="search">SeConnecter</a>
+                            <a href="#search" className="btn button-style" title="search">S'inscrire</a>
                             
                             <div id="search" className="pop-overlay">
                                 <div className="popup">

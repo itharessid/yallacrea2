@@ -59,7 +59,7 @@ function acceuil() {
                         <a className="nav-link" href="contact">Contact</a>
                     </li>
                     <div className="search-right">
-                        <a href="#search" className="btn button-style" title="search">SeConnecter</a>
+                        <a href="#search" className="btn button-style" title="search">S'inscrire</a>
                         <div id="search" className="pop-overlay">
                             <div className="popup">
                                 <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your Online Course</h4>
