@@ -23,8 +23,6 @@ import Createures from './Pages/Admin/Createures/createures.jsx';
 import NouveauEtud from './Pages/Admin/Etudiantes/nouveauEtud.jsx';
 import NouveauCrea from './Pages/Admin/Createures/nouveauCrea.jsx';
 import Login from './Pages/Admin/ExtraPages/login.jsx';
-import FullCalendar from '@fullcalendar/react';
-
 function App() {
   const [count, setCount] = useState(0)
 
