@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './complet.css'
 import { Dropdown } from 'react-bootstrap';
+
+
+
+
 function complet() {
   return (
     <div>
@@ -211,22 +215,22 @@ function complet() {
             <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Programmes d’échange</h4> 
         </div>
     </section>
-    <section class="w3l-text-6 py-5" id="about">
-        <div class="text-6-mian py-md-4 py-3">
-            <div class="container">
-                <div class="row top-cont-grid align-items-center">
-                    <div class="col-lg-6 left-img pr-lg-4">
-                        <img src="assets/images/about.jpg" alt="" class="img-responsive img-fluid" />
+    <section className="w3l-text-6 py-5" id="about">
+        <div className="text-6-mian py-md-4 py-3">
+            <div className="container">
+                <div className="row top-cont-grid align-items-center">
+                    <div className="col-lg-6 left-img pr-lg-4">
+                    <img src="src/assets/images/airplane.png" alt="" class="img-responsive img-fluid" />
                     </div>
-                    <div class="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
+                    <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
                         <h6>Programmes d’échange</h6>
                         <h2>Yalla Digital Academy </h2>
                         <p> vous ouvre les portes d'un monde de découvertes et d'aventures 
                           à travers des programmes d'échange à l'étranger. Rencontrez des professionnels de la création de contenu,
                            élargissez vos connaissances et vivez des expériences 
                           uniques dans des destinations exotiques. Nous vous accompagnons tout au long de votre parcours</p>
-                        <a href="#blog" class="btn button-style mt-sm-5 mt-4">S'inscrire<i
-                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                        <a href="#blog"className="btn button-style mt-sm-5 mt-4">S'inscrire<i
+                            className="fa fa-angle-double-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
