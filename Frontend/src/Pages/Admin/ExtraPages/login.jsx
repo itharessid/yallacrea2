@@ -16,7 +16,7 @@ function Login() {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md-6">
-                    <img className="logo-img1" src="/src/assets/images/bureau.jpg" alt="Logo" />
+                    <img className="logo-img1" src="/src/assets/images/cartoon1.png" alt="Logo" />
                 </div>
                 <div className="col-md-6">
                     <div className="splash-container">

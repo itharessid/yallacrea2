@@ -20,7 +20,11 @@
 .card-title {
     color: purple;
 }
-
+.logo-img1{
+    margin-top: 5px;
+    height: 500px;
+    width: 300px;
+}
 .logo-img2 {
     height: 200px;
     width: 200px;

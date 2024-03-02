@@ -23,7 +23,7 @@ import Createures from './Pages/Admin/Createures/createures.jsx';
 import NouveauEtud from './Pages/Admin/Etudiantes/nouveauEtud.jsx';
 import NouveauCrea from './Pages/Admin/Createures/nouveauCrea.jsx';
 import Login from './Pages/Admin/ExtraPages/login.jsx';
-import FullCalendar from '@fullcalendar/react';
+import Evenements from './Pages/Admin/evenementes/evenements';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -59,6 +59,7 @@ function App() {
         <Route path="/nouveauCrea" element={<NouveauCrea/>} />  
         <Route path="/login" element={<Login/>} /> 
         <Route path="/calendrier" element={<Calendrier/>} /> 
+        <Route path="/evenements" element={<Evenements/>} /> 
     </Routes>
     </BrowserRouter>
       
