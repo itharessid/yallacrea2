@@ -1,0 +1,83 @@
+.cardacc{
+    width: 100%;
+    max-width: 300px;
+    min-width: 200px;
+    height: 250px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(249, 169, 255, 0.127);
+    border: 2px solid rgb(231 90 252);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .iconacc {
+    margin: 0 auto;
+    width: 100%;
+    height: 80px;
+    max-width: 80px;
+    background: linear-gradient(90deg, #70218fb8 0%, #ff48fb 40%,rgb(146 36 151) 60%);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s ease;
+    background-position: 0px;
+    background-size: 200px;
+  }
+  
+  .iconacc svg {
+    fill: white;
+  }
+  
+  .cardacc .titleacc {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+  
+  .cardacc.textacc {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 2px;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .cardacc:hover {
+    height: 270px;
+  }
+  
+  .cardacc:hover .textacc {
+    transition: all 0.3s ease;
+    opacity: 1;
+    max-height: 40px;
+  }
+  
+  .cardacc:hover .iconacc {
+    background-position: -120px;
+    transition: all 0.3s ease;
+  }
+  
+  .cardacc:hover .iconacc svg path {
+    fill: url('#gradientColor');
+    transition: all 0.3s ease;
+  }

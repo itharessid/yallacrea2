@@ -1,5 +1,8 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap';
+import { BiHeart } from 'react-icons/bi';
+
+import './createur.css'
 function createur() {
   return (
     <div>
@@ -86,6 +89,260 @@ function createur() {
             </nav>
         </div>
             </header>
+            <br/>
+            <br/>
+            <div className="inner-banner">
+        <section className="w3l-breadcrumb">
+            <div className="container">
+                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">créateurs</h4>
+                <ul className="breadcrumbs-custom-path">
+                    <li><a href="/">Acceuil</a></li>
+                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>créateurs</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+            <section className="w3l-text-6 py-5" id="about">
+        <div className="text-6-mian py-md-4 py-3">
+            <div className="container">
+                <div className="row top-cont-grid align-items-center">
+                    <div className="col-lg-6 left-img pr-lg-4">
+                        <img src="assets/images/about.jpg" alt="" className="img-responsive img-fluid" />
+                    </div>
+                    <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
+                        <h6>Yalla DIGITAL Academy</h6>
+                        <h2>Yalla créateurs<span></span></h2>
+                        <p>Découvrez notre galerie  de créateurs de contenu talentueux, prêts à donner vie à vos projets avec leur expertise et leur créativité incomparables.</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div className="discover-items">
+    <div className="container">
+        <div className="row">
+                <section className="w3l-breadcrumb">
+                    <div className="container">
+                        <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2 text-center">Découvrez Certains de Nos <em><span className="highlight">Créateurs</span></em></h4>
+                    </div>
+                </section>
+
+           
+
+
+            <div className="w3l-index-block4 pb-5">
+        <div className="features-bg pb-lg-5 pt-lg-4 py-4">
+            <div className="container">
+                <div className="title-main text-center mx-auto mb-md-4">
+                   
+                </div>
+                <div className="row">
+                    <div className="col-lg-4 col-md-6 features15-col-text">
+                        <div className="row align-items-center">
+                        <div className="col-lg-4">
+                            <fieldset>
+                                <input type="text" name="keyword" className="searchText" placeholder="Recherche ..." autoComplete="on" required />
+                            </fieldset>
+                        </div>
+                        </div>
+                           
+                    
+                    </div>
+                    <div className="col-lg-2 col-md-2 features15-col-text">
+                    <fieldset>
+                    <select name="Category" className="form-select" aria-label="Default select example" id="chooseCategory" onChange={() => this.form.click()}>
+                <option>Tout Categories</option>
+                   <option type="checkbox" name="option1" value="Music">Santé</option>
+                   <option value="Digital">lois</option>
+               <option value="Blockchain">Fashion</option>
+</select>
+                </fieldset>
+                    </div>
+
+                    <div className="col-lg-2 col-md-2 features15-col-text">
+                    <div className="row align-items-center">
+                        <div className="col-lg-4">
+                    <div className="col-lg-2">                        
+                            <fieldset>
+                            <button className="main-button" style={{ color: 'white'}}>Rechercher</button>
+                            </fieldset>
+                        </div>
+                   
+                  
+                        </div>
+                       </div>
+                       </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+           
+        </div>
+        
+    </div>
+</div>
+<section className="trending-podcast-section section-padding">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-4 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-full">
+                            <div className="custom-block-image-wrap text-center"> 
+
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/c1.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+                                 </div>
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                          itsbahahaouas
+                                        </a>
+                                    </h5>
+
+                                    
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                        <a href="#" className="bi-headphones me-1">
+                                            <span>100k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-heart me-1">
+                                            <span>2.5k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-chat me-1">
+                                            <span>924k</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="social-share d-flex flex-column ms-auto">
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-heart"></i>
+                                    </a>
+
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-bookmark"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-4 col-12 mb-4 mb-lg-0">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="images/podcast/27670664_7369753.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                            Vintage Show
+                                        </a>
+                                    </h5>
+
+                                    <div className="profile-block d-flex">
+                                        <img src="images/profile/cute-smiling-woman-outdoor-portrait.jpg" className="profile-block-image img-fluid" alt=""/>
+
+                                        <p>
+                                            Taylor
+                                            <img src="images/verified.png" className="verified-image img-fluid" alt=""/>
+                                            <strong>Creator</strong>
+                                        </p>
+                                    </div>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                        <a href="#" className="bi-headphones me-1">
+                                            <span>100k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-heart me-1">
+                                            <span>2.5k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-chat me-1">
+                                            <span>924k</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="social-share d-flex flex-column ms-auto">
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-heart"></i>
+                                    </a>
+
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-bookmark"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="images/podcast/12577967_02.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                            Daily Talk
+                                        </a>
+                                    </h5>
+
+                                    <div className="profile-block d-flex">
+                                        <img src="images/profile/handsome-asian-man-listening-music-through-headphones.jpg" className="profile-block-image img-fluid" alt=""/>
+
+                                        <p>
+                                            William
+                                            <img src="images/verified.png" className="verified-image img-fluid" alt=""/>
+                                            <strong>Vlogger</strong></p>
+                                    </div>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                        <a href="#" className="bi-headphones me-1">
+                                            <span>100k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-heart me-1">
+                                            <span>2.5k</span>
+                                        </a>
+
+                                        <a href="#" className="bi-chat me-1">
+                                            <span>924k</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="social-share d-flex flex-column ms-auto">
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-heart"></i>
+                                    </a>
+
+                                    <a href="#" className="badge ms-auto">
+                                        <i className="bi-bookmark"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">

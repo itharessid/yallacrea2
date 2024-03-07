@@ -2,9 +2,6 @@ import React, { Suspense } from 'react'
 import './complet.css'
 import { Dropdown } from 'react-bootstrap';
 
-
-
-
 function complet() {
   return (
     <div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap';
+import './accelere.css';
 
 function accelere() {
   return (
@@ -87,6 +88,85 @@ function accelere() {
             </nav>
         </div>
             </header>
+            <br/>
+            <br/>
+            <br/>
+            <div className="inner-banner">
+        <section className="w3l-breadcrumb">
+            <div className="container">
+                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Cours Accéléré</h4>
+                <ul className="breadcrumbs-custom-path">
+                  <br/>
+                  
+                    <li><a href="/">Acceuil</a></li>
+                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Cours Accéléré</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+            <div className="w3l-index-block4 pb-5">
+        <div className="features-bg pb-lg-5 pt-lg-4 py-4">
+            <div className="container">
+
+                <div className="row">
+                    <div className="col-lg-4 col-md-6 features15-col-text">
+                    <div className="cardacc">
+         <div className="iconacc">
+         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="48px" width="48px" version="1.1" id="number" viewBox="0 0 48 48" xml:space="preserve">
+    <linearGradient id="gradientColor">
+        <stop offset="5%" stop-color="#7eaaff"></stop>
+        <stop offset="95%" stop-color="#ff48fb"></stop>
+    </linearGradient>
+    <g>
+        <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" font-size="32" fill="#ffffff">3</text>
+    </g>
+</svg>
+
+  </div>
+  <p className="titleacc">mois</p>
+  <p className="textacc">Creative Ace</p>
+</div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 features15-col-text">
+                    <div className="cardacc">
+         <div className="iconacc">
+         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="48px" width="48px" version="1.1" id="number" viewBox="0 0 48 48" xml:space="preserve">
+    <linearGradient id="gradientColor">
+        <stop offset="5%" stop-color="#7eaaff"></stop>
+        <stop offset="95%" stop-color="#ff48fb"></stop>
+    </linearGradient>
+    <g>
+        <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" font-size="32" fill="#ffffff">6</text>
+    </g>
+</svg>
+  </div>
+  <p className="titleacc">mois</p>
+  <p className="textacc">Idea Maven</p>
+</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 features15-col-text">
+                    <div className="cardacc">
+         <div className="iconacc">
+         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="48px" width="48px" version="1.1" id="number" viewBox="0 0 48 48" xml:space="preserve">
+    <linearGradient id="gradientColor">
+        <stop offset="5%" stop-color="#7eaaff"></stop>
+        <stop offset="95%" stop-color="#ff48fb"></stop>
+    </linearGradient>
+    <g>
+        <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" font-size="32" fill="#ffffff">1</text>
+    </g>
+</svg>
+  </div>
+  <p className="titleacc">an</p>
+  <p className="textacc">Content Master</p>
+                    </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+            
+            
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">

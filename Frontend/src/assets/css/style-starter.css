@@ -261,8 +261,13 @@ textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
-}
+ 
+  background-color: white;
+  color: black;
+  border-radius: 23px;
+  border-color: #70218f;
+
+}   
 
 button,
 input {
@@ -816,7 +821,7 @@ pre code {
   position: relative;
   width: 100%;
   padding-right: 15px;
-  padding-left: 15px;
+ 
 }
 
 .col {
@@ -14133,7 +14138,7 @@ select,
 label,
 li,
 span {
-  -webkit-appearance: none;
+ 
   outline: none;
   font-family: 'Roboto', sans-serif;
 }
