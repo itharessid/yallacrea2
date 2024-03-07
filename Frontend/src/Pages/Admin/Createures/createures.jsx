@@ -57,17 +57,18 @@ function Createures() {
       <Adminsidbar />
       <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
         <div className="row">
-          <div className="col-xl-3 mb-30">
-            <div className="card-box height-100-p widget-style1">
-              <div className="d-flex flex-wrap align-items-center">
-                <div className="widget-data">
-                  <div className="weight-600 font-14 text-purple text-center">Créateurs</div>
-                  <div className="h6 mb-0 text-center">40</div>
-                </div>
-                <img src="src/assets/images/createurs.png" alt="" />
-              </div>
-            </div>
-          </div>
+        <div className="col-xl-3 mb-20">
+  <div className="card-box-Etud height-100-p widget-style1">
+    <div className="d-flex flex-wrap align-items-center">
+      <div className="widget-data">
+        <div className="weight-600 font-14 text-purple text-center text-nowrap">Créateurs</div>
+        <div className="h6 mb-0 text-center">40</div>
+      </div>
+      <img src="src/assets/images/createurs.png" alt="" style={{marginLeft: '40px'}}/>
+    </div>
+  </div>
+</div>
+
         </div>
         <div className="DataTables_Table_2_filter">
           <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un créateur" aria-controls="DataTables_Table_2" /></label>

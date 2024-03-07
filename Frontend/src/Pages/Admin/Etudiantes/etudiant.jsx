@@ -56,52 +56,57 @@ function Etudiants() {
     <>
       <Adminsidbar />
       <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
-        <div className="row">
-          <div className="col-xl-3 mb-30">
-            <div className="card-box height-100-p widget-style1">
-              <div className="d-flex flex-wrap align-items-center">
-                <div className="widget-data">
-                  <div className="weight-600 font-14 text-purple text-center">3 mois</div>
-                  <div className="h6 mb-0 text-center">20</div>
-                </div>
-                <img src="src/assets/images/etudiant.png" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-3 mb-30">
-            <div className="card-box height-100-p widget-style1">
-              <div className="d-flex flex-wrap align-items-center">
-                <div className="widget-data">
-                  <div className="weight-600 font-14 text-purple text-center">6 mois</div>
-                  <div className="h6 mb-0 text-center">20</div>
-                </div>
-                <img src="src/assets/images/etudiant.png" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-3 mb-30">
-            <div className="card-box height-100-p widget-style1">
-              <div className="d-flex flex-wrap align-items-center">
-                <div className="widget-data">
-                  <div className="weight-600 font-14 text-purple text-center">1 an</div>
-                  <div className="h6 mb-0 text-center">20</div>
-                </div>
-                <img src="src/assets/images/etudiant.png" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-3 mb-30">
-            <div className="card-box height-100-p widget-style1">
-              <div className="d-flex flex-wrap align-items-center">
-                <div className="widget-data">
-                  <div className="weight-600 font-14 text-purple text-center">3 ans</div>
-                  <div className="h6 mb-0 text-center">20</div>
-                </div>
-                <img src="src/assets/images/etudiant.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="row">
+      <div className="col-xl-3 mb-20">
+  <div className="card-box-Etud height-100-p widget-style1">
+    <div className="d-flex flex-wrap align-items-center">
+      <div className="widget-data">
+        <div className="weight-600 font-14 text-purple text-center text-nowrap">3 mois</div>
+        <div className="h6 mb-0 text-center">20</div>
+      </div>
+      <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
+    </div>
+  </div>
+</div>
+
+<div className="col-xl-3 mb-20">
+  <div className="card-box-Etud height-100-p widget-style1">
+    <div className="d-flex flex-wrap align-items-center">
+      <div className="widget-data">
+        <div className="weight-600 font-14 text-purple text-center text-nowrap">6 mois</div>
+        <div className="h6 mb-0 text-center">20</div>
+      </div>
+      <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
+    </div>
+  </div>
+</div>
+
+<div className="col-xl-3 mb-20">
+  <div className="card-box-Etud height-100-p widget-style1">
+    <div className="d-flex flex-wrap align-items-center">
+      <div className="widget-data">
+        <div className="weight-600 font-14 text-purple text-center text-nowrap">1 an</div>
+        <div className="h6 mb-0 text-center">20</div>
+      </div>
+      <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}} />
+    </div>
+  </div>
+</div>
+
+<div className="col-xl-3 mb-20">
+  <div className="card-box-Etud height-100-p widget-style1">
+    <div className="d-flex flex-wrap align-items-center">
+      <div className="widget-data">
+        <div className="weight-600 font-14 text-purple text-center text-nowrap">3 ans</div>
+        <div className="h6 mb-0 text-center">20</div>
+      </div>
+      <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
+    </div>
+  </div>
+</div>
+
+</div>
+
         <div className="DataTables_Table_2_filter">
           <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un étudiant" aria-controls="DataTables_Table_2" /></label>
           <button className="button1" style={{ marginLeft: '10px' }}>
