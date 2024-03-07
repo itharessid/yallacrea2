@@ -122,7 +122,9 @@ function Etudiants() {
                   <th className="text-purple">Prénom</th>
                   <th className="text-purple">Email</th>
                   <th className="text-purple">Numéro</th>
-                  <th className="text-purple">classe</th>
+                  <th className="text-purple">Programme</th>
+                  <th className="text-purple">Code Promo</th>
+                  <th className="text-purple">Niveau</th>
                   <th className="text-purple">Action</th>
                 </tr>
               </thead>
@@ -133,9 +135,11 @@ function Etudiants() {
                   <td>elfekihons@gmail.com</td>
                   <td>55963211</td>
                   <td>A</td>
+                  <td>7800</td>
+                  <td>Complet</td>
                   <td>
                     <button className="button1">
-                      <Link to="/profileEtud" className="dropdown-toggle">
+                      <Link to="/profilEtud" className="dropdown-toggle">
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
                     </button>
@@ -150,9 +154,11 @@ function Etudiants() {
                   <td>ithar333@gmail.com</td>
                   <td>26774811</td>
                   <td>A</td>
+                  <td>7800</td>
+                  <td>Complet</td>
                   <td>
                     <button className="button1">
-                      <Link to="/profileEtud" className="dropdown-toggle">
+                      <Link to="/profilEtud" className="dropdown-toggle">
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
                     </button>

@@ -20,13 +20,13 @@ function NouveauCrea() {
                                       <section>
                                           <div className="row">
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Nom:</label>
                                                       <input type="text" className="form-control" required />
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Prénom:</label>
                                                       <input type="text" className="form-control" required />
                                                   </div>
@@ -34,13 +34,13 @@ function NouveauCrea() {
                                           </div>
                                           <div className="row">
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Email:</label>
                                                       <input type="email" className="form-control" required />
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Adresse</label>
                                                       <input type="text" className="form-control" required />
                                                   </div>
@@ -48,13 +48,13 @@ function NouveauCrea() {
                                           </div>
                                           <div className="row">
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Numéro:</label>
                                                       <input type="number" className="form-control" required />
                                                   </div>
                                               </div>
                                               <div className="col-md-6 pl-md-5">
-                                              <div className="form-group">
+                                              <div className="form-group text-purple">
                                                   <label>Anniversaire:</label>
                                                       <DatePicker
                                                           className="form-control date-picker"
@@ -68,13 +68,13 @@ function NouveauCrea() {
                                           </div>
                                           <div className="row">
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Lien Instagram:</label>
                                                       <input type="link" className="form-control" required />
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Lien Facebook:</label>
                                                       <input type="link" className="form-control" required />
                                                   </div>
@@ -82,13 +82,13 @@ function NouveauCrea() {
                                           </div>
                                           <div className="row justify-content-center">
                                           <div className="col-md-6">
-                                                  <div className="form-group">
+                                                  <div className="form-group text-purple">
                                                       <label>Lien TikTok:</label>
                                                       <input type="link" className="form-control" required />
                                                   </div>
                                               </div>
-                                          <div className="col-md-6">
-                                                  <div className="form-group">
+                                                <div className="col-md-6">
+                                                  <div className="form-group text-purple">
                                                       <label>Domaine:</label>
                                                       <select className="custom-select form-control" required>
                                                           <option value="santé">Santé</option>
@@ -97,7 +97,14 @@ function NouveauCrea() {
                                                       </select>
                                                   </div>
                                               </div>
-                                          </div>
+                                              </div>
+                                              <div className="col-md-6 offset-md-3">
+                                                  <div className="form-group text-purple text-center">
+                                                      <label>Numéro des followers:</label>
+                                                      <input type="text" className="form-control" required />
+                                                  </div>
+                                              </div>
+                                          
                                           <div className="row">
                                               <div className="col-md-6t">
                                                   <div className="form-group">

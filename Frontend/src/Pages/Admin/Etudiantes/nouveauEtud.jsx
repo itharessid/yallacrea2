@@ -21,13 +21,13 @@ function NouveauEtud() {
                                         <section>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Nom:</label>
                                                         <input type="text" className="form-control" required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Prénom:</label>
                                                         <input type="text" className="form-control" required />
                                                     </div>
@@ -35,13 +35,13 @@ function NouveauEtud() {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Email:</label>
                                                         <input type="email" className="form-control" required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Adresse</label>
                                                         <input type="text" className="form-control" required />
                                                     </div>
@@ -49,13 +49,13 @@ function NouveauEtud() {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Numéro:</label>
                                                         <input type="number" className="form-control" required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 pl-md-5">
-                                                <div className="form-group">
+                                                <div className="form-group text-purple">
                                                     <label>Anniversaire:</label>
                                                         <DatePicker
                                                             className="form-control date-picker"
@@ -69,7 +69,7 @@ function NouveauEtud() {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Niveau:</label>
                                                         <select className="custom-select form-control" required>
                                                             <option value="bac">Avec Bac</option>
@@ -78,7 +78,7 @@ function NouveauEtud() {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Programme:</label>
                                                         <select className="custom-select form-control" required>
                                                             <option value="complet">Complet</option>
@@ -89,9 +89,9 @@ function NouveauEtud() {
                                             </div>
                                             <div className="row justify-content-center">
                                                 <div className="col-md-6">
-                                                    <div className="form-group">
+                                                    <div className="form-group text-purple">
                                                         <label>Code Promo:</label>
-                                                        <input type="number" className="form-control" required />
+                                                        <input type="text" className="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>

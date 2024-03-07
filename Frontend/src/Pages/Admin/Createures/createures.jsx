@@ -90,6 +90,7 @@ function Createures() {
                   <th className="text-purple">Email</th>
                   <th className="text-purple">Numéro</th>
                   <th className="text-purple">Domaine</th>
+                  <th className="text-purple">Suivis</th>
                   <th className="text-purple">Action</th>
                 </tr>
               </thead>
@@ -100,9 +101,10 @@ function Createures() {
                   <td>elfekihons@gmail.com</td>
                   <td>55963211</td>
                   <td>A</td>
+                  <td>1M</td>
                   <td>
                     <button className="button1">
-                      <Link to="/profileEtud" className="dropdown-toggle">
+                      <Link to="/profilCrea" className="dropdown-toggle">
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
                     </button>
@@ -116,10 +118,11 @@ function Createures() {
                   <td>Ithar</td>
                   <td>ithar333@gmail.com</td>
                   <td>26774811</td>
+                  <td>B</td>
                   <td>A</td>
                   <td>
                     <button className="button1">
-                      <Link to="/profileEtud" className="dropdown-toggle">
+                      <Link to="/profilCrea" className="dropdown-toggle">
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
                     </button>

@@ -24,6 +24,8 @@ import NouveauEtud from './Pages/Admin/Etudiantes/nouveauEtud.jsx';
 import NouveauCrea from './Pages/Admin/Createures/nouveauCrea.jsx';
 import Login from './Pages/Admin/ExtraPages/login.jsx';
 import Evenements from './Pages/Admin/evenementes/evenements';
+import ProfileEtud from './Pages/Admin/Etudiantes/profilEtud.jsx';
+import ProfileCrea from './Pages/Admin/Createures/profilCrea.jsx';
 
 
 function App() {
@@ -61,6 +63,8 @@ function App() {
         <Route path="/login" element={<Login/>} /> 
         <Route path="/calendrier" element={<Calendrier/>} /> 
         <Route path="/evenements" element={<Evenements/>} /> 
+        <Route path="/ProfilEtud" element={<ProfileEtud/>} /> 
+        <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
     </Routes>
     </BrowserRouter>
       
