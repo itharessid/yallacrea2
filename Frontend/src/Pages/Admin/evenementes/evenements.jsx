@@ -14,13 +14,13 @@ function Evenements() {
               <image href="/src/assets/images/bureau.jpg" width="24" height="24" />
             </svg>
             <div className="cardP__content">
-              <p className="cardP__title">Project Name</p>
-              <p className="cardP__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+              <p className="cardP__title">Tour</p>
+              <p className="cardP__description">Une visite exclusive de l'école à l'intérieur dans les espaces dynamiques  .</p>
               <button className="cardP__button">
                 <Link to="https://www.facebook.com/photo/?fbid=242417278943734&set=pcb.242417452277050">Photo</Link>
               </button>
               <button className="cardP__button secondary">
-                <Link to="https://www.facebook.com/photo/?fbid=242417278943734&set=pcb.242417452277050">Vidéo</Link>
+                <Link to="https://youtu.be/g3-4BKr0utc?si=X8iY8fQ4vqtcwNer">Vidéo</Link>
               </button>
             </div>
           </div>
