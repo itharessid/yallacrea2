@@ -55,24 +55,8 @@ function Formation() {
                         </li>
                         
                         <div className="search-right">
-                            <a href="#search" className="btn button-style" title="search">S'inscrire</a>
+                            <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
                             
-                            <div id="search" className="pop-overlay">
-                                <div className="popup">
-                                    <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your
-                                        Online Course
-                                    </h4>
-                                    <form action="#error" method="GET" className="search-box">
-                                        <div className="input-search"> <span className="fa fa-search mr-2"
-                                                aria-hidden="true"></span><input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
-
-                                        </div>
-                                        <button type="submit" className="btn button-style">Search</button>
-                                    </form>
-                                </div>
-                                <a className="close" href="#close">×</a>
-                            </div>
-                          
                         </div>
                        
                     </ul>

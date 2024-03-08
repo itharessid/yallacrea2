@@ -26,6 +26,7 @@ import Login from './Pages/Admin/ExtraPages/login.jsx';
 import Evenements from './Pages/Admin/evenementes/evenements';
 import ProfileEtud from './Pages/Admin/Etudiantes/profilEtud.jsx';
 import ProfileCrea from './Pages/Admin/Createures/profilCrea.jsx';
+import PreInscri from './Pages/Formulaire/preInscri.jsx';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
+        <Route path="/preinscri" element={< PreInscri/>} />
 
 
 
