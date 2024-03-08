@@ -1,0 +1,55 @@
+.container-fluid {
+    height: 100vh; /* Hauteur de la fenêtre visible */
+}
+
+.row {
+    height: 100%; /* Utilise toute la hauteur de la fenêtre */
+}
+.btn-outline-secondary {
+    color: purple;
+    border-color: purple ;
+}
+.button {
+    background-color: purple;
+    color: white;
+    width: 150px;
+    height: 25px;
+    font-weight: bold;
+}
+
+.card-title {
+    color: purple;
+}
+.logo-img1{
+    margin-top: 5px;
+    height: 500px;
+    width: 300px;
+}
+.logo-img2 {
+    height: 200px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.col-md-6 {
+    display: flex;
+    align-items: center; /* Centrer verticalement */
+    justify-content: center; /* Centrer horizontalement */
+}
+
+.splash-container {
+    width: 100%; /* Utilise toute la largeur disponible */
+}
+
+.card {
+    max-width: 400px; /* Largeur maximale de la carte */
+    margin-top: 0px; /* Marge supérieure */
+    padding: 20px; /* Espacement intérieur */
+}
+
+.icon {
+    font-size: 1.25rem; /* Taille de l'icône */
+    margin-right: 0.5rem; /* Marge à droite pour l'espacement */
+}

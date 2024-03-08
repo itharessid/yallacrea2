@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faPhone, faAt, faLock, faLink } from '@fortawesome/free-solid-svg-icons'; // Importez les icônes nécessaires
 import { Link } from 'react-router-dom';
-import './preInscri.css';
+import './preInscriEtud.css';
 
-function PreInscri() {
+function preInscriEtud() {
     const [selectedDate, setSelectedDate] = useState(null); // Définition de l'état pour la date sélectionnée
 
     return (
@@ -41,8 +41,8 @@ function PreInscri() {
                     </Link></button>
                 </div>
                 <div className="col-md-6"> {/* Utilisez col-md-6 pour aligner à gauche */}
-                    <div className="cardCrea">
-                        <div className="card-body-Crea">
+                    <div className="cardEtud">
+                        <div className="card-body-Etud">
                             <form className="tab-wizard wizard-circle wizard">
                                 <div className="input-group">
                                     <button className="buttonText">
@@ -80,30 +80,6 @@ function PreInscri() {
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input type="lien" className="lienInsta" placeholder="Lien Instagram" required/>
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon={faLink} />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="input-group">
-                                    <input type="lien" className="lienFacebook" placeholder="Lien Facebook" required/>
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon={faLink} />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="input-group">
-                                    <input type="lien" className="lienTikTok" placeholder="Lien TikTok" required/>
-                                    <div className="input-group-append">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon={faLink} />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="input-group">
                                     <input type="checkbox" className="checkConditions" required/>
                                     <label className="conditions">J'accepte  
                                     <a href="/src/assets/politique/Politique-de-confidentialite-type_FR.pdf" target="_blank" rel="noopener noreferrer">
@@ -130,4 +106,4 @@ function PreInscri() {
     );
 }
 
-export default PreInscri;
+export default preInscriEtud;
