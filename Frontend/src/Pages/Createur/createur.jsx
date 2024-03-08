@@ -14,14 +14,7 @@ function createur() {
                     <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
                     </a>
                 </h1>
-      
-                <button className="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
-            data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon fa icon-expand fa-bars"></span>
-            <span className="navbar-toggler-icon fa icon-close fa-times"></span>
-          </button>
-
+    
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-lg-auto">
                         <li className="nav-item active">
@@ -176,14 +169,14 @@ function createur() {
                             <div className="custom-block-image-wrap text-center"> 
 
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/detailcreateur">
                                         <img src="src/assets/images/c1.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
                                  </div>
                                 <div className="custom-block-info">
                                     <h5 className="mb-2 custom-name">
-                                        <a href="detail-page.html">
+                                        <a href="/detailcreateur">
                                          baha <br/>haouas
                                         </a>
                                     </h5>

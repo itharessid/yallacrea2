@@ -25,14 +25,6 @@ function acceuil() {
                 </a>
             </h1>
 
-            <button className="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon">
-                    <FontAwesomeIcon icon={faBars} />
-                </span>
-            </button>
-
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul className="navbar-nav ml-lg-auto">
                     <li className="nav-item active">
