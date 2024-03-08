@@ -1,9 +1,9 @@
-.cardCrea {
+.cardEtud {
     background-color: white;
     padding: 20px;
     margin-top: -1100px;
     margin-left: -600px;
-    margin-bottom: -300px;
+    margin-bottom: -150px;
 }
 .logoYalla {
     margin-top: -100px;
@@ -13,6 +13,9 @@
 h1 {
     color: black;
     margin-top: -20px;
+}
+mtext{
+    color: white;
 }
 
 .buttonCrea, .buttonEtud {
@@ -40,6 +43,12 @@ h1 {
     color: white;
 }
 .buttonCrea .dropdown-toggle {
+    color: white;
+}
+.btnConnexion{
+    color: white;
+}
+.btnConnexion .dropdown-toggle {
     color: white;
 }
 
@@ -85,11 +94,5 @@ h1 {
 .action-btns .compteExist{
     color: gray;
     text-align: center;
-}
-.btnConnexion{
-    color: white;
-}
-.btnConnexion .dropdown-toggle {
-    color: white;
 }
 

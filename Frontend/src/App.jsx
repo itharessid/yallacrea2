@@ -29,6 +29,8 @@ import Evenements from './Pages/Admin/evenementes/evenements';
 import ProfileEtud from './Pages/Admin/Etudiantes/profilEtud.jsx';
 import ProfileCrea from './Pages/Admin/Createures/profilCrea.jsx';
 import PreInscri from './Pages/Formulaire/preInscri.jsx';
+import PreInscriEtud from './Pages/Formulaire/preInscriEtud.jsx';
+import Connexion from './Pages/Formulaire/connexion.jsx';
 
 
 
@@ -47,17 +49,15 @@ function App() {
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
         <Route path="/preinscri" element={< PreInscri/>} />
-        <Route path="/detailcreateur" element={<Detail />} />
-
-
 
 
 
 
 
         <Route path="/sidbar" element={<Sidbar />} />
-
-
+        <Route path="/preinscri" element={< PreInscri/>} />
+        <Route path="/preinscriEtud" element={<PreInscriEtud/>} />
+        <Route path="/connexion" element={<Connexion/>} />
 
 
 
