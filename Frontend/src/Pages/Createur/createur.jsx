@@ -197,92 +197,62 @@ function createur() {
                                 </div>
                                  </div>
                                 <div className="custom-block-info">
-                                    <h5 className="mb-2">
+                                    <h5 className="mb-2 custom-name">
                                         <a href="detail-page.html">
-                                          itsbahahaouas
+                                         baha <br/>haouas
                                         </a>
                                     </h5>
 
-                                    
-
-
                                     <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="#" className="bi-headphones me-1">
-                                            <span>100k</span>
+                                        <a href="https://www.facebook.com/baha.haouas.9/" className="fa fa-facebook">
+                                            <span></span>
                                         </a>
 
-                                        <a href="#" className="bi-heart me-1">
-                                            <span>2.5k</span>
+                                        <a href="https://www.instagram.com/itsbahahaouas/" className="fa fa-instagram">
                                         </a>
-
-                                        <a href="#" className="bi-chat me-1">
-                                            <span>924k</span>
+                                        <a href="https://www.tiktok.com/@justbahahaouas?is_from_webapp=1&sender_device=pc" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
                                         </a>
+                                        
                                     </div>
                                 </div>
 
-                                <div className="social-share d-flex flex-column ms-auto">
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-heart"></i>
-                                    </a>
-
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-bookmark"></i>
-                                    </a>
-                                </div>
+                               
                             </div>
+                            <br/>
                         </div>
+
 
                         <div className="col-lg-4 col-12 mb-4 mb-lg-0">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
                                     <a href="detail-page.html">
-                                        <img src="images/podcast/27670664_7369753.jpg" className="custom-block-image img-fluid" alt=""/>
+                                        <img src="src/assets/images/nourch.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
                                         <a href="detail-page.html">
-                                            Vintage Show
+                                        nourchenne cheguenni
                                         </a>
                                     </h5>
 
-                                    <div className="profile-block d-flex">
-                                        <img src="images/profile/cute-smiling-woman-outdoor-portrait.jpg" className="profile-block-image img-fluid" alt=""/>
-
-                                        <p>
-                                            Taylor
-                                            <img src="images/verified.png" className="verified-image img-fluid" alt=""/>
-                                            <strong>Creator</strong>
-                                        </p>
-                                    </div>
-
 
                                     <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="#" className="bi-headphones me-1">
-                                            <span>100k</span>
+                                    <a href="https://www.facebook.com/nourchenne.cheguenni" className="fa fa-facebook">
+                                            <span></span>
                                         </a>
 
-                                        <a href="#" className="bi-heart me-1">
-                                            <span>2.5k</span>
+                                        <a href="https://www.instagram.com/nourchenne_cheguenni/" className="fa fa-instagram">
                                         </a>
-
-                                        <a href="#" className="bi-chat me-1">
-                                            <span>924k</span>
+                                        <a href="https://www.tiktok.com/@nourchennecheguenni" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
                                         </a>
+                                        
                                     </div>
                                 </div>
 
-                                <div className="social-share d-flex flex-column ms-auto">
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-heart"></i>
-                                    </a>
-
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-bookmark"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
 
@@ -290,56 +260,248 @@ function createur() {
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
                                     <a href="detail-page.html">
-                                        <img src="images/podcast/12577967_02.jpg" className="custom-block-image img-fluid" alt=""/>
+                                        <img src="src/assets/images/Khoubaib.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
                                         <a href="detail-page.html">
-                                            Daily Talk
-                                        </a>
+                                        khoubaib jebabli 
+                                       </a>
                                     </h5>
-
-                                    <div className="profile-block d-flex">
-                                        <img src="images/profile/handsome-asian-man-listening-music-through-headphones.jpg" className="profile-block-image img-fluid" alt=""/>
-
-                                        <p>
-                                            William
-                                            <img src="images/verified.png" className="verified-image img-fluid" alt=""/>
-                                            <strong>Vlogger</strong></p>
-                                    </div>
 
 
                                     <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="#" className="bi-headphones me-1">
-                                            <span>100k</span>
+                                    <a href="https://www.facebook.com/khoubaibzaril" className="fa fa-facebook">
+                                            <span></span>
                                         </a>
 
-                                        <a href="#" className="bi-heart me-1">
-                                            <span>2.5k</span>
+                                        <a href="https://www.instagram.com/khoubaib_jebabli/" className="fa fa-instagram">
                                         </a>
-
-                                        <a href="#" className="bi-chat me-1">
-                                            <span>924k</span>
+                                        <a href="https://www.tiktok.com/@khoubaib_jebabli" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
                                         </a>
+                                        
                                     </div>
                                 </div>
 
-                                <div className="social-share d-flex flex-column ms-auto">
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-heart"></i>
-                                    </a>
-
-                                    <a href="#" className="badge ms-auto">
-                                        <i className="bi-bookmark"></i>
-                                    </a>
-                                </div>
+                              
                             </div>
                         </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/ghazi.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
 
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        Ghazi Gharbi
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href=" https://www.facebook.com/gharbi.ghazi.tbs " className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/ghazi.elgharbi/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@ghazi.elgharbi" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/rayen.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        Rayen Bouajaja 
+
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href="https://www.facebook.com/rayen.bouajaja" className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/rayen_bouajaja/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@rayenbouajaja" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                            <br/>
+                        </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/med.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        med mouhib meddeb
+
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href="https://www.facebook.com/medmouhib.meddeb/" className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/med_mouhib_meddeb/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@medmouhibmeddeb" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/oussema.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        oussema triter
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href="https://www.facebook.com/oussema.triter" className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/oussema_triter/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@triteroussema" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                   
+                                </div>
+                               
+
+                              
+                            </div>
+                            <br/>
+                        </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/firas.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        firas bahrini
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href="https://www.facebook.com/firas.bahrini.522" className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/firas_bahrini_officiel/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@firasbahrini" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-12">
+                            <div className="custom-block custom-block-full">
+                                <div className="custom-block-image-wrap">
+                                    <a href="detail-page.html">
+                                        <img src="src/assets/images/9nounji.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    </a>
+                                </div>
+
+                                <div className="custom-block-info">
+                                    <h5 className="mb-2">
+                                        <a href="detail-page.html">
+                                        Achraf Ouali
+
+                                       </a>
+                                    </h5>
+
+
+                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <a href="https://www.facebook.com/OualiAshraf" className="fa fa-facebook">
+                                            <span></span>
+                                        </a>
+
+                                        <a href="https://www.instagram.com/el9anounji.ftw/" className="fa fa-instagram">
+                                        </a>
+                                        <a href="https://www.tiktok.com/@el9anounji.ftw" className="tiktok-icon me-1">
+                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                        <br/>
+                     
+                    
+                       
                     </div>
                 </div>
+                
             </section>
 
 
