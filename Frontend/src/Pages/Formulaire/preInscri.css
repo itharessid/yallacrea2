@@ -1,0 +1,71 @@
+.cardEtud {
+    background-color: beige;
+    padding: 20px;
+    margin-top: -900px;
+    margin-left: -600px;
+}
+.logoYalla {
+    margin-top: -100px;
+    width: 200px;
+    height: 200px;
+}
+h1 {
+    color: black;
+    margin-top: -20px;
+}
+
+
+.buttonCrea, .buttonEtud {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.buttonEtud {
+    background-color: rgba(121, 21, 99, 0.671);
+    margin-left: 950px;
+    margin-right: 50px;
+    margin-top: -450px;
+    position: absolute;
+    top: 0%;
+}
+.buttonCrea{
+    margin-left: 400px;
+    margin-top: -450px;
+    position: absolute;
+    top: 0%;
+}
+/*h6{
+    color: gray;
+    margin-top: -1500px;
+    margin-right: -650px;
+    text-align: center;
+}*/
+
+
+.buttonText {
+    background-color: white;
+    border-color: purple;
+    margin-right: 50px;
+}
+
+.input-group-text {
+    margin-left: -35px;
+}
+
+.email,.password,.Cpassword,.lienInsta,.lienFacebook,.lienTikTok{
+    width: 350px;
+}
+.checkConditions{
+    margin-top: -13.3px;
+    background-color: purple;
+}
+.min-height-200px{
+    min-height: 500px;
+}
+.choix {
+    font-size: smaller; /* ou une taille de police plus petite de votre choix */
+    color: gray;
+    text-align: center;
+    margin-top: -1500px;
+    margin-right: -650px;
+}
