@@ -9,8 +9,8 @@ function Bienvenue() {
         <div className="pd-ltr-20">
           <div className="card-box pd-10 mb-30">
             <div className="row align-items-center">
-              <div className="col-md-3">
-                <img src="src/assets/images/team2.jpg" alt="" />
+              <div className="col-md-3 d-flex justify-content-center">
+                <img src="src/assets/images/team2.jpg" alt=""  style={{ width: '600px', height: '150px' }}/>
               </div>
               <div className="col-md-9">
                 <h4 className="font-18 mb-10 text-capitalize">
@@ -20,85 +20,93 @@ function Bienvenue() {
               </div>
             </div>
           </div>
+
           <div className="row">
-            <div className="col-xl-3 mb-30">
-              <div className="card-box height-100 -p widget-style1">
+            <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14">Étudiants</div>
-                    <div className="h6 mb-0">40</div>
+                    <div className="weight-600 font-14 text-center text-nowrap">Etudiants</div>
+                    <div className="h6 mb-0 text-center">40</div>
                   </div>
-                  <img src="src/assets/images/etudiant.png" alt="" />
+                  <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 mb-30">
-              <div className="card-box height-100-p widget-style1">
+
+            <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14">Créateurs</div>
-                    <div className="h6 mb-0">40</div>
+                    <div className="weight-600 font-14 text-center text-nowrap">Créateurs</div>
+                    <div className="h6 mb-0 text-center">40</div>
                   </div>
-                  <img src="src/assets/images/createurs.png" alt="" />
+                  <img src="src/assets/images/createurs.png" alt="" style={{marginLeft: '40px'}}/>
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 mb-30">
-              <div className="card-box height-100-p widget-style1">
+
+            <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14">Evènements</div>
-                    <div className="h6 mb-0">20</div>
+                    <div className="weight-600 font-14 text-center text-nowrap">Créateurs</div>
+                    <div className="h6 mb-0 text-center">40</div>
                   </div>
-                  <img src="src/assets/images/evenements.png" alt="" />
+                  <img src="src/assets/images/evenements.png" alt="" style={{marginLeft: '40px'}}/>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="row">
-            <div className="col-xl-3 mb-30">
+            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data" style={{ width: "100%" }}>
-                    <div className="weight-600 font-14 text-purple text-center">Suivie sur Facebook</div>
+                  <div className="widget-data" >
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Facebook</div>
                     <div className="h6 mb-0 text-center">54.000</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 mb-30">
+
+            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data" style={{ width: "100%" }}>
-                    <div className="weight-600 font-14 text-purple text-center">Suivie sur Instagram</div>
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Instagram</div>
                     <div className="h6 mb-0 text-center">10.000</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="row">
-            <div className="col-xl-3 mb-30">
+            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data" style={{ width: "100%" }}>
-                    <div className="weight-600 font-14 text-purple text-center">Suivie sur TikTok</div>
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur TikTok</div>
                     <div className="h6 mb-0 text-center">20.000</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-xl-3 mb-30">
+
+            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data" style={{ width: "100%" }}>
-                    <div className="weight-600 font-14 text-purple text-center">Suivie sur Youtube</div>
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Youtube</div>
                     <div className="h6 mb-0 text-center">5.000</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </>

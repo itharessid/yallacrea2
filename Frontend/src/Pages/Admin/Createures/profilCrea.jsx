@@ -11,8 +11,8 @@ function ProfileCrea() {
             <Adminsidbar />
             <div className="main-container">
                 <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
-                        <div className="pd-20 profile-container height-100-p">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30" style={{maxWidth: '100%',marginLeft: '-10px'}}>
+                        <div className="pd-20 profile-container height-100-p ">
                             <div className="profile-info">
                                 <h5 className="mb-20 h5 text-purple">Informations</h5>
                                 <ul>
