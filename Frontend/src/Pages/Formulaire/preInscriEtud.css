@@ -2,13 +2,14 @@
     background-color: white;
     padding: 20px;
     margin-top: -1100px;
-    margin-left: -600px;
+    margin-left: -800px;
     margin-bottom: -150px;
 }
 .logoYalla {
     margin-top: -100px;
     width: 200px;
     height: 200px;
+
 }
 h1 {
     color: black;
@@ -66,7 +67,10 @@ mtext{
 }
 
 .email,.password,.Cpassword,.lienInsta,.lienFacebook,.lienTikTok{
-    width: 350px;
+    width: 400px;
+    height: 40px;
+   
+
 }
 .checkConditions{
     margin-top: -13.3px;
@@ -79,7 +83,7 @@ mtext{
     font-size: smaller; /* ou une taille de police plus petite de votre choix */
     color: gray;
     text-align: center;
-    margin-top: -1500px;
+    margin-top: -1600px;
     margin-right: -650px;
 }
 .action-btns {

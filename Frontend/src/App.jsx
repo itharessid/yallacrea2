@@ -45,10 +45,10 @@ function App() {
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/createur" element ={<Createur/>} />
+        <Route path="/detail" element ={<Detail/>} />
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
-        <Route path="/preinscri" element={< PreInscri/>} />
 
 
 

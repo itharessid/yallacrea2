@@ -823,7 +823,7 @@ pre code {
   padding-right: 15px;
  
 }
-
+.offset-md-3
 .col {
   flex-basis: 0;
   flex-grow: 1;
@@ -1418,7 +1418,7 @@ pre code {
   }
 
   .offset-md-3 {
-    margin-left: 25%;
+    margin-left: 20%;
   }
 
   .offset-md-4 {

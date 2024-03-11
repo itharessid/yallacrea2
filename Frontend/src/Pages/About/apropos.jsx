@@ -110,17 +110,15 @@ function apropos() {
                         <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                             <div className="custom-block custom-block-overlay">
                                 <a href="detail-page.html" class="custom-block-image-wrap">
-                                    <img src="images/topics/physician-consulting-his-patient-clinic.jpg" className="custom-block-image img-fluid" alt=""/>
+                                    <img src="src/assets/images/formation.jpg" className="custom-block-image img-fluid" alt=""/>
                                 </a>
 
                                 <div className="custom-block-info custom-block-overlay-info">
                                     <h5 className="mb-1">
                                         <a href="listing-page.html">
-                                            Productivity
+                                        Formation de creation de contenu 
                                         </a>
                                     </h5>
-
-                                    <p className="badge mb-0">50 Episodes</p>
                                 </div>
                             </div>
                         </div>

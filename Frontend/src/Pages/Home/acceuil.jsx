@@ -127,28 +127,26 @@ function acceuil() {
             <div className="container">
                 <div className="title-main text-center mx-auto mb-4">
                     <h3 className="title-big">Nous Experts</h3>
-                    <p className="sub-title mt-2">Cum doctus civibus efficiantur in imperdiet deterruisset. Cras efficitur,
-                        metus
-                        gravida suscipit cursus, dui diam pre lorem id
-                        lectus.</p>
+            
                 </div>
+                <br/>
                 <div className="row main-contteam-32 justify-content-center">
                     <div className="col-lg-3 col-6  center team-main-19  ">
                         <div className="column-19">
                             <a href="#team"><img className="img-fluid" src="src/assets/images/wajdi.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Chris Tina</a></h6>
-                            <p className="sm-text-32">Web Designer</p>
+                            <h6><a href="#team" className="title-team-32">Wajdi chabbene</a></h6>
+                            <p className="sm-text-32">sales Manger</p>
                         </div>
                     </div>
                     <div className="col-lg-3 col-6 team-main-19">
                         <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="src/assets/images/resp2.jpg" alt=" "/></a>
+                        <h6> <a href="#team"><img className="img-fluid" src="src/assets/images/resp2.jpg" alt=" "/></a></h6>
                         </div>
                         <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Diego Mota</a></h6>
-                            <p className="sm-text-32">CSS, HTML</p>
+                            <h6><a href="#team" className="title-team-32"></a>Kawther Wartani</h6>
+                            <p className="sm-text-32">Studies Manager</p>
                         </div>
                     </div>
                     <div className="col-lg-3 col- team-main-19">
@@ -156,8 +154,8 @@ function acceuil() {
                             <a href="#team"><img className="img-fluid" src="src/assets/images/resp3.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Anton Bone</a></h6>
-                            <p className="sm-text-32">UI/UX Designer</p>
+                            <h6><a href="#team" className="title-team-32">Takwa Hasni</a></h6>
+                            <p className="sm-text-32">Office Manager</p>
                         </div>
                     </div>
                     
