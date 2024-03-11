@@ -31,6 +31,7 @@ import ProfileCrea from './Pages/Admin/Createures/profilCrea.jsx';
 import PreInscri from './Pages/Formulaire/preInscri.jsx';
 import PreInscriEtud from './Pages/Formulaire/preInscriEtud.jsx';
 import Connexion from './Pages/Formulaire/connexion.jsx';
+import NouveauEvent from './Pages/Admin/evenementes/nouveauEvent.jsx';
 
 
 
@@ -73,6 +74,7 @@ function App() {
         <Route path="/evenements" element={<Evenements/>} /> 
         <Route path="/ProfilEtud" element={<ProfileEtud/>} /> 
         <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
+        <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
     </Routes>
     </BrowserRouter>
       

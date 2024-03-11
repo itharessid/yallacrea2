@@ -8,6 +8,14 @@ function Evenements() {
     <>
       <Adminsidbar />
       <div className="main-container">
+        <div className="DataTables_Table_2_filter">
+          <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un évènement" aria-controls="DataTables_Table_2" /></label>
+          <button className="button1" style={{ marginLeft: '10px' }}>
+            <Link to="/nouveauEvent" className="dropdown-toggle">
+              <span className="mtext">Nouveau</span>
+            </Link>
+          </button>
+        </div>
         <div className="row">
           <div className="cardP">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
