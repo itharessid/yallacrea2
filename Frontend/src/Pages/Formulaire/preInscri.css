@@ -2,8 +2,8 @@
     background-color: white;
     padding: 20px;
     margin-top: -1100px;
-    margin-left: -800px;
-    margin-bottom: -300px;
+    margin-left: -600px;
+    margin-bottom: -370px;
 }
 .NumTel{
     width:220px;
@@ -12,10 +12,12 @@
     margin-top: -100px;
     width: 200px;
     height: 200px;
+    margin-left: 130px;
 }
-h1 {
+h3 {
     color: black;
     margin-top: -20px;
+    margin-left: 130px;
 }
 
 .buttonCrea, .buttonEtud {
@@ -74,7 +76,8 @@ h1 {
     color: gray;
     text-align: center;
     margin-top: -1600px;
-    margin-right: -650px;
+    margin-bottom: -100px;
+    margin-right: -1500px;
 }
 .action-btns {
     display: flex;

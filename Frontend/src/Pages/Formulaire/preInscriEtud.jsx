@@ -48,7 +48,7 @@ function preInscriEtud() {
                                     <button className="buttonText">
                                         <span className="text">+ 216</span>
                                     </button>
-                                    <input type="tel" className="NumTele" placeholder="Numéro de téléphone" required/>
+                                    <input type="tel" className="NumTel" placeholder="Numéro de téléphone" required/>
                                     <div className="input-group-append">
                                         <span className="input-group-text">
                                             <FontAwesomeIcon icon={faPhone} />
