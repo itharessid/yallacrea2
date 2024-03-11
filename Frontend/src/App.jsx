@@ -48,7 +48,6 @@ function App() {
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
-        <Route path="/preinscri" element={< PreInscri/>} />
         <Route path="/detail" element={< Detail/>} />
 
 
