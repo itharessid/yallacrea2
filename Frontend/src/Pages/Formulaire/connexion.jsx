@@ -15,8 +15,10 @@ function Connexion() {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-6">
-                    <img className="logo-img1" src="/src/assets/images/cartoon1.png" alt="Logo" />
+                <div className="col-md-6 ">
+                    <img className="logo-img1" src="/src/assets/images/av.png" alt="Logo" />
+                    <img className="logo-img1" src="/src/assets/images/av2.png" alt="Logo" />
+
                 </div>
                 <div className="col-md-6">
                     <div className="splash-container">

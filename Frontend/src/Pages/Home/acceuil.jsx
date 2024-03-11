@@ -132,10 +132,10 @@ function acceuil() {
                         gravida suscipit cursus, dui diam pre lorem id
                         lectus.</p>
                 </div>
-                <div className="row main-contteam-32 mt-sm-5 pt-lg-2">
-                    <div className="col-lg-3 col-6 team-main-19">
+                <div className="row main-contteam-32 justify-content-center">
+                    <div className="col-lg-3 col-6  center team-main-19  ">
                         <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team1.jpg" alt=" "/></a>
+                            <a href="#team"><img className="img-fluid" src="src/assets/images/wajdi.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
                             <h6><a href="#team" className="title-team-32">Chris Tina</a></h6>
@@ -144,35 +144,28 @@ function acceuil() {
                     </div>
                     <div className="col-lg-3 col-6 team-main-19">
                         <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team2.jpg" alt=" "/></a>
+                            <a href="#team"><img className="img-fluid" src="src/assets/images/resp2.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
                             <h6><a href="#team" className="title-team-32">Diego Mota</a></h6>
                             <p className="sm-text-32">CSS, HTML</p>
                         </div>
                     </div>
-                    <div className="col-lg-3 col-6 team-main-19">
+                    <div className="col-lg-3 col- team-main-19">
                         <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team3.jpg" alt=" "/></a>
+                            <a href="#team"><img className="img-fluid" src="src/assets/images/resp3.jpg" alt=" "/></a>
                         </div>
                         <div className="right-team-9">
                             <h6><a href="#team" className="title-team-32">Anton Bone</a></h6>
                             <p className="sm-text-32">UI/UX Designer</p>
                         </div>
                     </div>
-                    <div className="col-lg-3 col-6 team-main-19">
-                        <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Neoye Achi</a></h6>
-                            <p className="sm-text-32">Web Developer</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
+    
     <section  className="w3l-companies-hny-6 position-relative">
         <div  className="cusrtomer-layout py-5">
         

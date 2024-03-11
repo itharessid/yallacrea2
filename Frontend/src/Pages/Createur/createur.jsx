@@ -169,7 +169,7 @@ function createur() {
                             <div className="custom-block-image-wrap text-center"> 
 
                                 <div className="custom-block-image-wrap">
-                                    <a href="/detailcreateur">
+                                    <a href="/detail">
                                         <img src="src/assets/images/c1.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
