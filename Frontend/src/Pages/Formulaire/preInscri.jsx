@@ -15,7 +15,10 @@ function PreInscri() {
             <div className="min-height-200px">
                 <div className="wizard-content text-center"> 
                     
-                    <h3>S'inscrire</h3><br/>
+                <div className="inscription">
+                    <h3>S'inscrire</h3>
+                       </div>
+                       <br/>
                     <div className="logo-container">
                         <img className="logoYalla" src="/src/assets/images/yallalogo.png" alt="Logo" />
                     </div>
@@ -41,7 +44,7 @@ function PreInscri() {
                     </Link></button>
                 </div>
                 <div className="col-md-6"> {/* Utilisez col-md-6 pour aligner à gauche */}
-                    <div className="cardCrea">
+                    <div className="cardCreap">
                         <div className="card-body-Crea">
                             <form className="tab-wizard wizard-circle wizard">
                                 <div className="input-group">

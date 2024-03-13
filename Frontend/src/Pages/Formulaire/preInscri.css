@@ -1,8 +1,8 @@
-.cardCrea {
+.cardCreap {
     background-color: white;
     padding: 20px;
     margin-top: -1100px;
-    margin-left: -600px;
+    margin-left: -700px;
     margin-bottom: -370px;
 }
 .NumTel{
@@ -14,11 +14,7 @@
     height: 200px;
     margin-left: 130px;
 }
-h3 {
-    color: black;
-    margin-top: -20px;
-    margin-left: 130px;
-}
+
 
 .buttonCrea, .buttonEtud {
     color: white;
@@ -71,13 +67,15 @@ h3 {
 .min-height-200px{
     min-height: 500px;
 }
-.choix {
+.choix{
     font-size: smaller; /* ou une taille de police plus petite de votre choix */
     color: gray;
     text-align: center;
-    margin-top: -1600px;
+    margin-top: -1700px;
     margin-bottom: -100px;
     margin-right: -1500px;
+    margin-left: -850px;
+
 }
 .action-btns {
     display: flex;

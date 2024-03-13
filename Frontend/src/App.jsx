@@ -32,6 +32,7 @@ import PreInscri from './Pages/Formulaire/preInscri.jsx';
 import PreInscriEtud from './Pages/Formulaire/preInscriEtud.jsx';
 import Connexion from './Pages/Formulaire/connexion.jsx';
 import NouveauEvent from './Pages/Admin/evenementes/nouveauEvent.jsx';
+import Gprofile from './Pages/lesprofile/gprofile.jsx';
 
 
 
@@ -50,6 +51,9 @@ function App() {
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
+        <Route path="/gprofil" element={< Gprofile/>} />
+
+        
 
 
 

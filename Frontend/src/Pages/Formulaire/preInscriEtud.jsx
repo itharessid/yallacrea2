@@ -13,9 +13,11 @@ function preInscriEtud() {
     <div className="col-md-6 offset-md-3"> {/* Utilisez offset-md-3 pour centrer */}
         <div className="pd-ltr-20 xs-pd-20-10">
             <div className="min-height-200px">
-                <div className="wizard-content text-center"> 
-                    
-                    <h3>S'inscrire</h3><br/>
+                <div className="wizard-content text-center">     
+                <div className="inscription">
+                    <h3>S'inscrire</h3>
+                       </div>
+                       <br/>
                     <div className="logo-container">
                         <img className="logoYalla" src="/src/assets/images/yallalogo.png" alt="Logo" />
                     </div>
@@ -24,10 +26,7 @@ function preInscriEtud() {
         </div>
     </div>
 </div>
-
-
-
-            <div className="row justify-content-center">
+   <div className="row justify-content-center">
                 <div className="col-md-6 text--center"> {/* Utilisez col-md-6 pour aligner à gauche */}
                     <button className="buttonCrea" type="button">
                     <Link to="/preInscri" className="dropdown-toggle">
@@ -41,7 +40,7 @@ function preInscriEtud() {
                     </Link></button>
                 </div>
                 <div className="col-md-6"> {/* Utilisez col-md-6 pour aligner à gauche */}
-                    <div className="cardEtud">
+                    <div className="cardEtudp">
                         <div className="card-body-Etud">
                             <form className="tab-wizard wizard-circle wizard">
                                 <div className="input-group">

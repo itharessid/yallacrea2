@@ -1,8 +1,8 @@
-.cardEtud {
+.cardEtudp {
     background-color: white;
     padding: 20px;
     margin-top: -1100px;
-    margin-left: -600px;
+    margin-left: -700px;
     margin-bottom: -200px;
 }
 .logoYalla {
@@ -14,7 +14,7 @@
 .NumTel{
     width:220px;
 }
-h3 {
+.inscription {
     color: black;
     margin-top: -20px;
     margin-left: 130px;
@@ -84,14 +84,7 @@ mtext{
 .min-height-200px{
     min-height: 500px;
 }
-.choix {
-    font-size: smaller; /* ou une taille de police plus petite de votre choix */
-    color: gray;
-    text-align: center;
-    margin-top: -1600px;
-    margin-right: -650px;
-    margin-bottom: -100px;
-}
+
 .action-btns {
     display: flex;
     gap: 25px;
