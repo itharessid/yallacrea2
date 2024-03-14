@@ -29,14 +29,12 @@ function NotificationDropDown({ isOpen, toggleDropdown }) {
             <ul>
               <li>
                 <a href="#">
-                  <img src="vendors/images/img.jpg" alt=""/>
                   <h3>John Doe</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
                 </a>
               </li>
               <li>
 				<a href="#">
-				    <img src="vendors/images/photo1.jpg" alt=""/>
 					<h3>Lea R. Frith</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 				</a>

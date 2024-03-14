@@ -10,7 +10,7 @@ function Bienvenue() {
           <div className="card-box pd-10 mb-30">
             <div className="row align-items-center">
               <div className="col-md-3 d-flex justify-content-center">
-                <img src="src/assets/images/team2.jpg" alt=""  style={{ width: '600px', height: '150px' }}/>
+                <img src="src/assets/images/wajdi.jpg" alt="" />
               </div>
               <div className="col-md-9">
                 <h4 className="font-18 mb-10 text-capitalize">
