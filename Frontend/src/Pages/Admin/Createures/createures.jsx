@@ -58,7 +58,7 @@ function Createures() {
       <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
         <div className="row">
         <div className="col-xl-3 mb-20">
-  <div className="card-box-Etud height-100-p widget-style1">
+     <div className="card-box-Etud height-100-p widget-style1">
     <div className="d-flex flex-wrap align-items-center">
       <div className="widget-data">
         <div className="weight-600 font-14 text-purple text-center text-nowrap">Créateurs</div>

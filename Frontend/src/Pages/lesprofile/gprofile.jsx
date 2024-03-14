@@ -9,16 +9,21 @@ function gprofile() {
 
   return (
     <div>
+    
+
        <div className="header">
         <div className="header-right">
           <div className="dashboard-setting user-notification">
           </div>
         </div>
       </div>
+      
+
         
         <div className="left-side-bar">
         <div className="brand-logo">
           <Link to="/sidbar">
+          <br/>
             <img src="src/assets/images/yallalogo.png" alt="" className="yalla" />
           </Link>
           <div className="close-sidebar" data-toggle="left-sidebar-close">
@@ -28,13 +33,17 @@ function gprofile() {
         <div className="menu-block customscroll">
           <div className="sidebar-menu">
             <ul id="accordion-menu">
+              <br/>
+              <br/>
              
               <li className="dropdown">
-                <Link to="/etudiants" className="dropdown-toggle">
+                <Link to="/profiluser" className="dropdown-toggle">
                   <FontAwesomeIcon icon={faUserCircle} />{' '}
                   <span className="mtext"> Profile</span>
                 </Link>
               </li>
+              <br/>
+              <br/>
               <li className="dropdown">
                 <Link to="/createures" className="dropdown-toggle">
                   <FontAwesomeIcon icon={faPlayCircle} />{' '}
@@ -44,7 +53,6 @@ function gprofile() {
     
             </ul>
             <img src="src/assets/images/av.png" alt="Description de l'image" className="avcrea" />
-
           </div>
         </div>
       </div>
