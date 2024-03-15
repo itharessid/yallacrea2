@@ -1,9 +1,11 @@
 const express = require('express');
 const router = require('express').Router();
+const db = require('../Config/db'); // Importez votre module de connexion à la base de données
 
 
-router.get("/",(req,res,next)=>{
-    res.send("ithar")
-})
+
+
+
+
 
 module.exports=router
