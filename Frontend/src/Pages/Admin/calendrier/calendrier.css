@@ -1,11 +1,22 @@
-.Calendrier {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    width: 250px; 
-    padding: 14px; 
-    margin-left: 15px;
-    margin-right: 15px;
+
+.btnEnr {
+    background-color: purple;
+    color: white;
+}
+
+.btnEnr.dropdown-toggle {
+    color: white;
+}
+
+.btnCloture {
+    background-color: purple;
+    color: white;
+}
+
+.btnCloture.dropdown-toggle {
+    color: white;
+}
+.btnSupp{
+    color: white;
+    background-color: rgb(197, 36, 85);
 }
