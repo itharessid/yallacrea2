@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "date-fns": "^3.3.1",
     "fullcalendar": "^6.1.11",
     "jquery": "^3.7.1",

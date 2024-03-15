@@ -1,136 +1,128 @@
-import React from 'react'
-import './contact.css'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import './contact.css';
 import { Dropdown } from 'react-bootstrap';
-function contact() {
+
+function Contact() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_x6g4x0l', 'template_nikt6aq', form.current, {
+        publicKey: 'Kfswj097MtScxgmJh',
+      })
+      .then(
+        () => {
+          console.log('Message envoyé avec succes!');
+        },
+        (error) => {
+          console.log('Error', error.text);
+        },
+      );}
   return (
     <div>
-   <header id="site-header" className="fixed-top">
+      <header id="site-header" className="fixed-top">
         <div className="container">
-            <nav className="navbar navbar-expand-lg stroke">
-                <h1>
-                    <a className="navbar-brand" href="index.html">
-                    <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
-                    </a>
-                </h1>
-    
+          <nav className="navbar navbar-expand-lg stroke">
+            <h1>
+              <a className="navbar-brand" href="index.html">
+                <img
+                  className="img-fluid"
+                  src="src/assets/images/yallalogo.png"
+                  alt="Logo"
+                  style={{ maxWidth: '100px' }}
+                />
+              </a>
+            </h1>
 
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul className="navbar-nav ml-lg-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="apropos">Apropos</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                <Dropdown>
-                  <Dropdown.Toggle id="navbarDropdown">
-                    Formation
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
-                    <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown></li>
-
-                        <li className="nav-item">
-                            <a className="nav-link" href="createur">Créateur</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="contact">Contact</a>
-                        </li>
-                        
-                        <div className="search-right">
-                            <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
-                            
-                          
-                        </div>
-                       
-                    </ul>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul className="navbar-nav ml-lg-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">Accueil <span className="sr-only">(current)</span></a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="apropos">À propos</a>
+                </li>
+                <li className="nav-item dropdown">
+                  <Dropdown>
+                    <Dropdown.Toggle id="navbarDropdown">
+                      Formation
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/accelerer">Cours Accéléré</Dropdown.Item>
+                      <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="createur">Créateur</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="contact">Contact</a>
+                </li>
+                <div className="search-right">
+                  <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
                 </div>
-                
-                <div className="cont-ser-position">
-                    <nav className="navigation">
-                        <div className="theme-switch-wrapper">
-                            <label className="theme-switch" htmlFor="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <div className="mode-container">
-                                    <i className="gg-sun"></i>
-                                    <i className="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                
-            </nav>
-        </div>
-            </header>
-       
-        <section className="w3l-breadcrumb">
-            <div className="container">
-                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Contact </h4>
-                <ul className="breadcrumbs-custom-path">
-                    <li><a href="index.html">Acceuil</a></li>
-                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span> Contact </li>
-                </ul>
+              </ul>
             </div>
-        </section>
-   
-    <section class="contact py-5" id="contact">
-        <div class="container py-md-4 py-3">
-            
-            <div class="main-grid-contact">
-                <div class="row mt-5 mx-0">
-                  
-                    <div class="col-lg-6 map mt-lg-0 mt-3">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6380.985941731756!2d10.1925479!3d36.9024761!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb004b721297%3A0x5c7f3066db4365cf!2sYalla%20Digital%20Academy!5e0!3m2!1sfr!2stn!4v1708950730525!5m2!1sfr!2stn"
-                            allowfullscreen></iframe>
-                          
+          </nav>
+        </div>
+      </header>
+
+      <section className="w3l-breadcrumb">
+        <div className="container">
+          <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Contact </h4>
+          <ul className="breadcrumbs-custom-path">
+            <li><a href="/">Accueil</a></li>
+            <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span> Contact </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="contact py-5" id="contact">
+        <div className="container py-md-4 py-3">
+          <div className="main-grid-contact">
+            <div className="row mt-5 mx-0">
+              <div className="col-lg-6 map mt-lg-0 mt-3">
+                <iframe
+                  title="Map"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6380.985941731756!2d10.1925479!3d36.9024761!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb004b721297%3A0x5c7f3066db4365cf!2sYalla%20Digital%20Academy!5e0!3m2!1sfr!2stn!4v1708950730525!5m2!1sfr!2stn"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="col-lg-6 content-form-right p-0">
+                <div className="form-w3ls p-md-5 p-4">
+                  <h4 className="mb-4 sec-title-w3">Envoyez-nous un message</h4>
+                  <form ref={form} onSubmit={sendEmail} >
+                    <div className="row"><hr/>
+                    <label style={{ color: '#70218F'}}>Nom</label><hr/>
+                     <input type="text" name="nom" required/><hr/>
+                     <label style={{ color: '#70218F'}}>Prenom</label><hr/>
+                      <input type="text" name="prenom" required/><hr/>
+                      <label style={{ color: '#70218F'}}>Email</label>                  
+                       <input type="email" name="email" required />
+                      <label style={{ color: '#70218F'}}>Numéro de téléphone</label>
+                      <input type="num" name="tel" id="tel" pattern="[0-9]*" required/>   
+                      <label style={{ color: '#70218F'}}>Message</label>
+                      <textarea name="message" id="message"required/>
                     </div>
-                    
-                    
-                    <div className="col-lg-6 content-form-right p-0">
-    <div className="form-w3ls p-md-5 p-4">
-        <h4 className="mb-4 sec-title-w3">Envoyez-nous un message</h4>
-        <form method="post" action="https://sendmail.w3layouts.com/submitForm">
-            <div className="row">
-                <div className="col-sm-6 form-group pr-sm-1">
-                    <input className="form-control" type="text" name="w3lName" id="w3lName"
-                        placeholder="Nom" required=""/>
+                    <div className="input-group1 text-right">
+                      <button className="btn button-style" type="submit">
+                        Envoyer
+                        <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div className="col-sm-6 form-group pl-sm-1">
-                    <input className="form-control" type="text" name="w3lName" id="w3lName"
-                        placeholder="Prénom" required=""/>
-                </div>
+              </div>
             </div>
-            <div className="form-group">
-                <input className="form-control" type="email" name="w3lSender" id="w3lSender"
-                    placeholder="Email" required=""/>
-            </div>
-            <div className="form-group">
-                <input className="form-control" type="text" name="w3lName" id="w3lName"
-                    placeholder="Numéro de téléphone" required=""/>
-            </div>
-            <div className="form-group">
-                <textarea className="form-control" name="w3lMessage" id="w3lMessage"
-                    placeholder="Message" required=""></textarea>
-            </div>
-            <div className="input-group1 text-right">
-                <button className="btn button-style" type="submit">Envoyer
-                    <i className="fa fa-angle-double-right" aria-hidden="true"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-            
-    <footer className="w3l-footer-22 position-relative mt-5 pt-5">
+      </section>
+
+      <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
             <div className="text-txt">
@@ -197,7 +189,7 @@ function contact() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default contact
+export default Contact;
