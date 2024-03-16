@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Adminsidbar from '../Sidbar/Adminsidbar';
-import moment from 'moment'; // Importez la locale française pour moment
-import './calendrier.css'; // Assurez-vous d'avoir les styles CSS nécessaires
+import moment from 'moment';
+import 'moment/locale/fr'; // Importez la locale française pour moment
+import './calendrier.css';
 
 function Calendrier() {
+  moment.locale('fr'); // Définir la locale française pour moment
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +26,41 @@ function Calendrier() {
     setSelectEvent(event);
     setEventTitle(event.title);
   };
+
+  const formats = {
+    dayFormat: 'D', // Jour du mois
+    monthHeaderFormat: 'MMMM YYYY', // Mois et année
+    dayHeaderFormat: 'ddd', // Jour de la semaine
+    agendaDateFormat: 'ddd D MMM YYYY', // Agenda: jour, mois, année
+    agendaTimeFormat: 'HH:mm', // Heure de l'agenda
+    agendaTimeRangeFormat: ({ start, end }, culture, localizer) =>
+      `${localizer.format(start, 'HH:mm', culture)} - ${localizer.format(end, 'HH:mm', culture)}`,
+  };
+  
+  const messages = {
+    allDay: 'Toute la journée',
+    previous: 'Précédent',
+    next: 'Suivant',
+    today: 'Aujourd\'hui',
+    month: 'Mois',
+    week: 'Semaine',
+    day: 'Jour',
+    agenda: 'Agenda',
+    date: 'Date',
+    time: 'Heure',
+    event: 'Événement',
+    showMore: total => `+ ${total} de plus`,
+  };
+
+  const MonthHeader = ({ label }) => {
+    return (
+      <div className="rbc-month-header">
+        <span className="rbc-header-label">{label}</span>
+      </div>
+    );
+  };
+
+
 
   const saveEvent = () => {
     if (eventTitle && selectedDate) {
@@ -46,15 +83,17 @@ function Calendrier() {
       setSelectEvent(null);
     }
   };
-  const deleteEvents=()=>{
-    if(selectEvent){
-      const updatedEvents=events.filter((event)=>event !== selectEvent);
+
+  const deleteEvents = () => {
+    if (selectEvent) {
+      const updatedEvents = events.filter((event) => event !== selectEvent);
       setEvents(updatedEvents);
       setShowModal(false);
       setEventTitle('');
       setSelectEvent(null);
     }
-  }
+  };
+
   const closeModal = () => {
     setShowModal(false);
     setEventTitle('');
@@ -67,6 +106,8 @@ function Calendrier() {
       <div className="main-container">
         <div className="row">
           <Calendar
+            formats={formats}
+            messages={messages}
             localizer={localizer}
             events={events}
             startAccessor="start"
@@ -78,6 +119,11 @@ function Calendrier() {
             selectable={true}
             onSelectSlot={handleSelectSlot}
             onSelectEvent={handleSelectedEvent}
+            components={{
+              month: {
+                header: MonthHeader, // Utilisez le composant personnalisé pour l'en-tête du mois
+              },
+            }}
           />
           {showModal && (
             <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
@@ -96,9 +142,9 @@ function Calendrier() {
                   <div className="modal-footer">
                     {selectEvent && (
                       <button
-                      type="button"
-                      className="btnSupp"
-                      onClick={deleteEvents}>Supprimer</button>
+                        type="button"
+                        className="btnSupp"
+                        onClick={deleteEvents}>Supprimer</button>
                     )}
                     <button className="btnEnr" onClick={saveEvent}>Enregistrer</button>
                   </div>
