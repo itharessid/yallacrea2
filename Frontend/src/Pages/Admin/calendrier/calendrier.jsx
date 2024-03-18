@@ -20,16 +20,19 @@ function Calendrier() {
   const [selectEvent, setSelectEvent] = useState(null);
   const [view, setView] = useState('month');
   const [currentDate, setCurrentDate] = useState(new Date()); // État pour suivre la date actuelle
+  const [formData, setFormData] = useState({
+    title: '',
+    start: '',
+    end: ''
+  });
 
-  // Effet pour filtrer les événements en fonction de la date sélectionnée
   useEffect(() => {
-    if (selectedDate) {
-      const filteredEvents = events.filter((event) =>
-        moment(event.start).isSame(selectedDate, 'day')
-      );
-      setEvents(filteredEvents);
-    }
-  }, [selectedDate]);
+    axios.get('http://localhost:3001/calendrier')
+      .then(res => {
+        setEvents(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const handleSelectSlot = (slotInfo) => {
     setShowModal(true);
@@ -50,16 +53,22 @@ function Calendrier() {
     if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
       const startDateTime = moment(`${eventStartDate}T${eventStartTime}`).toDate();
       const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate();
-      
+
+      setFormData({
+        title: eventTitle,
+        start: startDateTime,
+        end: endDateTime
+      });
+
       try {
         if (selectEvent) {
           const updatedEvent = { ...selectEvent, title: eventTitle, start: startDateTime, end: endDateTime };
-          const response = await axios.put(`/api/calendrier/${selectEvent.id}`, updatedEvent); // Modifier l'événement existant
-          console.log(response.data); // Vous pouvez gérer la réponse selon vos besoins
+          const response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, updatedEvent);
+          console.log(response.data);
         } else {
           const newEvent = { title: eventTitle, start: startDateTime, end: endDateTime };
-          const response = await axios.post('/api/calendrier', newEvent); // Ajouter un nouvel événement
-          console.log(response.data); // Vous pouvez gérer la réponse selon vos besoins
+          const response = await axios.post('http://localhost:3001/calendrier', newEvent);
+          console.log(response.data);
         }
         setShowModal(false);
         setEventTitle('');
@@ -69,7 +78,6 @@ function Calendrier() {
         setSelectEvent(null);
       } catch (error) {
         console.error('Error:', error);
-        // Gérer les erreurs selon vos besoins (afficher un message d'erreur, etc.)
       }
     }
   };
@@ -150,7 +158,7 @@ function Calendrier() {
                 };
 
                 const goToCurrent = () => {
-                  setCurrentDate(new Date()); // Mettre à jour la date actuelle
+                  setCurrentDate(new Date());
                   toolbar.onNavigate('TODAY');
                 };
 
@@ -159,7 +167,7 @@ function Calendrier() {
                 };
 
                 const label = () => {
-                  const date = moment(currentDate); // Utiliser la date actuelle
+                  const date = moment(currentDate);
                   return (
                     <span className="rbc-toolbar-label">
                       {date.format('DD/MM/YYYY')}
@@ -183,8 +191,8 @@ function Calendrier() {
                 );
               },
             }}
-            view={view} // Propriété view pour suivre la vue actuelle
-            onView={(newView) => setView(newView)} // Gestionnaire d'événements pour la vue
+            view={view}
+            onView={(newView) => setView(newView)}
           />
           {showModal && (
             <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
@@ -197,7 +205,7 @@ function Calendrier() {
                     <button className="btnCloture" onClick={closeModal}>Fermer</button>
                   </div>
                   <div className="modal-body">
-                  <div className="form-group">
+                    <div className="form-group">
                       <label>Titre</label>
                       <input
                         className='form-control'
