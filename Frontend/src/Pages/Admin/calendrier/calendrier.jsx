@@ -5,6 +5,7 @@ import Adminsidbar from '../Sidbar/Adminsidbar';
 import moment from 'moment';
 import 'moment/locale/fr'; // Importez la locale française pour moment
 import './calendrier.css';
+import axios from 'axios';
 
 function Calendrier() {
   moment.locale('fr'); // Définir la locale française pour moment
@@ -45,31 +46,31 @@ function Calendrier() {
     setEventStartDate(moment(event.start).format('YYYY-MM-DD'));
   };
 
-  const saveEvent = () => {
+  const saveEvent = async () => {
     if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
       const startDateTime = moment(`${eventStartDate}T${eventStartTime}`).toDate();
-      const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate(); // Utilisez la date de début pour la date de fin
+      const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate();
       
-      if (selectEvent) {
-        const updatedEvent = { ...selectEvent, title: eventTitle, start: startDateTime, end: endDateTime };
-        const updatedEvents = events.map((event) =>
-          event === selectEvent ? updatedEvent : event
-        );
-        setEvents(updatedEvents);
-      } else {
-        const newEvent = {
-          title: eventTitle,
-          start: startDateTime,
-          end: endDateTime,
-        };
-        setEvents([...events, newEvent]);
+      try {
+        if (selectEvent) {
+          const updatedEvent = { ...selectEvent, title: eventTitle, start: startDateTime, end: endDateTime };
+          const response = await axios.put(`/api/calendrier/${selectEvent.id}`, updatedEvent); // Modifier l'événement existant
+          console.log(response.data); // Vous pouvez gérer la réponse selon vos besoins
+        } else {
+          const newEvent = { title: eventTitle, start: startDateTime, end: endDateTime };
+          const response = await axios.post('/api/calendrier', newEvent); // Ajouter un nouvel événement
+          console.log(response.data); // Vous pouvez gérer la réponse selon vos besoins
+        }
+        setShowModal(false);
+        setEventTitle('');
+        setEventStartTime('');
+        setEventEndTime('');
+        setEventStartDate('');
+        setSelectEvent(null);
+      } catch (error) {
+        console.error('Error:', error);
+        // Gérer les erreurs selon vos besoins (afficher un message d'erreur, etc.)
       }
-      setShowModal(false);
-      setEventTitle('');
-      setEventStartTime('');
-      setEventEndTime('');
-      setEventStartDate('');
-      setSelectEvent(null);
     }
   };
 
@@ -207,7 +208,7 @@ function Calendrier() {
                       />
                     </div>
                     <div className="form-group">
-                      <label>Date</label>
+                      <label>Date de début</label>
                       <input
                         className='form-control'
                         id="eventStartDate"
