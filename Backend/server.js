@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(rout);
 app.use(imageRouter); // Utilisez le routeur image dans votre application
+app.use('/images', express.static('../frontend/public/images'));
 
 const PORT = 3001;
 app.listen(PORT, () => {
