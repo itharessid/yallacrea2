@@ -15,4 +15,23 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+const db = mysql.createConnection({
+  host: "localhost",
+  user: 'root',
+  password: '',
+  database: 'yallacrea'
+});
+
+app.get('/', (req, res) => {
+  return res.json("from backend side");
+});
+
+app.get('/createur', (req, res) => {
+  const sql = "SELECT * FROM createur"; // Correction: Utilisez la variable sql ici
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
 module.exports = app;

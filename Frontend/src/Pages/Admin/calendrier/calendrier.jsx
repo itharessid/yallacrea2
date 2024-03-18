@@ -196,8 +196,18 @@ function Calendrier() {
                     <button className="btnCloture" onClick={closeModal}>Fermer</button>
                   </div>
                   <div className="modal-body">
+                  <div className="form-group">
+                      <label>Titre</label>
+                      <input
+                        className='form-control'
+                        id="eventTitle"
+                        type="text"
+                        value={eventTitle}
+                        onChange={(e) => setEventTitle(e.target.value)}
+                      />
+                    </div>
                     <div className="form-group">
-                      <label>Date de début</label>
+                      <label>Date</label>
                       <input
                         className='form-control'
                         id="eventStartDate"
@@ -224,16 +234,6 @@ function Calendrier() {
                         type="time"
                         value={eventEndTime}
                         onChange={(e) => setEventEndTime(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Titre</label>
-                      <input
-                        className='form-control'
-                        id="eventTitle"
-                        type="text"
-                        value={eventTitle}
-                        onChange={(e) => setEventTitle(e.target.value)}
                       />
                     </div>
                   </div>
