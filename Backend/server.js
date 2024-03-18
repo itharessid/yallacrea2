@@ -4,12 +4,15 @@ const cors = require('cors');
 const mydb = require('./Config/db');
 const rout = require("./routes/route");
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
+const calendrierRouter = require('./Controllers/calendrier');
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 app.use(rout);
 app.use(imageRouter); // Utilisez le routeur image dans votre application
 app.use('/images', express.static('../frontend/public/images'));
+app.use(calendrierRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {
@@ -23,16 +26,11 @@ const db = mysql.createConnection({
   database: 'yallacrea'
 });
 
-app.get('/', (req, res) => {
-  return res.json("from backend side");
+app.get('/test', (req, res) => {
+  res.send("ons");
 });
 
-app.get('/createur', (req, res) => {
-  const sql = "SELECT * FROM createur"; // Correction: Utilisez la variable sql ici
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
-});
+
+
 
 module.exports = app;
