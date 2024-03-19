@@ -27,12 +27,16 @@ function Calendrier() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:3001/calendrier')
-      .then(res => {
-        setEvents(res.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    fetchData();
+  }, [])
+  const fetchData=async()=>{
+    try{
+      const result =await axios("http://localhost:3001/calendrier");
+      console.log(result.data);
+    }catch(err){
+      console.log("qu'elle que chose qui cloche");
+    }
+  }
 
   const handleSelectSlot = (slotInfo) => {
     setShowModal(true);
@@ -53,23 +57,26 @@ function Calendrier() {
     if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
       const startDateTime = moment(`${eventStartDate}T${eventStartTime}`).toDate();
       const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate();
-
+  
       setFormData({
         title: eventTitle,
         start: startDateTime,
         end: endDateTime
       });
-
+  
       try {
+        let response;
         if (selectEvent) {
           const updatedEvent = { ...selectEvent, title: eventTitle, start: startDateTime, end: endDateTime };
-          const response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, updatedEvent);
-          console.log(response.data);
+          response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, updatedEvent);
         } else {
           const newEvent = { title: eventTitle, start: startDateTime, end: endDateTime };
-          const response = await axios.post('http://localhost:3001/calendrier', newEvent);
-          console.log(response.data);
+          response = await axios.post('http://localhost:3001/calendrier', newEvent);
         }
+        
+        // Mettre à jour les événements après ajout ou modification
+        fetchEvents();
+  
         setShowModal(false);
         setEventTitle('');
         setEventStartTime('');
@@ -81,6 +88,7 @@ function Calendrier() {
       }
     }
   };
+  
 
   const deleteEvents = () => {
     if (selectEvent) {
