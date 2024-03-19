@@ -50,6 +50,7 @@ input, textarea, select {
 	outline: none;
 	resize: none;
 	font-family: 'Inter', sans-serif;
+	text-align: center;
 }
 a, input, button {
 	outline: none !important;
