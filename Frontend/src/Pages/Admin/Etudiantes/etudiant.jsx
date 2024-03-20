@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';;
+import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import './etudiant.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+
 // Composant pour la boîte de dialogue de confirmation
 function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete }) {
   return (

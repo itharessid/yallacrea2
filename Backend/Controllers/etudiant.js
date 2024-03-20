@@ -17,13 +17,17 @@ router.get("/etudiant", (req, res) => {
 
 router.post("/etudiant", (req, res) => {
     const { nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo } = req.body;
-    const sql = "INSERT INTO etudiants (nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    const values=[nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo ];
+    const sql = "INSERT INTO etudiants (nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const values = [nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo];
     db.query(sql, values, (err, result) => {
         if (err) {
-          console.log(err);
-        }else{res.send("un nouveau étudiant est ajouté")}
-      })
+            console.log(err);
+            res.status(500).send("Erreur lors de l'insertion de l'étudiant");
+        } else {
+            res.status(200).send("Nouvel étudiant ajouté avec succès");
+        }
+    });
 });
+
 
 module.exports = router;
