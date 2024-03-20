@@ -4,7 +4,7 @@ import './etudiant.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
-
+import axios from 'axios';
 // Composant pour la boîte de dialogue de confirmation
 function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete }) {
   return (
@@ -37,7 +37,7 @@ function Etudiants() {
     setShowDeleteConfirmation(true);
     setBlurBackground(true);
   };
-
+  
   // Fonction pour masquer la boîte de dialogue de confirmation de suppression
   const handleCancelDelete = () => {
     setShowDeleteConfirmation(false);

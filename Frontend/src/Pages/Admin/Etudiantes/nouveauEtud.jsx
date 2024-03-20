@@ -23,13 +23,13 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Nom:</label>
-                                                        <input type="text" className="form-control" required />
+                                                        <input type="text" className="form-control" name="nom"required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Prénom:</label>
-                                                        <input type="text" className="form-control" required />
+                                                        <input type="text" className="form-control" name="prenom" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -37,13 +37,13 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Email:</label>
-                                                        <input type="email" className="form-control" required />
+                                                        <input type="email" className="form-control" name="email" required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Adresse</label>
-                                                        <input type="text" className="form-control" required />
+                                                        <input type="text" className="form-control" name="adresse" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Numéro:</label>
-                                                        <input type="number" className="form-control" required />
+                                                        <input type="number" className="form-control" name="numero" required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 pl-md-5">
@@ -62,6 +62,7 @@ function NouveauEtud() {
                                                             selected={selectedDate}
                                                             onChange={date => setSelectedDate(date)}
                                                             placeholderText="Select Date"
+                                                            name="anniversaire"
                                                             required
                                                         />
                                                     </div>
@@ -71,7 +72,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Niveau:</label>
-                                                        <select className="custom-select form-control" required>
+                                                        <select className="custom-select form-control" name="niveau" required>
                                                             <option value="bac">Avec Bac</option>
                                                             <option value="sansBac">Sans Bac</option>
                                                         </select>
@@ -80,7 +81,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Programme:</label>
-                                                        <select className="custom-select form-control" required>
+                                                        <select className="custom-select form-control" name="programme" required>
                                                             <option value="complet">Complet</option>
                                                             <option value="accelere">Accéléré</option>
                                                         </select>
@@ -91,7 +92,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Code Promo:</label>
-                                                        <input type="text" className="form-control"/>
+                                                        <input type="text" className="form-control" name="codePromo"/>
                                                     </div>
                                                 </div>
                                             </div>

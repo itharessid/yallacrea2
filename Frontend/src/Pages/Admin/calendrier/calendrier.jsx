@@ -25,7 +25,6 @@ function Calendrier() {
     start: '',
     end: ''
   });
-
   useEffect(() => {
     fetchData();
   }, [])

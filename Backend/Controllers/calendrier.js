@@ -9,7 +9,7 @@ router.post('/calendrier', (req, res) => {
   db.query(sql, values, (err, result) => {
     if (err) {
       console.log(err);
-    }else{res.send("les informations bien enregistrés")}
+    }else{res.send("un nouveau affaire est ajouté")}
   });
 });
 

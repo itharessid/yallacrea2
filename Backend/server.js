@@ -5,6 +5,7 @@ const mydb = require('./Config/db');
 const rout = require("./routes/route");
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
 const calendrierRouter = require('./Controllers/calendrier');
+const etudiantRouter=require('./Controllers/etudiant')
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(rout);
 app.use(imageRouter); // Utilisez le routeur image dans votre application
 app.use('/images', express.static('../frontend/public/images'));
 app.use(calendrierRouter);
+app.use(etudiantRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {
