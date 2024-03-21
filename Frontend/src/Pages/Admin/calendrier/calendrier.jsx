@@ -1,3 +1,4 @@
+// Import statements...
 import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -25,17 +26,51 @@ function Calendrier() {
     start: '',
     end: ''
   });
-  const [calendrierData,setCalendrierData]=useState([]);
+  const [calendrierData, setCalendrierData] = useState([]);
+
   useEffect(() => {
     fetchData();
-  }, [])
-  const fetchData=async()=>{
-    try{
-      const result =await axios("http://localhost:3001/calendrier");
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const result = await axios("http://localhost:3001/calendrier");
       console.log(result.data);
-    }catch(err){
+    } catch (err) {
       console.log("qu'elle que chose qui cloche");
     }
+  }
+
+  const [NEventField, setNEventField] = useState({
+    titre: "",
+    date: "",
+    heureDebut: "",
+    heureFin: "",
+  });
+
+  const changeNEventFieldHandler = (e) => {
+    const { name, value } = e.target; // Destructuring pour extraire name et value de l'input
+    setNEventField({
+      ...NEventField,
+      [name]: value // Utilisation de name pour mettre à jour la propriété correspondante dans l'état
+    });
+  };
+
+  const [loading, setLoading] = useState(false);
+
+  const onsubmitChange = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/calendrier", NEventField);
+      console.log(response);
+      setLoading(true);
+    } catch (err) {
+      console.log("quelque chose qui cloche");
+    }
+  }
+
+  if (loading) {
+    return <Calendrier />
   }
 
   const handleSelectSlot = (slotInfo) => {
@@ -57,13 +92,13 @@ function Calendrier() {
     if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
       const startDateTime = moment(`${eventStartDate}T${eventStartTime}`).toDate();
       const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate();
-  
+
       setFormData({
         title: eventTitle,
         start: startDateTime,
         end: endDateTime
       });
-  
+
       try {
         let response;
         if (selectEvent) {
@@ -73,10 +108,10 @@ function Calendrier() {
           const newEvent = { title: eventTitle, start: startDateTime, end: endDateTime };
           response = await axios.post('http://localhost:3001/calendrier', newEvent);
         }
-        
+
         // Mettre à jour les événements après ajout ou modification
         fetchEvents();
-  
+
         setShowModal(false);
         setEventTitle('');
         setEventStartTime('');
@@ -88,7 +123,7 @@ function Calendrier() {
       }
     }
   };
-  
+
 
   const deleteEvents = () => {
     if (selectEvent) {
@@ -185,7 +220,7 @@ function Calendrier() {
 
                 return (
                   <div className="rbc-toolbar">
-                    <span className="rbc-btn-group">
+                    <div className="rbc-btn-group">
                       <button type="button" onClick={goToBack}>Précédent</button>
                       <button type="button" onClick={goToCurrent}>Aujourd'hui</button>
                       <button type="button" onClick={goToNext}>Suivant</button>
@@ -194,7 +229,7 @@ function Calendrier() {
                       <button type="button" onClick={() => changeView('week')}>Semaine</button>
                       <button type="button" onClick={() => changeView('day')}>Jour</button>
                       <button type="button" onClick={() => changeView('agenda')}>Agenda</button>
-                    </span>
+                    </div>
                   </div>
                 );
               },
@@ -212,47 +247,61 @@ function Calendrier() {
                     </h5>
                     <button className="btnCloture" onClick={closeModal}>Fermer</button>
                   </div>
-                  <div className="modal-body">
-                    <div className="form-group">
-                      <label>Titre</label>
-                      <input
-                        className='form-control'
-                        id="eventTitle"
-                        type="text"
-                        value={eventTitle}
-                        onChange={(e) => setEventTitle(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Date de début</label>
-                      <input
-                        className='form-control'
-                        id="eventStartDate"
-                        type="date"
-                        value={eventStartDate}
-                        onChange={(e) => setEventStartDate(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Heure de début</label>
-                      <input
-                        className='form-control'
-                        id="eventStartTime"
-                        type="time"
-                        value={eventStartTime}
-                        onChange={(e) => setEventStartTime(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Heure de fin</label>
-                      <input
-                        className='form-control'
-                        id="eventEndTime"
-                        type="time"
-                        value={eventEndTime}
-                        onChange={(e) => setEventEndTime(e.target.value)}
-                      />
-                    </div>
+                  <div className="form-group">
+                    <label>Titre</label>
+                    <input
+                      className='form-control'
+                      id="eventTitle"
+                      type="text"
+                      name="titre"
+                      value={eventTitle}
+                      onChange={(e) => {
+                        changeNEventFieldHandler(e);
+                        setEventTitle(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Date</label>
+                    <input
+                      className='form-control'
+                      id="eventStartDate"
+                      type="date"
+                      value={eventStartDate}
+                      name="date"
+                      onChange={(e) => {
+                        changeNEventFieldHandler(e);
+                        setEventStartDate(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Heure début</label>
+                    <input
+                      className='form-control'
+                      id="eventStartTime"
+                      type="time"
+                      name="heureDebut"
+                      value={eventStartTime}
+                      onChange={(e) => {
+                        changeNEventFieldHandler(e);
+                        setEventStartTime(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Heure de fin</label>
+                    <input
+                      className='form-control'
+                      id="eventEndTime"
+                      type="time"
+                      value={eventEndTime}
+                      name="heureFin"
+                      onChange={(e) => {
+                        changeNEventFieldHandler(e);
+                        setEventEndTime(e.target.value);
+                      }}
+                    />
                   </div>
                   <div className="modal-footer">
                     {selectEvent && (
@@ -261,7 +310,7 @@ function Calendrier() {
                         className="btnSupp"
                         onClick={deleteEvents}>Supprimer</button>
                     )}
-                    <button className="btnEnr" onClick={saveEvent}>Enregistrer</button>
+                    <button className="btnEnr" onClick={e => onsubmitChange(e)}>Enregistrer</button>
                   </div>
                 </div>
               </div>
