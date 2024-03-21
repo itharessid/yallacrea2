@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const cors = require('cors');
 const mydb = require('./Config/db');
 const rout = require("./routes/route");
+const textRouter = require('./Controllers/texte'); // Importez le routeur text
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
 const calendrierRouter = require('./Controllers/calendrier');
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use(rout);
+app.use('/text', textRouter); // Utilisez le routeur text dans votre application
 app.use(imageRouter); // Utilisez le routeur image dans votre application
 app.use('/images', express.static('../frontend/public/images'));
 app.use(calendrierRouter);

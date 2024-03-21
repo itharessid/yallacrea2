@@ -56,7 +56,7 @@ function Connexion() {
                                             </div>
                                         </div>
                                         <div className="text-center">
-                                            <Link to="/bienvenue" className="button">Se connecter</Link>
+                                            <Link to="/gprofil" className="button">Se connecter</Link>
                                         </div>
                                     </form>
                                 </div>

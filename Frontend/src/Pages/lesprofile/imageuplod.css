@@ -28,3 +28,7 @@
     right: 10px;
     cursor: pointer;
 }
+.large-input {
+    width: 400px;
+    height: 50px; /* Ajustez cette valeur selon vos préférences */
+}
