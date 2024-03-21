@@ -21,6 +21,17 @@ router.get('/calendrier', (req, res) => {
     }else{res.send(data)}
   });
 });
-
+router.delete('/calendrier/:eventId', (req, res) => {
+  const eventId = req.params.eventId;
+  const sql = "DELETE FROM calendrier WHERE id = ?";
+  db.query(sql, eventId, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la suppression de l'événement");
+    } else {
+      res.status(200).send("L'événement a été supprimé avec succès");
+    }
+  });
+});
   
 module.exports = router;
