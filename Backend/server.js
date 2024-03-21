@@ -6,6 +6,7 @@ const rout = require("./routes/route");
 const textRouter = require('./Controllers/texte'); // Importez le routeur text
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
 const calendrierRouter = require('./Controllers/calendrier');
+const etudiantRouter=require('./Controllers/etudiant')
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use('/text', textRouter); // Utilisez le routeur text dans votre application
 app.use(imageRouter); // Utilisez le routeur image dans votre application
 app.use('/images', express.static('../frontend/public/images'));
 app.use(calendrierRouter);
+app.use(etudiantRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {

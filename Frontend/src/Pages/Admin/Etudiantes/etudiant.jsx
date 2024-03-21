@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import './etudiant.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 // Composant pour la boîte de dialogue de confirmation
 function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete }) {
@@ -51,6 +52,19 @@ function Etudiants() {
     setShowDeleteConfirmation(false);
     setBlurBackground(false);
   };
+  const [EtudiantData,setEtudiantData]=useState([]);
+  useEffect(() => {
+    fetchData();
+  }, [])
+  const fetchData=async()=>{
+    try{
+      const result =await axios("http://localhost:3001/etudiant");
+      //console.log(result.data);
+      setEtudiantData(result.data)
+    }catch(err){
+      console.log("qu'elle que chose qui cloche");
+    }
+  }
 
   return (
     <>
@@ -123,26 +137,33 @@ function Etudiants() {
             <table className="table hover multiple-select-row data-table-export nowrap">
               <thead>
                 <tr>
-                  <th className="table-plus datatable-nosort text-purple">Nom</th>
+                  <th className="table-plus datatable-nosort text-purple"></th>
+                  <th className="text-purple">Nom</th>
                   <th className="text-purple">Prénom</th>
                   <th className="text-purple">Email</th>
+                  <th className="text-purple">Adresse</th>
                   <th className="text-purple">Numéro</th>
+                  <th className="text-purple">Niveau</th>
                   <th className="text-purple">Programme</th>
                   <th className="text-purple">Code Promo</th>
-                  <th className="text-purple">Niveau</th>
                   <th className="text-purple">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="table-plus">ELFEKIH</td>
-                  <td>Ons</td>
-                  <td>elfekihons@gmail.com</td>
-                  <td>55963211</td>
-                  <td>A</td>
-                  <td>7800</td>
-                  <td>Complet</td>
-                  <td>
+                {
+                  EtudiantData.map((etudiants,i)=>{
+                    return (
+                     <tr key={i}>
+                      <td>{i+1}</td>
+                      <td>{etudiants.nom}</td>
+                      <td>{etudiants.prenom}</td>
+                      <td>{etudiants.email}</td>
+                      <td>{etudiants.adresse}</td>
+                      <td>{etudiants.numero}</td>
+                      <td>{etudiants.niveau}</td>
+                      <td>{etudiants.programme}</td>
+                      <td>{etudiants.codePromo}</td>
+                      <td>
                     <button className="button1">
                       <Link to="/profilEtud" className="dropdown-toggle">
                         <FontAwesomeIcon icon={faEye} />
@@ -152,26 +173,10 @@ function Etudiants() {
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                   </td>
-                </tr>
-                <tr>
-                  <td className="table-plus">ESSID</td>
-                  <td>Ithar</td>
-                  <td>ithar333@gmail.com</td>
-                  <td>26774811</td>
-                  <td>A</td>
-                  <td>7800</td>
-                  <td>Complet</td>
-                  <td>
-                    <button className="button1">
-                      <Link to="/profilEtud" className="dropdown-toggle">
-                        <FontAwesomeIcon icon={faEye} />
-                      </Link>
-                    </button>
-                    <button className="button2" onClick={handleDeleteClick}>
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </td>
-                </tr>
+                     </tr> 
+                    )
+                  })
+                }
               </tbody>
             </table>
           </div>
