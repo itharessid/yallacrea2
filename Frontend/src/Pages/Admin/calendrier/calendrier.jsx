@@ -25,18 +25,81 @@ function Calendrier() {
     start: '',
     end: ''
   });
-  const [calendrierData,setCalendrierData]=useState([]);
+  const [calendrierData, setCalendrierData] = useState([]);
+  const [showEventsTable, setShowEventsTable] = useState(false); // Nouvel état pour afficher le tableau des événements
+  const [loading, setLoading] = useState(false);
+  const [showEventDetailsModal, setShowEventDetailsModal] = useState(false); // Nouvel état pour afficher la modal des détails de l'événement
+
   useEffect(() => {
     fetchData();
-  }, [])
-  const fetchData=async()=>{
-    try{
-      const result =await axios("http://localhost:3001/calendrier");
-      console.log(result.data);
-    }catch(err){
-      console.log("qu'elle que chose qui cloche");
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const result = await axios.get("http://localhost:3001/calendrier");
+      setCalendrierData(result.data); // Mettre à jour l'état calendrierData avec les données récupérées
+      setEvents(result.data); // Mettre à jour l'état events avec les données récupérées
+    } catch (err) {
+      console.log("Quelque chose ne va pas lors de la récupération des données du calendrier");
     }
-  }
+  };
+  const toggleEventsTable = () => {
+    setShowEventsTable(!showEventsTable);
+  };
+  const handleEditEvent = (eventId) => {
+    const eventToEdit = events.find(event => event.id === eventId);
+    if (eventToEdit) {
+      setShowModal(true);
+      setSelectEvent(eventToEdit);
+      setEventTitle(eventToEdit.titre);
+      setEventStartTime(moment(eventToEdit.date + 'T' + eventToEdit.heureDebut).format('HH:mm'));
+      setEventEndTime(moment(eventToEdit.date + 'T' + eventToEdit.heureFin).format('HH:mm'));
+      setEventStartDate(moment(eventToEdit.date).format('YYYY-MM-DD'));
+    }
+  };
+  
+  const onsubmitChange = async () => {
+    try {
+      const eventData = {
+        id: selectEvent ? selectEvent.id : null, // Si selectEvent existe, c'est une modification, sinon c'est un ajout
+        titre: eventTitle,
+        date: eventStartDate,
+        heureDebut: eventStartTime,
+        heureFin: eventEndTime,
+      };
+  
+      if (selectEvent) {
+        // Modification de l'événement existant
+        await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
+      } else {
+        // Ajout d'un nouvel événement
+        await axios.post('http://localhost:3001/calendrier', eventData);
+      }
+  
+      // Actualiser les événements après la modification/ajout
+      fetchData();
+  
+      // Fermer la modal et réinitialiser les champs du formulaire
+      closeModal();
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+    }
+  };
+  const formatTime = (timeString) => {
+    return moment(timeString, 'HH:mm:ss').format('HH:mm'); // Formatage de l'heure sans les secondes
+  };
+
+  
+  
+  const handleMonthViewClick = (event) => {
+    setShowEventDetailsModal(true);
+    setSelectEvent(event);
+    setEventTitle(event.title);
+    setEventStartTime(moment(event.start).format('HH:mm'));
+    setEventEndTime(moment(event.end).format('HH:mm'));
+    setEventStartDate(moment(event.start).format('YYYY-MM-DD'));
+  };
+
 
   const handleSelectSlot = (slotInfo) => {
     setShowModal(true);
@@ -53,46 +116,10 @@ function Calendrier() {
     setEventStartDate(moment(event.start).format('YYYY-MM-DD'));
   };
 
-  const saveEvent = async () => {
-    if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
-      const startDateTime = moment(`${eventStartDate}T${eventStartTime}`).toDate();
-      const endDateTime = moment(`${eventStartDate}T${eventEndTime}`).toDate();
-  
-      setFormData({
-        title: eventTitle,
-        start: startDateTime,
-        end: endDateTime
-      });
-  
-      try {
-        let response;
-        if (selectEvent) {
-          const updatedEvent = { ...selectEvent, title: eventTitle, start: startDateTime, end: endDateTime };
-          response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, updatedEvent);
-        } else {
-          const newEvent = { title: eventTitle, start: startDateTime, end: endDateTime };
-          response = await axios.post('http://localhost:3001/calendrier', newEvent);
-        }
-        
-        // Mettre à jour les événements après ajout ou modification
-        fetchEvents();
-  
-        setShowModal(false);
-        setEventTitle('');
-        setEventStartTime('');
-        setEventEndTime('');
-        setEventStartDate('');
-        setSelectEvent(null);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-  };
-  
-
-  const deleteEvents = () => {
-    if (selectEvent) {
-      const updatedEvents = events.filter((event) => event !== selectEvent);
+  const deleteEvent = async (eventId) => {
+    try {
+      await axios.delete(`http://localhost:3001/calendrier/${eventId}`);
+      const updatedEvents = events.filter((event) => event.id !== eventId);
       setEvents(updatedEvents);
       setShowModal(false);
       setEventTitle('');
@@ -100,6 +127,8 @@ function Calendrier() {
       setEventEndTime('');
       setEventStartDate('');
       setSelectEvent(null);
+    } catch (error) {
+      console.error('Erreur lors de la suppression de l\'événement :', error);
     }
   };
 
@@ -112,135 +141,185 @@ function Calendrier() {
     setSelectEvent(null);
   };
 
+  if (loading) {
+    return <Calendrier />;
+  }
+
   return (
     <>
       <Adminsidbar />
       <div className="main-container">
         <div className="row">
-          <Calendar
-            formats={{
-              monthHeaderFormat: 'DD MMMM YYYY',
-              agendaTimeRangeFormat: ({ start, end }, culture, localizer) =>
-                `${localizer.format(start, 'HH:mm', culture)} - ${localizer.format(end, 'HH:mm', culture)}`,
-            }}
-            messages={{
-              allDay: 'Toute la journée',
-              previous: 'Précédent',
-              next: 'Suivant',
-              today: "Aujourd'hui",
-              month: 'Mois',
-              week: 'Semaine',
-              day: 'Jour',
-              agenda: 'Agenda',
-              date: 'Date',
-              time: 'Heure',
-              event: 'Événement',
-              showMore: (total) => `+ ${total} de plus`,
-            }}
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{
-              height: 800,
-              width: 950,
-            }}
-            selectable={true}
-            onSelectSlot={handleSelectSlot}
-            onSelectEvent={handleSelectedEvent}
-            components={{
-              month: {
-                header: ({ label }) => (
-                  <div className="rbc-month-header">
-                    <span className="rbc-header-label">{label}</span>
-                  </div>
-                ),
-              },
-              toolbar: (toolbar) => {
-                const goToBack = () => {
-                  toolbar.onNavigate('PREV');
-                };
+          <div className="rbc-agenda-view">
+            {/* Afficher le bouton pour basculer entre le calendrier et le tableau des événements */}
+            <button onClick={toggleEventsTable} style={{ backgroundColor: 'rgba(121, 21, 99, 0.671)' }}>
+              {showEventsTable ? 'Calendrier' : 'Agenda'}
+            </button>
 
-                const goToNext = () => {
-                  toolbar.onNavigate('NEXT');
-                };
+            {/* Afficher le tableau des événements si showEventsTable est true */}
+            {showEventsTable && (
+              <table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Heure début</th>
+                    <th>Heure fin</th>
+                    <th>Opérations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {events.map((event, index) => (
+                    <tr key={index}>
+                      <td>{event.titre}</td>
+                      <td>{moment(event.date).format('DD/MM/YYYY')}</td>
+                      <td>{formatTime(event.heureDebut)}</td>
+                      <td>{formatTime(event.heureFin)}</td>
+                      <td>
+                        <button onClick={() => deleteEvent(event.id)}>Supprimer</button>
+                        <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>Éditer</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
 
-                const goToCurrent = () => {
-                  setCurrentDate(new Date());
-                  toolbar.onNavigate('TODAY');
-                };
+            {/* Afficher le calendrier si showEventsTable est false */}
+            {!showEventsTable && (
+              <Calendar
+                formats={{
+                  monthHeaderFormat: 'DD MMMM YYYY',
+                  agendaTimeRangeFormat: ({ start, end }, culture, localizer) =>
+                    `${localizer.format(start, 'HH:mm', culture)} - ${localizer.format(end, 'HH:mm', culture)}`,
+                }}
+                messages={{
+                  allDay: 'Toute la journée',
+                  previous: 'Précédent',
+                  next: 'Suivant',
+                  today: "Aujourd'hui",
+                  month: 'Mois',
+                  week: 'Semaine',
+                  day: 'Jour',
+                  agenda: 'Agenda',
+                  date: 'Date',
+                  time: 'Heure',
+                  event: 'Événement',
+                  showMore: (total) => `+ ${total} de plus`,
+                }}
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                style={{
+                  height: 800,
+                  width: 950,
+                }}
+                selectable={true}
+                onSelectSlot={handleSelectSlot}
+                onSelectEvent={handleSelectedEvent}
+                components={{
+                  month: {
+                    header: ({ label }) => (
+                      <div className="rbc-month-header">
+                        <span className="rbc-header-label">{label}</span>
+                      </div>
+                    ),
+                  },
+                  toolbar: (toolbar) => {
+                    const goToBack = () => {
+                      toolbar.onNavigate('PREV');
+                    };
 
-                const changeView = (view) => {
-                  setView(view);
-                };
+                    const goToNext = () => {
+                      toolbar.onNavigate('NEXT');
+                    };
 
-                const label = () => {
-                  const date = moment(currentDate);
-                  return (
-                    <span className="rbc-toolbar-label">
-                      {date.format('DD/MM/YYYY')}
-                    </span>
-                  );
-                };
+                    const goToCurrent = () => {
+                      setCurrentDate(new Date());
+                      toolbar.onNavigate('TODAY');
+                    };
 
-                return (
-                  <div className="rbc-toolbar">
-                    <span className="rbc-btn-group">
-                      <button type="button" onClick={goToBack}>Précédent</button>
-                      <button type="button" onClick={goToCurrent}>Aujourd'hui</button>
-                      <button type="button" onClick={goToNext}>Suivant</button>
-                      {label()}
-                      <button type="button" onClick={() => changeView('month')}>Mois</button>
-                      <button type="button" onClick={() => changeView('week')}>Semaine</button>
-                      <button type="button" onClick={() => changeView('day')}>Jour</button>
-                      <button type="button" onClick={() => changeView('agenda')}>Agenda</button>
-                    </span>
-                  </div>
-                );
-              },
-            }}
-            view={view}
-            onView={(newView) => setView(newView)}
-          />
-          {showModal && (
-            <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title">
-                      {selectEvent ? 'Modifier l\'événement' : 'Ajouter un événement'}
-                    </h5>
-                    <button className="btnCloture" onClick={closeModal}>Fermer</button>
-                  </div>
-                  <div className="modal-body">
+                    const changeView = (view) => {
+                      setView(view);
+                    };
+
+                    const label = () => {
+                      const date = moment(currentDate);
+                      return (
+                        <span className="rbc-toolbar-label">
+                          {date.format('DD/MM/YYYY')}
+                        </span>
+                      );
+                    };
+
+                    return (
+                      <div className="rbc-toolbar">
+                        <div className="rbc-btn-group">
+                          <button type="button" onClick={goToBack}>Précédent</button>
+                          <button type="button" onClick={goToCurrent}>Aujourd'hui</button>
+                          <button type="button" onClick={goToNext}>Suivant</button>
+                          {label()}
+                          <button type="button" onClick={() => changeView('month')}>Mois</button>
+                          <button type="button" onClick={() => changeView('week')}>Semaine</button>
+                          <button type="button" onClick={() => changeView('day')}>Jour</button>
+                        </div>
+                      </div>
+                    );
+                  },
+                }}
+                view={view}
+                onView={(newView) => setView(newView)}
+              />
+            )}
+
+            {showModal && (
+              <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title">
+                        {selectEvent ? 'Modifier l\'événement' : 'Ajouter un événement'}
+                      </h5>
+                      <button className="btnCloture" onClick={closeModal}>Fermer</button>
+                    </div>
                     <div className="form-group">
                       <label>Titre</label>
                       <input
                         className='form-control'
                         id="eventTitle"
                         type="text"
+                        name="titre"
                         value={eventTitle}
-                        onChange={(e) => setEventTitle(e.target.value)}
+                        onChange={(e) => {
+                          setEventTitle(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-group">
-                      <label>Date de début</label>
+                      <label>Date</label>
                       <input
                         className='form-control'
                         id="eventStartDate"
                         type="date"
                         value={eventStartDate}
-                        onChange={(e) => setEventStartDate(e.target.value)}
+                        name="date"
+                        onChange={(e) => {
+                          setEventStartDate(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-group">
-                      <label>Heure de début</label>
+                      <label>Heure début</label>
                       <input
                         className='form-control'
                         id="eventStartTime"
                         type="time"
+                        name="heureDebut"
                         value={eventStartTime}
-                        onChange={(e) => setEventStartTime(e.target.value)}
+                        onChange={(e) => {
+                          setEventStartTime(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-group">
@@ -250,23 +329,31 @@ function Calendrier() {
                         id="eventEndTime"
                         type="time"
                         value={eventEndTime}
-                        onChange={(e) => setEventEndTime(e.target.value)}
+                        name="heureFin"
+                        onChange={(e) => {
+                          setEventEndTime(e.target.value);
+                        }}
                       />
                     </div>
-                  </div>
-                  <div className="modal-footer">
-                    {selectEvent && (
-                      <button
-                        type="button"
-                        className="btnSupp"
-                        onClick={deleteEvents}>Supprimer</button>
-                    )}
-                    <button className="btnEnr" onClick={saveEvent}>Enregistrer</button>
+                    <div className="modal-footer">
+                      {selectEvent && (
+                        <button
+                          type="button"
+                          className="btnSupp"
+                          onClick={() => deleteEvent(selectEvent.id)} // Fix: Pass the event ID to deleteEvent function
+                        >
+                          Supprimer
+                        </button>
+                      )}
+                      <button className="btnEnr" onClick={onsubmitChange}>
+                        Enregistrer
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>
@@ -274,3 +361,4 @@ function Calendrier() {
 }
 
 export default Calendrier;
+

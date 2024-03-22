@@ -127,6 +127,7 @@ function NouveauEtud() {
                                                     <div className="form-group text-purple">
                                                         <label>Niveau:</label>
                                                         <select className="custom-select form-control" name="niveau" onChange={e=>changeNEtudiantFieldHandler(e)} required>
+                                                            <option value="vide">--</option>
                                                             <option value="bac">Avec Bac</option>
                                                             <option value="sansBac">Sans Bac</option>
                                                         </select>
@@ -136,6 +137,7 @@ function NouveauEtud() {
                                                     <div className="form-group text-purple">
                                                         <label>Programme:</label>
                                                         <select className="custom-select form-control" name="programme" onChange={e=>changeNEtudiantFieldHandler(e)} required>
+                                                            <option value="vide">--</option>
                                                             <option value="complet">Complet</option>
                                                             <option value="accelere">Accéléré</option>
                                                         </select>
