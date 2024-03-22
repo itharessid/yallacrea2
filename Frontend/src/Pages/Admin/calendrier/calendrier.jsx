@@ -29,7 +29,19 @@ function Calendrier() {
   const [showEventsTable, setShowEventsTable] = useState(false); // Nouvel état pour afficher le tableau des événements
   const [loading, setLoading] = useState(false);
   const [showEventDetailsModal, setShowEventDetailsModal] = useState(false); // Nouvel état pour afficher la modal des détails de l'événement
-
+  const saveEvent = (eventTitle, selectedDate, events, setEvents, setShowModal, setEventTitle, fetchData) => {
+    if (eventTitle && selectedDate) {
+      const newEvent = {
+        title: eventTitle,
+        start: selectedDate,
+        end: moment(selectedDate).add(1, 'hours').toDate(),
+      };
+      setEvents([...events, newEvent]);
+      setShowModal(true);
+      setEventTitle('');
+      fetchData(); // Mettre à jour les événements depuis la base de données
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -58,8 +70,25 @@ function Calendrier() {
     }
   };
   
-  const onsubmitChange = async () => {
-    try {
+// Déclaration de la fonction saveEventLocally en tant que fonction anonyme
+const saveEventLocally = () => {
+  const newEvent = {
+    title: eventTitle,
+    start: `${eventStartDate}T${eventStartTime}`,
+    end: `${eventStartDate}T${eventEndTime}`,
+  };
+  setEvents([...events, newEvent]);
+  setShowModal(true);
+  setEventTitle('');
+  setEventStartTime('');
+  setEventEndTime('');
+  setEventStartDate('');
+  setSelectEvent(null);
+};
+
+const onsubmitChange = async () => {
+  try {
+    if (eventTitle && eventStartDate && eventStartTime && eventEndTime) {
       const eventData = {
         id: selectEvent ? selectEvent.id : null, // Si selectEvent existe, c'est une modification, sinon c'est un ajout
         titre: eventTitle,
@@ -67,29 +96,42 @@ function Calendrier() {
         heureDebut: eventStartTime,
         heureFin: eventEndTime,
       };
-  
+
+      let response;
       if (selectEvent) {
         // Modification de l'événement existant
-        await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
+        response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
       } else {
         // Ajout d'un nouvel événement
-        await axios.post('http://localhost:3001/calendrier', eventData);
+        response = await axios.post('http://localhost:3001/calendrier', eventData);
       }
-  
-      // Actualiser les événements après la modification/ajout
-      fetchData();
-  
-      // Fermer la modal et réinitialiser les champs du formulaire
-      closeModal();
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+      if (response && response.status === 200) {
+        // Appeler saveEvent avec les paramètres appropriés
+        saveEvent(eventTitle, selectedDate, events, setEvents, setShowModal, setEventTitle, fetchData);
+
+        // Fermer la modal et réinitialiser les champs du formulaire
+        closeModal();
+      } else {
+        console.error('Erreur lors de la création/modification de l\'événement');
+      }
+    } else {
+      console.error('Veuillez remplir tous les champs requis.');
     }
-  };
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+  }
+};
+
+
+  
+  
+  
+  
+    
+  
   const formatTime = (timeString) => {
     return moment(timeString, 'HH:mm:ss').format('HH:mm'); // Formatage de l'heure sans les secondes
   };
-
-  
   
   const handleMonthViewClick = (event) => {
     setShowEventDetailsModal(true);
@@ -141,9 +183,6 @@ function Calendrier() {
     setSelectEvent(null);
   };
 
-  if (loading) {
-    return <Calendrier />;
-  }
 
   return (
     <>
