@@ -34,8 +34,8 @@ import Connexion from './Pages/Formulaire/connexion.jsx';
 import NouveauEvent from './Pages/Admin/evenementes/nouveauEvent.jsx';
 import Gprofile from './Pages/lesprofile/gprofile.jsx';
 import Profiluser from './Pages/lesprofile/profileuser.jsx';
-import ImageUpload from './Pages/lesprofile/ImageUpload.jsx'
-
+import ImageUpload from './Pages/lesprofile/ImageUpload.jsx';
+import Videouser from './Pages/lesprofile/videouser.jsx';
 
 
 function App() {
@@ -56,6 +56,7 @@ function App() {
         <Route path="/gprofil" element={< Gprofile/>} />
         <Route path="/profiluser" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
+        <Route path="/video" element={<Videouser />}/>
 
 
 

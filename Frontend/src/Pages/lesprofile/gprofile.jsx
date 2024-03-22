@@ -45,7 +45,7 @@ function gprofile() {
               <br/>
               <br/>
               <li className="dropdown">
-                <Link to="/createures" className="dropdown-toggle">
+                <Link to="/video" className="dropdown-toggle">
                   <FontAwesomeIcon icon={faPlayCircle} />{' '}
                   <span className="mtext">vidéos</span>
                 </Link>

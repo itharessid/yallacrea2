@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './dataTables.bootstrap4.min.css';
 import './responsive.bootstrap4.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPerson, faBook, faBuilding, faCalendarAlt, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPerson, faBook, faBuilding, faCalendarAlt,faHandshakeAlt,faUsers,faRunning } from '@fortawesome/free-solid-svg-icons';
 import './sidbar.css';
 import { Link } from 'react-router-dom';
 
@@ -77,6 +77,24 @@ function Adminsidbar() {
                 <Link to="/calendrier" className="dropdown-toggle no-arrow">
                   <FontAwesomeIcon icon={faCalendarAlt} />{' '}
                   <span className="mtext">Calendrier</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/calendrier" className="dropdown-toggle no-arrow">
+                  <FontAwesomeIcon icon={faHandshakeAlt} />{' '}
+                  <span className="mtext"> Experts</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/calendrier" className="dropdown-toggle no-arrow">
+                  <FontAwesomeIcon icon={faUsers} />{' '}
+                  <span className="mtext">Partenaire</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/calendrier" className="dropdown-toggle no-arrow">
+                <FontAwesomeIcon icon={faRunning} />{' '}
+                  <span className="mtext">Activité</span>
                 </Link>
               </li>
             </ul>
