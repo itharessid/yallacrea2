@@ -36,6 +36,10 @@ import Gprofile from './Pages/lesprofile/gprofile.jsx';
 import Profiluser from './Pages/lesprofile/profileuser.jsx';
 import ImageUpload from './Pages/lesprofile/ImageUpload.jsx';
 import Videouser from './Pages/lesprofile/videouser.jsx';
+ import Partenaire from './Pages/Admin/Partenaire/partenaire.jsx';
+ import Experts from './Pages/Admin/Experts/experts.jsx';
+ import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
+ import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
 
 
 function App() {
@@ -86,6 +90,15 @@ function App() {
         <Route path="/ProfilEtud" element={<ProfileEtud/>} /> 
         <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
+        <Route path="/expert" element={<Experts />}/>
+        <Route path="/Nvexpert" element={<Nvexpert />}/>
+        <Route path="/partenaire" element={<Partenaire/>} /> 
+        <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
+
+
+
+
+
     </Routes>
     </BrowserRouter>
       
