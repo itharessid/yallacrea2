@@ -80,23 +80,18 @@ function Adminsidbar() {
                 </Link>
               </li>
               <li>
-                <Link to="/calendrier" className="dropdown-toggle no-arrow">
+                <Link to="/expert" className="dropdown-toggle no-arrow">
                   <FontAwesomeIcon icon={faHandshakeAlt} />{' '}
                   <span className="mtext"> Experts</span>
                 </Link>
               </li>
               <li>
-                <Link to="/calendrier" className="dropdown-toggle no-arrow">
+                <Link to="/partenaire" className="dropdown-toggle no-arrow">
                   <FontAwesomeIcon icon={faUsers} />{' '}
                   <span className="mtext">Partenaire</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/calendrier" className="dropdown-toggle no-arrow">
-                <FontAwesomeIcon icon={faRunning} />{' '}
-                  <span className="mtext">Activité</span>
-                </Link>
-              </li>
+             
             </ul>
           </div>
         </div>
