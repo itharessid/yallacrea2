@@ -22,13 +22,14 @@ router.get('/calendrier', (req, res) => {
   const sql = "SELECT * FROM calendrier";
   db.query(sql, (err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err); // Log de l'erreur SQL pour le débogage
       res.status(500).send("Erreur lors de la récupération des événements");
     } else {
       res.status(200).send(data);
     }
   });
 });
+
 
 // Suppression d'un événement par ID
 router.delete('/calendrier/:eventId', (req, res) => {
