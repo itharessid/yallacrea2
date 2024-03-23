@@ -7,13 +7,14 @@ router.use(express.json());
 
 router.get("/etudiant", (req, res) => {
     db.query("SELECT * FROM etudiants", (err, result) => {
-        if (err) {
-            console.error(err);
-        } else {
-            res.send(result);
-        }
+      if (err) {
+        console.error(err);
+        res.status(500).send("Erreur lors de la récupération des étudiants");
+      } else {
+        res.send(result);
+      }
     });
-});
+  });
 
 router.post("/etudiant", (req, res) => {
     const { nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo } = req.body;
@@ -28,6 +29,21 @@ router.post("/etudiant", (req, res) => {
         }
     });
 });
+router.delete("/etudiant/:id", (req, res) => {
+    const idEtudiant = req.params.id;
+  
+    const sql = "DELETE FROM etudiants WHERE id = ?";
+    db.query(sql, idEtudiant, (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression de l'étudiant :", err);
+        res.status(500).send("Erreur lors de la suppression de l'étudiant");
+      } else {
+        res.status(200).send("Étudiant supprimé avec succès");
+      }
+    });
+  });
+  
+
 
 
 module.exports = router;
