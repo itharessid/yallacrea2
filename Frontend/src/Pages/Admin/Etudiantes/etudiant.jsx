@@ -6,12 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete }) {
+function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, etudiantToDelete }) {
   return (
     showDeleteConfirmation && (
       <div className="cardconfirmation-dialog">
         <div className="card-body confirmation-dialog-content">
-          <p>Êtes-vous sûr de vouloir supprimer cet étudiant ?</p>
+          <p>Êtes-vous sûr de vouloir supprimer {etudiantToDelete.nom} {etudiantToDelete.prenom} ?</p>
           <div className="confirmation-buttons">
             <button onClick={handleConfirmDelete} className="confirm-button">
               Oui
@@ -29,31 +29,10 @@ function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handl
 function Etudiants() {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [selectedEtudiantId, setSelectedEtudiantId] = useState(null);
+  const [etudiantToDelete, setEtudiantToDelete] = useState(null); // Nouveau state pour l'étudiant à supprimer
   const [EtudiantData, setEtudiantData] = useState([]);
   const [blurBackground, setBlurBackground] = useState(false);
-
-  const handleDeleteClick = (etudiantId) => {
-    setSelectedEtudiantId(etudiantId);
-    setShowDeleteConfirmation(true);
-    setBlurBackground(true);
-  };
-
-  const handleCancelDelete = () => {
-    setSelectedEtudiantId(null);
-    setShowDeleteConfirmation(false);
-    setBlurBackground(false);
-  };
-
-  const handleConfirmDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:3001/etudiant/${selectedEtudiantId}`);
-      setShowDeleteConfirmation(false);
-      setBlurBackground(false);
-      fetchData(); // Mettre à jour les données après suppression
-    } catch (error) {
-      console.error("Erreur lors de la suppression de l'étudiant :", error);
-    }
-  };
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -68,36 +47,65 @@ function Etudiants() {
     }
   };
 
+  const handleDeleteClick = (etudiant) => {
+    setSelectedEtudiantId(etudiant.id);
+    setEtudiantToDelete(etudiant); // Définir l'étudiant à supprimer
+    setShowDeleteConfirmation(true);
+    setBlurBackground(true);
+  };
+
+  const handleCancelDelete = () => {
+    setSelectedEtudiantId(null);
+    setEtudiantToDelete(null); // Remettre à null l'étudiant à supprimer
+    setShowDeleteConfirmation(false);
+    setBlurBackground(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/etudiant/${selectedEtudiantId}`);
+      setShowDeleteConfirmation(false);
+      setBlurBackground(false);
+      setEtudiantToDelete(null); // Remettre à null l'étudiant à supprimer après suppression
+      fetchData(); // Mettre à jour les données après suppression
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'étudiant :", error);
+    }
+  };
+
+  const filteredEtudiants = searchTerm
+    ? EtudiantData.filter(
+        (etudiant) =>
+          `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
+      )
+    : EtudiantData;
+
   return (
     <>
       <Adminsidbar />
       <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
       <div className="row">
-      <div className="col-xl-3 mb-20">
-          <div className="card-box-Etud height-100-p widget-style1">
-            <div className="d-flex flex-wrap align-items-center">
-              <div className="widget-data">
-                <div className="weight-600 font-14 text-purple text-center text-nowrap">Cours Complet</div>
-                <div className="h6 mb-0 text-center">20</div>
+          <div className="col-xl-3 mb-20">
+            <div className="card-box-Etud height-100-p widget-style1">
+              <div className="d-flex flex-wrap align-items-center">
+                <div className="widget-data">
+                  <div className="weight-600 font-14 text-purple text-center text-nowrap">Etudiants</div>
+                  <div className="h6 mb-0 text-center">{filteredEtudiants.length}</div> {/* Utiliser la longueur de filteredEtudiants */}
+                </div>
+                <img src="src/assets/images/etudiant.png" alt="" style={{ marginLeft: '40px' }} />
               </div>
-              <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
             </div>
           </div>
-        </div>
-        <div className="col-xl-3 mb-20">
-          <div className="card-box-Etud height-100-p widget-style1">
-            <div className="d-flex flex-wrap align-items-center">
-              <div className="widget-data">
-                <div className="weight-600 font-14 text-purple text-center text-nowrap">Cours Accéléré</div>
-                <div className="h6 mb-0 text-center">20</div>
-              </div>
-              <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
-            </div>
-          </div>
-        </div>
         </div>
         <div className="DataTables_Table_2_filter">
-          <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un étudiant" aria-controls="DataTables_Table_2" /></label>
+          <label style={{ marginRight: '10px' }}>Rechercher:<input
+            type="search"
+            className="form-control form-control-sm"
+            placeholder="Trouver un étudiant"
+            aria-controls="DataTables_Table_2"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          /></label>
           <button className="button1" style={{ marginLeft: '10px' }}>
             <Link to="/nouveauEtud" className="dropdown-toggle">
               <span className="mtext">Nouveau</span>
@@ -110,7 +118,7 @@ function Etudiants() {
           </div>
           <div className="pb-20">
             <table className="table hover multiple-select-row data-table-export nowrap">
-            <thead>
+              <thead>
                 <tr>
                   <th className="table-plus datatable-nosort text-purple"></th>
                   <th className="text-purple">Nom</th>
@@ -125,9 +133,9 @@ function Etudiants() {
                 </tr>
               </thead>
               <tbody>
-                {EtudiantData.map((etudiant, index) => (
+                {filteredEtudiants.map((etudiant, index) => (
                   <tr key={index}>
-                    <td>{index+1}</td>
+                    <td>{index + 1}</td>
                     <td>{etudiant.nom}</td>
                     <td>{etudiant.prenom}</td>
                     <td>{etudiant.email}</td>
@@ -142,7 +150,7 @@ function Etudiants() {
                           <FontAwesomeIcon icon={faEye} />
                         </Link>
                       </button>
-                      <button className="button2" onClick={() => handleDeleteClick(etudiant.id)}>
+                      <button className="button2" onClick={() => handleDeleteClick(etudiant)}>
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>
                     </td>
@@ -153,11 +161,12 @@ function Etudiants() {
           </div>
         </div>
       </div>
-      <ConfirmationDialog
-        showDeleteConfirmation={showDeleteConfirmation}
-        handleConfirmDelete={handleConfirmDelete}
-        handleCancelDelete={handleCancelDelete}
-      />
+        <ConfirmationDialog
+          showDeleteConfirmation={showDeleteConfirmation}
+          handleConfirmDelete={handleConfirmDelete}
+          handleCancelDelete={handleCancelDelete}
+          etudiantToDelete={etudiantToDelete} // Passer l'étudiant à supprimer au composant ConfirmationDialog
+        />
     </>
   );
 }
