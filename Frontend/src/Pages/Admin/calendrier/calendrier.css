@@ -37,5 +37,28 @@
   background-color: #f2f2f2;
   color: #333;
 }
+/* Ajouter de l'espace entre les champs du formulaire et le modèle */
+/* Style du formulaire */
+.form-group {
+  margin-bottom: 15px; /* Ajoute un espace en bas de chaque champ du formulaire */
+}
+
+/* Style de la modal */
+.modal-content {
+  margin-top: 20px; /* Ajoute un espace en haut du contenu de la modal */
+  padding: 20px; /* Ajoute un espace intérieur au contenu de la modal */
+}
+
+/* Style de l'en-tête de la modal */
+.modal-header {
+  padding-bottom: 10px; /* Ajoute un espace en bas de l'en-tête de la modal */
+}
+
+/* Style du pied de page de la modal */
+.modal-footer {
+  padding-top: 10px; /* Ajoute un espace en haut du pied de page de la modal */
+}
+
+
 
   

@@ -95,11 +95,6 @@ function App() {
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
-        <Route path="/profilexp/:id"  element={<Profilexperts />}/>
-
-
-
-        
         <Route path="/partenaire" element={<Partenaire/>} /> 
         <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
 

@@ -20,11 +20,6 @@ function Calendrier() {
   const [selectEvent, setSelectEvent] = useState(null);
   const [view, setView] = useState('month');
   const [currentDate, setCurrentDate] = useState(new Date()); // État pour suivre la date actuelle
-  const [formData, setFormData] = useState({
-    title: '',
-    start: '',
-    end: ''
-  });
   const [calendrierData, setCalendrierData] = useState([]);
   const [showEventsTable, setShowEventsTable] = useState(false); // Nouvel état pour afficher le tableau des événements
   const [loading, setLoading] = useState(false);
@@ -40,57 +35,61 @@ function Calendrier() {
       setCalendrierData(result.data); // Mettre à jour l'état calendrierData avec les données récupérées
       setEvents(result.data); // Mettre à jour l'état events avec les données récupérées
     } catch (err) {
-      console.log("Quelque chose ne va pas lors de la récupération des données du calendrier");
+      console.error("Erreur lors de la récupération des données du calendrier :", err);
     }
   };
+  
   const toggleEventsTable = () => {
     setShowEventsTable(!showEventsTable);
   };
-  const handleEditEvent = (eventId) => {
-    const eventToEdit = events.find(event => event.id === eventId);
-    if (eventToEdit) {
-      setShowModal(true);
-      setSelectEvent(eventToEdit);
-      setEventTitle(eventToEdit.titre);
-      setEventStartTime(moment(eventToEdit.date + 'T' + eventToEdit.heureDebut).format('HH:mm'));
-      setEventEndTime(moment(eventToEdit.date + 'T' + eventToEdit.heureFin).format('HH:mm'));
-      setEventStartDate(moment(eventToEdit.date).format('YYYY-MM-DD'));
+  // Fonction pour gérer l'édition d'un événement
+const handleEditEvent = (eventId) => {
+  const eventToEdit = events.find(event => event.id === eventId);
+  if (eventToEdit) {
+    setShowModal(true);
+    setSelectEvent(eventToEdit);
+    setEventTitle(eventToEdit.titre);
+    setEventStartTime(moment(eventToEdit.heureDebut).format('HH:mm'));
+    setEventEndTime(moment(eventToEdit.heureFin).format('HH:mm'));
+    setEventStartDate(moment(eventToEdit.date).format('YYYY-MM-DD'));
+  }
+};
+
+// Fonction pour soumettre les modifications ou ajouts d'événement
+const onsubmitChange = async () => {
+  try {
+    const eventData = {
+      id: selectEvent ? selectEvent.id : null,
+      titre: eventTitle,
+      date: eventStartDate,
+      heureDebut: eventStartTime,
+      heureFin: eventEndTime,
+    };
+
+    let response;
+    if (selectEvent) {
+      response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
+    } else {
+      response = await axios.post('http://localhost:3001/calendrier', eventData);
     }
-  };
-  
-  const onsubmitChange = async () => {
-    try {
-      const eventData = {
-        id: selectEvent ? selectEvent.id : null, // Si selectEvent existe, c'est une modification, sinon c'est un ajout
-        titre: eventTitle,
-        date: eventStartDate,
-        heureDebut: eventStartTime,
-        heureFin: eventEndTime,
-      };
-  
-      if (selectEvent) {
-        // Modification de l'événement existant
-        await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
-      } else {
-        // Ajout d'un nouvel événement
-        await axios.post('http://localhost:3001/calendrier', eventData);
-      }
-  
-      // Actualiser les événements après la modification/ajout
-      fetchData();
-  
-      // Fermer la modal et réinitialiser les champs du formulaire
-      closeModal();
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+
+    if (response && response.status === 200) {
+      fetchData(); // Actualiser les événements après la modification/ajout
+      closeModal(); // Fermer la modal et réinitialiser les champs du formulaire
+    } else {
+      console.error('Erreur lors de la création/modification de l\'événement');
     }
-  };
-  const formatTime = (timeString) => {
-    return moment(timeString, 'HH:mm:ss').format('HH:mm'); // Formatage de l'heure sans les secondes
-  };
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+  }
+};
+
 
   
-  
+  const formatTime = (timeString) => {
+    return moment(timeString, 'HH:mm:ss').format('HH:mm');
+  };
+
   const handleMonthViewClick = (event) => {
     setShowEventDetailsModal(true);
     setSelectEvent(event);
@@ -99,7 +98,6 @@ function Calendrier() {
     setEventEndTime(moment(event.end).format('HH:mm'));
     setEventStartDate(moment(event.start).format('YYYY-MM-DD'));
   };
-
 
   const handleSelectSlot = (slotInfo) => {
     setShowModal(true);
@@ -141,51 +139,42 @@ function Calendrier() {
     setSelectEvent(null);
   };
 
-  if (loading) {
-    return <Calendrier />;
-  }
-
   return (
     <>
       <Adminsidbar />
       <div className="main-container">
         <div className="row">
           <div className="rbc-agenda-view">
-            {/* Afficher le bouton pour basculer entre le calendrier et le tableau des événements */}
             <button onClick={toggleEventsTable} style={{ backgroundColor: 'rgba(121, 21, 99, 0.671)' }}>
               {showEventsTable ? 'Calendrier' : 'Agenda'}
             </button>
-
-            {/* Afficher le tableau des événements si showEventsTable est true */}
             {showEventsTable && (
               <table className="custom-table">
-                <thead>
-                  <tr>
-                    <th>Titre</th>
-                    <th>Date</th>
-                    <th>Heure début</th>
-                    <th>Heure fin</th>
-                    <th>Opérations</th>
+              <thead>
+                <tr>
+                  <th>Titre</th>
+                  <th>Date</th>
+                  <th>Heure début</th>
+                  <th>Heure fin</th>
+                  <th>Opérations</th>
+                </tr>
+              </thead>
+              <tbody>
+                {events.map((event, index) => (
+                  <tr key={index}>
+                    <td>{event.titre}</td>
+                    <td>{moment(event.date).format('DD/MM/YYYY')}</td>
+                    <td>{formatTime(event.heureDebut)}</td>
+                    <td>{formatTime(event.heureFin)}</td>
+                    <td>
+                      <button onClick={() => deleteEvent(event.id)}>Supprimer</button>
+                      <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>Éditer</button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {events.map((event, index) => (
-                    <tr key={index}>
-                      <td>{event.titre}</td>
-                      <td>{moment(event.date).format('DD/MM/YYYY')}</td>
-                      <td>{formatTime(event.heureDebut)}</td>
-                      <td>{formatTime(event.heureFin)}</td>
-                      <td>
-                        <button onClick={() => deleteEvent(event.id)}>Supprimer</button>
-                        <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>Éditer</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                ))}
+              </tbody>
+            </table>
             )}
-
-            {/* Afficher le calendrier si showEventsTable est false */}
             {!showEventsTable && (
               <Calendar
                 formats={{
@@ -361,4 +350,3 @@ function Calendrier() {
 }
 
 export default Calendrier;
-
