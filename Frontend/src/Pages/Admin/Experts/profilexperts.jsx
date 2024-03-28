@@ -39,14 +39,10 @@ function ProfileExperts() {
 
     const handleSubmit = async () => {
         try {
-            // Vérifier si aucun fichier n'a été sélectionné
-            if (!selectedFile) {
-                alert("Veuillez sélectionner une nouvelle image pour mettre à jour.");
-                return; // Arrêter l'exécution de la fonction
-            }
-
             const formData = new FormData();
-            formData.append('photo', selectedFile);
+            if (selectedFile) {
+                formData.append('photo', selectedFile);
+            }
             formData.append('nom', editedData.nom);
             formData.append('prenom', editedData.prenom);
             formData.append('Email', editedData.Email);
@@ -59,7 +55,7 @@ function ProfileExperts() {
                 }
             });
     
-            // Mettre à jour l'état de l'image mise à jour seulement si une nouvelle image est sélectionnée
+            // Mettez à jour l'état de l'image mise à jour seulement si une nouvelle image est sélectionnée
             if (selectedFile) {
                 setUpdatedPhoto(response.data.photo);
             } else {
@@ -67,7 +63,7 @@ function ProfileExperts() {
                 setUpdatedPhoto(null);
             }
     
-            // Mettre à jour l'état expertData avec les nouvelles données de l'expert
+            // Mettez à jour l'état expertData avec les nouvelles données de l'expert
             setExpertData({ ...editedData, photo: response.data.photo });
         } catch (error) {
             setError(error.response ? error.response.data.error : "Erreur lors de la mise à jour des données de l'expert");
@@ -147,7 +143,7 @@ function ProfileExperts() {
                             </div>
                             <div className="form-group">
                          <label>Photo<span className="required"> </span>: </label>
-                         <br />
+                         <br/>
 
                        <input type="file" name="photo" onChange={handleFileChange} required /></div>
                        
