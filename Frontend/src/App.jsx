@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import './App.css'
 
 import About from './Pages/About/apropos';
@@ -40,6 +41,8 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Experts from './Pages/Admin/Experts/experts.jsx';
  import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
  import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
+ import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
+
 
 
 function App() {
@@ -92,6 +95,8 @@ function App() {
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
+        <Route path="/profilexp/:id"  element={<Profilexperts />}/>
+
         <Route path="/partenaire" element={<Partenaire/>}/> 
         <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
 
