@@ -32,7 +32,7 @@ function ProfileExperts() {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
     };
-
+//image
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };

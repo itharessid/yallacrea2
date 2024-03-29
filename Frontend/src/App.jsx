@@ -90,7 +90,7 @@ function App() {
         <Route path="/login" element={<Login/>} /> 
         <Route path="/calendrier" element={<Calendrier/>} /> 
         <Route path="/evenements" element={<Evenements/>} /> 
-        <Route path="/ProfilEtud" element={<ProfileEtud/>} /> 
+        <Route path="/ProfilEtud/:id" element={<ProfileEtud/>} /> 
         <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
         <Route path="/expert" element={<Experts />}/>
