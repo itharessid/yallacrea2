@@ -8,6 +8,7 @@ const imageRouter = require('./Controllers/image'); // Importez le routeur image
 const calendrierRouter = require('./Controllers/calendrier');
 const etudiantRouter=require('./Controllers/etudiant')
 const expertRouter=require('./Controllers/expertcontrolllers.js')
+const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/images', express.static('../frontend/public/images'));
 
 app.use(calendrierRouter);
 app.use(etudiantRouter);
+app.use(partenaireRouter);
 app.use( expertRouter); 
 app.use('/photo', express.static('../frontend/public/photo'));
 

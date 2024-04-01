@@ -11,6 +11,8 @@ function Experts() {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [blurBackground, setBlurBackground] = useState(false);
     const [expertToDelete, setExpertToDelete] = useState(null);
+    const [expertToDeleteInfo, setExpertToDeleteInfo] = useState(null); // Ajouter un état pour stocker les informations de l'expert à supprimer
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost:3001/experget')
@@ -22,6 +24,9 @@ function Experts() {
 
     const handleDeleteClick = (expertId) => {
         setExpertToDelete(expertId);
+        // Récupérer les informations de l'expert à supprimer lorsqu'il est cliqué
+        const expertInfoToDelete = expertsData.find(expert => expert.id === expertId);
+        setExpertToDeleteInfo(expertInfoToDelete);
         setShowDeleteConfirmation(true);
         setBlurBackground(true);
     };
@@ -43,7 +48,14 @@ function Experts() {
         setShowDeleteConfirmation(false);
         setBlurBackground(false);
         setExpertToDelete(null);
+        setExpertToDeleteInfo(null); // Réinitialiser les informations de l'expert à supprimer
     };
+
+    // Fonction pour filtrer les experts en fonction de la valeur de recherche
+    const filteredExperts = expertsData.filter(expert =>
+        expert.nom.toLowerCase().includes(searchValue.toLowerCase()) ||
+        expert.prenom.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
     return (
         <>
@@ -55,7 +67,7 @@ function Experts() {
                             <div className="d-flex flex-wrap align-items-center">
                                 <div className="widget-data">
                                     <div className="weight-600 font-14 text-purple text-center text-nowrap">Experts</div>
-                                    <div className="h6 mb-0 text-center">40</div>
+                                    <div className="h6 mb-0 text-center">{expertsData.length}</div> {/* Afficher le nombre d'experts */}
                                 </div>
                                 <img src="src/assets/images/createurs.png" alt="" style={{ marginLeft: '40px' }} />
                             </div>
@@ -63,7 +75,7 @@ function Experts() {
                     </div>
                 </div>
                 <div className="DataTables_Table_2_filter">
-                    <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver l'expert" aria-controls="DataTables_Table_2" /></label>
+                    <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver l'expert" aria-controls="DataTables_Table_2" onChange={(e) => setSearchValue(e.target.value)} /></label>
                     <button className="button1" style={{ marginLeft: '10px' }}>
                         <Link to="/Nvexpert" className="dropdown-toggle">
                             <span className="mtext">Nouveau</span>
@@ -88,7 +100,7 @@ function Experts() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {expertsData.map((expert, index) => (
+                                {filteredExperts.map((expert, index) => (
                                     <tr key={index}>
                                         <td>
                                             <img src={`http://localhost:3001/photo/${expert.photo}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
@@ -120,6 +132,23 @@ function Experts() {
                 <div className="cardconfirmation-dialog">
                     <div className="card-body confirmation-dialog-content">
                         <p>Êtes-vous sûr de vouloir supprimer cet étudiant ?</p>
+                        <div className="confirmation-buttons">
+                            <button onClick={handleConfirmDelete} className="confirm-button">
+                                Oui
+                            </button>
+                            <button onClick={handleCancelDelete} className="cancel-button">
+                                Non
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Affichage du composant de confirmation de suppression en dessous du flux principal */}
+            {showDeleteConfirmation && (
+                <div className="cardconfirmation-dialog">
+                    <div className="card-body confirmation-dialog-content">
+                        {/* Afficher le nom et le prénom de l'expert à supprimer */}
+                        <p>Êtes-vous sûr de vouloir supprimer {expertToDeleteInfo.nom} {expertToDeleteInfo.prenom} ?</p>
                         <div className="confirmation-buttons">
                             <button onClick={handleConfirmDelete} className="confirm-button">
                                 Oui
