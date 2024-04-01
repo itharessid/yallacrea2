@@ -42,7 +42,7 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
  import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
  import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
- 
+ import Emplois from './Pages/emploi/emplois.jsx'
 
 
 
