@@ -42,7 +42,9 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
  import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
  import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
- import Profilpartenaire from'./Pages/Admin/Partenaire/profilparte.jsx';
+ import Domaines from './Pages/Admin/Domaines/domaines.jsx';
+import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
+import Profilpartenaire from'./Pages/Admin/Partenaire/profilparte.jsx';
  import Emplois from './Pages/emploi/emplois.jsx';
 
 
@@ -93,17 +95,14 @@ function App() {
         <Route path="/login" element={<Login/>} /> 
         <Route path="/calendrier" element={<Calendrier/>} /> 
         <Route path="/evenements" element={<Evenements/>} /> 
-        <Route path="/ProfilEtud" element={<ProfileEtud/>} /> 
+        <Route path="/ProfilEtud/:id" element={<ProfileEtud/>} /> 
         <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
         <Route path="/profilexp/:id"  element={<Profilexperts />}/>
-
         <Route path="/partenaire" element={<Partenaire/>}/> 
         <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
-        <Route path="/profilpart/:id" element={<Profilpartenaire />}/> 
-
 
 
 

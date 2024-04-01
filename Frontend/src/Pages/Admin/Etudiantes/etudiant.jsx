@@ -76,7 +76,7 @@ function Etudiants() {
   const filteredEtudiants = searchTerm
     ? EtudiantData.filter(
         (etudiant) =>
-          `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
+          `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()} ${etudiant.programme.toLowerCase()} ${etudiant.niveau.toLowerCase()}`.includes(searchTerm.toLowerCase())
       )
     : EtudiantData;
 
@@ -125,7 +125,7 @@ function Etudiants() {
                   <th className="text-purple">Prénom</th>
                   <th className="text-purple">Email</th>
                   <th className="text-purple">Adresse</th>
-                  <th className="text-purple">Numéro</th>
+                  <th className="text-purple">Numero</th>
                   <th className="text-purple">Niveau</th>
                   <th className="text-purple">Programme</th>
                   <th className="text-purple">Code Promo</th>
@@ -146,7 +146,7 @@ function Etudiants() {
                     <td>{etudiant.codePromo}</td>
                     <td>
                       <button className="button1">
-                        <Link to="/profilEtud" className="dropdown-toggle">
+                        <Link to={`/profilEtud/${etudiant.id}`} className="dropdown-toggle">
                           <FontAwesomeIcon icon={faEye} />
                         </Link>
                       </button>

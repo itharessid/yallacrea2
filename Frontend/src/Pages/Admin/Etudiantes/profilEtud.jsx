@@ -1,149 +1,162 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
-import DatePicker from 'react-datepicker'; // Assurez-vous d'importer le composant DatePicker si vous l'utilisez
-import 'react-datepicker/dist/react-datepicker.css'; // Assurez-vous d'importer les styles du DatePicker si vous l'utilisez
+import { useParams } from 'react-router-dom';
+import DatePicker from 'react-datepicker'; 
+import 'react-datepicker/dist/react-datepicker.css'; 
+import axios from 'axios'; 
 import './profilEtud.css';
 
 function ProfileEtud() {
-    const [selectedDate, setSelectedDate] = React.useState(null); // Assurez-vous d'utiliser le hook useState si vous utilisez selectedDate
+    const { id } = useParams(); 
+    const [etudiantData, setEtudiantData] = useState(null);
+    const [editedData, setEditedData] = useState({
+        nom: '',
+        prenom: '',
+        email: '',
+        adresse: '',
+        numero: '',
+        anniversaire: new Date(), // Mettez une valeur par défaut si nécessaire
+        niveau: '',
+        programme: '',
+        codePromo: ''
+    });
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchEtudiantData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/etudiant/${id}`);
+                setEtudiantData(response.data);
+                setEditedData({ ...response.data });
+            } catch (error) {
+                setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de l'étudiant");
+            }
+        };
+
+        fetchEtudiantData();
+    }, [id]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditedData({ ...editedData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Empêcher le comportement par défaut du formulaire
+        try {
+            const response = await axios.put(`http://localhost:3001/etudiant/${id}`, editedData);
+            setEtudiantData({ ...editedData }); // Mettre à jour l'état avec les données modifiées
+            console.log(response.data); // Afficher la réponse de l'API (facultatif)
+        } catch (error) {
+            setError(error.response ? error.response.data.error : "Erreur lors de la mise à jour des données de l'étudiant");
+        }
+    };
 
     return (
         <div>
             <Adminsidbar />
             <div className="main-container">
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30" style={{maxWidth: '100%',marginLeft: '-10px'}}>
-                        <div className="pd-20 profile-container height-100-p">
-                            <div className="profile-info">
-                                <h5 className="mb-20 h5 text-purple">Informations</h5>
-                                <ul>
-                                    <li>
-                                        <span>Nom:</span>
-                                        ELFEKIH
-                                    </li>
-                                    <li>
-                                        <span>Prénom</span>
-                                        Ons
-                                    </li>
-                                    <li>
-                                        <span>Email</span>
-                                        elfekihons@gmail.com
-                                    </li>
-                                    <li>
-                                        <span>Adresse</span>
-                                        Beni khiar
-                                    </li>
-                                    <li>
-                                        <span>Numéro:</span>
-                                        55963211
-                                    </li>
-									<li>
-                                        <span>Date de Naissance:</span>
-                                        **/**/**** 
-                                    </li>
-                                    <li>
-                                        <span>Programme:</span>
-                                        Complet
-                                    </li>
-									<li>
-                                        <span>Niveau:</span>
-                                        Avec Bac
-                                    </li>
-                                    <li>
-                                        <span>Code Promo:</span>
-                                        7800
-                                    </li>
-                                </ul>
+                {error && <p>{error}</p>}
+                {etudiantData && (
+                    <div className="profile-container">
+                        <br/>
+                        <br/>
+                        <h2>{etudiantData.nom} {etudiantData.prenom}</h2>
+                        <br/>
+                        <p>Email: {etudiantData.email}</p>
+                        <p>Numéro: {etudiantData.numero}</p>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Nom:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="nom"
+                                    value={editedData.nom}
+                                    onChange={handleInputChange}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
-                        <div className="pd-20 profile-container height-100-p">
-                            <div className="profile-setting">
-                                <form className="tab-wizard wizard-circle wizard">
-                                    <h4 className="mb-20 h5 text-purple text-center">Editer les informations</h4>
-                                    <section>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Nom</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Prénom</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Email</label>
-                                                    <input type="email" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Adresse</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Numéro</label>
-                                                    <input type="tel" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 pl-md-5">
-                                                <div className="form-group text-purple">
-                                                    <label>Naissance:</label>
-                                                    <DatePicker
-                                                        className="form-control date-picker"
-                                                        selected={selectedDate}
-                                                        onChange={date => setSelectedDate(date)}
-                                                        placeholderText="Select Date"
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-											<div className="col-md-6">
-                                                    <div className="form-group text-purple">
-                                                        <label>Editer Programme:</label>
-                                                        <select className="custom-select form-control" required>
-                                                            <option value="complet">Complet</option>
-                                                            <option value="accelere">Accéléré</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-											<div className="col-md-6">
-                                                    <div className="form-group text-purple">
-                                                        <label>Editer Niveau:</label>
-                                                        <select className="custom-select form-control" required>
-                                                            <option value="bac">Avec Bac</option>
-                                                            <option value="sansBac">Sans Bac</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            <div className="col-md-6 offset-md-3">
-                                                <div className="form-group text-purple text-center">
-                                                    <label>Code Promo</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            </div>
-										<div className="row">
-                                    <div className="col-md-6 offset-md-3">
-                                        <div className="form-group text-center">
-                                            <button className="btn-purple">Enregistrer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                    </section>
-                                </form>
+                            <div className="form-group">
+                                <label>Prénom:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="prenom"
+                                    value={editedData.prenom}
+                                    onChange={handleInputChange}
+                                />
                             </div>
-                        </div>
+                            <div className="form-group">
+                                <label>Email:</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    value={editedData.email}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Adresse:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="adresse"
+                                    value={editedData.adresse}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Numéro:</label>
+                                <input
+                                    type="tel"
+                                    className="form-control"
+                                    name="numero"
+                                    value={editedData.numero}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Date de naissance:</label>
+                                <DatePicker
+                                    className="form-control"
+                                    selected={editedData.anniversaire}
+                                    onChange={(date) => setEditedData({ ...editedData, anniversaire: date })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Niveau:</label>
+                                <select className="custom-select form-control" name="niveau" required                                     value={editedData.niveau}
+                                    onChange={handleInputChange}>
+                                                            <option value="vide">--</option>
+                                                            <option value="Avec Bac">Avec Bac</option>
+                                                            <option value="Sans Bac">Sans Bac</option>
+                                                        </select>
+                            </div>
+                            <div className="form-group">
+    <label>Programme:</label>
+    <select className="custom-select form-control" name="programme"  value={editedData.programme} onChange={handleInputChange}>
+        <option value="vide">--</option>
+        <option value="Complet">Complet</option>
+        <option value="Accelere">Accéléré</option>
+    </select>
+</div>
+
+
+                            <div className="form-group">
+                                <label>Code Promo:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="codePromo"
+                                    value={editedData.codePromo}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'purple' }}>Enregistrer</button>                    
+                        </form>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

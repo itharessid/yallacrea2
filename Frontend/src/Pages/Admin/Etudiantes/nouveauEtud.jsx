@@ -39,7 +39,7 @@ function NouveauEtud() {
         });
         //console.log(NEtudiantField)
     }
-    const [loading,setLoading]=useState()
+    const [loading,setLoading]=useState(false)
 
     const onsubmitChange=async(e)=>{
         e.preventDefault();
