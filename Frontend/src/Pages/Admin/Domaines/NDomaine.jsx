@@ -68,7 +68,7 @@ function NDomaine() {
                                             <div className="row">
                                                 <div className="col-md-6t">
                                                     <div className="form-group">
-                                                        <button className="btn-purple" onClick={e=>onsubmitChange(e)}>Ajouter</button>
+                                                        <button className="btn-purple" onClick={e=>onsubmitChange(e)}>Enregistrer</button>
                                                     </div>
                                                 </div>
                                             </div>
