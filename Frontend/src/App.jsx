@@ -42,6 +42,8 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
  import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
  import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
+import Domaines from './Pages/Admin/Domaines/domaines.jsx';
+import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
 
 
 
@@ -96,10 +98,10 @@ function App() {
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
         <Route path="/profilexp/:id"  element={<Profilexperts />}/>
-
         <Route path="/partenaire" element={<Partenaire/>}/> 
         <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
-
+        <Route path="/domaines" element={<Domaines/>} />
+        <Route path="/NDomaine" element={<NDomaine/>} />  
 
 
 
