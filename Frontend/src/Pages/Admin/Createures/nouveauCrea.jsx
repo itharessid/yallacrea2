@@ -1,11 +1,82 @@
 import Adminsidbar from "../Sidbar/Adminsidbar";
 import './nouveauCrea.css';
-import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
 function NouveauCrea() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [email, setEmail] = useState("");
+  const [numero, setNumero] = useState("");
+  const [lienInsta, setLienInsta] = useState(""); // Nouveau champ poste
+  const [lienFace, setLienFace] = useState("");
+  const [lienTik, setLienTik] = useState("");
+  const [domaine, setDomaine] = useState("");
+  const [nbFollowers, setNbFollowers] = useState("");
+  const [description, setDescription] = useState("");
+  const [anniversaire, setAnniversaire] = useState(null); // Utilisez null comme valeur initiale
+  const [file, setFile] = useState(null);
+  const [data, setData] = useState({});
+  const [domainesList, setDomainesList] = useState([]);
 
+
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+}
+
+useEffect(() => {
+    axios.get('http://localhost:3001/createur')
+        .then(res => {
+            setData(res.data[0]);
+        })
+        .catch(err => console.log(err));
+}, []);
+useEffect(() => {
+    axios.get('http://localhost:3001/domaine')
+        .then(res => {
+            setDomainesList(res.data);
+        })
+        .catch(err => console.log(err));
+}, []);
+
+const handleUpload = () => {
+    const formData = new FormData();
+    formData.append("photo", file);
+    formData.append("nom", nom); // Utiliser la valeur de nom définie dans la fonction NouveauCrea
+    formData.append("prenom", prenom);
+    formData.append("adresse", adresse);
+    formData.append("email", email);
+    formData.append("numero", numero);
+    // Convertir la date en format ISO avec le décalage horaire correct
+    const anniversaireValue = anniversaire ? new Date(anniversaire.getTime() - anniversaire.getTimezoneOffset() * 60000).toISOString().split('T')[0] : null;
+    formData.append("anniversaire", anniversaireValue);// Assurez-vous de convertir la date au format ISO si elle est sélectionnée
+    formData.append("lienInsta", lienInsta);
+    formData.append("lienFace", lienFace);
+    formData.append("lienTik", lienTik);
+    formData.append("domaine", domaine); 
+    formData.append("nbFollowers", nbFollowers);
+    formData.append("description", description);
+
+
+
+    
+
+    axios.post('http://localhost:3001/createur', formData)
+    .then(res => {
+        if (res.data.message === "Données insérées avec succès") {
+            console.log("Successed");
+
+        } else {
+            console.log("Failed");
+        }
+    })
+    .catch(err => console.log(err));
+}
   return (
       <>
           <Adminsidbar />
@@ -15,20 +86,20 @@ function NouveauCrea() {
                       <div className="min-height-200px">
                           <div className="pd-20 card-box mb-30">
                               <div className="wizard-content">
-                                  <form className="tab-wizard wizard-circle wizard">
+                              <form className="tab-wizard wizard-circle wizard" encType="multipart/form-data">
                                       <h5>Nouveau Créateur</h5>
                                       <section>
                                           <div className="row">
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Nom:</label>
-                                                      <input type="text" className="form-control" required />
+                                                      <input type="text" className="form-control" required value={nom} onChange={(e) => setNom(e.target.value)}/>
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Prénom:</label>
-                                                      <input type="text" className="form-control" required />
+                                                      <input type="text" className="form-control" required value={prenom} onChange={(e) => setPrenom(e.target.value)}/>
                                                   </div>
                                               </div>
                                           </div>
@@ -36,47 +107,50 @@ function NouveauCrea() {
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Email:</label>
-                                                      <input type="email" className="form-control" required />
+                                                      <input type="email" className="form-control" required value={email} onChange={(e) => setEmail(e.target.value)} />
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Adresse</label>
-                                                      <input type="text" className="form-control" required />
+                                                      <input type="text" className="form-control" required value={adresse} onChange={(e) => setAdresse(e.target.value)}/>
                                                   </div>
                                               </div>
                                           </div>
                                           <div className="row">
-                                              <div className="col-md-6">
-                                                  <div className="form-group text-purple">
-                                                      <label>Numéro:</label>
-                                                      <input type="number" className="form-control" required />
-                                                  </div>
-                                              </div>
-                                              <div className="col-md-6 pl-md-5">
-                                              <div className="form-group text-purple">
-                                                  <label>Anniversaire:</label>
-                                                      <DatePicker
-                                                          className="form-control date-picker"
-                                                          selected={selectedDate}
-                                                          onChange={date => setSelectedDate(date)}
-                                                          placeholderText="Select Date"
-                                                          required
-                                                      />
-                                                  </div>
-                                              </div>
-                                          </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group text-purple">
+                                                        <label>Numéro:</label>
+                                                        <input type="number" className="form-control" name="numero" required value={numero} onChange={(e) => setNumero(e.target.value)}/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6 pl-md-5">
+                                                <div className="form-group text-purple">
+                                                <label>Anniversaire:</label>
+                                                <hr/>
+                                                <DatePicker
+                                                className="form-control date-picker"
+                                                selected={anniversaire}
+                                                onChange={(date) => setAnniversaire(date)}
+                                                dateFormat="dd/MM/yyyy" // Format de date jj/mm/année
+                                                placeholderText="Sélectionner une date"
+                                                name="anniversaire"
+                                                required
+                                                />
+                                            </div>
+                                                </div>
+                                            </div>
                                           <div className="row">
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Lien Instagram:</label>
-                                                      <input type="link" className="form-control" required />
+                                                      <input type="link" className="form-control" required value={lienInsta} onChange={(e) => setLienInsta(e.target.value)} />
                                                   </div>
                                               </div>
                                               <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Lien Facebook:</label>
-                                                      <input type="link" className="form-control" required />
+                                                      <input type="link" className="form-control" required value={lienFace} onChange={(e) => setLienFace(e.target.value)}/>
                                                   </div>
                                               </div>
                                           </div>
@@ -84,37 +158,49 @@ function NouveauCrea() {
                                           <div className="col-md-6">
                                                   <div className="form-group text-purple">
                                                       <label>Lien TikTok:</label>
-                                                      <input type="link" className="form-control" required />
+                                                      <input type="link" className="form-control" required value={lienTik} onChange={(e) => setLienTik(e.target.value)}/>
                                                   </div>
                                               </div>
-                                                <div className="col-md-6">
-                                                  <div className="form-group text-purple">
-                                                      <label>Domaine:</label>
-                                                      <select className="custom-select form-control" required>
-                                                          <option value="santé">Santé</option>
-                                                          <option value="loi">Loi</option>
-                                                          <option value="mode">Mode</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
+                                              <div className="col-md-6">
+                                                <div className="form-group text-purple">
+                                                    <label>Domaine:</label>
+                                                    <select className="custom-select form-control" required value={domaine} onChange={(e) => setDomaine(e.target.value)}>
+                                                        <option value="">--</option>
+                                                        {domainesList.map(domaine => (
+                                                            <option key={domaine.id} value={domaine.id}>{domaine.nomDomaine}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                               </div>
                                               <div className="row">
                                               <div className="col-md-6 ">
                                                   <div className="form-group text-purple">
                                                       <label>Numéro des followers:</label>
-                                                      <input type="text" className="form-control" required />
+                                                      <input type="text" className="form-control" required value={nbFollowers} onChange={(e) => setNbFollowers(e.target.value)}/>
                                                   </div>
                                               </div>
                                               <div className="col-md-6 ">
+                                                  <div className="form-group text-purple">
+                                                      <label>Description:</label>
+                                                      <textarea className="form-control" required value={description} onChange={(e) => setDescription(e.target.value)}/>
+                                                  </div>
+                                              </div>
+                                              <div className="col-md-7">
                                                     <div className="form-group text-purple">
                                                         <label htmlFor="file" className="custum-file-upload">
                                                             <div className="icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path></g></svg>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
+                                                                    <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
+                                                                    <g strokeLinejoin="round" strokeLinecap="round" id="SVGRepo_tracerCarrier"></g>
+                                                                    <g id="SVGRepo_iconCarrier"></g>
+                                                                </svg>
                                                             </div>
                                                             <div className="text">
                                                                 <span>Cliquez pour télécharger l'image</span>
                                                             </div>
-                                                            <input type="file" id="file" />
+                                                            <input type="file" id="file" name="photo" onChange={handleFile} />
                                                         </label>
                                                     </div>
                                                 </div>
@@ -122,9 +208,9 @@ function NouveauCrea() {
                                           
                                           <div className="row">
                                               <div className="col-md-6t">
-                                                  <div className="form-group">
-                                                      <button className="btn-purple">Ajouter</button>
-                                                  </div>
+                                              <div className="form-group">
+                                              <Link to="/createures" onClick={handleUpload} className="btn btn-primary" style={{ backgroundColor: 'purple' }}> Ajouter</Link> 
+                                            </div>
                                               </div>
                                           </div>
                                       </section>

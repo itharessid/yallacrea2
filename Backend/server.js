@@ -10,7 +10,7 @@ const etudiantRouter=require('./Controllers/etudiant')
 const expertRouter=require('./Controllers/expertcontrolllers.js')
 const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 const domaineRouter=require('./Controllers/domaines.js');
-
+const createurRouter=require('./Controllers/createurs.js');
 
 const app = express();
 app.use(cors());
@@ -26,6 +26,7 @@ app.use(partenaireRouter);
 app.use( expertRouter); 
 app.use('/photo', express.static('../frontend/public/photo'));
 app.use(domaineRouter);
+app.use(createurRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {

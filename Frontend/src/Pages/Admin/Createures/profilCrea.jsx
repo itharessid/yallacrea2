@@ -1,167 +1,228 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useParams, Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker'; 
+import 'react-datepicker/dist/react-datepicker.css'; 
+import axios from 'axios'; 
+import './profilCrea.css';
 
 function ProfileCrea() {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const { id } = useParams(); 
+    const [createurData, setCreateurData] = useState(null);
+    const [editedData, setEditedData] = useState(null);
+    const [error, setError] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [updatedPhoto, setUpdatedPhoto] = useState(null); // Nouvel état pour l'image mise à jour
+    
+    useEffect(() => {
+        const fetchCreateurData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/createur/${id}`);
+                setCreateurData(response.data);
+                setEditedData({ ...response.data });
+            } catch (error) {
+                setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de créateur");
+            }
+        };
+
+        fetchCreateurData();
+    }, [id]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditedData({ ...editedData, [name]: value });
+    };
+
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const formData = new FormData();
+            if (selectedFile) {
+                formData.append('photo', selectedFile);
+            }
+            formData.append("nom", editedData.nom);
+            formData.append("prenom", editedData.prenom);
+            formData.append("adresse", editedData.adresse);
+            formData.append("email", editedData.email);
+            formData.append("numero", editedData.numero);
+            formData.append("anniversaire", editedData.anniversaire); 
+            formData.append("lienInsta", editedData.lienInsta);
+            formData.append("lienFace", editedData.lienFace);
+            formData.append("lienTik", editedData.lienTik);
+            formData.append("domaine", editedData.domaine); 
+            formData.append("nbFollowers", editedData.nbFollowers);
+            formData.append("description", editedData.description);
+    
+            const response = await axios.put(`http://localhost:3001/createur/${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+    
+            if (selectedFile) {
+                setUpdatedPhoto(response.data.photo);
+            } else {
+                setUpdatedPhoto(null);
+            }
+    
+            setCreateurData({ ...editedData, photo: response.data.photo });
+        } catch (error) {
+            setError(error.response ? error.response.data.error : "Erreur lors de la mise à jour des données de créateur");
+        }
+    };
 
     return (
-        <>
+        <div>
             <Adminsidbar />
             <div className="main-container">
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30" style={{maxWidth: '100%',marginLeft: '-10px'}}>
-                        <div className="pd-20 profile-container height-100-p ">
-                            <div className="profile-info">
-                                <h5 className="mb-20 h5 text-purple">Informations</h5>
-                                <ul>
-                                    <li>
-                                        <span>Nom:</span>
-                                        ELFEKIH
-                                    </li>
-                                    <li>
-                                        <span>Prénom:</span>
-                                        Ons
-                                    </li>
-                                    <li>
-                                        <span>Email:</span>
-                                        elfekihons@gmail.com
-                                    </li>
-                                    <li>
-                                        <span>Adresse:</span>
-                                        Beni khiar
-                                    </li>
-                                    <li>
-                                        <span>Numéro:</span>
-                                        55963211
-                                    </li>
-                                    <li>
-                                        <span>Date d'anniversaire:</span>
-                                        **/**/****
-                                    </li>
-                                    <li>
-                                        <span>Domaine:</span>
-                                        A
-                                    </li>
-                                    <li>
-                                        <span>Suivis:</span>
-                                        1K
-                                    </li>
-                                    <li>
-                                        <a href="#" className="btn" style={{ backgroundColor: '#3b5998', color: '#ffffff' }}>
-                                            <i className="fa fa-facebook"></i>
-                                        </a>
-                                        <a href="#" className="btn" style={{ backgroundColor: '#70218F', color: '#ffffff' }}>
-                                            <i className="fa fa-instagram"></i>
-                                        </a>
-                                        <a href="#" className="btn" style={{ backgroundColor: '#000000', color: '#ffffff' }}>
-                                            <img src="/src/assets/images/tiktok-16.png" alt="TikTok Icon" />
-                                        </a>
-                                    </li>
-                                </ul>
+                {error && <p>{error}</p>}
+                {createurData && (
+                    <div className="profile-container">
+                        <img 
+                            src={`http://localhost:3001/photo/${updatedPhoto || createurData.image}`} 
+                            alt="Photo de profil" 
+                            style={{ maxWidth: '200px', maxHeight: '200px' }} 
+                        />
+                        <br/>
+                        <br/>
+                        <h2>{createurData.nom} {createurData.prenom}</h2>
+                        <br/>
+                        <p>Email: {createurData.email}</p>
+                        <p>Numéro: {createurData.numero}</p>
+                        <p>Domaine: {createurData.domaine}</p>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Nom:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="nom"
+                                    value={editedData.nom}
+                                    onChange={handleInputChange}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
-                        <div className="pd-20 profile-container height-100-p">
-                            <div className="profile-setting">
-                                <form className="tab-wizard wizard-circle wizard">
-                                    <h4 className="mb-20 h5 text-purple text-center">Editer les informations</h4>
-                                    <section>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Nom</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Prénom</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Email</label>
-                                                    <input type="email" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Adresse</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Numéro</label>
-                                                    <input type="tel" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 pl-md-5">
-                                                <div className="form-group text-purple">
-                                                    <label>Naissance:</label>
-                                                    <DatePicker
-                                                        className="form-control date-picker"
-                                                        selected={selectedDate}
-                                                        onChange={date => setSelectedDate(date)}
-                                                        placeholderText="Select Date"
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Edit Suivis</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Editer lien Facebook</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Editer lien Instagram</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group text-purple">
-                                                    <label>Editer lien TikTok</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 offset-md-3">
-                                                <div className="form-group text-purple text-center">
-                                                    <label>Editer Domaine:</label>
-                                                    <select className="custom-select form-control" required>
-                                                        <option value="santé">Santé</option>
-                                                        <option value="loi">Loi</option>
-                                                        <option value="mode">Mode</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <div className="row">
-                                        <div className="col-md-6 offset-md-3">
-                                            <div className="form-group text-center">
-                                                <button className="btn-purple">Enregistrer</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div className="form-group">
+                                <label>Prénom:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="prenom"
+                                    value={editedData.prenom}
+                                    onChange={handleInputChange}
+                                />
                             </div>
-                        </div>
+                            <div className="form-group">
+                                <label>Email:</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    value={editedData.email}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Adresse:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="adresse"
+                                    value={editedData.adresse}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Numéro:</label>
+                                <input
+                                    type="tel"
+                                    className="form-control"
+                                    name="numero"
+                                    value={editedData.numero}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Date de naissance:</label>
+                                <DatePicker
+                                    className="form-control"
+                                    selected={editedData.anniversaire}
+                                                onChange={(date) => setAnniversaire(date)}
+                                                dateFormat="dd/MM/yyyy" // Format de date jj/mm/année
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Lien Instagram:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lienInsta"
+                                    value={editedData.lienInsta}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Lien Facebook:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lienFace"
+                                    value={editedData.lienFace}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Lien TikTok:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lienTik"
+                                    value={editedData.lienTik}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Domaine:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="domaine"
+                                    value={editedData.domaine}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Nombre de Followers:</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    name="nbFollowers"
+                                    value={editedData.nbFollowers}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Description:</label>
+                                <textarea
+                                    type="text"
+                                    className="form-control"
+                                    name="description"
+                                    value={editedData.description}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Photo:</label>
+                                <input type="file" name="photo" onChange={handleFileChange} required />
+                            </div>
+                            <Link to="/createures" onClick={handleSubmit} className="btn btn-primary" style={{ backgroundColor: 'purple' }}> Enregistrer</Link> 
+                        </form>
                     </div>
-                </div>
+                )}
             </div>
-        </>
+        </div>
     );
 }
 

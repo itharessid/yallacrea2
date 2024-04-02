@@ -58,7 +58,7 @@ function App() {
     <Route path="/" element={<Home />} />
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/createur" element ={<Createur/>} />
+        <Route path="/createur" element ={< Createur/>} />
         <Route path="/detail" element ={<Detail/>} />
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
@@ -95,7 +95,7 @@ function App() {
         <Route path="/calendrier" element={<Calendrier/>} /> 
         <Route path="/evenements" element={<Evenements/>} /> 
         <Route path="/ProfilEtud/:id" element={<ProfileEtud/>} /> 
-        <Route path="/ProfilCrea" element={<ProfileCrea/>} /> 
+        <Route path="/ProfilCrea/:id" element={<ProfileCrea/>} /> 
         <Route path="/nouveauEvent" element={<NouveauEvent/>} /> 
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
