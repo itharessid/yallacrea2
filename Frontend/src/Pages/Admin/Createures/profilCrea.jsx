@@ -12,7 +12,9 @@ function ProfileCrea() {
     const [editedData, setEditedData] = useState(null);
     const [error, setError] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
-    const [updatedPhoto, setUpdatedPhoto] = useState(null); // Nouvel état pour l'image mise à jour
+    const [updatedPhoto, setUpdatedPhoto] = useState(null);
+    const [domaine, setDomaine] = useState("");
+    const [domainesList, setDomainesList] = useState([]);
     
     useEffect(() => {
         const fetchCreateurData = async () => {
@@ -24,8 +26,17 @@ function ProfileCrea() {
                 setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de créateur");
             }
         };
+        const fetchDomainesList = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/domaine');
+                setDomainesList(response.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des domaines:', error);
+            }
+        };
 
         fetchCreateurData();
+        fetchDomainesList();
     }, [id]);
 
     const handleInputChange = (e) => {
@@ -55,6 +66,7 @@ function ProfileCrea() {
             formData.append("domaine", editedData.domaine); 
             formData.append("nbFollowers", editedData.nbFollowers);
             formData.append("description", editedData.description);
+            formData.append("domaine", editedData.domaine); 
     
             const response = await axios.put(`http://localhost:3001/createur/${id}`, formData, {
                 headers: {
@@ -185,13 +197,17 @@ function ProfileCrea() {
                             </div>
                             <div className="form-group">
                                 <label>Domaine:</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="domaine"
-                                    value={editedData.domaine}
-                                    onChange={handleInputChange}
-                                />
+                                <select 
+                                    className="custom-select form-control" 
+                                    required 
+                                    value={editedData.domaine} 
+                                    onChange={(e) => setEditedData({ ...editedData, domaine: e.target.value })}
+                                >
+                                    <option value=""> --</option>
+                                    {domainesList.map((domaine) => (
+                                        <option key={domaine.id} value={domaine.id}>{domaine.nomDomaine}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label>Nombre de Followers:</label>

@@ -27,6 +27,7 @@ app.use( expertRouter);
 app.use('/photo', express.static('../frontend/public/photo'));
 app.use(domaineRouter);
 app.use(createurRouter);
+app.use(domaineRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {
