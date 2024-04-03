@@ -14,7 +14,8 @@ function ProfileCrea() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [updatedPhoto, setUpdatedPhoto] = useState(null);
     const [domainesList, setDomainesList] = useState([]);
-    
+    const [anniversaire, setAnniversaire] = useState(new Date()); // Initialiser à la date actuelle
+
     useEffect(() => {
         const fetchCreateurData = async () => {
             try {
@@ -43,9 +44,6 @@ function ProfileCrea() {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
     };
-    const handleDateChange = (date) => {
-        setEditedData({ ...editedData, anniversaire: date });
-    };
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
@@ -62,7 +60,7 @@ function ProfileCrea() {
             formData.append("adresse", editedData.adresse);
             formData.append("email", editedData.email);
             formData.append("numero", editedData.numero);
-            formData.append("anniversaire", editedData.anniversaire); 
+            formData.append("anniversaire", formatDate(anniversaire)); // Utiliser la fonction formatDate
             formData.append("lienInsta", editedData.lienInsta);
             formData.append("lienFace", editedData.lienFace);
             formData.append("lienTik", editedData.lienTik);
@@ -87,6 +85,13 @@ function ProfileCrea() {
             setError(error.response ? error.response.data.error : "Erreur lors de la mise à jour des données de créateur");
         }
     };
+    // Fonction pour formater la date au format "YYYY-MM-DD"
+const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
 
     return (
         <div>
@@ -162,9 +167,9 @@ function ProfileCrea() {
                                 <label>Date de naissance:</label>
                                 <DatePicker
                                     className="form-control"
-                                    selected={editedData.anniversaire}
-                                    onChange={handleDateChange}
-                                                dateFormat="dd/MM/yyyy" // Format de date jj/mm/année
+                                    selected={anniversaire}
+                                    onChange={(date) => setAnniversaire(date)}
+                                    dateFormat="dd/MM/yyyy" // Format de date
                                 />
                             </div>
                             <div className="form-group">
