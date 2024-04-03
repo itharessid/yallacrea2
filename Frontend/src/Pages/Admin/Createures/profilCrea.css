@@ -1,32 +1,36 @@
 .profile-container{
-    background-color: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  
-  .profile-info ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .profile-info ul li span{
-    font-weight: 500;
-    padding-bottom: 5px;
-    color: purple;
-    display: block;
-    font-size: 14px;
-  }
-  
-  .profile-info ul li {
-    margin-bottom: 10px;
-  } 
-  .profile-edit-list ul li span{
-    font-weight: 500;
-    padding-bottom: 5px;
-    color: purple;
-    display: block;
-    font-size: 14px
-  }
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.profile-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+.profile-info ul li span{
+  font-weight: 500;
+  padding-bottom: 5px;
+  color: purple;
+  display: block;
+  font-size: 14px;
+}
+
+.profile-info ul li {
+  margin-bottom: 10px;
+} 
+.profile-edit-list ul li span{
+  font-weight: 500;
+  padding-bottom: 5px;
+  color: purple;
+  display: block;
+  font-size: 14px
+}
+.required::after {
+  content: "*";
+  color: red;
+}

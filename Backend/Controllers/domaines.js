@@ -32,7 +32,7 @@ router.post("/domaine", (req, res) => {
 router.delete("/domaine/:id", (req, res) => {
     const idDomaine = req.params.id;
   
-    const sql = "DELETE FROM domaines WHERE id = ?";
+    const sql = "DELETE FROM domaines WHERE idDomaine = ?";
     db.query(sql, idDomaine, (err, result) => {
       if (err) {
         console.error("Erreur lors de la suppression de domaine :", err);

@@ -46,7 +46,7 @@ function Domaines (){
         }
       };
       const handleDeleteClick = (domaine) => {
-        setSelectedDomaineId(domaine.id);
+        setSelectedDomaineId(domaine.idDomaine);
         setDomaineToDelete(domaine); 
         setShowDeleteConfirmation(true);
         setBlurBackground(true);

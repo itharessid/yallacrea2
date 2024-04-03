@@ -14,3 +14,8 @@ h5{
 .btn-purple:hover {
     background-color: purple; /* Couleur de survol */
 }
+hr {
+    border: none;
+    border-top: 1px solid transparent; /* Bordure transparente */
+    border: 0; /* Bordure avec largeur nulle */
+}
