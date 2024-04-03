@@ -41,19 +41,19 @@ router.post('/createur', upload.single('photo'), (req, res) => {
     });
 });
 
-// Endpoint pour mettre à jour les données de l'createurs
+// Endpoint pour mettre à jour les données d'un créateur
+
 router.put('/createur/:id', upload.single('photo'), (req, res) => {
     const id = req.params.id;
-    const { nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik,domaine,nbFollowers,description } = req.body; // Modification pour inclure le champ poste
+    const { nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description } = req.body;
     let photoName = null;
 
-    // Vérifier si une nouvelle image a été téléchargée
     if (req.file) {
         photoName = req.file.filename;
     }
 
-    const sql = "UPDATE createurs SET nom=?, prenom=?, email=?, adresse=?, numero=?, anniversaire=?, lienInsta=?, lienFace=?, lienTik=?,domaine=?,nbFollowers=?,description =?,image=? WHERE idCreateur=?";
-    const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik,domaine,nbFollowers,description ,photoName, id]; 
+    const sql = "UPDATE createurs SET nom=?, prenom=?, email=?, adresse=?, numero=?, anniversaire=?, lienInsta=?, lienFace=?, lienTik=?, domaine=?, nbFollowers=?, description=?, image=? WHERE idCreateur=?";
+    const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description, photoName, id]; 
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -63,6 +63,8 @@ router.put('/createur/:id', upload.single('photo'), (req, res) => {
         return res.status(200).json({ message: "Données mises à jour avec succès" });
     });
 });
+
+
 
 // Endpoint pour récupérer les données de l'createurs
 router.get('/createur', (req, res) => {
@@ -109,27 +111,7 @@ router.get('/createur', (req, res) => {
         });
     });
     
-    // Endpoint pour mettre à jour les données de l'createurs
-    router.put('/createur/:id', upload.single('photo'), (req, res) => {
-        const id = req.params.id;
-        const {nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik,domaine,nbFollowers,description } = req.body;
-        let photoName = null;
-    
-        if (req.file) {
-            photoName = req.file.filename;
-        }
-    
-        const sql = "UPDATE createurs SET nom=?, prenom=?, email=?, adresse=?, numero=?, anniversaire=?, lienInsta=?, lienFace=?, lienTik=?,domaine=?,nbFollowers=?,description=?,image=? WHERE idCreateur=?";
-        const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik,domaine,nbFollowers,description ,photoName, id]; 
-    
-        db.query(sql, values, (err, result) => {
-            if (err) {
-                console.error("Erreur lors de la mise à jour des données dans la base de données :", err);
-                return res.status(500).json({ error: "Erreur lors de la mise à jour des données dans la base de données" });
-            }
-            return res.status(200).json({ message: "Données mises à jour avec succès" });
-        });
-    });
+
     
     // Endpoint pour récupérer les données de tous les createurs
     router.get('/createur', (req, res) => {
@@ -159,6 +141,9 @@ router.get('/createur', (req, res) => {
             return res.status(200).json(result[0]);
         });
     });
+
+
+
     
     module.exports = router;
     
