@@ -15,7 +15,7 @@ function ProfileCrea() {
     const [updatedPhoto, setUpdatedPhoto] = useState(null);
     const [domaine, setDomaine] = useState("");
     const [domainesList, setDomainesList] = useState([]);
-    
+    const [anniversaire, setAnniversaire] = useState([]);
     useEffect(() => {
         const fetchCreateurData = async () => {
             try {
@@ -43,7 +43,9 @@ function ProfileCrea() {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
     };
-
+    const handleDateChange = (date) => {
+        setEditedData({ ...editedData, anniversaire: date });
+    };
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
@@ -161,7 +163,7 @@ function ProfileCrea() {
                                 <DatePicker
                                     className="form-control"
                                     selected={editedData.anniversaire}
-                                                onChange={(date) => setAnniversaire(date)}
+                                    onChange={handleDateChange}
                                                 dateFormat="dd/MM/yyyy" // Format de date jj/mm/année
                                 />
                             </div>
