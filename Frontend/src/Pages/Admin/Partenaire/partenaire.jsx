@@ -95,6 +95,8 @@ function Partenaire() {
                                     <th className="table-plus datatable-nosort text-purple">Nom de Société</th>
                                     <th className="text-purple">Numéro</th>
                                     <th className="text-purple">Email</th>
+                                    <th className="text-purple">Lien</th>
+
                                     <th className="text-purple">Action</th>
                                 </tr>
                             </thead>
@@ -107,6 +109,8 @@ function Partenaire() {
                                         <td className="table-plus">{partenaire.nomSociete}</td>
                                         <td>{partenaire.numero}</td>
                                         <td>{partenaire.email}</td>
+                                        <td>{partenaire.lien}</td>
+
                                         <td>
                                             <button className="button1">
                                                 <Link to={`/profilpart/${partenaire.id}`} className="dropdown-toggle">

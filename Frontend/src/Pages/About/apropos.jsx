@@ -1,6 +1,8 @@
 import React from 'react'
 import './apropos.css'
 import { Dropdown } from 'react-bootstrap';
+import Partencop from './partencop'; // Import the partencop component
+
 function apropos() {
   return (
     <div>
@@ -250,51 +252,10 @@ function apropos() {
             </div>
         </section>
     </div>
-<section className="w3l-teams-32-main py-5">
-        <div className="teams-32 py-md-4">
-            <div className="container">
-                <div className="title-main text-center mx-auto mb-4">
-                    <h3 className="title-big">NOS PARTENAIRES</h3>
-                    <p className="sub-title mt-2">Nos partenaires académiques, technologiques et industriels sont toujours présents pour nos étudiants.</p>
-                </div>
-                <div className="row main-contteam-32 mt-sm-5 pt-lg-2">
-                <div className="col-lg-3 col-6 team-main-19 d-flex justify-content-center align-items-center">
-    <div className="column-19">
-        <a href="https://megapc.tn/"><img className="img-fluid" src="src/assets/images/LOGO-MEGA-PC-2.webp" alt=" " /></a>
-            </div>
-                        
-                    </div>
-                    <div className="col-lg-3 col-6 team-main-19">
-                        <div className="column-19">
-                            <a href=""><img className="img-fluid" src="src/assets/images/smc.png" alt=" "/></a>
-                        </div>
-                       
-                    </div>
-                    <div className="col-lg-3 col-6 team-main-19">
-                        <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team3.jpg" alt=" "/></a>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Anton Bone</a></h6>
-                            <p className="sm-text-32">UI/UX Designer</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-6 team-main-19">
-                        <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="assets/images/team4.jpg" alt=" "/></a>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Neoye Achi</a></h6>
-                            <p className="sm-text-32">Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-          
-            
-    <footer className="w3l-footer-22 position-relative mt-5 pt-5">
+
+      <Partencop />
+ 
+      <footer className="w3l-footer-22 position-relative mt-5 pt-5">
         <div className="footer-sub">
           <div className="container">
             <div className="text-txt">
@@ -359,8 +320,7 @@ function apropos() {
             </div>
           </div>
         </div>
-      </footer>
-      
+      </footer> 
     </div>
   )
 }

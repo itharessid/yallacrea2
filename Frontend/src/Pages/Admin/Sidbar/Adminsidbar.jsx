@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './dataTables.bootstrap4.min.css';
 import './responsive.bootstrap4.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPerson, faBook,faGlobe, faBuilding, faCalendarAlt,faHandshakeAlt,faUsers,faRunning } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPerson, faBook,faGlobe, faBuilding, faCalendarAlt,faHandshakeAlt,faUsers,faRunning, faTable } from '@fortawesome/free-solid-svg-icons';
 import './sidbar.css';
 import { Link } from 'react-router-dom';
 
@@ -60,7 +60,13 @@ function Adminsidbar() {
                   <FontAwesomeIcon icon={faPerson} />{' '}
                   <span className="mtext">Etudiants</span>
                 </Link>
-              </li>       
+              </li>  
+              <li className="dropdown">
+                <Link to="/uploadE" className="dropdown-toggle">
+                  <FontAwesomeIcon icon={faTable} />{' '}
+                  <span className="mtext">Emplois du temps</span>
+                </Link>
+              </li>     
               <li className="dropdown">
                 <Link to="/domaines" className="dropdown-toggle">
                   <FontAwesomeIcon icon={faGlobe} />{' '}

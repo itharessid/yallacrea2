@@ -4,6 +4,8 @@ import './acceuil.css';
 import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import ExpertComp from './expertComp'; // Importez le composant expertComp
+
 
 
 function acceuil() {
@@ -122,48 +124,7 @@ function acceuil() {
             </div>
         </div>
     </section>
-    <section className="w3l-teams-32-main py-5">
-        <div className="teams-32 py-md-4">
-            <div className="container">
-                <div className="title-main text-center mx-auto mb-4">
-                    <h3 className="title-big">Nous Experts</h3>
-            
-                </div>
-                <br/>
-                <div className="row main-contteam-32 justify-content-center">
-                    <div className="col-lg-3 col-6  center team-main-19  ">
-                        <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="src/assets/images/wajdi.jpg" alt=" "/></a>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Wajdi chabbene</a></h6>
-                            <p className="sm-text-32">sales Manger</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-6 team-main-19">
-                        <div className="column-19">
-                        <h6> <a href="#team"><img className="img-fluid" src="src/assets/images/resp2.jpg" alt=" "/></a></h6>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32"></a>Kawther Wartani</h6>
-                            <p className="sm-text-32">Studies Manager</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col- team-main-19">
-                        <div className="column-19">
-                            <a href="#team"><img className="img-fluid" src="src/assets/images/resp3.jpg" alt=" "/></a>
-                        </div>
-                        <div className="right-team-9">
-                            <h6><a href="#team" className="title-team-32">Takwa Hasni</a></h6>
-                            <p className="sm-text-32">Office Manager</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
+    <ExpertComp /> 
     <section  className="w3l-companies-hny-6 position-relative">
         <div  className="cusrtomer-layout py-5">
         

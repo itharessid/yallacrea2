@@ -6,6 +6,8 @@ function nouveaupartenaire() {
     const [nomSociete, setNomSociete] = useState('');
     const [numero, setNumero] = useState('');
     const [email, setEmail] = useState('');
+    const [lien, setLien] = useState('');
+
     const [photo, setPhoto] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -15,6 +17,8 @@ function nouveaupartenaire() {
         formData.append('nomSociete', nomSociete);
         formData.append('numero', numero);
         formData.append('email', email);
+        formData.append('lien', lien);
+
         formData.append('photo', photo);
 
         axios.post('http://localhost:3001/partenaire', formData)
@@ -70,6 +74,12 @@ function nouveaupartenaire() {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className="col-md-6">
+    <div className="form-group text-purple">
+        <label>lien :</label>
+        <input type="text" className="form-control" value={lien} onChange={(e) => setLien(e.target.value)} required />
+    </div>
+</div>
                                             <div className="row">
                                                 <div className="col-md-7">
                                                     <div className="form-group text-purple">

@@ -4,7 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 
 import About from './Pages/About/apropos';
+import Partencop from './Pages/About/partencop.jsx';
+
 import Home from './Pages/Home/acceuil';
+import Expcomp from './Pages/Home/expertComp.jsx';
 import Contact from './Pages/Contact/contact';
 import Formation from './Pages/Formation/formation';
 import Createur  from './Pages/Createur/createur';
@@ -40,11 +43,15 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Partenaire from './Pages/Admin/Partenaire/partenaire.jsx';
  import Experts from './Pages/Admin/Experts/experts.jsx';
  import Nouveaupartenaire from './Pages/Admin/Partenaire/nouveaupartenaire.jsx';
+ import ProfilePartenaire from './Pages/Admin/Partenaire/profilparte.jsx';
  import Nvexpert from './Pages/Admin/Experts/nvexpert.jsx';
  import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
- import Emplois from './Pages/emploi/emplois.jsx'
+ import Emplois from './Pages/emploi/emplois.jsx';
 import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
+import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
+
+
 
 
 
@@ -55,8 +62,10 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Expcomp />} />
         <Route path="/apropos" element={<About />} />
+        <Route path="/apropos" element={<Partencop />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/createur" element ={<Createur/>} />
         <Route path="/detail" element ={<Detail/>} />
@@ -70,17 +79,13 @@ function App() {
         <Route path="/emploi" element={<Emplois/>}/>
 
 
-
-        
-
-
-
-
-
+      
+      
         <Route path="/sidbar" element={<Sidbar />} />
         <Route path="/preinscri" element={< PreInscri/>} />
         <Route path="/preinscriEtud" element={<PreInscriEtud/>} />
         <Route path="/connexion" element={<Connexion/>} />
+
 
 
 
@@ -100,18 +105,15 @@ function App() {
         <Route path="/expert" element={<Experts />}/>
         <Route path="/Nvexpert" element={<Nvexpert />}/>
         <Route path="/profilexp/:id"  element={<Profilexperts />}/>
+        <Route path="/profilpart/:id" element={<ProfilePartenaire/>}/>
         <Route path="/partenaire" element={<Partenaire/>}/> 
         <Route path="/Nvpartenaire" element={<Nouveaupartenaire/>} /> 
         <Route path="/domaines" element={<Domaines/>} /> 
         <Route path="/NDomaine" element={<NDomaine/>} /> 
-
-
-
-
-    </Routes>
-    </BrowserRouter>
-      
-    </>
+        <Route path="/uploadE" element={<Emploiup/>} /> 
+         </Routes>
+         </BrowserRouter>
+         </>
   )
 }
 

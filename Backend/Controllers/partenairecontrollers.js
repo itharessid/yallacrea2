@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 // Initialisation de Multer avec la configuration de stockage
 const upload = multer({ storage: storage });
 
-// Endpoint pour télécharger une image d'expert
+// Endpoint pour télécharger une image de partenaire
 router.post('/partenaire', upload.single('photo'), (req, res) => {
     console.log("Requête reçue :", req.body); // Débogage : Afficher les données du formulaire
     console.log("Fichier reçu :", req.file); // Débogage : Afficher les détails du fichier téléchargé
@@ -33,11 +33,12 @@ router.post('/partenaire', upload.single('photo'), (req, res) => {
     // Récupérer seulement le nom du fichier sans le chemin complet
     const logoName = req.file.filename;
 
-    const sql = "INSERT INTO partenaire (nomSociete, numero, email, logo) VALUES (?, ?, ?, ?)";
+    const sql = "INSERT INTO partenaire (nomSociete, numero, email, lien, logo) VALUES (?, ?, ?, ?, ?)";
     const values = [
         req.body.nomSociete || "",
         req.body.numero || "",
         req.body.email || "",
+        req.body.lien || "", // Nouvelle colonne "lien"
         logoName // Utiliser le nom du fichier seulement
     ];
 
@@ -50,7 +51,9 @@ router.post('/partenaire', upload.single('photo'), (req, res) => {
         return res.status(200).json({ message: "Données insérées avec succès" });
     });
 });
-   router.get('/partenaireget', (req, res) => {
+
+// Endpoint pour récupérer les données des partenaires
+router.get('/partenaireget', (req, res) => {
     const sql = 'SELECT * FROM partenaire';
     db.query(sql, (err, result) => {
         if (err) {
@@ -60,6 +63,7 @@ router.post('/partenaire', upload.single('photo'), (req, res) => {
         return res.status(200).json(result);
     });
 });
+
 // Endpoint pour récupérer les données d'un partenaire spécifique par ID
 router.get('/partenaire/:id', (req, res) => {
     const partenaireId = req.params.id; // Récupérez l'ID du partenaire à partir des paramètres de requête
@@ -79,12 +83,13 @@ router.get('/partenaire/:id', (req, res) => {
         return res.status(200).json(partenaireData); // Renvoyez les données du partenaire en tant que réponse JSON
     });
 });
+
 // Endpoint pour mettre à jour les données d'un partenaire spécifique par ID
 router.put('/partenaire/:id', upload.single('photo'), (req, res) => {
     const partenaireId = req.params.id; // Récupérez l'ID du partenaire à partir des paramètres de requête
 
     // Récupérez les données du formulaire envoyées dans la requête PUT
-    const { nomSociete, numero, email, poste } = req.body;
+    const { nomSociete, numero, email, lien, poste } = req.body;
 
     // Vérifiez si une nouvelle image a été téléchargée et mettez à jour le nom de fichier
     const updatedLogo = req.file ? req.file.filename : '';
@@ -96,11 +101,12 @@ router.put('/partenaire/:id', upload.single('photo'), (req, res) => {
     if (nomSociete) updates.push('nomSociete = ?');
     if (numero) updates.push('numero = ?');
     if (email) updates.push('email = ?');
+    if (lien) updates.push('lien = ?'); // Nouvelle colonne "lien"
     if (poste) updates.push('poste = ?');
     if (updatedLogo) updates.push('logo = ?');
 
     // Ajoutez les valeurs à mettre à jour dans le tableau des valeurs
-    const values = [nomSociete, numero, email, poste, updatedLogo].filter(value => value !== undefined);
+    const values = [nomSociete, numero, email, lien, poste, updatedLogo].filter(value => value !== undefined);
 
     // Ajoutez les mises à jour à la requête SQL
     sql += ' ' + updates.join(', ');
@@ -125,6 +131,7 @@ router.put('/partenaire/:id', upload.single('photo'), (req, res) => {
         return res.status(200).json({ message: "Données du partenaire mises à jour avec succès" });
     });
 });
+
 // Endpoint pour supprimer les données d'un partenaire spécifique par ID
 router.delete('/partenaire/:id', (req, res) => {
     const partenaireId = req.params.id; // Récupérez l'ID du partenaire à partir des paramètres de requête
@@ -148,8 +155,5 @@ router.delete('/partenaire/:id', (req, res) => {
         return res.status(200).json({ message: "Données du partenaire supprimées avec succès" });
     });
 });
-
-module.exports = router;
-
 
 module.exports = router;
