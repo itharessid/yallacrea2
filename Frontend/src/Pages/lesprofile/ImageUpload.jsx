@@ -43,9 +43,9 @@ function ImageUpload() {
         }
 
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append('photo', file);
 
-        axios.post('http://localhost:3001/upload', formData)
+        axios.post('http://localhost:3001/createur', formData)
             .then(res => {
                 if (res.data.status === "Success") {
                     alert("Image téléchargée avec succès!");
@@ -65,7 +65,7 @@ function ImageUpload() {
         setShowModal(true);
     };
     useEffect(() => {
-        axios.get('http://localhost:3001/')
+        axios.get('http://localhost:3001/createur')
             .then(res => {
                 setData(res.data[0]);
                 setProfileData(res.data[0]); // Mise à jour de profileData avec les données récupérées
@@ -81,7 +81,7 @@ function ImageUpload() {
                     <div className="row">
                         <div className="col-lg-7 d-flex justify-content-center align-items-center">
                             <div style={{ position: "relative", width: "300px", height: "300px", overflow: "hidden", borderRadius: "50%", display: "inline-block", border: "8px solid #70218f" }}>
-                                <img src={"http://localhost:3001/images/" + data.image} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
+                                <img src={"http://localhost:3001/photo/" + data.image} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
                             </div>
                             <FontAwesomeIcon 
                                 icon={faPlus} onClick={handleClick}

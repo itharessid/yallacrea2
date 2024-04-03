@@ -12,7 +12,7 @@ router.post('/des', (req, res) => {
     }
 
     db.query(
-        "UPDATE createur SET description = ? WHERE nom = ?",
+        "UPDATE createurs SET description = ? WHERE nom = ?",
         [description, nom],
         (err, result) => {
             if (err) {

@@ -13,9 +13,8 @@ function ProfileCrea() {
     const [error, setError] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
     const [updatedPhoto, setUpdatedPhoto] = useState(null);
-    const [domaine, setDomaine] = useState("");
     const [domainesList, setDomainesList] = useState([]);
-    const [anniversaire, setAnniversaire] = useState([]);
+    
     useEffect(() => {
         const fetchCreateurData = async () => {
             try {
@@ -26,6 +25,7 @@ function ProfileCrea() {
                 setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de créateur");
             }
         };
+
         const fetchDomainesList = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/domaine');
@@ -56,6 +56,7 @@ function ProfileCrea() {
             if (selectedFile) {
                 formData.append('photo', selectedFile);
             }
+            // Ajout des autres champs du formulaire
             formData.append("nom", editedData.nom);
             formData.append("prenom", editedData.prenom);
             formData.append("adresse", editedData.adresse);
@@ -68,7 +69,6 @@ function ProfileCrea() {
             formData.append("domaine", editedData.domaine); 
             formData.append("nbFollowers", editedData.nbFollowers);
             formData.append("description", editedData.description);
-            formData.append("domaine", editedData.domaine); 
     
             const response = await axios.put(`http://localhost:3001/createur/${id}`, formData, {
                 headers: {

@@ -17,9 +17,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/upload', upload.single('image'), (req, res) => {
-
   const image = req.file.filename;
-  const sql = "UPDATE createur SET image=?";
+  const sql = "UPDATE createurs SET image=?";
   
   db.query(sql, [image], (err, result) => {
     if (err) {
@@ -28,12 +27,15 @@ router.post('/upload', upload.single('image'), (req, res) => {
     return res.json({ status: "Success" });
   });
 });
-router.get('/',(req,res)=>{
-  const sql ='select *from createur';
+
+
+router.get('/up',(req,res)=>{
+  const sql ='select *from createurs';
   db.query(sql,(err,result)=>{
     if(err) return res.json("error");
     return res.json(result);
 
   })
 })
+
 module.exports = router;
