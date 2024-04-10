@@ -22,6 +22,9 @@ function ProfileCrea() {
                 const response = await axios.get(`http://localhost:3001/createur/${id}`);
                 setCreateurData(response.data);
                 setEditedData({ ...response.data });
+    
+                // Mettre à jour la date de naissance dans le state
+                setAnniversaire(new Date(response.data.anniversaire));
             } catch (error) {
                 setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de créateur");
             }
@@ -168,6 +171,7 @@ const formatDate = (date) => {
                                 <DatePicker
                                     className="form-control"
                                     selected={anniversaire}
+                                    
                                     onChange={(date) => setAnniversaire(date)}
                                     dateFormat="dd/MM/yyyy" // Format de date
                                 />
