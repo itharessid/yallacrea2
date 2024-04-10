@@ -1,31 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 
-// Définir un composant pour un emploi du temps individuel
-function EmploiDuTemps({ imageSrc, titre, description, pdfUrl }) {
+function EmploiDuTemps({ emploi }) {
   const handleDownload = () => {
     window.open(pdfUrl, '_blank');
-  };
+   };
 
-  return (
+   return (
     <div className="col-lg-6 col-sm-6 mt-sm-0 mt-4">
       <div className="grids5-info">
-        <a href="#blog" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <img src={imageSrc} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        <a href={emploi.emplois} target="_blank" rel="noopener noreferrer">
+         <img src={`http://localhost:3001/emplois/${emploi.emplois}`} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
         </a>
         <div className="blog-info">
-          <h5>Titre: {titre}</h5>
+          <h5>Titre:{emploi.titre}</h5>
           <br/>
-          <h4><a href="#blog">Lien vers le blog</a></h4>
-          <p>Description: {description}</p>
-          <button onClick={handleDownload}>Télécharger en PDF</button>
+          <h4><a href={emploi.emplois} src={`http://localhost:3001/emplois/${emploi.emplois}`}>Voir l'image</a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
+          <p>Description: {emploi.description} </p>
+          <p>Type de cours: {emploi.typedecour}</p>
         </div>
       </div>
     </div>
   );
-}
+ }
+ function Emplois() {
+  const [emplois, setEmplois] = useState([]);
+  const [error, setError] = useState(null);
 
-function Emplois() {
+  useEffect(() => {
+    axios.get('http://localhost:3001/emplois')
+      .then(response => {
+        if (Array.isArray(response.data)) {
+          setEmplois(response.data);
+        } else {
+          setError('La réponse du serveur n\'est pas un tableau JSON.');
+        }
+
+      })
+      .catch(error => {
+        setError('Erreur lors de la récupération des emplois du temps: ' + error.message);
+      });
+      
+  }, []);
+
   return (
     <div>
       <header id="site-header" className="fixed-top">
@@ -82,7 +100,7 @@ function Emplois() {
           </nav>
         </div>
       </header>
-
+    
       <div className="inner-banner">
         <section className="w3l-breadcrumb">
           <div className="container">
@@ -93,8 +111,7 @@ function Emplois() {
             </ul>
           </div>
         </section>
-      </div>
-
+      </div>  
       <div className="w3l-grids-block-5 py-5">
         <section id="grids5-block" className="pt-md-4 pb-md-5 py-4 mb-5">
           <div className="container">
@@ -104,19 +121,15 @@ function Emplois() {
                 ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
             </div>
             <div className="row mt-sm-5 pt-lg-2">
-              <EmploiDuTemps
-                imageSrc="src/assets/images/emploi.png"
-                titre="cour présentielle"
-                description="Emploi de Temps Semestre 2 - AU 2023-2024 _ Version finale (le 04.03.2024)"
-                pdfUrl="lien_vers_le_fichier_pdf"
-              />
-              <EmploiDuTemps
-                imageSrc="src/assets/images/emploi.png"
-                titre="cour en ligne"
-                description="Yalla Digital Academy encourage sans cesse de nouvelles opportunités d'apprentissage pour ses étudiants, nécessitant une pédagogie innovante de ses enseignants. En tant que partenaire officiel de Coursera, l'école mobilise son équipe pédagogique vers une culture numérique axée sur l'innovation grâce à la plateforme Coursera."
-                pdfUrl="lien_vers_le_fichier_pdf"
-              />
-              {/* Ajoutez d'autres emplois du temps ici si nécessaire */}
+              {emplois.map((emploi, index) => (
+                <EmploiDuTemps
+                  key={index}
+                  emploi={emploi} 
+                  titre={emploi.titre}
+                  description={emploi.description}
+                  typedecour={emploi.typedecour}
+                />
+              ))}
             </div>
           </div>
         </section>

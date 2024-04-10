@@ -11,6 +11,7 @@ const expertRouter=require('./Controllers/expertcontrolllers.js')
 const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 const domaineRouter=require('./Controllers/domaines.js');
 const createurRouter=require('./Controllers/createurs.js');
+const emploisRouter =require('./Controllers/emplois.js');
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,9 @@ app.use('/photo', express.static('../frontend/public/photo'));
 app.use(domaineRouter);
 app.use(createurRouter);
 app.use(domaineRouter);
+app.use(emploisRouter);
+app.use('/emplois', express.static('../frontend/public/emplois'));
+
 
 const PORT = 3001;
 app.listen(PORT, () => {

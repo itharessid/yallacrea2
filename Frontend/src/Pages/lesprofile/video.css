@@ -1,0 +1,22 @@
+.search-input {
+    width: calc(50% - 50px); /* Définir la largeur de l'entrée de texte */
+    height: 40px; /* Définir la hauteur désirée */
+    font-size: 16px; /* Définir la taille de la police */
+    margin-right: 5px; /* Réduire la marge à droite de l'entrée de texte */
+  }
+  
+  .search-button {
+    height: 40px; /* Assurez-vous que la hauteur du bouton est la même que celle de l'entrée de texte */
+    font-size: 16px; /* Définir la taille de la police */
+    margin-left: 10px; /* Ajouter un espace entre le champ de recherche et le bouton */
+
+  }
+  .add-video-button {
+    margin-left: 500px; /* Ajoute un espace entre le bouton de recherche et le bouton d'ajout de vidéo */
+  }
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  
