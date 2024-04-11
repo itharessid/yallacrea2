@@ -67,7 +67,7 @@ function nvemplois() {
                                                         <select className="form-control" value={typeCours} onChange={(e) => setTypeCours(e.target.value)}>
                                                             <option value="">Sélectionnez le type de cours</option>
                                                             <option value="Présentiel">Cours présenteil</option>
-                                                            <option value="enligne">Cours en ligne</option>
+                                                            <option value="En ligne">Cours en ligne</option>
                                                         </select>
                                                     </div>
                                                 </div>

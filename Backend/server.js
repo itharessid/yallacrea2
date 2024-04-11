@@ -5,6 +5,7 @@ const mydb = require('./Config/db');
 const rout = require("./routes/route");
 const textRouter = require('./Controllers/texte'); // Importez le routeur text
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
+const emploiRouter=require('./Controllers/emplois')
 const calendrierRouter = require('./Controllers/calendrier');
 const etudiantRouter=require('./Controllers/etudiant')
 const expertRouter=require('./Controllers/expertcontrolllers.js')
@@ -30,7 +31,8 @@ app.use(domaineRouter);
 app.use(createurRouter);
 app.use(domaineRouter);
 app.use(emploisRouter);
-app.use('/emplois', express.static('../frontend/public/emplois'));
+app.use(emploiRouter); // Utilisez le routeur image dans votre application
+app.use('/temp', express.static('../frontend/public/temps'));
 
 
 const PORT = 3001;

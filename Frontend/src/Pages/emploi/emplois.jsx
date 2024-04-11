@@ -3,20 +3,58 @@ import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 
 function EmploiDuTemps({ emploi }) {
-  const handleDownload = () => {
-    window.open(pdfUrl, '_blank');
-   };
+  const [showImage, setShowImage] = useState(false);
+  
+  const handleToggleImage = () => {
+    setShowImage(!showImage);
+  };
+
+  const handleDownload = async () => {
+    try {
+      // Fetch the image data
+      const response = await axios.get(`http://localhost:3001/temp/${emploi.emplois}`, {
+        responseType: 'blob' // Set response type to blob
+      });
+  
+      // Create a blob from the image data
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+  
+      // Create a URL for the blob
+      const imageUrl = window.URL.createObjectURL(blob);
+  
+      // Create a link element
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.download = 'emploi.jpg'; // Set the file name
+  
+      // Append the link to the body
+      document.body.appendChild(link);
+  
+      // Click the link to trigger the download
+      link.click();
+  
+      // Remove the link from the body
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+    }
+  };
+  
+  
+  
 
    return (
     <div className="col-lg-6 col-sm-6 mt-sm-0 mt-4">
       <div className="grids5-info">
         <a href={emploi.emplois} target="_blank" rel="noopener noreferrer">
-         <img src={`http://localhost:3001/emplois/${emploi.emplois}`} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+         <img  href={`http://localhost:3001/temp/${emploi.emplois}`} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
         </a>
         <div className="blog-info">
-          <h5>Titre:{emploi.titre}</h5>
+          <h5>{emploi.titre}</h5>
           <br/>
-          <h4><a href={emploi.emplois} src={`http://localhost:3001/emplois/${emploi.emplois}`}>Voir l'image</a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
+          <h4><a href={`http://localhost:3001/temp/${emploi.emplois}`} src={`http://localhost:3001/temp/${emploi.emplois}`}>Voir l'emplois de temps </a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
+          <button onClick={handleDownload}>Télécharger l'image</button> {/* Ajouter un bouton pour télécharger l'image */}
+
           <p>Description: {emploi.description} </p>
           <p>Type de cours: {emploi.typedecour}</p>
         </div>
@@ -27,22 +65,29 @@ function EmploiDuTemps({ emploi }) {
  function Emplois() {
   const [emplois, setEmplois] = useState([]);
   const [error, setError] = useState(null);
+  const [emploisPresentiels, setEmploisPresentiels] = useState([]);
+  const [emploisEnLigne, setEmploisEnLigne] = useState([]);
+  
 
   useEffect(() => {
     axios.get('http://localhost:3001/emplois')
       .then(response => {
         if (Array.isArray(response.data)) {
           setEmplois(response.data);
+          // Séparer les emplois selon leur type de cours
+          const presentiels = response.data.filter(emploi => emploi.typedecour === 'Présentiel');
+          const enLigne = response.data.filter(emploi => emploi.typedecour === 'En ligne');
+          setEmploisPresentiels(presentiels);
+          setEmploisEnLigne(enLigne);
         } else {
           setError('La réponse du serveur n\'est pas un tableau JSON.');
         }
-
       })
       .catch(error => {
         setError('Erreur lors de la récupération des emplois du temps: ' + error.message);
       });
-      
   }, []);
+  
 
   return (
     <div>
@@ -120,17 +165,48 @@ function EmploiDuTemps({ emploi }) {
               <p className="sub-title mt-2"><strong>Yalla Digital Academy</strong>  s'engage à fournir régulièrement des emplois du temps actualisés à chaque semestre pour ses étudiants,
                 ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
             </div>
-            <div className="row mt-sm-5 pt-lg-2">
-              {emplois.map((emploi, index) => (
-                <EmploiDuTemps
-                  key={index}
-                  emploi={emploi} 
-                  titre={emploi.titre}
-                  description={emploi.description}
-                  typedecour={emploi.typedecour}
-                />
-              ))}
-            </div>
+            <div>
+      {/* Render section for présentiel */}
+      <section className="section-presentiels">
+        <h2>Emplois du temps en présentiel</h2>
+        <br/>
+        <br/>
+        <div className="container">
+          <div className="row">
+            {emploisPresentiels.map((emploi, index) => (
+              <EmploiDuTemps
+                key={index}
+                emploi={emploi} 
+                titre={emploi.titre}
+                description={emploi.description}
+                typedecour={emploi.typedecour}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Render section for en ligne */}
+      <br/>
+      <br/>
+      <section className="section-en-ligne">
+        <h2>Emplois du temps en ligne</h2>
+        <br/>
+        <div className="container">
+          <div className="row">
+            {emploisEnLigne.map((emploi, index) => (
+              <EmploiDuTemps
+                key={index}
+                emploi={emploi} 
+                titre={emploi.titre}
+                description={emploi.description}
+                typedecour={emploi.typedecour}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
           </div>
         </section>
       </div>

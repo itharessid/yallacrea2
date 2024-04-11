@@ -117,7 +117,7 @@ function Editemplois() {
     >
         <option value="">Sélectionnez le type de cours</option>
         <option value="Présentiel">Cours Présentiel</option>
-        <option value="enligne">Cours en ligne</option>
+        <option value="En ligne">Cours en ligne</option>
     </select>
 </div>
                             <div className="form-group">
