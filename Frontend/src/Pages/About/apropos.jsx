@@ -85,7 +85,7 @@ function apropos() {
             <div className="container">
                 <div className="row top-cont-grid align-items-center">
                     <div className="col-lg-6 left-img pr-lg-4">
-                        <img src="assets/images/about.jpg" alt="" class="img-responsive img-fluid" />
+                        <img src="src/assets/images/nou.jpg" alt="" class="img-responsive img-fluid" />
                     </div>
                     <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
                         <h6>QUI SOMMES NOUS ?</h6>
