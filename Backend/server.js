@@ -5,14 +5,19 @@ const mydb = require('./Config/db');
 const rout = require("./routes/route");
 const textRouter = require('./Controllers/texte'); // Importez le routeur text
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
-const emploiRouter=require('./Controllers/emplois')
 const calendrierRouter = require('./Controllers/calendrier');
 const etudiantRouter=require('./Controllers/etudiant')
 const expertRouter=require('./Controllers/expertcontrolllers.js')
 const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 const domaineRouter=require('./Controllers/domaines.js');
 const createurRouter=require('./Controllers/createurs.js');
-const emploisRouter =require('./Controllers/emplois.js');
+const preInscriCreaRouter=require('./Controllers/preInscriptionCrea.js');
+const preInscriEtudRouter=require('./Controllers/preInscriptionEtud.js');
+const sendEmailEtudRouter=require('./Controllers/sendEmailEtud.js');
+const sendEmailCreaRouter=require('./Controllers/sendEmailEtud.js');
+const refusEmailCreaRouter=require('./Controllers/refutationEmailCrea.js');
+const refusEmailEtudRouter=require('./Controllers/refutationEmailEtud.js');
+const eventsRouter=require('./Controllers/evenement.js');
 
 const app = express();
 app.use(cors());
@@ -30,10 +35,13 @@ app.use('/photo', express.static('../frontend/public/photo'));
 app.use(domaineRouter);
 app.use(createurRouter);
 app.use(domaineRouter);
-app.use(emploisRouter);
-app.use(emploiRouter); // Utilisez le routeur image dans votre application
-app.use('/temp', express.static('../frontend/public/temps'));
-
+app.use(preInscriCreaRouter);
+app.use(preInscriEtudRouter);
+app.use(sendEmailCreaRouter);
+app.use(sendEmailEtudRouter);
+app.use(refusEmailCreaRouter);
+app.use(refusEmailEtudRouter);
+app.use(eventsRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {

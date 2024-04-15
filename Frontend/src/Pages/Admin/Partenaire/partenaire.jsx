@@ -67,10 +67,10 @@ function Partenaire() {
                         <div className="card-box-Etud height-100-p widget-style1">
                             <div className="d-flex flex-wrap align-items-center">
                                 <div className="widget-data">
-                                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Partenaire</div>
+                                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Partenaires</div>
                                     <div className="h6 mb-0 text-center">{nombrePartenaires}</div> {/* Afficher le nombre de partenaires */}
                                 </div>
-                                <img src="src/assets/images/createurs.png" alt="" style={{ marginLeft: '40px' }} />
+                                <img src="src/assets/images/partenaire.png" alt="" style={{ marginLeft: '40px' }} />
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ function UtilisateurDropDown({ isOpen, toggleDropdown }) {
       <div className={`dropdown ${isOpen ? 'show' : ''}`}>
         <div className="dropdown-toggle" onClick={toggleDropdown} role="button">
         <span className="user-icon" style={{ display: 'inline-block', width: '50px', height: '50px', overflow: 'hidden' }}>
-        <img src="src/assets/images/wajdi.jpg" alt="" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+        <img src="src/assets/images/wajdi.jpg" alt="" className="circle-image" />
         </span>
 
           <span className="user-name">Wajdi Chabbane</span>

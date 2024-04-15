@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './dataTables.bootstrap4.min.css';
 import './responsive.bootstrap4.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPerson, faBook,faGlobe, faBuilding, faCalendarAlt,faHandshakeAlt,faUsers,faRunning, faTable } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPerson, faBook,faGlobe, faBuilding, faCalendarAlt,faHandshakeAlt,faUsers,faRunning, faTable,faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import './sidbar.css';
 import { Link } from 'react-router-dom';
 
@@ -38,6 +38,7 @@ function Adminsidbar() {
         </div>
       </div>
       <div className="left-side-bar">
+      <div className="left-side-bar customscroll">
         <div className="brand-logo">
           <Link to="/sidbar">
             <img src="src/assets/images/yallalogo.png" alt="" className="yalla" />
@@ -100,14 +101,26 @@ function Adminsidbar() {
               <li>
                 <Link to="/partenaire" className="dropdown-toggle no-arrow">
                   <FontAwesomeIcon icon={faUsers} />{' '}
-                  <span className="mtext">Partenaire</span>
+                  <span className="mtext">Partenaires</span>
                 </Link>
               </li>
-             
+              <li>
+                <Link to="/preInscriptionEtud" className="dropdown-toggle no-arrow">
+                  <FontAwesomeIcon icon={faUserPlus} />{' '}
+                  <span className="mtext">Pré-inscription des étudiants</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/preInscriptionCrea" className="dropdown-toggle no-arrow">
+                  <FontAwesomeIcon icon={faUserPlus} />{' '}
+                  <span className="mtext">Pré-inscription des créateurs</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

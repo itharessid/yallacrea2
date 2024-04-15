@@ -1,14 +1,49 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Adminsidbar from "../Sidbar/Adminsidbar";
+import { Link } from 'react-router-dom';
 
 function NouveauEvent() {
     const [selectedDate, setSelectedDate] = useState(null);
+    const [titre, setTitre] = useState("");
+    const [description, setDescription] = useState("");
+    const [lienphotos, setLienphotos] = useState("");
+    const [lienvideo, setLienvideo] = useState("");
+    const [file, setFile] = useState(null);
+    const [dateevent,setDateevent] = useState(null); // Utilisez null comme valeur initiale
+
     const inputStyle = {
         fontWeight: 'bold',
     };
 
+    const handleFile = (e) => {
+        setFile(e.target.files[0]);
+    }
+
+    const handleUpload = () => {
+        const formData = new FormData();
+        formData.append("photo", file);
+        formData.append("titre", titre);
+        formData.append("description", description);
+        formData.append("lienphotos", lienphotos);
+        formData.append("lienvideo", lienvideo);
+    // Convertir la date en format ISO avec le décalage horaire correct
+    const dateEventValue = dateevent ? new Date(dateevent.getTime() - dateevent.getTimezoneOffset() * 60000).toISOString().split('T')[0] : null;
+    formData.append("dateevent", dateEventValue);// Assurez-vous de convertir la date au format ISO si elle est sélectionnée
+
+        axios.post('http://localhost:3001/evenements', formData)
+            .then(res => {
+                if (res.data.message === "Données insérées avec succès") {
+                    console.log("Successed");
+                } else {
+                    console.log("Failed");
+                }
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <>
             <Adminsidbar />
@@ -25,7 +60,7 @@ function NouveauEvent() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Titre:</label>
-                                                        <input type="text" className="form-control" style={inputStyle} required />
+                                                        <input type="text" className="form-control" style={inputStyle} required value={titre} onChange={(e) => setTitre(e.target.value)}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -33,7 +68,7 @@ function NouveauEvent() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Description:</label>
-                                                        <textarea className="form-control" required></textarea>
+                                                        <textarea className="form-control"required value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
@@ -45,7 +80,7 @@ function NouveauEvent() {
                                                             <div className="text">
                                                                 <span>Cliquez pour télécharger l'image</span>
                                                             </div>
-                                                            <input type="file" id="file" />
+                                                            <input type="file" id="file" name="photo" onChange={handleFile} />
                                                         </label>
                                                     </div>
                                                 </div>
@@ -54,13 +89,13 @@ function NouveauEvent() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Lien des photos:</label>
-                                                        <input type="text" className="form-control" />
+                                                        <input type="text" className="form-control" value={lienphotos} onChange={(e) => setLienphotos(e.target.value)}/>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Lien du vidéo:</label>
-                                                        <input type="text" className="form-control" />
+                                                        <input type="text" className="form-control" value={lienvideo} onChange={(e) => setLienvideo(e.target.value)} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,9 +105,11 @@ function NouveauEvent() {
                                                         <label>Date de l'évènement:</label>
                                                         <DatePicker
                                                             className="form-control date-picker"
-                                                            selected={selectedDate}
-                                                            onChange={date => setSelectedDate(date)}
-                                                            placeholderText="Select Date"
+                                                            selected={dateevent}
+                                                            onChange={date => setDateevent(date)}
+                                                            dateFormat="dd/MM/yyyy" // Format de date jj/mm/année
+                                                            placeholderText="Sélectionner une date"
+                                                            name="dateevent"
                                                             required
                                                         />
                                                     </div>
@@ -81,7 +118,7 @@ function NouveauEvent() {
                                             <div className="row justify-content-center">
                                                 <div className="col-md-6">
                                                     <div className="form-group text-center">
-                                                        <button className="btn-purple">Ajouter</button>
+                                                    <Link to="/evenements" onClick={handleUpload} className="btn btn-primary" style={{ backgroundColor: 'purple' }}> Ajouter</Link> 
                                                     </div>
                                                 </div>
                                             </div>

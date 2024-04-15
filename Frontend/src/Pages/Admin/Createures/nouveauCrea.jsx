@@ -129,7 +129,7 @@ const handleUpload = () => {
                                                 <label>Anniversaire:</label>
                                                 <hr/>
                                                 <DatePicker
-                                                className="form-control date-picker"
+                                                className="form-control date-picker anniversaire"
                                                 selected={anniversaire}
                                                 onChange={(date) => setAnniversaire(date)}
                                                 dateFormat="dd/MM/yyyy" // Format de date jj/mm/année

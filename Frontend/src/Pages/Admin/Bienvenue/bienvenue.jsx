@@ -6,6 +6,20 @@ function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
   const [etudiantsCount, setEtudiantsCount] = useState(0);
   const [domainesCount, setDomainesCount] = useState(0);
+  const [expertCount, setExpertCount] = useState(0);
+  const [partenaireCount, setPartenaireCount] = useState(0);
+  const [pEtudCount, setPEtudCount] = useState(0);
+  const [pCreaCount, setPCreaCount] = useState(0);
+  const [eventsCount, setEventsCount] = useState(0);
+  const imageStyle = {
+    width: '250px',  // Ajustez la taille de l'image si nécessaire
+    height: '180px',
+    borderRadius: '-200%',  // Définit la forme de l'image comme un cercle
+    objectFit: 'cover',  // Ajuste la taille de l'image pour couvrir le cercle
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)'  // Ajoute une ombre autour de l'image
+};
+
+
 
   useEffect(() => {
     fetchData();
@@ -21,6 +35,23 @@ function Bienvenue() {
 
       const domainesResult = await axios.get("http://localhost:3001/domaine");
       setDomainesCount(domainesResult.data.length);
+
+      const preEtudResult = await axios.get("http://localhost:3001/preinscriEtudiant");
+      setPEtudCount(preEtudResult.data.length);
+
+      const preCreaResult = await axios.get("http://localhost:3001/preinscriCrea");
+      setPCreaCount(preCreaResult.data.length);
+
+      const expertResult = await axios.get("http://localhost:3001/experget");
+      setExpertCount(expertResult.data.length);
+
+      const partenaireResult = await axios.get("http://localhost:3001/partenaireget");
+      setPartenaireCount(partenaireResult.data.length);
+
+      const eventsResult = await axios.get("http://localhost:3001/evenements");
+      setEventsCount(eventsResult.data.length);
+
+
     } catch (err) {
       console.log("Quelque chose s'est mal passé lors de la récupération des données :", err);
     }
@@ -34,7 +65,7 @@ function Bienvenue() {
           <div className="card-box pd-10 mb-30">
             <div className="row align-items-center">
               <div className="col-md-3 d-flex justify-content-center">
-                <img src="src/assets/images/wajdi.jpg" alt="" />
+                <img src="src/assets/images/wajdi.jpg" alt="" style={imageStyle}/>
               </div>
               <div className="col-md-9">
                 <h4 className="font-18 mb-10 text-capitalize">
@@ -46,6 +77,28 @@ function Bienvenue() {
           </div>
 
           <div className="row">
+          <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
+                <div className="d-flex flex-wrap align-items-center">
+                  <div className="widget-data">
+                    <div className="weight-600 font-14 text-center text-nowrap">Etudiants</div>
+                    <div className="h6 mb-0 text-center">{etudiantsCount}</div>
+                  </div>
+                  <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
+                <div className="d-flex flex-wrap align-items-center">
+                  <div className="widget-data">
+                    <div className="weight-600 font-14 text-center text-nowrap">Domaines</div>
+                    <div className="h6 mb-0 text-center">{domainesCount}</div>
+                  </div>
+                  <img src="src/assets/images/domaines.png" alt="" style={{marginLeft: '40px'}}/>
+                </div>
+              </div>
+            </div>
             <div className="col-xl-3 mb-20">
               <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
@@ -58,14 +111,16 @@ function Bienvenue() {
               </div>
             </div>
 
+            <div className="row">
+            </div>
             <div className="col-xl-3 mb-20">
               <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Etudiants</div>
-                    <div className="h6 mb-0 text-center">{etudiantsCount}</div>
+                    <div className="weight-600 font-14 text-center text-nowrap">Évènements</div>
+                    <div className="h6 mb-0 text-center">{eventsCount}</div>
                   </div>
-                  <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
+                  <img src="src/assets/images/évènement.png" alt="" style={{marginLeft: '40px'}}/>
                 </div>
               </div>
             </div>
@@ -74,62 +129,50 @@ function Bienvenue() {
               <div className="card-box-Etud height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Domaine</div>
-                    <div className="h6 mb-0 text-center">{domainesCount}</div>
+                    <div className="weight-600 font-14 text-center text-nowrap">Experts</div>
+                    <div className="h6 mb-0 text-center">{expertCount}</div>
                   </div>
-                  <img src="src/assets/images/domaines.png" alt="" style={{marginLeft: '40px'}}/>
+                  <img src="src/assets/images/experts.png" alt="" style={{marginLeft: '40px'}}/>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 mb-20">
+              <div className="card-box-Etud height-100-p widget-style1">
+                <div className="d-flex flex-wrap align-items-center">
+                  <div className="widget-data">
+                    <div className="weight-600 font-14 text-center text-nowrap">Partenaires</div>
+                    <div className="h6 mb-0 text-center">{partenaireCount}</div>
+                  </div>
+                  <img src="src/assets/images/partenaire.png" alt="" style={{marginLeft: '40px'}}/>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
+            <div className="col-xl-4 col-lg-5 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Facebook</div>
-                    <div className="h6 mb-0 text-center">54.000</div>
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des étudiants</div>
+                    <div className="h6 mb-0 text-center">{pEtudCount}</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
+            <div className="col-xl-4 col-lg-5 col-md-4 md-20">
               <div className="card-box height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Instagram</div>
-                    <div className="h6 mb-0 text-center">10.000</div>
+                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des créateurs</div>
+                    <div className="h6 mb-0 text-center">{pCreaCount}</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
-              <div className="card-box height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur TikTok</div>
-                    <div className="h6 mb-0 text-center">20.000</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-4 col-lg-4 col-md-4 md-20">
-              <div className="card-box height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Suivie sur Youtube</div>
-                    <div className="h6 mb-0 text-center">5.000</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>

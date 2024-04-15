@@ -1,5 +1,8 @@
 @charset "utf-8";
-
+.customscroll {
+	height: calc(100vh - 100px); /* Set the height of the sidebar */
+	overflow-y: auto; /* Enable vertical scrolling */
+  }
 html {
 	-webkit-text-size-adjust: none; /* Prevent font scaling in landscape */
 	width: 100%;
@@ -1051,6 +1054,21 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 	-moz-border-radius: -10px;
 	border-radius: -10px;
 }
+.user-icon {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%; /* Définit la forme du conteneur comme un cercle */
+}
+
+.circle-image {
+    width: 100px; /* Ajustez la taille de l'image si nécessaire */
+    height: 100px;
+    object-fit: cover;
+}
+
 .user-info-dropdown .dropdown-toggle .user-name{
 	font-weight: 500;
 	display: inline-block;
@@ -1310,7 +1328,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 }
 .sidebar-menu .dropdown-toggle{
 	display: block;
-	padding: 18px 15px 18px 67px;
+	padding: 18px 15px 18px 20px;
 	font-size: 16px;
 	color: #ffffff;
 	font-weight: 300;
