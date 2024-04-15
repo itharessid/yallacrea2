@@ -16,12 +16,13 @@ function Contact() {
       })
       .then(
         () => {
+ // Message envoyé avec succès
           console.log('Message envoyé avec succes!');
-          setMessageSent(true); // Mettre à jour l'état pour afficher le message de confirmation
         },
         (error) => {
-          console.log('Error', error.text);
-        },
+// Erreur lors de l'envoi du message
+console.log('Error', error.text);
+window.alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');        },
       );}
   return (
     <div>
