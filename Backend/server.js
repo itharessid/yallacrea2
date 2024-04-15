@@ -11,6 +11,13 @@ const expertRouter=require('./Controllers/expertcontrolllers.js')
 const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 const domaineRouter=require('./Controllers/domaines.js');
 const createurRouter=require('./Controllers/createurs.js');
+const preInscriCreaRouter=require('./Controllers/preInscriptionCrea.js');
+const preInscriEtudRouter=require('./Controllers/preInscriptionEtud.js');
+const sendEmailEtudRouter=require('./Controllers/sendEmailEtud.js');
+const sendEmailCreaRouter=require('./Controllers/sendEmailEtud.js');
+const refusEmailCreaRouter=require('./Controllers/refutationEmailCrea.js');
+const refusEmailEtudRouter=require('./Controllers/refutationEmailEtud.js');
+const eventsRouter=require('./Controllers/evenement.js');
 
 const app = express();
 app.use(cors());
@@ -28,6 +35,13 @@ app.use('/photo', express.static('../frontend/public/photo'));
 app.use(domaineRouter);
 app.use(createurRouter);
 app.use(domaineRouter);
+app.use(preInscriCreaRouter);
+app.use(preInscriEtudRouter);
+app.use(sendEmailCreaRouter);
+app.use(sendEmailEtudRouter);
+app.use(refusEmailCreaRouter);
+app.use(refusEmailEtudRouter);
+app.use(eventsRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {

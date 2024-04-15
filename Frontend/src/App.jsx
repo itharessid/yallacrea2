@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css'
 
+import PreInscriptionEtud from './Pages/Admin/PreInscriptions/preInscriptionEtud.jsx';
+import PreInscriptionCrea from './Pages/Admin/PreInscriptions/preInscriptionsCrea.jsx';
 import About from './Pages/About/apropos';
 import Partencop from './Pages/About/partencop.jsx';
 
@@ -114,6 +116,9 @@ function App() {
         <Route path="/domaines" element={<Domaines/>} /> 
         <Route path="/NDomaine" element={<NDomaine/>} /> 
         <Route path="/uploadE" element={<Emploiup/>} /> 
+        <Route path="/preInscriptionEtud" element={<PreInscriptionEtud/>} /> 
+        <Route path="/preInscriptionCrea" element={<PreInscriptionCrea/>} /> 
+
          </Routes>
          </BrowserRouter>
          </>
