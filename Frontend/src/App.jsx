@@ -13,6 +13,7 @@ import Formation from './Pages/Formation/formation';
 import Createur  from './Pages/Createur/createur';
 import Acceler from'./Pages/Accelere/accelere';
 import Complet  from './Pages/CourComplet/complet.jsx';
+import Video from './Pages/lesprofile/video.jsx';
 
 import Sidbar from './Pages/Admin/Sidbar/Adminsidbar.jsx';
 import Dashbord from './Pages/Admin/dashbord';
@@ -50,9 +51,6 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
 import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
 import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
-import PreInscriptionEtud from './Pages/Admin/PreInscriptions/preInscriptionEtud.jsx';
-import PreInscriptionCrea from './Pages/Admin/PreInscriptions/preInscriptionsCrea.jsx';
-
 
 
 
@@ -79,7 +77,9 @@ function App() {
         <Route path="/profiluser" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
         <Route path="/video" element={<Videouser />}/>
+        <Route path="/afvideo" element={<Video />}/>
         <Route path="/emploi" element={<Emplois/>}/>
+
 
 
       
@@ -114,9 +114,6 @@ function App() {
         <Route path="/domaines" element={<Domaines/>} /> 
         <Route path="/NDomaine" element={<NDomaine/>} /> 
         <Route path="/uploadE" element={<Emploiup/>} /> 
-        <Route path="/preInscriptionEtud" element={<PreInscriptionEtud/>}/>
-        <Route path="/preInscriptionCrea" element={<PreInscriptionCrea/>}/>
-        <Route path="/evenements/:id"  element={<Evenements/>}/>
          </Routes>
          </BrowserRouter>
          </>

@@ -65,6 +65,14 @@ body {
 .w3l-teams-32-main {
     background-color: white;
 }
+.left-wthree-img video {
+    display: none;
+}
+.max-img {
+    max-width: 10%; /* Set the maximum width */
+    height: 100px; /* Maintain aspect ratio */
+}
+
 
 
 

@@ -1,31 +1,94 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 
-// Définir un composant pour un emploi du temps individuel
-function EmploiDuTemps({ imageSrc, titre, description, pdfUrl }) {
-  const handleDownload = () => {
-    window.open(pdfUrl, '_blank');
+function EmploiDuTemps({ emploi }) {
+  const [showImage, setShowImage] = useState(false);
+  
+  const handleToggleImage = () => {
+    setShowImage(!showImage);
   };
 
-  return (
+  const handleDownload = async () => {
+    try {
+      // Fetch the image data
+      const response = await axios.get(`http://localhost:3001/temp/${emploi.emplois}`, {
+        responseType: 'blob' // Set response type to blob
+      });
+  
+      // Create a blob from the image data
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+  
+      // Create a URL for the blob
+      const imageUrl = window.URL.createObjectURL(blob);
+  
+      // Create a link element
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.download = 'emploi.jpg'; // Set the file name
+  
+      // Append the link to the body
+      document.body.appendChild(link);
+  
+      // Click the link to trigger the download
+      link.click();
+  
+      // Remove the link from the body
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+    }
+  };
+  
+  
+  
+
+   return (
     <div className="col-lg-6 col-sm-6 mt-sm-0 mt-4">
       <div className="grids5-info">
-        <a href="#blog" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <img src={imageSrc} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        <a href={emploi.emplois} target="_blank" rel="noopener noreferrer">
+         <img  href={`http://localhost:3001/temp/${emploi.emplois}`} alt="" style={{ maxWidth: '100%', maxHeight: '100%' }} />
         </a>
         <div className="blog-info">
-          <h5>Titre: {titre}</h5>
+          <h5>{emploi.titre}</h5>
           <br/>
-          <h4><a href="#blog">Lien vers le blog</a></h4>
-          <p>Description: {description}</p>
-          <button onClick={handleDownload}>Télécharger en PDF</button>
+          <h4><a href={`http://localhost:3001/temp/${emploi.emplois}`} src={`http://localhost:3001/temp/${emploi.emplois}`}>Voir l'emplois de temps </a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
+          <button onClick={handleDownload}>Télécharger l'image</button> {/* Ajouter un bouton pour télécharger l'image */}
+
+          <p>Description: {emploi.description} </p>
+          <p>Type de cours: {emploi.typedecour}</p>
         </div>
       </div>
     </div>
   );
-}
+ }
+ function Emplois() {
+  const [emplois, setEmplois] = useState([]);
+  const [error, setError] = useState(null);
+  const [emploisPresentiels, setEmploisPresentiels] = useState([]);
+  const [emploisEnLigne, setEmploisEnLigne] = useState([]);
+  
 
-function Emplois() {
+  useEffect(() => {
+    axios.get('http://localhost:3001/emplois')
+      .then(response => {
+        if (Array.isArray(response.data)) {
+          setEmplois(response.data);
+          // Séparer les emplois selon leur type de cours
+          const presentiels = response.data.filter(emploi => emploi.typedecour === 'Présentiel');
+          const enLigne = response.data.filter(emploi => emploi.typedecour === 'En ligne');
+          setEmploisPresentiels(presentiels);
+          setEmploisEnLigne(enLigne);
+        } else {
+          setError('La réponse du serveur n\'est pas un tableau JSON.');
+        }
+      })
+      .catch(error => {
+        setError('Erreur lors de la récupération des emplois du temps: ' + error.message);
+      });
+  }, []);
+  
+
   return (
     <div>
       <header id="site-header" className="fixed-top">
@@ -82,7 +145,7 @@ function Emplois() {
           </nav>
         </div>
       </header>
-
+    
       <div className="inner-banner">
         <section className="w3l-breadcrumb">
           <div className="container">
@@ -93,8 +156,7 @@ function Emplois() {
             </ul>
           </div>
         </section>
-      </div>
-
+      </div>  
       <div className="w3l-grids-block-5 py-5">
         <section id="grids5-block" className="pt-md-4 pb-md-5 py-4 mb-5">
           <div className="container">
@@ -103,21 +165,48 @@ function Emplois() {
               <p className="sub-title mt-2"><strong>Yalla Digital Academy</strong>  s'engage à fournir régulièrement des emplois du temps actualisés à chaque semestre pour ses étudiants,
                 ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
             </div>
-            <div className="row mt-sm-5 pt-lg-2">
+            <div>
+      {/* Render section for présentiel */}
+      <section className="section-presentiels">
+        <h2>Emplois du temps en présentiel</h2>
+        <br/>
+        <br/>
+        <div className="container">
+          <div className="row">
+            {emploisPresentiels.map((emploi, index) => (
               <EmploiDuTemps
-                imageSrc="src/assets/images/emploi.png"
-                titre="cour présentielle"
-                description="Emploi de Temps Semestre 2 - AU 2023-2024 _ Version finale (le 04.03.2024)"
-                pdfUrl="lien_vers_le_fichier_pdf"
+                key={index}
+                emploi={emploi} 
+                titre={emploi.titre}
+                description={emploi.description}
+                typedecour={emploi.typedecour}
               />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Render section for en ligne */}
+      <br/>
+      <br/>
+      <section className="section-en-ligne">
+        <h2>Emplois du temps en ligne</h2>
+        <br/>
+        <div className="container">
+          <div className="row">
+            {emploisEnLigne.map((emploi, index) => (
               <EmploiDuTemps
-                imageSrc="src/assets/images/emploi.png"
-                titre="cour en ligne"
-                description="Yalla Digital Academy encourage sans cesse de nouvelles opportunités d'apprentissage pour ses étudiants, nécessitant une pédagogie innovante de ses enseignants. En tant que partenaire officiel de Coursera, l'école mobilise son équipe pédagogique vers une culture numérique axée sur l'innovation grâce à la plateforme Coursera."
-                pdfUrl="lien_vers_le_fichier_pdf"
+                key={index}
+                emploi={emploi} 
+                titre={emploi.titre}
+                description={emploi.description}
+                typedecour={emploi.typedecour}
               />
-              {/* Ajoutez d'autres emplois du temps ici si nécessaire */}
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
           </div>
         </section>
       </div>

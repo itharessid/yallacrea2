@@ -1,78 +1,85 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import { Link } from 'react-router-dom';
-
+import { faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
-
-function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete }) {
-    return (
-      showDeleteConfirmation && (
-        <div className="cardconfirmation-dialog">
-          <div className="card-body confirmation-dialog-content">
-            <p>Êtes-vous sûr de vouloir supprimer cet créateur ?</p>
-            <div className="confirmation-buttons">
-              {/* Bouton de confirmation */}
-              <button onClick={handleConfirmDelete} className="confirm-button">
-                Oui
-              </button>
-              {/* Bouton d'annulation */}
-              <button onClick={handleCancelDelete} className="cancel-button">
-                Non
-              </button>
-            </div>
-          </div>
-        </div>
-      )
-    );
-  }
-
 
 function emploiup() {
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [blurBackground, setBlurBackground] = useState(false);
 
-  // Fonction pour afficher la boîte de dialogue de confirmation de suppression
-  const handleDeleteClick = () => {
+  const [emplois, setEmplois] = useState([]);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [createurToDelete, setCreateurToDelete] = useState(null);
+  const [blurBackground, setBlurBackground] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleDeleteClick = (emploi) => {
+    setCreateurToDelete(emploi);
     setShowDeleteConfirmation(true);
     setBlurBackground(true);
   };
 
-  // Fonction pour masquer la boîte de dialogue de confirmation de suppression
   const handleCancelDelete = () => {
     setShowDeleteConfirmation(false);
     setBlurBackground(false);
+    setCreateurToDelete(null);
   };
 
-  // Fonction pour traiter la suppression réelle
   const handleConfirmDelete = () => {
-    // Mettez ici la logique de suppression
-    // Après la suppression réussie, vous pouvez rediriger ou effectuer toute autre action nécessaire
-    setShowDeleteConfirmation(false);
-    setBlurBackground(false);
+    axios.delete(`http://localhost:3001/emplois/${createurToDelete.idEmplois}`)
+      .then(res => {
+        fetchEmplois(); // Mettre à jour la liste des emplois après la suppression
+        setShowDeleteConfirmation(false);
+        setBlurBackground(false);
+        setCreateurToDelete(null);
+      })
+      .catch(err => {
+        console.error("Erreur lors de la suppression de l'emploi :", err);
+        // Gérer les erreurs de suppression ici
+      });
   };
-  return (
-   <>    
-    <Adminsidbar/>
-    <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
-        <div className="row">
-        <div className="col-xl-3 mb-20">
-     <div className="card-box-Etud height-100-p widget-style1">
-    <div className="d-flex flex-wrap align-items-center">
-      <div className="widget-data">
-        <div className="weight-600 font-14 text-purple text-center text-nowrap">emplois du temps</div>
-        <div className="h6 mb-0 text-center">40</div>
-      </div>
-      <img src="src/assets/images/evenement.png" alt="" style={{ width: '40px',  marginLeft: '40px',height: '40px'}} />
-    </div>
-  </div>
-</div>
 
+  const fetchEmplois = () => {
+    axios.get('http://localhost:3001/emplois')
+      .then(res => {
+        setEmplois(res.data);
+      })
+      .catch(err => {
+        console.error("Erreur lors de la récupération des emplois :", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchEmplois();
+  }, []);
+
+  const filteredEmplois = emplois.filter((emploi) => {
+    // Filtrer les emplois en fonction du terme de recherche dans le titre ou la description
+    return (
+      emploi.titre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      emploi.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+
+  return (
+    <>    
+      <Adminsidbar/>
+      
+      <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
+        <div className="row">
+          {/* Votre code pour la section de statistiques */}
         </div>
         <div className="DataTables_Table_2_filter">
-          <label style={{ marginRight: '10px' }}>Rechercher:<input type="search" className="form-control form-control-sm" placeholder="Trouver un créateur" aria-controls="DataTables_Table_2" /></label>
+          <label style={{ marginRight: '10px' }}>Rechercher:<input
+            type="search"
+            className="form-control form-control-sm"
+            placeholder="Trouver  l'emplois"
+            aria-controls="DataTables_Table_2"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          /></label>
           <button className="button1" style={{ marginLeft: '10px' }}>
-            <Link to="/nouveauCrea" className="dropdown-toggle">
+            <Link to="/nvemplois" className="dropdown-toggle">
               <span className="mtext">Nouveau</span>
             </Link>
           </button>
@@ -85,61 +92,48 @@ function emploiup() {
             <table className="table hover multiple-select-row data-table-export nowrap">
               <thead>
                 <tr>
-                  <th className="table-plus datatable-nosort text-purple">Image</th>
-                  <th className="text-purple">lien</th>
+                  <th className="table-plus datatable-nosort text-purple">emplois</th>
+                  <th className="text-purple">titre</th>
                   <th className="text-purple">description</th>
-                  <th className="text-purple">Description</th>
-
+                  <th className="text-purple">type de cour</th>
+                  <th className="text-purple">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="table-plus">ELFEKIH</td>
-                  <td>Ons</td>
-                  <td>elfekihons@gmail.com</td>
-                 
-                  <td>
-                    <button className="button1">
-                      <Link to="/profilCrea" className="dropdown-toggle">
-                        <FontAwesomeIcon icon={faEye} />
-                      </Link>
-                    </button>
-                    <button className="button2" onClick={handleDeleteClick}>
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="table-plus">ESSID</td>
-                  <td>Ithar</td>
-                  <td>ithar333@gmail.com</td>
-                  
-                  <td>
-                    <button className="button1">
-                      <Link to="/profilCrea" className="dropdown-toggle">
-                        <FontAwesomeIcon icon={faEye} />
-                      </Link>
-                    </button>
-                    <button className="button2" onClick={handleDeleteClick}>
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </td>
-                </tr>
+                {filteredEmplois.map((emploi) => (
+                  <tr key={emploi.idEmplois}>
+                    <td className="table-plus">{emploi.emplois}</td>
+                    <td>{emploi.titre}</td>
+                    <td>{emploi.description}</td>
+                    <td>{emploi.typedecour}</td>
+                    <td>
+                      <button className="button1">
+                        <Link to={`/editemplois/${emploi.idEmplois}`} className="dropdown-toggle">
+                          <FontAwesomeIcon icon={faEye} />
+                        </Link>
+                      </button>
+                      <button className="button2" onClick={() => handleDeleteClick(emploi)}>
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
+          
         </div>
-        {/* Boîte de dialogue de confirmation */}
-        {showDeleteConfirmation && (
+        {/* Confirmation de la suppression */}
+        
+      </div>
+      {showDeleteConfirmation && (
           <div className="cardconfirmation-dialog">
             <div className="card-body confirmation-dialog-content">
-              <p>Êtes-vous sûr de vouloir supprimer cet emploi?</p>
+              <p>Êtes-vous sûr de vouloir supprimer {createurToDelete.titre}  ?</p>
               <div className="confirmation-buttons">
-                {/* Bouton de confirmation */}
                 <button onClick={handleConfirmDelete} className="confirm-button">
                   Oui
                 </button>
-                {/* Bouton d'annulation */}
                 <button onClick={handleCancelDelete} className="cancel-button">
                   Non
                 </button>
@@ -147,10 +141,8 @@ function emploiup() {
             </div>
           </div>
         )}
-      </div>
-
-</>
-  )
+    </>
+  );
 }
 
-export default emploiup
+export default emploiup;

@@ -6,16 +6,16 @@ const db = require('../Config/db');
 
 // Configuration du stockage des images avec Multer
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+     destination: function (req, file, cb) {
         // Utilisez path.resolve pour obtenir un chemin absolu
         cb(null, '../frontend/public/photo'); // Utilisez le chemin relatif pour sortir du dossier backend
-    },
-    filename: function (req, file, cb) {
+     },
+     filename: function (req, file, cb) {
         // Modifier la logique pour enregistrer seulement le nom de fichier sans l'extension
         const ext = path.extname(file.originalname);
         const fileName = `${file.fieldname}_${Date.now()}${ext}`;
         cb(null, fileName);
-    }
+     }
 });
 
 // Initialisation de Multer avec la configuration de stockage

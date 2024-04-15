@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Application } from '@splinetool/runtime';
 import './acceuil.css';
 import { Dropdown } from 'react-bootstrap';
+import ReactPlayer from 'react-player';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import ExpertComp from './expertComp'; // Importez le composant expertComp
@@ -10,6 +12,8 @@ import ExpertComp from './expertComp'; // Importez le composant expertComp
 
 function acceuil() {
   const canvasRef = useRef(null);
+
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -107,23 +111,28 @@ function acceuil() {
       </div>
     </section>
     <section className="w3l-servicesblock py-md-5 py-4">
-        <div className="container pb-2">
-            <div className="row align-items-center">
-                <div className="col-lg-6 left-wthree-img pr-lg-4">
-                    <img src="assets/images/img1.jpg" alt="" className="img-fluid"/>
-                </div>
-                <div className="col-lg-6 about-right-faq align-self mb-lg-0 mb-5 pl-xl-5">
-                    
-                <h3 className="title-big mb-3">Découvrire <br/><span className="yalla-word">Yalla</span></h3>
-                    <p className="">Découvrez une révolution éducative en Tunisie avec la première école de créateurs de contenu,
-                     redéfinissant l'expérience éducative pour vous offrir une formation novatrice et inspirante.</p>
+    <div className="container pb-2">
+        <div className="row align-items-center">
+            <div className="col-lg-6 left-wthree-img pr-lg-4">
+                <ReactPlayer
+                    url="https://youtu.be/g3-4BKr0utc?si=1yyM9K2rPSrz-C-c"
+                    controls={true}
+                    width="100%"
+                    height="350px"
                    
-                    <a className="btn button-style button-2 mt-lg-5 mt-4" href="apropos">Découvrir plus
-                    <i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                </div>
+                />
+            </div>
+            <div className="col-lg-6 about-right-faq align-self mb-lg-0 mb-5 pl-xl-5">
+                <h3 className="title-big mb-3">Découvrire <br/><span className="yalla-word">Yalla</span></h3>
+                <p className="">Découvrez une révolution éducative en Tunisie avec la première école de créateurs de contenu, redéfinissant l'expérience éducative pour vous offrir une formation novatrice et inspirante.</p>
+                <a className="btn button-style button-2 mt-lg-5 mt-4" href="apropos">Découvrir plus
+                    <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <ExpertComp /> 
     <section  className="w3l-companies-hny-6 position-relative">
         <div  className="cusrtomer-layout py-5">
@@ -137,16 +146,16 @@ function acceuil() {
                         <div  className="testimonial-content">
                             <div  className="testimonial">
                                 <div  className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi2.jpg" className="img-fluid" alt="/"/>
+                                    <div  className="test-img"><img src="src/assets/images/hiba.jpg"  className="img-fluid max-img" alt="/"/>
                                     </div>
                                     <div  className="peopl">
-                                        <h3>Jenna John</h3>
-                                        <p  className="indentity">Washington</p>
+                                        <h3>hiba aissa</h3>
+                                       
                                     </div>
                                 </div>
                                 <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.</p>
+                                    <p>École bien équipée,
+                                       mais le problème réside dans un simple manque de coordination. Cependant, je lui donne la note de 7/10.</p>
                                 </blockquote>
                                 <blockquote></blockquote>
                             </div>
@@ -156,17 +165,16 @@ function acceuil() {
                         <div  className="testimonial-content">
                             <div  className="testimonial">
                                 <div  className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi1.jpg" className="img-fluid" alt="/"/>
+                                    <div  className="test-img">
+                                    <img src="src/assets/images/amine.jpg" className="img-fluid max-img" alt="/" />
                                     </div>
                                     
                                     <div  className="peopl">
-                                        <h3>Theo Hall</h3>
-                                        <p  className="indentity">Washington</p>
+                                        <h3>Berrima Mohamed Amine</h3>
                                     </div>
                                 </div>
                                 <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.</p>
+                                    <p>C'est une école sérieuse et stricte avec des professionnels compétents</p>
                                 </blockquote>
                             </div>
                         </div>
@@ -175,16 +183,14 @@ function acceuil() {
                         <div className="testimonial-content">
                             <div  className="testimonial">
                                 <div className="testi-des">
-                                    <div  className="test-img"><img src="src/assets/images/testi3.jpg" className="img-fluid" alt="/"/>
+                                    <div  className="test-img"><img src="src/assets/images/der.jpg" className="img-fluid max-img" alt="/"/>
                                     </div>
                                     <div className ="peopl">
-                                        <h3>Linda Carini</h3>
-                                        <p  className="indentity">Washington</p>
+                                        <h3>sarah cherif</h3>
                                     </div>
                                 </div>
                                 <blockquote>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam,.</p>
+                                    <p>Travail exceptionnel</p>
                                 </blockquote>
                             </div>
                         </div>

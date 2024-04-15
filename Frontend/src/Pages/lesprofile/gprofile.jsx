@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle, faUserCircle, faBook, faBuilding, faCalendarAlt, faBell } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import './gprofile.css'
 
 
@@ -9,53 +7,69 @@ function gprofile() {
 
   return (
     <div>
-    
+     <header id="site-header" className="fixed-top">
+    <div className="container">
+    <nav className="navbar navbar-expand-lg stroke">
+            <h1>
+                <a className="navbar-brand" href="index.html">
+                    <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
+                </a>
+            </h1>
 
-       <div className="header">
-        <div className="header-right">
-          <div className="dashboard-setting user-notification">
-          </div>
-        </div>
-      </div>
-      
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul className="navbar-nav ml-lg-auto">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="apropos">Apropos</a>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <Dropdown>
+                            <Dropdown.Toggle id="navbarDropdown">
+                                Formation
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
+                                <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="createur">Créateur</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/profiluser">Mon Profil</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/afvideo">vidéos</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="contact">Contact</a>
+                    </li>
+                    <div className="search-right">
+                        <a href="preInscri" className="btn button-style">S'inscrire</a>
+                       
+                    </div>
+                </ul>
+            </div>
 
-        
-        <div className="left-side-bar">
-        <div className="brand-logo">
-          <Link to="/sidbar">
-          <br/>
-            <img src="src/assets/images/yallalogo.png" alt="" className="yalla" />
-          </Link>
-          <div className="close-sidebar" data-toggle="left-sidebar-close">
-            <i className="ion-close-round"></i>
-          </div>
-        </div>
-        <div className="menu-block customscroll">
-          <div className="sidebar-menu">
-            <ul id="accordion-menu">
-              <br/>
-              <br/>
-             
-              <li className="dropdown">
-                <Link to="/profiluser" className="dropdown-toggle">
-                  <FontAwesomeIcon icon={faUserCircle} />{' '}
-                  <span className="mtext"> Profile</span>
-                </Link>
-              </li>
-              <br/>
-              <br/>
-              <li className="dropdown">
-                <Link to="/video" className="dropdown-toggle">
-                  <FontAwesomeIcon icon={faPlayCircle} />{' '}
-                  <span className="mtext">vidéos</span>
-                </Link>
-              </li>
-    
-            </ul>
-            <img src="src/assets/images/av.png" alt="Description de l'image" className="avcrea" />
-          </div>
-        </div>
-      </div>
+            <div className="cont-ser-position">
+                <nav className="navigation">
+                    <div className="theme-switch-wrapper">
+                        <label className="theme-switch" htmlFor="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div className="mode-container">
+                                <i className="gg-sun"></i>
+                                <i className="gg-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</header>   
     </div>
   )
 }
