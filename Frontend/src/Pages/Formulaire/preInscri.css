@@ -1,12 +1,9 @@
 .cardCreap {
     background-color: white;
     padding: 20px;
-    margin-top: -1100px;
-    margin-left: -700px;
+    margin-top: -920px;
+    margin-left: -600px;
     margin-bottom: -370px;
-}
-.NumTel{
-    width:220px;
 }
 .logoYalla {
     margin-top: -100px;
@@ -57,8 +54,22 @@
     margin-left: -35px;
 }
 
-.email,.password,.Cpassword,.lienInsta,.lienFacebook,.lienTikTok{
-    width: 350px;
+.anniversaire{
+    width: 400px;
+    height: 40px;
+    border-color:#70218f;
+    margin-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+
+}
+.nom,.prenom,.email,.password,.Cpassword,.lienInsta,.lienFace,.lienTik,.domaine,.adresse {
+    width: 400px;
+    height: 40px;
+}
+.num{
+    width: 270px;
+    height: 40px;
 }
 .checkConditions{
     margin-top: -13.3px;

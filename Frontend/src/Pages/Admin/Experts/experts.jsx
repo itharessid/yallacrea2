@@ -69,7 +69,7 @@ function Experts() {
                                     <div className="weight-600 font-14 text-purple text-center text-nowrap">Experts</div>
                                     <div className="h6 mb-0 text-center">{expertsData.length}</div> {/* Afficher le nombre d'experts */}
                                 </div>
-                                <img src="src/assets/images/createurs.png" alt="" style={{ marginLeft: '40px' }} />
+                                <img src="src/assets/images/experts.png" alt="" style={{ marginLeft: '40px' }} />
                             </div>
                         </div>
                     </div>

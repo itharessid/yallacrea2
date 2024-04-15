@@ -1,9 +1,9 @@
 .cardEtudp {
     background-color: white;
     padding: 20px;
-    margin-top: -1100px;
-    margin-left: -700px;
-    margin-bottom: -200px;
+    margin-top: -800px;
+    margin-left: -600px;
+    margin-bottom: -180px;
 }
 .logoYalla {
     margin-top: -100px;
@@ -70,12 +70,21 @@ mtext{
 .input-group-text {
     margin-left: -35px;
 }
-
-.email,.password,.Cpassword,.lienInsta,.lienFacebook,.lienTikTok{
+.num{
+    width: 270px;
+    height: 40px;
+}
+.anniversaire{
     width: 400px;
     height: 40px;
-   
-
+    border-color:#70218f;
+    margin-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+.email,.password,.Cpassword,.lienInsta,.lienFace,.lienTik,.programme,.niveau{
+    width: 400px;
+    height: 40px;
 }
 .checkConditions{
     margin-top: -13.3px;

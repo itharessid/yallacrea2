@@ -50,6 +50,9 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
 import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
 import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
+import PreInscriptionEtud from './Pages/Admin/PreInscriptions/preInscriptionEtud.jsx';
+import PreInscriptionCrea from './Pages/Admin/PreInscriptions/preInscriptionsCrea.jsx';
+
 
 
 
@@ -111,6 +114,9 @@ function App() {
         <Route path="/domaines" element={<Domaines/>} /> 
         <Route path="/NDomaine" element={<NDomaine/>} /> 
         <Route path="/uploadE" element={<Emploiup/>} /> 
+        <Route path="/preInscriptionEtud" element={<PreInscriptionEtud/>}/>
+        <Route path="/preInscriptionCrea" element={<PreInscriptionCrea/>}/>
+        <Route path="/evenements/:id"  element={<Evenements/>}/>
          </Routes>
          </BrowserRouter>
          </>

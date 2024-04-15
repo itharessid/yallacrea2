@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState }from 'react';
 import emailjs from '@emailjs/browser';
 import './contact.css';
 import { Dropdown } from 'react-bootstrap';
 
 function Contact() {
   const form = useRef();
+  const [messageSent, setMessageSent] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ function Contact() {
       .then(
         () => {
           console.log('Message envoyé avec succes!');
+          setMessageSent(true); // Mettre à jour l'état pour afficher le message de confirmation
         },
         (error) => {
           console.log('Error', error.text);
@@ -97,15 +99,15 @@ function Contact() {
                   <h4 className="mb-4 sec-title-w3">Envoyez-nous un message</h4>
                   <form ref={form} onSubmit={sendEmail} >
                     <div className="row"><hr/>
-                    <label style={{ color: '#70218F'}}>Nom</label><hr/>
+                    <label style={{ color: 'black'}}>Nom</label><hr/>
                      <input type="text" name="nom" required/><hr/>
-                     <label style={{ color: '#70218F'}}>Prenom</label><hr/>
+                     <label style={{ color: 'black'}}>Prenom</label><hr/>
                       <input type="text" name="prenom" required/><hr/>
-                      <label style={{ color: '#70218F'}}>Email</label>                  
+                      <label style={{ color: 'black'}}>Email</label>                  
                        <input type="email" name="email" required />
-                      <label style={{ color: '#70218F'}}>Numéro de téléphone</label>
+                      <label style={{ color: 'black'}}>Numéro de téléphone</label>
                       <input type="num" name="tel" id="tel" pattern="[0-9]*" required/>   
-                      <label style={{ color: '#70218F'}}>Message</label>
+                      <label style={{ color: 'black'}}>Message</label>
                       <textarea name="message" id="message"required/>
                     </div>
                     <div className="input-group1 text-right">
@@ -114,6 +116,11 @@ function Contact() {
                         <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                       </button>
                     </div>
+                    {messageSent && (
+                      <div className="alert alert-success mt-3" role="alert">
+                        Votre message a bien été envoyé! Un agent administratif va vous contacter prochainement. Merci.
+                      </div>
+                    )}
                   </form>
                 </div>
               </div>

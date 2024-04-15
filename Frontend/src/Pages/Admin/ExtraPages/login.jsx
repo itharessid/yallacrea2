@@ -6,10 +6,23 @@ import { Link } from 'react-router-dom';
 function Login() {
     const [password, setPassword] = useState(''); // State pour stocker le mot de passe
     const [showPassword, setShowPassword] = useState(false); // State pour gérer la visibilité du mot de passe
+    const [passwordIncorrect, setPasswordIncorrect] = useState(false); // State pour gérer l'affichage de l'alerte
 
     // Fonction pour basculer la visibilité du mot de passe
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    // Fonction appelée lors de la soumission du formulaire
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (password === "wajdi") {
+            // Rediriger vers /bienvenue si le mot de passe est correct
+            window.location.href = "/bienvenue";
+        } else {
+            // Afficher l'alerte si le mot de passe est incorrect
+            setPasswordIncorrect(true);
+        }
     };
 
     return (
@@ -26,7 +39,7 @@ function Login() {
                                 <h5 className="card-title text-center"> Se Connecter</h5>
                                 <hr className="my-2" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.1)' }} />
                                 <div className="card-body">
-                                    <form>
+                                    <form onSubmit={handleSubmit}> {/* Ajout de l'événement onSubmit */}
                                         <div className="input-group custom">
                                             <input
                                                 type={showPassword ? 'text' : 'password'} // Détermine le type du champ de saisie en fonction de la visibilité du mot de passe
@@ -48,8 +61,22 @@ function Login() {
                                                 </span>
                                             </div>
                                         </div>
+                                        {/* Affichage de l'alerte si le mot de passe est incorrect */}
+                                        {passwordIncorrect && (
+                                            <div className="alert alert-danger mt-3" role="alert">
+                                                Mot de passe incorrecte!
+                                            </div>
+                                        )}
                                         <div className="text-center">
-                                            <Link to="/bienvenue" className="button">Se connecter</Link>
+                                            <button type="submit"
+                                             className="button"
+                                             style={{
+                                                backgroundColor: 'purple',
+                                                color: 'white',
+                                                width: '150px',
+                                                height: '50px',
+                                                fontWeight: 'bold'
+                                            }}>Se connecter</button> {/* Changement du lien en un bouton submit */}
                                         </div>
                                     </form>
                                 </div>
