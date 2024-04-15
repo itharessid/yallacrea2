@@ -11,6 +11,7 @@ const expertRouter=require('./Controllers/expertcontrolllers.js')
 const partenaireRouter=require('./Controllers/partenairecontrollers.js')
 const domaineRouter=require('./Controllers/domaines.js');
 const createurRouter=require('./Controllers/createurs.js');
+
 const preInscriCreaRouter=require('./Controllers/preInscriptionCrea.js');
 const preInscriEtudRouter=require('./Controllers/preInscriptionEtud.js');
 const sendEmailEtudRouter=require('./Controllers/sendEmailEtud.js');
@@ -18,6 +19,8 @@ const sendEmailCreaRouter=require('./Controllers/sendEmailEtud.js');
 const refusEmailCreaRouter=require('./Controllers/refutationEmailCrea.js');
 const refusEmailEtudRouter=require('./Controllers/refutationEmailEtud.js');
 const eventsRouter=require('./Controllers/evenement.js');
+const emploisRouter =require('./Controllers/emplois.js');
+
 
 const app = express();
 app.use(cors());
@@ -26,7 +29,6 @@ app.use(rout);
 app.use('/text', textRouter); // Utilisez le routeur text dans votre application
 app.use(imageRouter); // Utilisez le routeur image dans votre application
 app.use('/images', express.static('../frontend/public/images'));
-
 app.use(calendrierRouter);
 app.use(etudiantRouter);
 app.use(partenaireRouter);
@@ -42,6 +44,10 @@ app.use(sendEmailEtudRouter);
 app.use(refusEmailCreaRouter);
 app.use(refusEmailEtudRouter);
 app.use(eventsRouter);
+app.use (emploisRouter);
+app.use('/temp', express.static('../frontend/public/temps'));
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
