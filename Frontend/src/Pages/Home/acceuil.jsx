@@ -122,6 +122,8 @@ function acceuil() {
                    
                 />
             </div>
+            
+         
             <div className="col-lg-6 about-right-faq align-self mb-lg-0 mb-5 pl-xl-5">
                 <h3 className="title-big mb-3">Découvrire <br/><span className="yalla-word">Yalla</span></h3>
                 <p className="">Découvrez une révolution éducative en Tunisie avec la première école de créateurs de contenu, redéfinissant l'expérience éducative pour vous offrir une formation novatrice et inspirante.</p>
@@ -132,6 +134,8 @@ function acceuil() {
         </div>
     </div>
 </section>
+
+
 
     <ExpertComp /> 
     <section  className="w3l-companies-hny-6 position-relative">

@@ -15,11 +15,13 @@ function Contact() {
       })
       .then(
         () => {
+ // Message envoyé avec succès
           console.log('Message envoyé avec succes!');
-        },
+            window.alert('Message envoyé avec succès!');        },
         (error) => {
-          console.log('Error', error.text);
-        },
+// Erreur lors de l'envoi du message
+console.log('Error', error.text);
+window.alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');        },
       );}
   return (
     <div>

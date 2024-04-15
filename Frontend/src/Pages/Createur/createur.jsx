@@ -84,9 +84,19 @@ function createur() {
         <div className="text-6-mian py-md-4 py-3">
             <div className="container">
                 <div className="row top-cont-grid align-items-center">
-                    <div className="col-lg-6 left-img pr-lg-4">
-                        <img src="assets/images/about.jpg" alt="" className="img-responsive img-fluid" />
-                    </div>
+                    <div className="col-lg-5 left-img pr-lg-4">
+                    <div>
+          <iframe
+        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1313236633408551&show_text=0&width=560"
+        width="400"
+        height="600"
+        style={{ border: 'none', overflow: 'hidden' }}
+        frameborder="0"
+        allowTransparency="true"
+        allowFullScreen="true"
+       >
+        </iframe>
+    </div>                   </div>
                     <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
                         <h6>Yalla DIGITAL Academy</h6>
                         <h2>Yalla créateurs<span></span></h2>
