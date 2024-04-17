@@ -6,11 +6,43 @@ import './imageuplod.css';
 
 function ImageUpload() {
     const [file, setFile] = useState(null);
-    const [data, setData] = useState([]);
-    const [formData, setFormData] = useState({ nom: '', description: '' });
+    const [data, setData] = useState({});
+    const [formData, setFormData] = useState({
+        nom: '',
+        prenom: '',
+        email: '',
+        numero: '',
+        lienFace: '',
+        lienInsta: '',
+        lienTik: '',
+        Domaine: '',
+        nbFollowers: '',
+        description: ''
+    });
     const [profileData, setProfileData] = useState(null);
+    const [domaines, setDomaines] = useState([]);
+
     const [showModal, setShowModal] = useState(false);
     const fileInputRef = useRef(null);
+
+    const fetchData = async () => {
+        try {
+            const [domainesResponse, createurResponse] = await Promise.all([
+                axios.get('http://localhost:3001/domaine'),
+                axios.get('http://localhost:3001/createur')
+            ]);
+            setDomaines(domainesResponse.data);
+            setData(createurResponse.data[0]);
+            setProfileData(createurResponse.data[0]);
+            setFormData(createurResponse.data[0]);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const handleFile = (event) => {
         setFile(event.target.files[0]);
@@ -21,19 +53,44 @@ function ImageUpload() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3001/text/des', formData)
-            .then(res => {
-                if (res.status === 200) {
-                    alert("Description mise à jour avec succès!");
-                    // Mettre à jour l'état local ou effectuer d'autres actions nécessaires
-                } else {
-                    alert("Erreur lors de la mise à jour de la description!");
-                }
-            })
-            .catch(err => console.log(err));
-        setShowModal(false);
+        setShowModal(false); // Nous masquons ensuite la modal de modification
+        try {
+            await updateProfileData(formData);
+        } catch (error) {
+            console.error('Error updating profile data:', error);
+        }
+    };
+
+    const updateProfileData = async (formDataToUpdate) => {
+        try {
+            const idCreateur = profileData && profileData.idCreateur;
+            const formData = new FormData();
+            formData.append('nom', formDataToUpdate.nom);
+            formData.append('prenom', formDataToUpdate.prenom);
+            formData.append('email', formDataToUpdate.email);
+            formData.append('numero', formDataToUpdate.numero);
+            formData.append('lienInsta', formDataToUpdate.lienInsta);
+            formData.append('lienFace', formDataToUpdate.lienFace);
+            formData.append('lienTik', formDataToUpdate.lienTik);
+            formData.append('Domaine', formDataToUpdate.Domaine);
+            formData.append('nbFollowers', formDataToUpdate.nbFollowers);
+            formData.append('description', formDataToUpdate.description);
+            if (file) {
+                formData.append('photo', file);
+            }
+            const response = await axios.put(`http://localhost:3001/createur/${idCreateur}`, formData);
+            if (response.status === 200) {
+                setProfileData(formDataToUpdate);
+                alert("Champs mis à jour avec succès!");
+            } else {
+                alert("Erreur lors de la mise à jour des champs!");
+            }
+        } catch (error) {
+            console.error('Error updating profile data:', error);
+            throw error;
+        }
     };
 
     const handleUpload = async () => {
@@ -41,19 +98,18 @@ function ImageUpload() {
             alert("Veuillez sélectionner un fichier!");
             return;
         }
-
-        const formData = new FormData();
-        formData.append('photo', file);
-
-        axios.post('http://localhost:3001/createur', formData)
-            .then(res => {
-                if (res.data.status === "Success") {
-                    alert("Image téléchargée avec succès!");
-                } else {
-                    alert("Échec du téléchargement de l'image!");
-                }
-            })
-            .catch(err => console.log(err));
+        try {
+            const formData = new FormData();
+            formData.append('photo', file);
+            const response = await axios.post('http://localhost:3001/createur', formData);
+            if (response.data.status === "Success") {
+                alert("Image téléchargée avec succès!");
+            } else {
+                alert("Échec du téléchargement de l'image!");
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
     };
 
     const handleClick = () => {
@@ -61,18 +117,8 @@ function ImageUpload() {
     };
 
     const handleEditProfile = () => {
-        setFormData({ nom: profileData.nom, description: profileData.description });
         setShowModal(true);
     };
-    useEffect(() => {
-        axios.get('http://localhost:3001/createur')
-            .then(res => {
-                setData(res.data[0]);
-                setProfileData(res.data[0]); // Mise à jour de profileData avec les données récupérées
-                setFormData({ nom: res.data[0].nom, description: res.data[0].description }); // Mise à jour de formData avec les données récupérées
-            })
-            .catch(err => console.log(err));
-    }, []);
 
     return (
         <div className="inner-banner">
@@ -81,7 +127,7 @@ function ImageUpload() {
                     <div className="row">
                         <div className="col-lg-7 d-flex justify-content-center align-items-center">
                             <div style={{ position: "relative", width: "300px", height: "300px", overflow: "hidden", borderRadius: "50%", display: "inline-block", border: "8px solid #70218f" }}>
-                                <img src={"http://localhost:3001/photo/" + data.image} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
+                                <img src={"http://localhost:3001/photo/" + (data && data.image)} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
                             </div>
                             <FontAwesomeIcon 
                                 icon={faPlus} onClick={handleClick}
@@ -103,7 +149,7 @@ function ImageUpload() {
                         </div>
                         <div className="col-lg-5 d-flex justify-content-end align-items-end">
                             <div className="additional-button-div" style={{ position: "absolute", bottom: "0", right: "0" }}>
-                            <button style={{ marginTop: "5px", marginBottom: "5px" }} onClick={handleEditProfile}>Modifier le profile</button>
+                                <button style={{ marginTop: "5px", marginBottom: "5px" }} onClick={handleEditProfile}>Modifier le profile</button>
                             </div>
                         </div>
                     </div>
@@ -113,14 +159,51 @@ function ImageUpload() {
                 <div className="modale">
                     <div className="modal-contente">
                         <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-                        <form onSubmit={handleFormSubmit}>
-                            <label htmlFor="nom">Nom</label>
-                            <div className="form-group">
-                                <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleFormChange} className="large-input" />
+                        <form onSubmit={handleFormSubmit} className="form">
+                            <div className="form-row">
+                                <label htmlFor="nom">Nom :</label>
+                                <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
                             </div>
-                            <label htmlFor="bio">Biographie</label>
-                            <div className="form-group">
-                                <textarea id="bio" name="description" value={formData.description} onChange={handleFormChange} rows="5" cols="50" />
+                            <div className="form-row">
+                                <label htmlFor="prenom">Prénom :</label>
+                                <input type="text" id="prenom" name="prenom" value={formData.prenom} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="email">Email :</label>
+                                <input type="email" id="email" name="email" value={formData.email} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="numero"> Numéro de téléphone :</label>
+                                <input type="tel" id="numero" name="numero" value={formData.numero} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="instagram"> Lien Instagram :</label>
+                                <input type="text" id="instagram" name="lienInsta" value={formData.lienInsta} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="facebook"> Lien Facebook :</label>
+                                <input type="text" id="facebook" name="lienFace" value={formData.lienFace} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="tiktok">Lien TikTok :</label>
+                                <input type="text" id="tiktok" name="lienTik" value={formData.lienTik} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="selectDomaine"> Domaine de création : </label>
+                                <select id="selectDomaine" name="Domaine" value={formData.Domaine} onChange={handleFormChange} className="large-input">
+                                    <option value="">Sélectionner un domaine</option>
+                                    {domaines.map((domaine, index) => (
+                                        <option key={index} value={domaine.nomDomaine}>{domaine.nomDomaine}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="followers"> Nombre de followers </label>
+                                <input type="text" id="followers" name="nbFollowers" value={formData.nbFollowers} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="description"> Biographie </label>
+                                <textarea id="description" name="description" value={formData.description} onChange={handleFormChange} rows="5" cols="50" />
                             </div>
                             <button type="submit">Modifier</button>
                         </form>

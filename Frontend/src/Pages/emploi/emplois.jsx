@@ -157,6 +157,7 @@ function EmploiDuTemps({ emploi }) {
           </div>
         </section>
       </div>  
+      
       <div className="w3l-grids-block-5 py-5">
         <section id="grids5-block" className="pt-md-4 pb-md-5 py-4 mb-5">
           <div className="container">
@@ -166,6 +167,8 @@ function EmploiDuTemps({ emploi }) {
                 ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
             </div>
             <div>
+            <br/>
+      <br/>
       {/* Render section for présentiel */}
       <section className="section-presentiels">
         <h2>Emplois du temps en présentiel</h2>

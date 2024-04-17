@@ -103,8 +103,20 @@ function accelere() {
 
   </div>
   <p className="titleacc">mois</p>
-  <p className="textacc">Creative Ace</p>
-</div>
+<p className="textacc">Creative Ace</p>
+<div class="details">
+        <p><strong>Réalisation / Scénographie:</strong> SceneCraft</p>
+        <p><strong>Community Management:</strong> IdeaForge</p>
+        <p><strong>Image et Photographie:</strong> VisualZen</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Création de Contenu:</strong> InnovaScape</p>
+        <p><strong>Son:</strong> SoniX</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+        <p><strong>Montage:</strong> PicDance</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+    </div>
+    </div>
                     </div>
                     <div className="col-lg-4 col-md-6 features15-col-text">
                     <div className="cardacc">
@@ -121,7 +133,20 @@ function accelere() {
   </div>
   <p className="titleacc">mois</p>
   <p className="textacc">Idea Maven</p>
-</div>
+  <div class="details">
+        <p><strong>Réalisation / Scénographie:</strong> SceneCraft</p>
+        <p><strong>Community Management:</strong> IdeaForge</p>
+        <p><strong>Image et Photographie:</strong> VisualZen</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Création de Contenu:</strong> InnovaScape</p>
+        <p><strong>Son:</strong> SoniX</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+        <p><strong>Montage:</strong> PicDance</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+    </div>
+    </div>
+
                     </div>
                     <div class="col-lg-4 col-md-6 features15-col-text">
                     <div className="cardacc">
@@ -138,6 +163,19 @@ function accelere() {
   </div>
   <p className="titleacc">an</p>
   <p className="textacc">Content Master</p>
+  <div class="details">
+        <p><strong>Réalisation / Scénographie:</strong> SceneCraft</p>
+        <p><strong>Community Management:</strong> IdeaForge</p>
+        <p><strong>Image et Photographie:</strong> VisualZen</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Création de Contenu:</strong> InnovaScape</p>
+        <p><strong>Son:</strong> SoniX</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+        <p><strong>Montage:</strong> PicDance</p>
+        <p><strong>Infographie:</strong> GraphXpert</p>
+        <p><strong>Scénario / Copywriting:</strong> VerbalArt</p>
+    </div>
+    
                     </div>
                     </div>   
                 </div>
