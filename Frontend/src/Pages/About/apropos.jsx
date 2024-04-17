@@ -2,8 +2,10 @@ import React from 'react'
 import './apropos.css'
 import { Dropdown } from 'react-bootstrap';
 import Partencop from './partencop'; // Import the partencop component
+import EventCompt from './eventcompt';
 
 function apropos() {
+
   return (
     <div>
         <header id="site-header" className="fixed-top">
@@ -49,20 +51,7 @@ function apropos() {
                        
                     </ul>
                 </div>
-                
-                <div className="cont-ser-position">
-                    <nav className="navigation">
-                        <div className="theme-switch-wrapper">
-                            <label className="theme-switch" htmlFor="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <div className="mode-container">
-                                    <i className="gg-sun"></i>
-                                    <i className="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
+              
                 
             </nav>
         </div>
@@ -97,94 +86,9 @@ function apropos() {
             </div>
         </div>
        </section>
-       <section className="w3l-teams-32-main py-5">
-    <div className="teams-32 py-md-4">
-        <div className="container">
-            <div className="title-main text-center mx-auto mb-4">
-                <h3 className="title-big">NOS ACTIVITÉS</h3>
-            </div>
-            <section className="topics-section section-padding pb-0" id="section_3">
-                <div className="container">
-                    <div className="row">
 
-
-
-                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-overlay">
-                                <a href="detail-page.html" class="custom-block-image-wrap">
-                                    <img src="src/assets/images/formation.jpg" className="custom-block-image img-fluid" alt=""/>
-                                </a>
-
-                                <div className="custom-block-info custom-block-overlay-info">
-                                    <h5 className="mb-1">
-                                        <a href="listing-page.html">
-                                        Formation de creation de contenu 
-                                        </a>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-overlay">
-                                <a href="detail-page.html" class="custom-block-image-wrap">
-                                    <img src="images/topics/repairman-doing-air-conditioner-service.jpg" className="custom-block-image img-fluid" alt=""/>
-                                </a>
-
-                                <div className="custom-block-info custom-block-overlay-info">
-                                    <h5 className="mb-1">
-                                        <a href="listing-page.html">
-                                            Technician
-                                        </a>
-                                    </h5>
-
-                                    <p className="badge mb-0">12 Episodes</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-overlay">
-                                <a href="detail-page.html" className="custom-block-image-wrap">
-                                    <img src="images/topics/woman-practicing-yoga-mat-home.jpg" className="custom-block-image img-fluid" alt=""/>
-                                </a>
-
-                                <div className="custom-block-info custom-block-overlay-info">
-                                    <h5 className="mb-1">
-                                        <a href="listing-page.html">
-                                            Mindfullness
-                                        </a>
-                                    </h5>
-
-                                    <p className="badge mb-0">35 Episodes</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-overlay">
-                                <a href="detail-page.html" className="custom-block-image-wrap">
-                                    <img src="images/topics/delicious-meal-with-sambal-arrangement.jpg" className="custom-block-image img-fluid" alt=""/>
-                                </a>
-
-                                <div className="custom-block-info custom-block-overlay-info">
-                                    <h5 className="mb-1">
-                                        <a href="listing-page.html">
-                                            Cooking
-                                        </a>
-                                    </h5>
-
-                                    <p className="badge mb-0">12 Episodes</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</section>
+       <EventCompt />
+       
 <div className="w3l-grids-block-5 py-5">
         <section id="grids5-block" class="pt-md-4 pb-md-5 py-4 mb-5">
             <div className="container">

@@ -1,4 +1,4 @@
-import React, { useRef, useState }from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import './contact.css';
 import { Dropdown } from 'react-bootstrap';
@@ -16,14 +16,16 @@ function Contact() {
       })
       .then(
         () => {
- // Message envoyé avec succès
-          console.log('Message envoyé avec succes!');
+          setMessageSent(true);
+          console.log('Message envoyé avec succès!');
         },
         (error) => {
-// Erreur lors de l'envoi du message
-console.log('Error', error.text);
-window.alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');        },
-      );}
+          console.log('Erreur', error.text);
+          window.alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
+        },
+      );
+  };
+
   return (
     <div>
       <header id="site-header" className="fixed-top">
@@ -98,30 +100,30 @@ window.alert('Une erreur est survenue lors de l\'envoi du message. Veuillez rée
               <div className="col-lg-6 content-form-right p-0">
                 <div className="form-w3ls p-md-5 p-4">
                   <h4 className="mb-4 sec-title-w3">Envoyez-nous un message</h4>
-                  <form ref={form} onSubmit={sendEmail} >
-                    <div className="row"><hr/>
-                    <label style={{ color: 'black'}}>Nom</label><hr/>
-                     <input type="text" name="nom" required/><hr/>
-                     <label style={{ color: 'black'}}>Prenom</label><hr/>
-                      <input type="text" name="prenom" required/><hr/>
-                      <label style={{ color: 'black'}}>Email</label>                  
-                       <input type="email" name="email" required />
-                      <label style={{ color: 'black'}}>Numéro de téléphone</label>
-                      <input type="num" name="tel" id="tel" pattern="[0-9]*" required/>   
-                      <label style={{ color: 'black'}}>Message</label>
-                      <textarea name="message" id="message"required/>
+                  <form ref={form} onSubmit={sendEmail}>
+                    <div className="row">
+                      <label style={{ color: 'black' }}>Nom</label><br />
+                      <input type="text" name="nom" required /><br />
+                      <label style={{ color: 'black' }}>Prenom</label><br />
+                      <input type="text" name="prenom" required /><br />
+                      <label style={{ color: 'black' }}>Email</label><br />
+                      <input type="email" name="email" required /><br />
+                      <label style={{ color: 'black' }}>Numéro de téléphone</label><br />
+                      <input type="num" name="tel" id="tel" pattern="[0-9]*" required /><br />
+                      <label style={{ color: 'black' }}>Message</label><br />
+                      <textarea name="message" id="message" required></textarea>
                     </div>
                     <div className="input-group1 text-right">
+                      {messageSent && (
+                        <div className="alert alert-success mt-3" role="alert">
+                          Votre message a bien été envoyé! Un agent administratif va vous contacter prochainement. Merci.
+                        </div>
+                      )}
                       <button className="btn button-style" type="submit">
                         Envoyer
                         <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                       </button>
                     </div>
-                    {messageSent && (
-                      <div className="alert alert-success mt-3" role="alert">
-                        Votre message a bien été envoyé! Un agent administratif va vous contacter prochainement. Merci.
-                      </div>
-                    )}
                   </form>
                 </div>
               </div>

@@ -22,7 +22,8 @@ import Dashbord from './Pages/Admin/dashbord';
 import Bienvenue from './Pages/Admin/Bienvenue/bienvenue';
 import Etudiants from './Pages/Admin/Etudiantes/etudiant';
 import Calendrier from './Pages/Admin/calendrier/calendrier';
-import Event from './Pages/Admin/evenementes/evenements';
+import Event from './Pages/Admin/evenementes/event.jsx';
+
 import Detail from './Pages/detailcrea/detail.jsx';
 
 
@@ -53,6 +54,7 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
 import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
 import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
+import EventCompt from './Pages/About/eventcompt.jsx';
 
 
 
@@ -97,7 +99,6 @@ function App() {
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/bienvenue" element={<Bienvenue/>} />
         <Route path="/etudiants" element={<Etudiants/>} /> 
-        <Route path="/Event" element={<Event/>} />
         <Route path="/createures" element={<Createures/>} />      
         <Route path="/nouveauEtud" element={<NouveauEtud/>} />  
         <Route path="/nouveauCrea" element={<NouveauCrea/>} />  
@@ -118,6 +119,8 @@ function App() {
         <Route path="/uploadE" element={<Emploiup/>} /> 
         <Route path="/preInscriptionEtud" element={<PreInscriptionEtud/>} /> 
         <Route path="/preInscriptionCrea" element={<PreInscriptionCrea/>} /> 
+        <Route path="/event/:id" element={<Event/>}/>
+        <Route path="/apropos" element={<EventCompt/>}/>
 
          </Routes>
          </BrowserRouter>

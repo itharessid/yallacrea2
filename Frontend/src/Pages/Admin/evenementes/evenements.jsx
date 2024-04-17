@@ -144,7 +144,7 @@ function Evenements() {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      <img src={`/evenements/${event.image}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
+                      <img src={`/photo/${event.image}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
                     </td>
                     <td>{event.titre}</td>
                     <td>{event.description}</td>
@@ -152,6 +152,11 @@ function Evenements() {
                     <td>{event.lienvideo}</td>
                     <td>{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</td>
                     <td>
+                    <button className="button1">
+                        <Link to={`/event/${event.id}`} className="dropdown-toggle">
+                          <FontAwesomeIcon icon={faEye} />
+                        </Link>
+                      </button>
                       <button className="button2" onClick={() => handleDeleteClick(event)}>
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>

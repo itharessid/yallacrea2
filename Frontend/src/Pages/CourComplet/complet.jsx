@@ -49,20 +49,6 @@ function complet() {
                     </ul>
                 </div>
                 
-                <div className="cont-ser-position">
-                    <nav className="navigation">
-                        <div className="theme-switch-wrapper">
-                            <label className="theme-switch" htmlFor="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <div className="mode-container">
-                                    <i className="gg-sun"></i>
-                                    <i className="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                
             </nav>
         </div>
             </header>

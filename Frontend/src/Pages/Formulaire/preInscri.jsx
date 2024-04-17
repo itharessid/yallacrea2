@@ -7,6 +7,7 @@ import './preInscri.css';
 import axios from 'axios';
 import moment from 'moment';
 
+
 function PreInscri() {
     const [selectedDate, setSelectedDate] = useState(null); // Définition de l'état pour la date sélectionnée
     const [nom, setNom] = useState("");
@@ -20,8 +21,9 @@ function PreInscri() {
     const [domaine, setDomaine] = useState("");
     const [anniversaire, setAnniversaire] = useState(null);
     const [data, setData] = useState({});
+
     
-    const handlePréInscriClick = () => {
+    const handlePréInscriClick = ({ addNotification }) => {
         alert("Votre préinscription est en phase d'étude maintenant.");
     }
 
@@ -215,8 +217,7 @@ function PreInscri() {
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>         
         </>
     );
 }
