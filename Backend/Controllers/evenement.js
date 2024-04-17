@@ -8,7 +8,7 @@ const db = require('../Config/db');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // Utilisez path.resolve pour obtenir un chemin absolu
-        cb(null, '../frontend/public/evenements'); // Utilisez le chemin relatif pour sortir du dossier backend
+        cb(null, '../frontend/public/photo'); // Utilisez le chemin relatif pour sortir du dossier backend
     },
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname);
@@ -20,17 +20,17 @@ const storage = multer.diskStorage({
 // Initialisation de Multer avec la configuration de stockage
 const upload = multer({ storage: storage });
 
-// Endpoint pour télécharger une image d'createurs
+// Endpoint pour télécharger une image d'événements
 router.post('/evenements', upload.single('photo'), (req, res) => {
-    const { titre, description,lienphotos, lienvideo, dateevent} = req.body;
+    const { titre, description, lienphotos, lienvideo, dateevent } = req.body;
     if (!req.file) {
         return res.status(400).json({ error: "Aucune image n'a été téléchargée" });
     }
     
     const photoName = req.file.filename;
 
-    const sql = "INSERT INTO evenements (titre, description,image,lienphotos, lienvideo, dateevent) VALUES (?,?, ?, ?, ?, ?)";
-    const values = [titre, description,photoName,lienphotos, lienvideo, dateevent];
+    const sql = "INSERT INTO evenements (titre, description, image, lienphotos, lienvideo, dateevent) VALUES (?, ?, ?, ?, ?, ?)";
+    const values = [titre, description, photoName, lienphotos, lienvideo, dateevent];
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -41,11 +41,10 @@ router.post('/evenements', upload.single('photo'), (req, res) => {
     });
 });
 
-// Endpoint pour mettre à jour les données d'un créateur
-
+// Endpoint pour mettre à jour les données d'un évènement
 router.put('/evenements/:id', upload.single('photo'), (req, res) => {
     const id = req.params.id;
-    const { titre, description, lienphotos, lienvideo, dateevent} = req.body;
+    const { titre, description, lienphotos, lienvideo, dateevent } = req.body;
     let photoName = null;
 
     if (req.file) {
@@ -53,76 +52,31 @@ router.put('/evenements/:id', upload.single('photo'), (req, res) => {
     }
 
     const sql = "UPDATE evenements SET titre=?, description=?, image=?, lienphotos=?, lienvideo=?, dateevent=? WHERE id=?";
-    const values = [titre, description, , photoName,lienphotos, lienvideo, dateevent, id]; 
+    const values = [titre, description, photoName, lienphotos, lienvideo, dateevent, id];
 
     db.query(sql, values, (err, result) => {
         if (err) {
             console.error("Erreur lors de la mise à jour des données dans la base de données :", err);
             return res.status(500).json({ error: "Erreur lors de la mise à jour des données dans la base de données" });
         }
-        return res.status(200).json({ message: "Données mises à jour avec succès" });
+        const updatedPhotoUrl = req.file ? req.file.filename : null;
+        return res.status(200).json({ message: "Données mises à jour avec succès", photo: updatedPhotoUrl });
     });
 });
 
-
-
-// Endpoint pour récupérer les données de l'createurs
+// Endpoint pour récupérer les données de tous les évènements
 router.get('/evenements', (req, res) => {
     const sql = 'SELECT * FROM evenements';
-    db.query(sql, (err, result) => {const express = require('express');
-    const router = express.Router();
-    const multer = require('multer');
-    const path = require('path');
-    const db = require('../Config/db');
-    
-
-    
-    // Initialisation de Multer avec la configuration de stockage
-    const upload = multer({ storage: storage });
-    
-    // Endpoint pour télécharger une image d'createurs
-   
-    
-
-    
-    // Endpoint pour récupérer les données de tous les createurs
-    router.get('/evenements', (req, res) => {
-        const sql = 'SELECT * FROM evenements';
-        db.query(sql, (err, result) => {
-            if (err) {
-                console.error("Erreur lors de la récupération des données de l'évènement :", err);
-                return res.status(500).json({ error: "Erreur lors de la récupération des données de l'évènement" });
-            }
-            return res.status(200).json(result);
-        });
-    });
-    
-    
-    // Endpoint pour récupérer les données d'un createurs spécifique par son ID
-    router.get('/evenements/:id', (req, res) => {
-        const id = req.params.id;
-        const sql = 'SELECT * FROM evenements WHERE id = ?';
-        db.query(sql, id, (err, result) => {
-            if (err) {
-                console.error("Erreur lors de la récupération des données de l'évènement :", err);
-                return res.status(500).json({ error: "Erreur lors de la récupération des données de l'évènement" });
-            }
-            if (result.length === 0) {
-                return res.status(404).json({ error: "évènement non trouvé" });
-            }
-            return res.status(200).json(result[0]);
-        });
-    });
-
-
-
-    
-    module.exports = router;
-    
-        if (err) return res.json({ error: "Erreur lors de la récupération des données" });
-        return res.json(result);
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des données de l'évènement :", err);
+            return res.status(500).json({ error: "Erreur lors de la récupération des données de l'évènement" });
+        }
+        return res.status(200).json(result);
     });
 });
+
+// Endpoint pour récupérer les données d'un évènement spécifique par son ID
 router.get('/evenements/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'SELECT * FROM evenements WHERE id = ?';
@@ -132,12 +86,13 @@ router.get('/evenements/:id', (req, res) => {
             return res.status(500).json({ error: "Erreur lors de la récupération des données de l'évènement" });
         }
         if (result.length === 0) {
-            return res.status(404).json({ error: "évènement non trouvé" });
+            return res.status(404).json({ error: "Événement non trouvé" });
         }
-        return res.json(result[0]);
+        return res.status(200).json(result[0]);
     });
 });
-// Endpoint pour supprimer un createurs par son ID
+
+// Endpoint pour supprimer un évènement par son ID
 router.delete('/evenements/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'DELETE FROM evenements WHERE id = ?';
@@ -146,10 +101,8 @@ router.delete('/evenements/:id', (req, res) => {
             console.error("Erreur lors de la suppression de l'évènement :", err);
             return res.status(500).json({ error: "Erreur lors de la suppression de l'évènement" });
         }
-        return res.status(200).json({ message: "évènement supprimé avec succès" });
+        return res.status(200).json({ message: "Évènement supprimé avec succès" });
     });
 });
 
-
 module.exports = router;
-
