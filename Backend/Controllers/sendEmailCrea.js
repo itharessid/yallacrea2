@@ -1,16 +1,16 @@
-//installer express nodemailer body-parser
+
+// importer les modules nécessaires
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+
+// créer une instance du routeur Express
 const router = express.Router();
-const db = require('../Config/db');
 
 // Middleware pour parser le corps des requêtes
-// permet de récupérer les données envoyées dans le corps d'une requête HTTP.
 router.use(bodyParser.json());
 
 // Endpoint pour envoyer un e-mail
-//Définit un point de terminaison HTTP POST à l'URL /sendEmail.
 router.post('/sendEmailCrea', (req, res) => {
   const { createur } = req.body;
 
@@ -26,10 +26,9 @@ router.post('/sendEmailCrea', (req, res) => {
   // Options de l'e-mail
   const mailOptions = {
     from: 'elfekihons@gmail.com',
-    to: createur.email, // Adresse e-mail de l'étudiant
+    to: createur.email, // Adresse e-mail du destinataire
     subject: 'Confirmation de pré-inscription',
-    text: `Bonjour ${createur.nom} ${createur.prenom},\n\n
-    Votre pré-inscription a été approuvée par l'administration, et vous serez contacté prochainement pour convenir d'une réunion en personne.\n\nCordialement,\nYalla Digital Academy`,
+    text: `Bonjour ${createur.nom} ${createur.prenom},\n\nVotre pré-inscription a été approuvée par l'administration, et vous serez contacté prochainement pour convenir d'une réunion en personne.\n\nCordialement,\nYalla Digital Academy`,
   };
 
   // Envoyer l'e-mail
@@ -44,4 +43,5 @@ router.post('/sendEmailCrea', (req, res) => {
   });
 });
 
+// Exporter le routeur
 module.exports = router;

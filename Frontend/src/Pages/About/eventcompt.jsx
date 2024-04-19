@@ -27,7 +27,7 @@ function EventCompt() {
                         {event.map(event => (
                             <div key={event.id} className="col-lg-3 col-6  center team-main-19">
                                 <div className="right-team-9">
-                                <h6 className="title-team-32">{event.titre} </h6>
+                                <h7 className="title-team-32" style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>{event.titre}</h7>
                                 <p className="sm-text-32">{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</p>
                                 </div>
                                 <div className="column-19">
@@ -36,12 +36,11 @@ function EventCompt() {
                                         className="img-fluid"
                                         src={`http://localhost:3001/photo/${event.image}`}
                                         alt={event.title}
-                                        style={{ maxWidth: 'auto', height:'auto' }} // Exemple de dimensions maximales
+                                        style={{ width: '200px', height: '150px' }} // Dimensions statiques de la carte
                                     />
                                     </a>
-                                </div>
-                                <div className="right-team-9">
-                                    <p className="sm-text-32">{event.description}</p>
+                                    <p className="sm-text-32" style={{ width: '200px', height: '100px', overflow: 'hidden' }}>{event.description}</p>
+
                                 </div>
                                 <div>
                                 <button className="button2">

@@ -107,22 +107,21 @@ function emploiup() {
                     <td>{emploi.description}</td>
                     <td>{emploi.typedecour}</td>
                     <td>
-  <div style={{ display: "flex", justifyContent: "space-between" }}>
-    <div>
-      <button className="button1">
-        <Link to={`/editemplois/${emploi.idEmplois}`} className="dropdown-toggle">
-          <FontAwesomeIcon icon={faEye} />
-        </Link>
-      </button>
-    </div>
-    <div>
-      <button className="button2" onClick={() => handleDeleteClick(emploi)}>
-        <FontAwesomeIcon icon={faTrashAlt} />
-      </button>
-    </div>
-  </div>
-</td>
-                  
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div>
+                          <button className="button1">
+                            <Link to={`/editemplois/${emploi.idEmplois}`} className="dropdown-toggle">
+                              <FontAwesomeIcon icon={faEye} />
+                            </Link>
+                          </button>
+                        </div>
+                        <div>
+                          <button className="button2" onClick={() => handleDeleteClick(emploi)}>
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </button>
+                        </div>
+                      </div>
+                    </td>     
                   </tr>
                 ))}
               </tbody>

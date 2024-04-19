@@ -136,7 +136,7 @@ function PreInscriptionEtud() {
             onChange={(e) => setSearchTerm(e.target.value)}
           /></label>
         </div>
-        <div className="card-box mb-30">
+        <div className="card-box mb-30 bigger-card1">
           <div className="pd-20">
             <h4 className="h4">Etudiants</h4>
           </div>
@@ -163,12 +163,16 @@ function PreInscriptionEtud() {
                     <td>{etudiant.nom}</td>
                     <td>{etudiant.prenom}</td>
                     <td>{etudiant.anniversaire ? new Date(etudiant.anniversaire).toLocaleDateString('fr-FR') : '-'}</td>
-                    <td>{etudiant.email}</td>
+                    <td>
+                      <a href={`mailto:${etudiant.email}`}>
+                        {etudiant.email}
+                      </a>
+                    </td>
                     <td>{etudiant.adresse}</td>
                     <td>{etudiant.num}</td>
                     <td>{etudiant.niveau}</td>
                     <td>{etudiant.programme}</td>
-                    <td>
+                    <td style={{ display: 'flex', flexDirection: 'row' }}>
                     <button className="button1" onClick={() => handleValidation(etudiant)}>
                           <FontAwesomeIcon icon={faCheck} />
                       </button>

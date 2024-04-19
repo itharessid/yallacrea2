@@ -1,3 +1,4 @@
+
 .cardP {
     position: relative;
     margin-left: 5px;
@@ -169,3 +170,8 @@
   .custum-file-upload input {
     display: none;
   }
+  .bigger-card {
+    height: 500px; /* Vous pouvez ajuster la hauteur en fonction de vos besoins */
+    width: 2000px;
+  }
+  

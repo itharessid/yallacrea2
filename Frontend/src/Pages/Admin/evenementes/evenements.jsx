@@ -121,7 +121,7 @@ function Evenements() {
             </Link>
           </button>
         </div>
-        <div className="card-box mb-30">
+        <div className="card-box height-100-p widget-style1 bigger-card">
           <div className="pd-20">
             <h4 className="h4">Évènements</h4>
           </div>
@@ -148,10 +148,18 @@ function Evenements() {
                     </td>
                     <td>{event.titre}</td>
                     <td>{event.description}</td>
-                    <td>{event.lienphotos}</td>
-                    <td>{event.lienvideo}</td>
-                    <td>{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</td>
                     <td>
+                      <a href={event.lienphotos} target="_blank" rel="noopener noreferrer">
+                        {event.lienphotos}
+                      </a>
+                    </td>
+                    <td>
+                      <a href={event.lienvideo} target="_blank" rel="noopener noreferrer">
+                        {event.lienvideo}
+                      </a>
+                    </td>
+                    <td>{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</td>
+                    <td style={{ display: 'flex', flexDirection: 'row' }}>
                     <button className="button1">
                         <Link to={`/event/${event.id}`} className="dropdown-toggle">
                           <FontAwesomeIcon icon={faEye} />

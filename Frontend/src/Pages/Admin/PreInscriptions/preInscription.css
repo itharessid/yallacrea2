@@ -66,3 +66,7 @@
       filter: blur(5px); /* Appliquer un flou au fond */
       pointer-events: none; /* Empêcher les événements sur le fond flou */
     }
+    .bigger-card1{
+      height: 100px;
+      width: 1250px;
+    }

@@ -45,10 +45,7 @@ function apropos() {
                         
                         <div className="search-right">
                             <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
-                            
-                          
                         </div>
-                       
                     </ul>
                 </div>
               

@@ -3,6 +3,16 @@
 	height: calc(100vh - 100px); /* Set the height of the sidebar */
 	overflow-y: auto; /* Enable vertical scrolling */
   }
+  .notification-ball {
+	color: rgba(121, 21, 99, 0.671); /* Couleur du texte en blanc pour contraster */
+	border-radius: 50%; /* Pour rendre la boule circulaire */
+	width: 20px; /* Largeur de la boule */
+	height: 20px; /* Hauteur de la boule */
+	display: inline-flex; /* Pour centrer le texte verticalement */
+	justify-content: center; /* Pour centrer le texte horizontalement */
+	font-size:16px;
+  }
+  
 html {
 	-webkit-text-size-adjust: none; /* Prevent font scaling in landscape */
 	width: 100%;

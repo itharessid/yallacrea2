@@ -139,7 +139,7 @@ function PreInscriptionCrea() {
                         onChange={(e) => setSearchTerm(e.target.value)}
                     /></label>
                 </div>
-                <div className="card-box mb-30" style={{ height: '500px' }}>
+                <div className="card-box mb-30 bigger-card1" style={{ height: '500px' }}>
                     <div className="pd-20">
                         <h4 className="h4">Créateurs</h4>
                     </div>
@@ -167,13 +167,17 @@ function PreInscriptionCrea() {
                                         <td>{createur.nom}</td>
                                         <td>{createur.prenom}</td>
                                         <td>{createur.anniversaire ? new Date(createur.anniversaire).toLocaleDateString('fr-FR') : '-'}</td>
-                                        <td>{createur.email}</td>
+                                        <td>
+                                            <a href={`mailto:${createur.email}`}>
+                                                {createur.email}
+                                            </a>
+                                        </td>
                                         <td>{createur.adresse}</td>
                                         <td>{createur.num}</td>
                                         <td>{createur.lienInsta}</td>
                                         <td>{createur.lienFace}</td>
                                         <td>{createur.lienTik}</td>
-                                        <td>
+                                        <td style={{ display: 'flex', flexDirection: 'row' }}>
                                             <button className="button1" onClick={() => handleValidation(createur)}>
                                                 <FontAwesomeIcon icon={faCheck} />
                                             </button>

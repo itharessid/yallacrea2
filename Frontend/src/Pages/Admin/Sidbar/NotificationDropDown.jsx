@@ -53,12 +53,17 @@ function NotificationDropDown({ isOpen, toggleDropdown }) {
       <div className={`dropdown ${isOpen ? 'show' : ''}`}>
         <a className="dropdown-toggle no-arrow" href="#" role="button" onClick={toggleDropdown}>
           <FontAwesomeIcon icon={faBell} />
-          <span className="badge notification-active"></span>
+          {/* Remplacer la badge par une boule contenant nPre.length */}
+          { nPre.length !== 0 && (
+          <span className="notification-ball">{nPre.length}</span>
+)}
         </a>
         <div className={`dropdown-menu dropdown-menu-right ${isOpen ? 'show' : ''}`}>
           <div className="notification-list mx-h-350 customscroll" style={customStyles.notificationList}>
             {/* Utilisez nPre.length pour afficher le nombre de nouvelles pré-inscriptions */}
-            Vous avez {nPre.length} nouvelles préinscriptions à valider.
+            { nPre.length !== 0 && (
+                <p>Vous avez {nPre.length} nouvelles préinscriptions à valider.</p>
+            )}
           </div>
         </div>
       </div>

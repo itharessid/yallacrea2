@@ -107,7 +107,11 @@ function Experts() {
                                         </td>
                                         <td className="table-plus">{expert.nom}</td>
                                         <td>{expert.prenom}</td>
-                                        <td>{expert.Email}</td>
+                                        <td>
+                                            <a href={`mailto:${expert.Email}`}>
+                                                {expert.Email}
+                                            </a>
+                                        </td>
                                         <td>{expert.telef}</td>
                                         <td>{expert.poste}</td> {/* Affichage du poste */}
                                         <td>

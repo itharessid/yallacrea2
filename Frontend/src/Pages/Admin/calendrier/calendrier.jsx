@@ -6,6 +6,8 @@ import moment from 'moment';
 import 'moment/locale/fr'; // Importez la locale française pour moment
 import './calendrier.css';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 function Calendrier() {
   moment.locale('fr'); // Définir la locale française pour moment
@@ -167,8 +169,12 @@ const onsubmitChange = async () => {
                     <td>{formatTime(event.heureDebut)}</td>
                     <td>{formatTime(event.heureFin)}</td>
                     <td>
-                      <button onClick={() => deleteEvent(event.id)}>Supprimer</button>
-                      <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>Éditer</button>
+                      <button onClick={() => deleteEvent(event.id)}>
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                      <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
                     </td>
                   </tr>
                 ))}

@@ -108,10 +108,17 @@ function Partenaire() {
                                         </td>
                                         <td className="table-plus">{partenaire.nomSociete}</td>
                                         <td>{partenaire.numero}</td>
-                                        <td>{partenaire.email}</td>
-                                        <td>{partenaire.lien}</td>
-
                                         <td>
+                                            <a href={`mailto:${partenaire.email}`}>
+                                                {partenaire.email}
+                                            </a>
+                                            </td>
+                                        <td>
+                                            <a href={partenaire.lien} target="_blank" rel="noopener noreferrer">
+                                                {partenaire.lien}
+                                            </a>
+                                            </td>
+                                        <td >
                                             <button className="button1">
                                                 <Link to={`/profilpart/${partenaire.id}`} className="dropdown-toggle">
                                                     <FontAwesomeIcon icon={faEye} />

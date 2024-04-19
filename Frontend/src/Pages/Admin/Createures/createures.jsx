@@ -138,7 +138,11 @@ function Createurs() {
                     </td>
                     <td>{createur.nom}</td>
                     <td>{createur.prenom}</td>
-                    <td>{createur.email}</td>
+                    <td>
+                      <a href={`mailto:${createur.email}`}>
+                        {createur.email}
+                      </a>
+                    </td>
                     <td>{createur.domaine}</td>
                     <td>
                       <button className="button1">

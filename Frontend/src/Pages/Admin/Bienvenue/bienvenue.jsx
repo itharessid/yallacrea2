@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import axios from 'axios'; // Importez Axios pour effectuer des requêtes HTTP
+import'./bienvenue.css';
+
+
 
 function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
@@ -18,6 +21,8 @@ function Bienvenue() {
     objectFit: 'cover',  // Ajuste la taille de l'image pour couvrir le cercle
     boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)'  // Ajoute une ombre autour de l'image
 };
+
+
 
 
 
@@ -78,80 +83,21 @@ function Bienvenue() {
 
           <div className="row">
           <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Etudiants</div>
-                    <div className="h6 mb-0 text-center">{etudiantsCount}</div>
-                  </div>
-                  <img src="src/assets/images/etudiant.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
             </div>
-            <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Domaines</div>
-                    <div className="h6 mb-0 text-center">{domainesCount}</div>
-                  </div>
-                  <img src="src/assets/images/domaines.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Createurs</div>
-                    <div className="h6 mb-0 text-center">{createursCount}</div>
-                  </div>
-                  <img src="src/assets/images/createurs.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-            </div>
-            <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Évènements</div>
-                    <div className="h6 mb-0 text-center">{eventsCount}</div>
-                  </div>
-                  <img src="src/assets/images/évènement.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Experts</div>
-                    <div className="h6 mb-0 text-center">{expertCount}</div>
-                  </div>
-                  <img src="src/assets/images/experts.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 mb-20">
-              <div className="card-box-Etud height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-center text-nowrap">Partenaires</div>
-                    <div className="h6 mb-0 text-center">{partenaireCount}</div>
-                  </div>
-                  <img src="src/assets/images/partenaire.png" alt="" style={{marginLeft: '40px'}}/>
-                </div>
-              </div>
+            <div class="loader">
+            <div class="cube">
+            <div class="face front">{etudiantsCount}&nbsp;Etudiants</div>
+              <div class="face back">{domainesCount}&nbsp;Domaines</div>
+              <div class="face left">{createursCount}&nbsp;Createurs</div>
+              <div class="face right">{eventsCount}&nbsp;Évènements</div>
+              <div class="face top">{expertCount}&nbsp;Experts</div>
+              <div class="face bottom">{partenaireCount}&nbsp;Partenaires</div>
             </div>
           </div>
-
+          </div>
           <div className="row">
             <div className="col-xl-4 col-lg-5 col-md-4 md-20">
-              <div className="card-box height-100-p widget-style1">
+              <div className="card-boxPE height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
                     <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des étudiants</div>
@@ -162,7 +108,7 @@ function Bienvenue() {
             </div>
 
             <div className="col-xl-4 col-lg-5 col-md-4 md-20">
-              <div className="card-box height-100-p widget-style1">
+              <div className="card-boxPC height-100-p widget-style1">
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="widget-data">
                     <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des créateurs</div>

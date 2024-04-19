@@ -112,7 +112,7 @@ function Etudiants() {
             </Link>
           </button>
         </div>
-        <div className="card-box mb-30">
+        <div className="card-box mb-30 bigger-card1">
           <div className="pd-20">
             <h4 className="h4">Etudiants</h4>
           </div>
@@ -138,14 +138,18 @@ function Etudiants() {
                     <td>{index + 1}</td>
                     <td>{etudiant.nom}</td>
                     <td>{etudiant.prenom}</td>
-                    <td>{etudiant.email}</td>
+                    <td>
+                      <a href={`mailto:${etudiant.email}`}>
+                        {etudiant.email}
+                      </a>
+                    </td>
                     <td>{etudiant.adresse}</td>
                     <td>{etudiant.numero}</td>
                     <td>{etudiant.niveau}</td>
                     <td>{etudiant.programme}</td>
                     <td>{etudiant.codePromo}</td>
-                    <td>
-                      <button className="button1">
+                    <td style={{ display: 'flex', flexDirection: 'row' }}>
+                      <button className="button1" style={{ marginRight: '10px' }}>
                         <Link to={`/profilEtud/${etudiant.id}`} className="dropdown-toggle">
                           <FontAwesomeIcon icon={faEye} />
                         </Link>
