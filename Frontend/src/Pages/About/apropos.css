@@ -1054,6 +1054,11 @@ https://templatemo.com/tm-584-pod-talk
   .blog-info {
     text-align: justify;
 }
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 15%;
+}
+
  
   
   

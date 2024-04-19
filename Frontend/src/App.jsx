@@ -52,6 +52,8 @@ import Videouser from './Pages/lesprofile/videouser.jsx';
  import Profilexperts from './Pages/Admin/Experts/profilexperts.jsx';
  import Emplois from './Pages/emploi/emplois.jsx';
 import Nvemplois from './Pages/Admin/emploidutemps/nvemplois.jsx';
+import Preseneteil from './Pages/emploi/preseneteil.jsx';
+import Enligne from './Pages/emploi/enligne.jsx';
 import EditEmplois from'./Pages/Admin/emploidutemps/editemplois.jsx';
 import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
@@ -85,11 +87,11 @@ function App() {
         <Route path="/video" element={<Videouser />}/>
         <Route path="/afvideo" element={<Video />}/>
         <Route path="/emploi" element={<Emplois/>}/>
+        <Route path="/pres" element={<Preseneteil/>}/>
+        <Route path="/enligne" element={<Enligne/>}/>
         
 
-
-
-      
+        
       
         <Route path="/sidbar" element={<Sidbar />} />
         <Route path="/preinscri" element={< PreInscri/>} />

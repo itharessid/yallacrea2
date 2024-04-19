@@ -62,35 +62,34 @@ function EmploiDuTemps({ emploi }) {
     </div>
   );
  }
- function Emplois() {
-  const [emplois, setEmplois] = useState([]);
-  const [error, setError] = useState(null);
-  const [emploisPresentiels, setEmploisPresentiels] = useState([]);
-  const [emploisEnLigne, setEmploisEnLigne] = useState([]);
-  
+ 
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/emplois')
-      .then(response => {
-        if (Array.isArray(response.data)) {
-          setEmplois(response.data);
-          // Séparer les emplois selon leur type de cours
-          const presentiels = response.data.filter(emploi => emploi.typedecour === 'Présentiel');
-          const enLigne = response.data.filter(emploi => emploi.typedecour === 'En ligne');
-          setEmploisPresentiels(presentiels);
-          setEmploisEnLigne(enLigne);
-        } else {
-          setError('La réponse du serveur n\'est pas un tableau JSON.');
-        }
-      })
-      .catch(error => {
-        setError('Erreur lors de la récupération des emplois du temps: ' + error.message);
-      });
-  }, []);
-  
+function preseneteil() {
+    const [emplois, setEmplois] = useState([]);
+    const [error, setError] = useState(null);
+    const [emploisPresentiels, setEmploisPresentiels] = useState([]);
+    const [emploisEnLigne, setEmploisEnLigne] = useState([]);
 
+    useEffect(() => {
+        axios.get('http://localhost:3001/emplois')
+          .then(response => {
+            if (Array.isArray(response.data)) {
+              setEmplois(response.data);
+              // Séparer les emplois selon leur type de cours
+              const presentiels = response.data.filter(emploi => emploi.typedecour === 'Présentiel');
+              const enLigne = response.data.filter(emploi => emploi.typedecour === 'En ligne');
+              setEmploisPresentiels(presentiels);
+              setEmploisEnLigne(enLigne);
+            } else {
+              setError('La réponse du serveur n\'est pas un tableau JSON.');
+            }
+          })
+          .catch(error => {
+            setError('Erreur lors de la récupération des emplois du temps: ' + error.message);
+          });
+      }, []);
   return (
-    <div>
+   <div>
       <header id="site-header" className="fixed-top">
         <div className="container">
           <nav className="navbar navbar-expand-lg stroke">
@@ -152,6 +151,14 @@ function EmploiDuTemps({ emploi }) {
               <li><a href="index.html">Acceuil</a></li>
               <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Emploi du temps</li>
             </ul>
+            <br/>
+            <br/>
+            <br/>
+            <div className="title-main text-center mx-auto mb-4">
+              <h3 className="title-big">Emplois du temps en présentiel</h3>
+              <p className="sub-title mt-2"><strong>Yalla Digital Academy</strong>  s'engage à fournir régulièrement des emplois du temps actualisés à chaque semestre pour ses étudiants,
+                ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
+            </div>
           </div>
         </section>
       </div>  
@@ -159,17 +166,10 @@ function EmploiDuTemps({ emploi }) {
       <div className="w3l-grids-block-5 py-5">
         <section id="grids5-block" className="pt-md-4 pb-md-5 py-4 mb-5">
           <div className="container">
-            <div className="title-main text-center mx-auto mb-4">
-              <h3 className="title-big"> Emplois du temps</h3>
-              <p className="sub-title mt-2"><strong>Yalla Digital Academy</strong>  s'engage à fournir régulièrement des emplois du temps actualisés à chaque semestre pour ses étudiants,
-                ainsi qu'à maintenir les mises à jour sur le site web pour assurer l'accessibilité des emplois du temps les plus récents</p>
-            </div>
+          
             <div>
-            <br/>
-      <br/>
       {/* Render section for présentiel */}
       <section className="section-presentiels">
-        <h2>Emplois du temps en présentiel</h2>
         <br/>
         <br/>
         <div className="container">
@@ -190,23 +190,7 @@ function EmploiDuTemps({ emploi }) {
       {/* Render section for en ligne */}
       <br/>
       <br/>
-      <section className="section-en-ligne">
-        <h2>Emplois du temps en ligne</h2>
-        <br/>
-        <div className="container">
-          <div className="row">
-            {emploisEnLigne.map((emploi, index) => (
-              <EmploiDuTemps
-                key={index}
-                emploi={emploi} 
-                titre={emploi.titre}
-                description={emploi.description}
-                typedecour={emploi.typedecour}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+     
     </div>
           </div>
         </section>
@@ -277,7 +261,7 @@ function EmploiDuTemps({ emploi }) {
         </div>
       </footer>
     </div>
-  );
+  )
 }
 
-export default Emplois;
+export default preseneteil
