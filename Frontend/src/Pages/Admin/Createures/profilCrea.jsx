@@ -89,12 +89,12 @@ function ProfileCrea() {
         }
     };
     // Fonction pour formater la date au format "YYYY-MM-DD"
-const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-};
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     return (
         <div>
@@ -170,8 +170,7 @@ const formatDate = (date) => {
                                 <label>Date de naissance:</label>
                                 <DatePicker
                                     className="form-control"
-                                    selected={anniversaire}
-                                    
+                                    selected={new Date(anniversaire)} // Utiliser new Date() pour convertir la chaîne en objet Date
                                     onChange={(date) => setAnniversaire(date)}
                                     dateFormat="dd/MM/yyyy" // Format de date
                                 />

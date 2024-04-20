@@ -166,14 +166,14 @@ function createur() {
                             <div className="custom-block-image-wrap text-center"> 
 
                                 <div className="custom-block-image-wrap">
-                                    <a href="/detail">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/c1.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
                                  </div>
                                 <div className="custom-block-info">
                                     <h5 className="mb-2 custom-name">
-                                        <a href="/detailcreateur">
+                                        <a href="/connexion">
                                          baha <br/>haouas
                                         </a>
                                     </h5>
@@ -201,14 +201,14 @@ function createur() {
                         <div className="col-lg-4 col-12 mb-4 mb-lg-0">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/nourch.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
-                                        <a href="detail-page.html">
+                                        <a href="/connexion">
                                         nourchenne cheguenni
                                         </a>
                                     </h5>
@@ -234,14 +234,14 @@ function createur() {
                         <div className="col-lg-4 col-12">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/Khoubaib.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
-                                        <a href="detail-page.html">
+                                        <a href="/connexion">
                                         khoubaib jebabli 
                                        </a>
                                     </h5>
@@ -267,7 +267,7 @@ function createur() {
                         <div className="col-lg-4 col-12">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/ghazi.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
@@ -275,7 +275,7 @@ function createur() {
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
-                                        <a href="detail-page.html">
+                                        <a href="/connexion">
                                         Ghazi Gharbi
                                        </a>
                                     </h5>
@@ -301,14 +301,14 @@ function createur() {
                         <div className="col-lg-4 col-12">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/rayen.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
-                                        <a href="detail-page.html">
+                                        <a href="/connexion">
                                         Rayen Bouajaja 
 
                                        </a>
@@ -343,7 +343,7 @@ function createur() {
 
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
-                                        <a href="detail-page.html">
+                                        <a href="/connexion">
                                         med mouhib meddeb
 
                                        </a>
@@ -370,7 +370,7 @@ function createur() {
                         <div className="col-lg-4 col-12">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
+                                    <a href="/connexion">
                                         <img src="src/assets/images/oussema.jpg" className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>

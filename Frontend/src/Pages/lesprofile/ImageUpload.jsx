@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import DatePicker from 'react-datepicker'; 
+import 'react-datepicker/dist/react-datepicker.css'; 
 import './imageuplod.css';
 
 function ImageUpload() {
@@ -17,11 +19,12 @@ function ImageUpload() {
         lienTik: '',
         Domaine: '',
         nbFollowers: '',
-        description: ''
+        description: '',
+        anniversaire: '', // Ajoutez le champ anniversaire
     });
     const [profileData, setProfileData] = useState(null);
     const [domaines, setDomaines] = useState([]);
-
+    const [anniversaire, setAnniversaire] = useState(null); // Initialisez l'état de la date de naissance
     const [showModal, setShowModal] = useState(false);
     const fileInputRef = useRef(null);
 
@@ -35,6 +38,7 @@ function ImageUpload() {
             setData(createurResponse.data[0]);
             setProfileData(createurResponse.data[0]);
             setFormData(createurResponse.data[0]);
+            setAnniversaire(createurResponse.data[0].anniversaire); // Mettez à jour la date de naissance
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -50,33 +54,42 @@ function ImageUpload() {
 
     const handleFormChange = (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        if (name === 'anniversaire') {
+            // Mettez à jour l'état de l'anniversaire avec la date sélectionnée
+            setAnniversaire(value);
+            // Mettez à jour la date de naissance dans formData avec la date sélectionnée
+            setFormData({ ...formData, [name]: value });
+        } else {
+            // Mettez à jour les autres champs du formulaire dans formData
+            setFormData({ ...formData, [name]: value });
+        }
     };
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        setShowModal(false); // Nous masquons ensuite la modal de modification
+        setShowModal(false); // Masquer la modal de modification
         try {
-            await updateProfileData(formData);
+            // Formatez la date de naissance avant de l'envoyer
+            const formDataToSend = { ...formData, anniversaire: anniversaire ? new Date(anniversaire).toISOString().split('T')[0] : null };
+            await updateProfileData(formDataToSend);
         } catch (error) {
             console.error('Error updating profile data:', error);
         }
+    };
+    
+    const handleDateChange = (date) => {
+        const formattedDate = date ? date.toISOString().split('T')[0] : null;
+        setAnniversaire(formattedDate); // Mettez à jour l'état de la date de naissance
+        setFormData({ ...formData, anniversaire: formattedDate }); // Mettez à jour formData avec la date formatée
     };
 
     const updateProfileData = async (formDataToUpdate) => {
         try {
             const idCreateur = profileData && profileData.idCreateur;
             const formData = new FormData();
-            formData.append('nom', formDataToUpdate.nom);
-            formData.append('prenom', formDataToUpdate.prenom);
-            formData.append('email', formDataToUpdate.email);
-            formData.append('numero', formDataToUpdate.numero);
-            formData.append('lienInsta', formDataToUpdate.lienInsta);
-            formData.append('lienFace', formDataToUpdate.lienFace);
-            formData.append('lienTik', formDataToUpdate.lienTik);
-            formData.append('Domaine', formDataToUpdate.Domaine);
-            formData.append('nbFollowers', formDataToUpdate.nbFollowers);
-            formData.append('description', formDataToUpdate.description);
+            // Ajoutez les champs au FormData
+            Object.entries(formDataToUpdate).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
             if (file) {
                 formData.append('photo', file);
             }
@@ -119,6 +132,8 @@ function ImageUpload() {
     const handleEditProfile = () => {
         setShowModal(true);
     };
+
+   
 
     return (
         <div className="inner-banner">
@@ -175,6 +190,15 @@ function ImageUpload() {
                             <div className="form-row">
                                 <label htmlFor="numero"> Numéro de téléphone :</label>
                                 <input type="tel" id="numero" name="numero" value={formData.numero} onChange={handleFormChange} className="large-input" />
+                            </div>
+                            <div className="form-row">
+                                <label>Date de naissance:</label>
+                                <DatePicker
+    className="form-control"
+    selected={anniversaire ? new Date(anniversaire) : null}
+    onChange={handleDateChange}
+    dateFormat="dd/MM/yyyy"
+/>
                             </div>
                             <div className="form-row">
                                 <label htmlFor="instagram"> Lien Instagram :</label>
