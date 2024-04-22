@@ -18,5 +18,26 @@
     display: flex;
     align-items: center;
   }
+  .button-container {
+    display: flex;
+    justify-content: center; /* Pour aligner les boutons au centre horizontalement */
+}
+
+.button-container button {
+    margin: 0 5px; /* Pour ajouter un peu d'espace entre les boutons */
+}
+.like-icon-container {
+  margin-top: 2px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center; /* Aligner verticalement les éléments */
+}
+
+.like-icon-container > svg {
+  color: #70218f; /* Changer la couleur de l'icône en violet */
+  margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+
   
   

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Adminsidbar from "../Sidbar/Adminsidbar";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function nouveaupartenaire() {
     const [nomSociete, setNomSociete] = useState('');
@@ -49,19 +50,19 @@ function nouveaupartenaire() {
                         <div className="min-height-200px">
                             <div className="pd-20 card-box mb-30">
                                 <div className="wizard-content">
-                                    <form className="tab-wizard wizard-circle wizard" onSubmit={handleSubmit}>
+                                    <form className="tab-wizard wizard-circle wizard">
                                         <h5>Nouveau Partenaire</h5>
                                         <section>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label>Nom de société :</label>
+                                                        <label>Nom de société:</label>
                                                         <input type="text" className="form-control" value={nomSociete} onChange={(e) => setNomSociete(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label>Numéro :</label>
+                                                        <label>Numéro:</label>
                                                         <input type="text" className="form-control" value={numero} onChange={(e) => setNumero(e.target.value)} required />
                                                     </div>
                                                 </div>
@@ -69,17 +70,17 @@ function nouveaupartenaire() {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label>Email :</label>
+                                                        <label>Email:</label>
                                                         <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
-    <div className="form-group text-purple">
-        <label>lien :</label>
-        <input type="text" className="form-control" value={lien} onChange={(e) => setLien(e.target.value)} required />
-    </div>
-</div>
+                                                <div className="form-group text-purple">
+                                                    <label>lien:</label>
+                                                    <input type="text" className="form-control" value={lien} onChange={(e) => setLien(e.target.value)} required />
+                                                </div>
+                                            </div>
                                             <div className="row">
                                                 <div className="col-md-7">
                                                     <div className="form-group text-purple">
@@ -99,13 +100,20 @@ function nouveaupartenaire() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <button type="submit" className="btn-purple">Ajouter</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div className="row justify-content-center">
+    <div className="col-md-6">
+    <div className="form-group text-center">
+                <button
+                    type="button" // Change type to "button"
+                    className="btn btn-primary"
+                    style={{ backgroundColor: 'purple' }}
+                    onClick={handleSubmit}
+                >
+                    Ajouter
+                </button>
+            </div>
+    </div>
+</div>
                                         </section>
                                     </form>
                                 </div>

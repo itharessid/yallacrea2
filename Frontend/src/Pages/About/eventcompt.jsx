@@ -24,34 +24,34 @@ function EventCompt() {
                         <p className="sub-title mt-2">Découvrez une multitude d'événements passionnants organisés par notre école, offrant une variété d'opportunités d'apprentissage, de divertissement et d'engagement communautaire pour tous les étudiants.</p>
                     </div>
                     <div className="row main-contteam-32 justify-content-center">
-                        {event.map(event => (
-                            <div key={event.id} className="col-lg-3 col-6  center team-main-19">
-                                <div className="right-team-9">
-                                <h7 className="title-team-32" style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>{event.titre}</h7>
-                                <p className="sm-text-32">{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</p>
-                                </div>
-                                <div className="column-19">
-                                <a href={event.lienvideo}>
-                                    <img
-                                        className="img-fluid"
-                                        src={`http://localhost:3001/photo/${event.image}`}
-                                        alt={event.title}
-                                        style={{ width: '200px', height: '150px' }} // Dimensions statiques de la carte
-                                    />
-                                    </a>
-                                    <p className="sm-text-32" style={{ width: '200px', height: '100px', overflow: 'hidden' }}>{event.description}</p>
+    {event.map(event => (
+        <div key={event.id} className="col-lg-3 col-6 center team-main-19" style={{ marginRight:'50px' }}> {/* Add margin bottom */}
+            <div className="right-team-9">
+                <h7 className="title-team-32" style={{ whiteSpace: 'nowrap', textAlign: 'center' }}>{event.titre}</h7>
+                <p className="sm-text-32">{event.dateevent ? new Date(event.dateevent).toLocaleDateString('fr-FR') : '-'}</p>
+            </div>
+            <div className="column-19">
+                <a href={event.lienvideo}>
+                    <img
+                        className="img-fluid"
+                        src={`http://localhost:3001/photo/${event.image}`}
+                        alt={event.title}
+                        style={{ width: '200px', height: '150px' }} // Dimensions statiques de la carte
+                    />
+                </a>
+                <p className="sm-text-32" style={{ width: '150px', height: '100px' }}>{event.description}</p>
+            </div>
+            <div>
+                <button className="button2">
+                    <a href={event.lienphotos}>
+                        <FontAwesomeIcon icon={faPhotoFilm} />
+                    </a>
+                </button>
+            </div>
+        </div>
+    ))}
+</div>
 
-                                </div>
-                                <div>
-                                <button className="button2">
-                                <a href={event.lienphotos}>
-                                    <FontAwesomeIcon icon={faPhotoFilm} />
-                                </a>
-                            </button>
-                            </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </div>
         </section>

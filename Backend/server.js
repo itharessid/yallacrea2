@@ -20,7 +20,7 @@ const refusEmailCreaRouter=require('./Controllers/refutationEmailCrea.js');
 const refusEmailEtudRouter=require('./Controllers/refutationEmailEtud.js');
 const eventsRouter=require('./Controllers/evenement.js');
 const emploisRouter =require('./Controllers/emplois.js');
-
+const videoRouter=require('./Controllers/video.js');
 
 const app = express();
 app.use(cors());
@@ -46,7 +46,7 @@ app.use(refusEmailEtudRouter);
 app.use(eventsRouter);
 app.use (emploisRouter);
 app.use('/temp', express.static('../frontend/public/temps'));
-
+app.use(videoRouter);
 
 
 const PORT = 3001;

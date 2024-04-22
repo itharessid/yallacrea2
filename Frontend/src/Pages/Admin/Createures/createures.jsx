@@ -98,7 +98,8 @@ function Createurs() {
           </div>
         </div>
         <div className="DataTables_Table_2_filter">
-          <label style={{ marginRight: '10px' }}>Rechercher:<input
+          <label style={{ marginRight: '10px' }}>Rechercher:
+          <input
             type="search"
             className="form-control form-control-sm"
             placeholder="Trouver un créateur"

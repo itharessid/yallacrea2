@@ -59,6 +59,8 @@ import Domaines from './Pages/Admin/Domaines/domaines.jsx';
 import NDomaine from './Pages/Admin/Domaines/NDomaine.jsx';
 import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
 import EventCompt from './Pages/About/eventcompt.jsx';
+import UploadVideo from './Pages/lesprofile/uplodvideo.jsx';
+import UpdateVideo from './Pages/lesprofile/updateVideo.jsx';
 
 
 
@@ -84,7 +86,7 @@ function App() {
         <Route path="/gprofil" element={< Gprofile/>} />
         <Route path="/profiluser" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
-        <Route path="/video" element={<Videouser />}/>
+        <Route path="/video/:id" element={<Videouser />}/>
         <Route path="/afvideo" element={<Video />}/>
         <Route path="/emploi" element={<Emplois/>}/>
         <Route path="/pres" element={<Preseneteil/>}/>
@@ -130,7 +132,8 @@ function App() {
         <Route path="/preInscriptionCrea" element={<PreInscriptionCrea/>} /> 
         <Route path="/event/:id" element={<Event/>}/>
         <Route path="/apropos" element={<EventCompt/>}/>
-
+        <Route path="/upload" element={<UploadVideo/>}/>
+        <Route path="/updateVideo/:id" element={<UpdateVideo/>}/>
          </Routes>
          </BrowserRouter>
          </>

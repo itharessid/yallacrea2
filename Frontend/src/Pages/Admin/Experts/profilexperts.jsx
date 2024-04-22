@@ -4,8 +4,6 @@ import Adminsidbar from '../Sidbar/Adminsidbar';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import './profilexpert.css'
-
 function ProfileExperts() {
     const { id } = useParams(); // Récupérer l'ID de l'expert à partir de l'URL
     const [expertData, setExpertData] = useState(null);
