@@ -231,7 +231,8 @@ function ImageUpload() {
                             </div>
                         </form>
                         <button 
-    type="submit" 
+    type="button" // Changez le type en "button"
+    onClick={handleFormSubmit} // Déplacez la gestionnaire d'événements de clic ici
     style={{
         display: 'block',
         margin: '0 auto', // Centrer horizontalement
