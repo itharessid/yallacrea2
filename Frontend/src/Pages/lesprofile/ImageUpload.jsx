@@ -227,11 +227,26 @@ function ImageUpload() {
                             </div>
                             <div className="form-row">
                                 <label htmlFor="description"> Biographie </label>
-                                <textarea id="description" name="description" value={formData.description} onChange={handleFormChange} rows="5" cols="50" />
+                                <textarea id="description" name="description" value={formData.description} onChange={handleFormChange} rows="5" cols="75" />
                             </div>
-                            <button type="submit">Modifier</button>
                         </form>
-                    </div>
+                        <button 
+    type="submit" 
+    style={{
+        display: 'block',
+        margin: '0 auto', // Centrer horizontalement
+        padding: '10px 60px', // Augmenter la taille du bouton
+        fontSize: '16px', // Taille de la police
+        fontWeight: 'bold', // Gras
+        backgroundColor: '#70218f', // Couleur de fond
+        color: '#fff', // Couleur du texte
+        border: 'none', // Supprimer la bordure
+        borderRadius: '10px', // Ajouter des coins arrondis
+        cursor: 'pointer' // Curseur de type pointer
+    }}
+>
+    Modifier
+</button>                    </div>
                 </div>
             )}
         </div>

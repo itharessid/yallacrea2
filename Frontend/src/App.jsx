@@ -13,6 +13,7 @@ import Expcomp from './Pages/Home/expertComp.jsx';
 import Contact from './Pages/Contact/contact';
 import Formation from './Pages/Formation/formation';
 import Createur  from './Pages/Createur/createur';
+import Crea from './Pages/Createur/crea.jsx'
 import Acceler from'./Pages/Accelere/accelere';
 import Complet  from './Pages/CourComplet/complet.jsx';
 import Video from './Pages/lesprofile/video.jsx';
@@ -77,6 +78,7 @@ function App() {
         <Route path="/apropos" element={<Partencop />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/createur" element ={< Createur/>} />
+        <Route path="/crea" element ={< Crea />} />
         <Route path="/detail" element ={<Detail/>} />
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
@@ -104,7 +106,8 @@ function App() {
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/bienvenue" element={<Bienvenue/>} />
         <Route path="/etudiants" element={<Etudiants/>} /> 
-        <Route path="/createures" element={<Createures/>} />      
+        <Route path="/createures" element={<Createures/>} /> 
+
         <Route path="/nouveauEtud" element={<NouveauEtud/>} />  
         <Route path="/nouveauCrea" element={<NouveauCrea/>} />  
         <Route path="/login" element={<Login/>} /> 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap';
-import { BiHeart } from 'react-icons/bi';
-
 import './createur.css'
+import Crea from './crea';
+
 function createur() {
   return (
     <div>
@@ -158,146 +158,17 @@ function createur() {
         
     </div>
 </div>
+<Crea/>
+
 <section className="trending-podcast-section section-padding">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-full">
-                            <div className="custom-block-image-wrap text-center"> 
-
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/c1.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-                                 </div>
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2 custom-name">
-                                        <a href="/connexion">
-                                         baha <br/>haouas
-                                        </a>
-                                    </h5>
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="https://www.facebook.com/baha.haouas.9/" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/itsbahahaouas/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@justbahahaouas?is_from_webapp=1&sender_device=pc" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                               
-                            </div>
-                            <br/>
-                        </div>
+                        
 
 
-                        <div className="col-lg-4 col-12 mb-4 mb-lg-0">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/nourch.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
+                        
 
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                        nourchenne cheguenni
-                                        </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/nourchenne.cheguenni" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/nourchenne_cheguenni/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@nourchennecheguenni" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/Khoubaib.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                        khoubaib jebabli 
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/khoubaibzaril" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/khoubaib_jebabli/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@khoubaib_jebabli" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/ghazi.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                        Ghazi Gharbi
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href=" https://www.facebook.com/gharbi.ghazi.tbs " className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/ghazi.elgharbi/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@ghazi.elgharbi" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
+                       
                         <div className="col-lg-4 col-12">
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
