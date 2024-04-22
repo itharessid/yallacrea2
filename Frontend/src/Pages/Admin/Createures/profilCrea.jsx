@@ -222,7 +222,7 @@ function ProfileCrea() {
                             <div className="form-group">
                                 <label>Nombre de Followers:</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     className="form-control"
                                     name="nbFollowers"
                                     value={editedData.nbFollowers}

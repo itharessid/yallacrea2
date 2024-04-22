@@ -42,10 +42,11 @@ function Video() {
   const [blurBackground, setBlurBackground] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [likes, setLikes] = useState({}); // État pour stocker le nombre de "J'aime" pour chaque vidéo
-  const [comments, setComments] = useState({}); // État pour stocker les commentaires pour chaque vidéo
+  /*const [comments, setComments] = useState({}); */// État pour stocker les commentaires pour chaque vidéo
 
   useEffect(() => {
     fetchData(); // Appeler la fonction fetchData pour récupérer les données vidéo initiales
+    fetchLikes(); // Appeler la fonction fetchLikes pour récupérer les likes initiaux
   }, []);
 
   const fetchData = async () => {
@@ -53,29 +54,60 @@ function Video() {
       const response = await axios.get('http://localhost:3001/video');
       setVideo(response.data);
       setVideoData(response.data); // Mettre à jour videoData avec les données récupérées
+          // Récupérer les likes pour chaque vidéo
+    response.data.forEach(async (video) => {
+      await fetchLikes(video.idVid);
+    });
 
       // Récupérer les commentaires pour chaque vidéo
-      const commentsData = {};
+      /*const commentsData = {};
       await Promise.all(
         response.data.map(async (video) => {
           const commentsResponse = await axios.get(`http://localhost:3001/video/${video.idVid}/comments`);
           commentsData[video.idVid] = commentsResponse.data;
         })
       );
-      setComments(commentsData);
+      setComments(commentsData);*/
     } catch (error) {
       console.error("Erreur lors de la récupération des vidéos :", error);
     }
   };
 
-  // Gérer le clic sur le bouton "J'aime"
-  const handleLikeClick = (videoId) => {
-    setLikes(prevLikes => ({
-      ...prevLikes,
-      [videoId]: (prevLikes[videoId] || 0) + 1
-    }));
+  const fetchLikes = async (videoId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/video/${videoId}/like`);
+      setLikes(prevLikes => ({
+        ...prevLikes,
+        [videoId]: response.data.likes
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la récupération des likes :", error);
+    }
   };
+  
 
+  const handleLikeClick = async (videoId, event) => {
+    // Vérifier si le clic est un double clic
+    if (event.detail === 2) {
+      setLikes(prevLikes => ({
+        ...prevLikes,
+        [videoId]: (prevLikes[videoId] || 0) - 1 // Diminuer le nombre de likes
+      }));
+    } else {
+      // Sinon, c'est un clic simple
+      setLikes(prevLikes => ({
+        ...prevLikes,
+        [videoId]: (prevLikes[videoId] || 0) + 1 // Augmenter le nombre de likes
+      }));
+      // Envoi du nombre de likes au backend
+      try {
+        await axios.put(`http://localhost:3001/video/${videoId}/like`, { likes: likes[videoId] + 1 });
+      } catch (error) {
+        console.error("Erreur lors de l'envoi du nombre de likes au backend :", error);
+      }
+    }
+  };
+  
   const handleDeleteClick = (video) => {
     setVideoToDelete(video);
     setShowDeleteConfirmation(true);
@@ -143,7 +175,7 @@ function Video() {
                   <a className="nav-link" href="/profiluser">Mon Profil</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/video">Vidéos</a>
+                  <a className="nav-link" href="/afvideo">Vidéos</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="contact">Contact</a>
@@ -203,11 +235,11 @@ function Video() {
                               </Link>
                               <button onClick={() => handleDeleteClick(video)}>Supprimer</button>
                             </div>
-                            <div className="like-icon-container" onClick={() => handleLikeClick(video.idVid)}>
+                            <div className="like-icon-container" onClick={(event) => handleLikeClick(video.idVid, event)} onDoubleClick={(event) => handleLikeClick(video.idVid, event)}>
                               <FontAwesomeIcon icon={faThumbsUp} />
-                                <span>{likes[video.idVid] || 0}</span> {/* Afficher le nombre de "J'aime" */}
+                              <span>{likes[video.idVid] || 0}</span>
                             </div>
-                            <div className="comments-container">
+                            {/*<div className="comments-container">
                               <h4>Commentaires</h4>
                               {comments[video.idVid] && comments[video.idVid].map(comment => (
                                 <div key={comment.id} className="comment">
@@ -215,7 +247,7 @@ function Video() {
                                   <p>Par: {comment.author}</p>
                                 </div>
                               ))}
-                            </div>
+                            </div>*/}
                         </div>
                     ))}
                 </div>
