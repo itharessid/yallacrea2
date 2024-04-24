@@ -67,6 +67,6 @@
       pointer-events: none; /* Empêcher les événements sur le fond flou */
     }
     .bigger-card1{
-      height: 100px;
+      height: 2000px;
       width: 1250px;
     }

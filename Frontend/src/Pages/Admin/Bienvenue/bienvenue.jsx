@@ -81,20 +81,34 @@ function Bienvenue() {
             </div>
           </div>
 
-          <div className="row">
-          <div className="col-xl-3 mb-20">
+          <div class="col-xl-4 col-lg-5">
+        <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart"></canvas>
             </div>
-            <div class="loader">
-            <div class="cube">
-            <div class="face front">{etudiantsCount}&nbsp;Etudiants</div>
-              <div class="face back">{domainesCount}&nbsp;Domaines</div>
-              <div class="face left">{createursCount}&nbsp;Createurs</div>
-              <div class="face right">{eventsCount}&nbsp;Évènements</div>
-              <div class="face top">{expertCount}&nbsp;Experts</div>
-              <div class="face bottom">{partenaireCount}&nbsp;Partenaires</div>
+            <div class="mt-4 text-center small">
+                <span class="mr-2">
+                    <i class="fas fa-circle text-primary"></i> {etudiantsCount} Étudiants
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> {domainesCount} Domaines
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-info"></i> {createursCount} Créateurs
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-danger"></i> {eventsCount} Événements
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-warning"></i> {expertCount} Experts
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-secondary"></i> {partenaireCount} Partenaires
+                </span>
             </div>
-          </div>
-          </div>
+        </div>
+    </div>
+
           <div className="row">
             <div className="col-xl-4 col-lg-5 col-md-4 md-20">
               <div className="card-boxPE height-100-p widget-style1">
