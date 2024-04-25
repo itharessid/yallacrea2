@@ -98,15 +98,7 @@ const UpdateVideo = () => {
                                         value={editedData?.description || ''}
                                         onChange={handleInputChange}
                                     />
-                                    <input
-                                        type="date"
-                                        name="date"
-                                        placeholder="Date d'ajout"
-                                        value={uploadDate}
-                                        onChange={handleUploadDateChange}
-                                        className="form-control mb-3"
-                                    />
-                                    <button onClick={handleSubmit}>Modifier</button>
+                                    <button onClick={handleSubmit}className="white-text">Modifier</button>
                                 </div>
                             </div>
                         </div>

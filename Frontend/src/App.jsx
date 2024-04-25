@@ -62,6 +62,8 @@ import Emploiup from './Pages/Admin/emploidutemps/emploiup.jsx';
 import EventCompt from './Pages/About/eventcompt.jsx';
 import UploadVideo from './Pages/lesprofile/uplodvideo.jsx';
 import UpdateVideo from './Pages/lesprofile/updateVideo.jsx';
+import Certif from './Pages/Admin/Certification/certif.jsx';
+
 
 
 
@@ -88,7 +90,7 @@ function App() {
         <Route path="/gprofil" element={< Gprofile/>} />
         <Route path="/profiluser" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
-        <Route path="/video/:id" element={<Videouser />}/>
+        <Route path="/video/:id/like" element={<Videouser />}/>
         <Route path="/afvideo" element={<Video />}/>
         <Route path="/emploi" element={<Emplois/>}/>
         <Route path="/pres" element={<Preseneteil/>}/>
@@ -137,6 +139,7 @@ function App() {
         <Route path="/apropos" element={<EventCompt/>}/>
         <Route path="/upload" element={<UploadVideo/>}/>
         <Route path="/updateVideo/:id" element={<UpdateVideo/>}/>
+        <Route path="/certif" element={<Certif/>}/>
          </Routes>
          </BrowserRouter>
          </>

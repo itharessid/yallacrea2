@@ -102,6 +102,40 @@ router.delete('/video/:id', (req, res) => {
         return res.status(200).json({ message: "video supprimé avec succès" });
     });
 });
+router.put('/video/:id/like', (req, res) => {
+    const id = req.params.id;
+    const { likes } = req.body;
+
+    const sql = 'UPDATE video SET likes = ? WHERE idVid = ?';
+    const values = [likes, id];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Erreur lors de la mise à jour du nombre de likes dans la base de données :", err);
+            return res.status(500).json({ error: "Erreur lors de la mise à jour du nombre de likes dans la base de données" });
+        }
+        return res.status(200).json({ message: "Nombre de likes mis à jour avec succès" });
+    });
+});
+router.get('/video/:id/like', (req, res) => {
+    const id = req.params.id;
+
+    const sql = 'SELECT likes FROM video WHERE idVid = ?';
+    
+    db.query(sql, id, (err, result) => {
+        if (err) {
+            console.error("Erreur lors de la récupération du nombre de likes depuis la base de données :", err);
+            return res.status(500).json({ error: "Erreur lors de la récupération du nombre de likes depuis la base de données" });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Vidéo non trouvée dans la base de données" });
+        }
+
+        const likes = result[0].likes;
+        return res.status(200).json({ likes: likes });
+    });
+});
 
 
 module.exports = router;

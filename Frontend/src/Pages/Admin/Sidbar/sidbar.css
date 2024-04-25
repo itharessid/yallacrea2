@@ -1,4 +1,54 @@
 @charset "utf-8";
+.left-side-bar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 250px; /* ajustez la largeur selon vos besoins */
+	overflow-y: auto; /* ajoutez un défilement vertical si nécessaire */
+	background-color: #fff; /* changez la couleur de fond si nécessaire */
+	z-index: 1000; /* assurez-vous que la barre latérale reste au-dessus du contenu */
+  }
+  
+.sidebar-menu .dropdown-toggle {
+    display: block;
+    padding: 20px 18px 18px 67px;
+    font-size: 16px;
+    color: #70218F;
+    font-weight: 300;
+    letter-spacing: .03em;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.sidebar-menu .dropdown-toggle .fa-chevron-down {
+    position: absolute;
+    top: 50%;
+    right: 15px; /* ajustez selon votre conception */
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-menu .dropdown-toggle.rotate-icon .fa-chevron-down {
+    transform: translateY(-50%) rotate(180deg);
+}
+  ul.dropdown-menu {
+	background-color: #70218F;
+	/* Autres styles ici si nécessaire */
+  }
+  .translate-dropdown {
+	transition: transform 0.3s ease; /* Ajoute une transition fluide */
+  }
+  
+  .show.translate-dropdown {
+	transform: translateY(50px); /* Modifiez la valeur selon votre préférence */
+  }
+  
+  
 .customscroll {
 	height: calc(100vh - 100px); /* Set the height of the sidebar */
 	overflow-y: auto; /* Enable vertical scrolling */

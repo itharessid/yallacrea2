@@ -92,16 +92,7 @@ function UploadVideo() {
                                         onChange={handleDescriptionChange}
                                         className="form-control mb-3"
                                     />
-                                    <input
-                                        type="date"
-                                        name="date"
-                                        placeholder="Date d'ajout"
-                                        value={uploadDate}
-                                        onChange={handleUploadDateChange}
-                                        className="form-control mb-3"
-                                    />
-                                    <button onClick={handleUpload}>Upload</button>
-                                    <button onClick={handleModification}>Modifier</button>
+                                    <button onClick={handleUpload} className="white-text">Upload</button>
                                 </div>
                             </div>
                         </div>

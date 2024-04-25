@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
-import axios from 'axios'; // Importez Axios pour effectuer des requêtes HTTP
-import'./bienvenue.css';
-
-
+import axios from 'axios';
+import './bienvenue.css';
+import { createPieChart } from './chart-pie-demo.js';
 
 function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
@@ -15,20 +14,20 @@ function Bienvenue() {
   const [pCreaCount, setPCreaCount] = useState(0);
   const [eventsCount, setEventsCount] = useState(0);
   const imageStyle = {
-    width: '250px',  // Ajustez la taille de l'image si nécessaire
+    width: '250px',
     height: '180px',
-    borderRadius: '-200%',  // Définit la forme de l'image comme un cercle
-    objectFit: 'cover',  // Ajuste la taille de l'image pour couvrir le cercle
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)'  // Ajoute une ombre autour de l'image
-};
-
-
-
-
+    borderRadius: '-200%',
+    objectFit: 'cover',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)'
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    createPieChart(createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount);
+  }, [createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount]);
 
   const fetchData = async () => {
     try {
@@ -55,8 +54,6 @@ function Bienvenue() {
 
       const eventsResult = await axios.get("http://localhost:3001/evenements");
       setEventsCount(eventsResult.data.length);
-
-
     } catch (err) {
       console.log("Quelque chose s'est mal passé lors de la récupération des données :", err);
     }
@@ -70,7 +67,7 @@ function Bienvenue() {
           <div className="card-box pd-10 mb-30">
             <div className="row align-items-center">
               <div className="col-md-3 d-flex justify-content-center">
-                <img src="src/assets/images/wajdi.jpg" alt="" style={imageStyle}/>
+                <img src="src/assets/images/wajdi.jpg" alt="" style={imageStyle} />
               </div>
               <div className="col-md-9">
                 <h4 className="font-18 mb-10 text-capitalize">
@@ -82,46 +79,49 @@ function Bienvenue() {
           </div>
 
           <div className="row">
-          <div className="col-xl-3 mb-20">
-            </div>
-            <div class="loader">
-            <div class="cube">
-            <div class="face front">{etudiantsCount}&nbsp;Etudiants</div>
-              <div class="face back">{domainesCount}&nbsp;Domaines</div>
-              <div class="face left">{createursCount}&nbsp;Createurs</div>
-              <div class="face right">{eventsCount}&nbsp;Évènements</div>
-              <div class="face top">{expertCount}&nbsp;Experts</div>
-              <div class="face bottom">{partenaireCount}&nbsp;Partenaires</div>
-            </div>
-          </div>
-          </div>
-          <div className="row">
-            <div className="col-xl-4 col-lg-5 col-md-4 md-20">
-              <div className="card-boxPE height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des étudiants</div>
-                    <div className="h6 mb-0 text-center">{pEtudCount}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-4 col-lg-5 col-md-4 md-20">
-              <div className="card-boxPC height-100-p widget-style1">
-                <div className="d-flex flex-wrap align-items-center">
-                  <div className="widget-data">
-                    <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions des créateurs</div>
-                    <div className="h6 mb-0 text-center">{pCreaCount}</div>
-                  </div>
+            <div className="col-xl-4 col-lg-5">
+              <div className="card-body">
+                <div className="chart-pie pt-4 pb-2">
+                  <canvas id="myPieChart"></canvas>
                 </div>
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
+      <div className="container">
+            <div className="row justify-content-end">
+              <div className="col-lg-6">
+                {/* Votre contenu existant ici */}
+                <div className="mt-4 text-right small">
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Etud"></i> {etudiantsCount} Étudiants
+                  </span>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Dom"></i> {domainesCount} Domaines
+                  </span>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Crea"></i> {createursCount} Créateurs
+                  </span><br/>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Event"></i> {eventsCount} Événements
+                  </span>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Exp"></i> {expertCount} Experts
+                  </span>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-Part"></i> {partenaireCount} Partenaires
+                  </span><br/>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-PEtud"></i> {pEtudCount} Pré-inscriptions des étudiants
+                  </span><br/>
+                  <span className="mr-2">
+                    <i className="fas fa-circle text-PCrea"></i> {pCreaCount} Pré-inscriptions des créateurs
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
     </>
   );
 }

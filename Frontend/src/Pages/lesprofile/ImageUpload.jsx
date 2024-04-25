@@ -148,7 +148,7 @@ function ImageUpload() {
                                 icon={faPlus} onClick={handleClick}
                                 style={{ position: "absolute", top: "50%", left: "50%",
                                 transform: "translate(450%, 450%)", cursor: "pointer", zIndex: "1",
-                                backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} />
+                                backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
                         </div>
                         <div className="col-lg-5">
                             <div className="text-right">
@@ -159,12 +159,12 @@ function ImageUpload() {
                         <div className="col-lg-7">
                             <div className="custom-block-icon-wrap">
                                 <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
-                                <button onClick={handleUpload} style={{ marginTop: "5px", marginBottom: "5px" }}>Envoyer</button>
+                                <button onClick={handleUpload} style={{ marginTop: "5px", marginBottom: "5px" }} className="white-text">Envoyer</button>
                             </div>
                         </div>
                         <div className="col-lg-5 d-flex justify-content-end align-items-end">
                             <div className="additional-button-div" style={{ position: "absolute", bottom: "0", right: "0" }}>
-                                <button style={{ marginTop: "5px", marginBottom: "5px" }} onClick={handleEditProfile}>Modifier le profile</button>
+                                <button style={{ marginTop: "5px", marginBottom: "5px" }} onClick={handleEditProfile}className="white-text">Modifier le profile</button>
                             </div>
                         </div>
                     </div>

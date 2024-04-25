@@ -9,7 +9,6 @@
     height: 40px; /* Assurez-vous que la hauteur du bouton est la même que celle de l'entrée de texte */
     font-size: 16px; /* Définir la taille de la police */
     margin-left: 10px; /* Ajouter un espace entre le champ de recherche et le bouton */
-
   }
   .add-video-button {
     margin-left: 500px; /* Ajoute un espace entre le bouton de recherche et le bouton d'ajout de vidéo */
@@ -38,6 +37,11 @@
   margin-right: 5px; /* Espacement entre l'icône et le texte */
 }
 
-
+.white-text {
+  color: white;
+}
+.card-box-Etud {
+  border: 2px solid purple;
+}
   
   
