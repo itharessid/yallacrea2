@@ -3,34 +3,57 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
 import './createur.css';
+
 function Crea() {
     const [createurs, setCreateurs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [domaines, setDomaines] = useState([]);
+    const [selectedDomaine, setSelectedDomaine] = useState('');
 
     useEffect(() => {
         fetchData();
-      }, []);
-    
-      const fetchData = async () => {
+        fetchDomaines();
+    }, [searchKeyword, selectedDomaine]);
+
+    const fetchData = async () => {
         try {
-          const result = await axios.get("http://localhost:3001/createur");
-          setCreateurs(result.data);
-          setLoading(false);
+            let url = "http://localhost:3001/createur";
+            const params = {};
+            if (searchKeyword) {
+                params.keyword = searchKeyword;
+            }
+            if (selectedDomaine) {
+                params.domaine = selectedDomaine;
+            }
+            const result = await axios.get(url, { params });
+            setCreateurs(result.data);
+            setLoading(false);
         } catch (err) {
-          console.log("Quelque chose s'est mal passé lors de la récupération des données créateurs :", err);
-          setError("Une erreur s'est produite lors de la récupération des données des créateurs");
-          setLoading(false);
+            console.log("Quelque chose s'est mal passé lors de la récupération des données des créateurs :", err);
+            setError("Une erreur s'est produite lors de la récupération des données des créateurs");
+            setLoading(false);
         }
-      };
-    
-      if (loading) {
-        return <div>Chargement en cours...</div>;
-      }
-    
-      if (error) {
-        return <div>Une erreur s'est produite : {error}</div>;
-      }
+    };
+
+    const fetchDomaines = async () => {
+        try {
+            const result = await axios.get("http://localhost:3001/domaine");
+            setDomaines(result.data);
+        } catch (err) {
+            console.log("Quelque chose s'est mal passé lors de la récupération des domaines :", err);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchData();
+    };
+
+    const handleDomaineChange = (e) => {
+        setSelectedDomaine(e.target.value);
+    };
 
     if (loading) {
         return <div>Chargement en cours...</div>;
@@ -40,39 +63,71 @@ function Crea() {
         return <div>Une erreur s'est produite : {error}</div>;
     }
 
+    const filteredCreateurs = createurs.filter(createur => {
+        // Filtrer par nom et prénom contenant la lettre saisie
+        const fullName = `${createur.nom} ${createur.prenom}`.toLowerCase();
+        return fullName.includes(searchKeyword.toLowerCase());
+    });
+
+    // Filtrer les créateurs par domaine sélectionné
+    const filteredByDomaine = selectedDomaine ? filteredCreateurs.filter(createur => createur.domaine === selectedDomaine) : filteredCreateurs;
+
     return (
         <section className="trending-podcast-section section-padding">
             <div className="container">
-                <div className="row">
-                    {createurs && createurs.map(createur => (
-                        <div className="col-lg-4 col-12 mb-4 mb-lg-0" key={createur.idCreateur}>
+            <div className="search-form">
+    <form onSubmit={handleSubmit}>
+        <input
+            type="text"
+            value={searchKeyword}
+            onChange={(e) => setSearchKeyword(e.target.value)}
+            placeholder="Rechercher par nom de créateur"
+            className="search-input"
+        />
+       <select
+    value={selectedDomaine}
+    onChange={handleDomaineChange}
+    className="search-select"
+>
+    <option value="">Tous les domaines</option>
+    {domaines.map(domaine => (
+        <option key={domaine.idDomaine} value={domaine.nomDomaine}>{domaine.nomDomaine}</option>
+    ))}
+</select>
+<button type="submit" className="search-button">Rechercher</button>
+    </form>
+
+
+</div>
+<br/>
+<br/>
+
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                    {filteredByDomaine.map(createur => (
+                        <div className="col mb-4" key={createur.idCreateur}>
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
                                     <a href="/connexion">
                                         <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt=""/>
                                     </a>
                                 </div>
-
                                 <div className="custom-block-info">
                                     <h5 className="mb-2">
                                         <a href="/connexion">
                                             {createur.nom} {createur.prenom}
                                         </a>
                                     </h5>
-
                                     <div className="custom-block-bottom d-flex justify-content-between mt-3">
                                         <a href={createur.lienFace} className="fa fa-facebook">
                                             <span></span>
                                         </a>
-
                                         <a href={createur.lienInsta} className="fa fa-instagram">
                                             <span></span>
                                         </a>
-
                                         <a href={createur.lienTik} className="tiktok-icon me-1">
-                                        <FontAwesomeIcon icon={faTiktok} className="tiktok-icon-black" />
-                                       </a>
-                                      </div>
+                                            <FontAwesomeIcon icon={faTiktok} className="tiktok-icon-black" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -84,4 +139,3 @@ function Crea() {
 }
 
 export default Crea;
-``

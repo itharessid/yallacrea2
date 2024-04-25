@@ -33,7 +33,7 @@
 .features15-col-text select,
 .features15-col-text input {
    height: 50px;
-   width: 300px;
+   width: 200px;
     margin-right: 5px; /* Add some space between input and dropdown */
     text-align: center;
 }
@@ -46,3 +46,19 @@
 .tiktok-icon-black {
     color: black;
 }
+/* Ajoutez ces styles dans votre fichier createur.css ou dans un autre fichier CSS dédié */
+.search-select {
+    height: 40px; /* Hauteur du select */
+    width: 300px; /* Largeur du select */
+    font-size: 20px; /* Taille de la police du select */
+}
+
+
+.search-button {
+    height: 50px; /* Hauteur du bouton */
+    width: 300px; /* Largeur du bouton */
+    font-size: 20px; /* Taille de la police du bouton */
+    color: azure;
+    
+}
+
