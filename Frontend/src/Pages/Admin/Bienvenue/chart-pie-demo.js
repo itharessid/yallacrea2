@@ -1,4 +1,5 @@
-import Chart  from 'chart.js/auto';
+
+import Chart from 'chart.js/auto';
 
 let myPieChart; // Déclarer une variable pour stocker l'instance du graphique
 
