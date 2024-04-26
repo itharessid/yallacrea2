@@ -73,16 +73,15 @@ function createur() {
                 <div className="row top-cont-grid align-items-center">
                     <div className="col-lg-5 left-img pr-lg-4">
                     <div>
-          <iframe
-        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1313236633408551&show_text=0&width=560"
-        width="400"
-        height="600"
-        style={{ border: 'none', overflow: 'hidden' }}
-        frameborder="0"
-        allowTransparency="true"
-        allowFullScreen="true"
-       >
-        </iframe>
+                    <iframe
+  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1313236633408551&show_text=0&width=560"
+  width="400"
+  height="600"
+  style={{ border: 'none', overflow: 'hidden' }}
+  frameBorder="0"
+  allowTransparency={true}
+  allowFullScreen={true}
+></iframe>
     </div>                   </div>
                     <div className="col-lg-6 text-6-info mb-lg-0 mb-4 pl-lg-5">
                         <h6>Yalla DIGITAL Academy</h6>
@@ -103,252 +102,17 @@ function createur() {
                     </div>
                 </section>
 
-           
+                <Crea/>
 
 
-            <div className="w3l-index-block4 pb-5">
-        <div className="features-bg pb-lg-5 pt-lg-4 py-4">
-            <div className="container">
-                <div className="title-main text-center mx-auto mb-md-4">
-                   
-                </div>
-                <div className="row">
-                    <div className="col-lg-4 col-md-6 features15-col-text">
-                        <div className="row align-items-center">
-                        <div className="col-lg-4">
-                            <fieldset>
-                                <input type="text" name="keyword" className="searchText" placeholder="Recherche ..." autoComplete="on" required />
-                            </fieldset>
-                        </div>
-                        </div>
-                           
-                    
-                    </div>
-                    <div className="col-lg-2 col-md-2 features15-col-text">
-                    <fieldset>
-                    <select name="Category" className="form-select" aria-label="Default select example" id="chooseCategory" onChange={() => this.form.click()}>
-                <option>Tout Categories</option>
-                   <option type="checkbox" name="option1" value="Music">Santé</option>
-                   <option value="Digital">lois</option>
-               <option value="Blockchain">Fashion</option>
-</select>
-                </fieldset>
-                    </div>
-
-                    <div className="col-lg-2 col-md-2 features15-col-text">
-                    <div className="row align-items-center">
-                        <div className="col-lg-4">
-                    <div className="col-lg-2">                        
-                            <fieldset>
-                            <button className="main-button" style={{ color: 'white'}}>Rechercher</button>
-                            </fieldset>
-                        </div>
-                   
-                  
-                        </div>
-                       </div>
-                       </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+       
            
         </div>
         
     </div>
 </div>
-<Crea/>
-
-<section className="trending-podcast-section section-padding">
-                <div className="container">
-                    <div className="row">
-                        
 
 
-                        
-
-                       
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/rayen.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                        Rayen Bouajaja 
-
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/rayen.bouajaja" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/rayen_bouajaja/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@rayenbouajaja" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                            <br/>
-                        </div>
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
-                                        <img src="src/assets/images/med.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                        med mouhib meddeb
-
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/medmouhib.meddeb/" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/med_mouhib_meddeb/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@medmouhibmeddeb" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
-                                        <img src="src/assets/images/oussema.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="detail-page.html">
-                                        oussema triter
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/oussema.triter" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/oussema_triter/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@triteroussema" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                   
-                                </div>
-                               
-
-                              
-                            </div>
-                            <br/>
-                        </div>
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
-                                        <img src="src/assets/images/firas.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="detail-page.html">
-                                        firas bahrini
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/firas.bahrini.522" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/firas_bahrini_officiel/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@firasbahrini" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-12">
-                            <div className="custom-block custom-block-full">
-                                <div className="custom-block-image-wrap">
-                                    <a href="detail-page.html">
-                                        <img src="src/assets/images/9nounji.jpg" className="custom-block-image img-fluid" alt=""/>
-                                    </a>
-                                </div>
-
-                                <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="detail-page.html">
-                                        Achraf Ouali
-
-                                       </a>
-                                    </h5>
-
-
-                                    <div className="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="https://www.facebook.com/OualiAshraf" className="fa fa-facebook">
-                                            <span></span>
-                                        </a>
-
-                                        <a href="https://www.instagram.com/el9anounji.ftw/" className="fa fa-instagram">
-                                        </a>
-                                        <a href="https://www.tiktok.com/@el9anounji.ftw" className="tiktok-icon me-1">
-                                         <img src="src/assets/images/tiktokNoire.png" alt="TikTok" />
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
-                        <br/>
-                     
-                    
-                       
-                    </div>
-                </div>
-                
-            </section>
 
 
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">

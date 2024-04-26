@@ -812,9 +812,10 @@ https://templatemo.com/tm-584-pod-talk
   .search-form button[type="submit"] {
     background: var(--secondary-color);
     border-color: var(--secondary-color);
-    max-width: 50px;
+    max-width: 150px;
     height: 100%;
     padding-left: 15px;
+    text-align: center;
   }
   
   .search-form button[type="submit"]:hover {
