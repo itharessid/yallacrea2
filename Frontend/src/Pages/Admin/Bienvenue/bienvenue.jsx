@@ -3,6 +3,8 @@ import Adminsidbar from '../Sidbar/Adminsidbar';
 import axios from 'axios';
 import './bienvenue.css';
 import { createPieChart } from './chart-pie-demo.js';
+import { Link } from 'react-router-dom';
+
 
 function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
@@ -94,30 +96,46 @@ function Bienvenue() {
               <div className="col-lg-6">
                 {/* Votre contenu existant ici */}
                 <div className="mt-4 text-right small">
-                  <span className="mr-2">
-                    <i className="fas fa-circle text-Etud"></i> {etudiantsCount} Étudiants
+                <span className="mr-2">
+                    <Link to="/evenements" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Event"></i> {eventsCount} Événements
+                    </Link>
+                  </span>
+                <span className="mr-2">
+                    <Link to="/createures" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Crea"></i> {createursCount} Créateurs
+                    </Link>
                   </span>
                   <span className="mr-2">
-                    <i className="fas fa-circle text-Dom"></i> {domainesCount} Domaines
-                  </span>
-                  <span className="mr-2">
-                    <i className="fas fa-circle text-Crea"></i> {createursCount} Créateurs
+                    <Link to="/etudiants" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Etud"></i> {etudiantsCount} Étudiants
+                    </Link>
                   </span><br/>
                   <span className="mr-2">
-                    <i className="fas fa-circle text-Event"></i> {eventsCount} Événements
+                    <Link to="/domaines" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Dom"></i> {domainesCount} Domaines
+                    </Link>
                   </span>
                   <span className="mr-2">
-                    <i className="fas fa-circle text-Exp"></i> {expertCount} Experts
+                    <Link to="/expert" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Exp"></i> {expertCount} Experts
+                    </Link>
                   </span>
                   <span className="mr-2">
-                    <i className="fas fa-circle text-Part"></i> {partenaireCount} Partenaires
+                    <Link to="/partenaire" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-Part"></i> {partenaireCount} Partenaires
+                    </Link>
                   </span><br/>
                   <span className="mr-2">
+                  <Link to="/preInscriptionEtud" className="text-decoration-none text-dark">
                     <i className="fas fa-circle text-PEtud"></i> {pEtudCount} Pré-inscriptions des étudiants
+                  </Link>
                   </span><br/>
                   <span className="mr-2">
-                    <i className="fas fa-circle text-PCrea"></i> {pCreaCount} Pré-inscriptions des créateurs
-                  </span>
+                    <Link to="/preInscriptionCrea" className="text-decoration-none text-dark">
+                      <i className="fas fa-circle text-PCrea"></i> {pCreaCount} Pré-inscriptions des créateurs
+                    </Link>
+                  </span><br/>
                 </div>
               </div>
             </div>
