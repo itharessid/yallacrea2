@@ -25,14 +25,14 @@
 .button-container button {
     margin: 0 5px; /* Pour ajouter un peu d'espace entre les boutons */
 }
-.like-icon-container {
+.like-container {
   margin-top: 2px;
-  margin-left: 10px;
+  margin-right: 20px;
   display: flex;
   align-items: center; /* Aligner verticalement les éléments */
 }
 
-.like-icon-container > svg {
+.like-container > svg {
   color: #70218f; /* Changer la couleur de l'icône en violet */
   margin-right: 5px; /* Espacement entre l'icône et le texte */
 }
@@ -43,5 +43,46 @@
 .card-box-Etud {
   border: 2px solid purple;
 }
+.comment-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-container form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Ajouter un espace entre le formulaire et les commentaires */
+}
+.comment-container form .comment {
+  flex: 1; /* Le champ de commentaire occupe tout l'espace disponible */
+  margin-right: 10px; /* Espacement entre le champ de commentaire et le bouton Ajouter */
+}
+
+.comment-container form button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: purple;
+}
+
+.comment-item {
+  display: flex;
+  justify-content: space-between; /* Pour placer le bouton de suppression à droite */
+  align-items: center;
+  margin-bottom: 10px; /* Espacement entre chaque commentaire */
+}
+
+.delete-button {
+  color: purple;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.like-container{
+  margin-top: 10px;
+  padding-right: 180px;
+}
+
   
   

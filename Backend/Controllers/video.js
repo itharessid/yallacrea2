@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const db = require('../Config/db');
 
-// Configuration du stockage des images avec Multer
+// Configuration du stockage des vidéos avec Multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // Utilisez path.resolve pour obtenir un chemin absolu
@@ -20,7 +20,6 @@ const storage = multer.diskStorage({
 // Initialisation de Multer avec la configuration de stockage
 const upload = multer({ storage: storage });
 
-// Endpoint pour télécharger une image d'videos
 // Endpoint pour télécharger une vidéo
 router.post('/video', upload.single('video'), (req, res) => {
     const { titre, description } = req.body;
@@ -63,8 +62,7 @@ router.put('/video/:id', upload.single('video'), (req, res) => {
     });
 });
 
-
-// Endpoint pour récupérer les données de l'videos
+// Endpoint pour récupérer les données des vidéos
 router.get('/video', (req, res) => {
     const sql = "SELECT * FROM video";
 
@@ -76,32 +74,37 @@ router.get('/video', (req, res) => {
         return res.status(200).json(results);
     });
 });
+
+// Endpoint pour récupérer les données d'une vidéo par son ID
 router.get('/video/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'SELECT * FROM video WHERE idVid = ?';
     db.query(sql, id, (err, result) => {
         if (err) {
-            console.error("Erreur lors de la récupération des données de l'videos :", err);
-            return res.status(500).json({ error: "Erreur lors de la récupération des données de l'videos" });
+            console.error("Erreur lors de la récupération des données de la vidéo :", err);
+            return res.status(500).json({ error: "Erreur lors de la récupération des données de la vidéo" });
         }
         if (result.length === 0) {
-            return res.status(404).json({ error: "video non trouvé" });
+            return res.status(404).json({ error: "Vidéo non trouvée" });
         }
         return res.json(result[0]);
     });
 });
-// Endpoint pour supprimer un videos par son ID
+
+// Endpoint pour supprimer une vidéo par son ID
 router.delete('/video/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'DELETE FROM video WHERE idVid = ?';
     db.query(sql, id, (err, result) => {
         if (err) {
-            console.error("Erreur lors de la suppression de l'videos :", err);
-            return res.status(500).json({ error: "Erreur lors de la suppression de l'videos" });
+            console.error("Erreur lors de la suppression de la vidéo :", err);
+            return res.status(500).json({ error: "Erreur lors de la suppression de la vidéo" });
         }
-        return res.status(200).json({ message: "video supprimé avec succès" });
+        return res.status(200).json({ message: "Vidéo supprimée avec succès" });
     });
 });
+
+// Endpoint pour mettre à jour le nombre de likes d'une vidéo
 router.put('/video/:id/like', (req, res) => {
     const id = req.params.id;
     const { likes } = req.body;
@@ -117,6 +120,8 @@ router.put('/video/:id/like', (req, res) => {
         return res.status(200).json({ message: "Nombre de likes mis à jour avec succès" });
     });
 });
+
+// Endpoint pour récupérer le nombre de likes d'une vidéo par son ID
 router.get('/video/:id/like', (req, res) => {
     const id = req.params.id;
 
@@ -137,6 +142,4 @@ router.get('/video/:id/like', (req, res) => {
     });
 });
 
-
 module.exports = router;
-

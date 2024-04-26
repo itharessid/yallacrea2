@@ -50,7 +50,7 @@ function Adminsidbar() {
       <div className="left-side-bar">
       <div className="left-side-bar customscroll">
         <div className="brand-logo">
-          <Link to="/sidbar">
+          <Link to="/bienvenue">
             <img src="src/assets/images/yallalogo.png" alt="" className="yalla" />
           </Link>
           <div className="close-sidebar" data-toggle="left-sidebar-close">
@@ -136,12 +136,6 @@ function Adminsidbar() {
               <Link to="/certif" className="dropdown-toggle no-arrow">
                     <FontAwesomeIcon icon={faCheckCircle} />{' '}
                     <span className="mtext">Certifications</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/preInscriptionCrea" className="dropdown-toggle no-arrow">
-                  <FontAwesomeIcon icon={faUserPlus} />{' '}
-                  <span className="mtext">Pré-inscription des créateurs</span>
                 </Link>
               </li>
             </ul>

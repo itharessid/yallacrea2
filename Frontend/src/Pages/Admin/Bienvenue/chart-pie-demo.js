@@ -16,7 +16,7 @@ export function createPieChart(createursCount, etudiantsCount, domainesCount, ex
       datasets: [{
         data: [createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount],
         backgroundColor: ['purple', '#FF02BC', '#4F0041', '#9b59b6', '#702595', '#9966ff', '#C51B96', 'rgb(168, 118, 168)'],
-        hoverBackgroundColor: ['purple', '#FF02BC', '#4F0041', '#9b59b6', '#702595', '#6e3bd8', '#C51B96', 'rgb(168, 118, 168)'],
+        hoverBackgroundColor: ['purple', '#FF02BC', '#4F0041', '#9b59b6', '#702595', '#9966ff', '#C51B96', 'rgb(168, 118, 168)'],
         hoverBorderColor: "rgba(234, 236, 244, 1)",
       }],
     },

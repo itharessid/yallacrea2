@@ -41,7 +41,8 @@ function Video() {
   const [videoData, setVideoData] = useState([]);
   const [blurBackground, setBlurBackground] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [likes, setLikes] = useState({}); 
+  const [likes, setLikes] = useState({});
+  const [comments, setComments] = useState({});
 
   useEffect(() => {
     fetchData();
@@ -54,6 +55,7 @@ function Video() {
       setVideoData(response.data);
       response.data.forEach(async (video) => {
         await fetchLikes(video.idVid);
+        await fetchComments(video.idVid);
       });
     } catch (error) {
       console.error("Erreur lors de la récupération des vidéos :", error);
@@ -72,6 +74,45 @@ function Video() {
     }
   };
   
+  const fetchComments = async (videoId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/video/commentaire/${videoId}`);
+      setComments(prevComments => ({
+        ...prevComments,
+        [videoId]: response.data
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la récupération des commentaires :", error);
+    }
+  };
+
+  const addComment = async (videoId, textComment, dateComment) => {
+    try {
+      await axios.post(`http://localhost:3001/video/commentaire`, {
+        textComment,
+        dateComment,
+        idVideo: videoId
+      });
+      fetchComments(videoId);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du commentaire :", error);
+    }
+  };
+  const handleDeleteComment = async (videoId, commentId) => {
+    try {
+      await axios.delete(`http://localhost:3001/video/commentaire/${videoId}/${commentId}`);
+      // Mettre à jour les commentaires après suppression
+      const updatedComments = comments[videoId].filter(comment => comment.idComment !== commentId);
+      setComments(prevComments => ({
+        ...prevComments,
+        [videoId]: updatedComments
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la suppression du commentaire :", error);
+    }
+  };
+  
+
   const handleLikeClick = async (videoId, event) => {
     if (event.detail === 2) {
       // Double clique
@@ -223,16 +264,37 @@ function Video() {
                             <Link to={`/updateVideo/${video.idVid}`}>
                               <button className="white-text">Modifier</button>
                             </Link>
-                            <button onClick={() => handleDeleteClick(video)}className="white-text">Supprimer</button>
+                            <button onClick={() => handleDeleteClick(video)} className="white-text">Supprimer</button>
                           </div>
-                          <div className="like-icon-container">
-                          <FontAwesomeIcon 
-                              icon={faThumbsUp} 
-                              onClick={(event) => handleLikeClick(video.idVid, event)} 
-                              style={{ color: likes[video.idVid] ? '#70218f' : 'gray' }} 
-                            />
-
-                            <span>{likes[video.idVid] || 0}</span>
+                          <div className="interaction-container">
+                            {/* Conteneur pour les likes */}
+                            <div className="like-container">
+                              <FontAwesomeIcon 
+                                icon={faThumbsUp} 
+                                onClick={(event) => handleLikeClick(video.idVid, event)} 
+                                style={{ color: likes[video.idVid] ? '#70218f' : 'gray' }} 
+                              />
+                              <span>{likes[video.idVid] || 0}</span>
+                            </div>
+                            {/* Conteneur pour les commentaires */}
+                            <div className="comment-container">
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                const textComment = e.target.elements.comment.value;
+                                const dateComment = new Date().toISOString();
+                                addComment(video.idVid, textComment, dateComment);
+                                e.target.reset();
+                              }}>
+                                <input type="text" className="comment" placeholder="Ajouter un commentaire" />
+                                <button type="submit" className="white-text">Ajouter</button>
+                              </form>
+                              {comments[video.idVid] && comments[video.idVid].map(comment => (
+                                <div key={comment.idComment} className="comment-item">
+                                  <div>{comment.textComment}</div>
+                                  <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       ))}

@@ -42,7 +42,7 @@ function gprofile() {
                         <a className="nav-link" href="/profiluser">Mon Profil</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/afvideo">vidéos</a>
+                        <a className="nav-link" href="/afvideo">Vidéos</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="contact">Contact</a>
