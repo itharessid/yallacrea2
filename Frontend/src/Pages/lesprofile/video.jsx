@@ -276,25 +276,26 @@ function Video() {
                               />
                               <span>{likes[video.idVid] || 0}</span>
                             </div>
+                            
                             {/* Conteneur pour les commentaires */}
                             <div className="comment-container">
-                            <form onSubmit={(e) => {
-                                e.preventDefault();
-                                const textComment = e.target.elements.comment.value;
-                                const dateComment = new Date().toISOString();
-                                addComment(video.idVid, textComment, dateComment);
-                                e.target.reset();
-                              }}>
-                                <input type="text" className="comment" placeholder="Ajouter un commentaire" />
-                                <button type="submit" className="white-text">Ajouter</button>
-                              </form>
-                              {comments[video.idVid] && comments[video.idVid].map(comment => (
-                                <div key={comment.idComment} className="comment-item">
-                                  <div>{comment.textComment}</div>
-                                  <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
-                                </div>
-                              ))}
-                            </div>
+            {comments[video.idVid] && comments[video.idVid].map(comment => (
+              <div key={comment.idComment} className="comment-item">
+                <div>{comment.textComment}</div>
+                <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
+              </div>
+            ))}
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const textComment = e.target.elements.comment.value;
+              const dateComment = new Date().toISOString();
+              addComment(video.idVid, textComment, dateComment);
+              e.target.reset();
+            }}>
+              <input type="text" name="comment" placeholder="Ajouter un commentaire" />
+              <button type="submit" className="white-text">Ajouter</button>
+            </form>
+          </div>
                           </div>
                         </div>
                       ))}
