@@ -14,6 +14,7 @@ function Adminsidbar() {
   const [isNotificationDropdownOpen, setNotificationDropdownOpen] = useState(false);
   const [isStudentDropdownOpen,setStudentDropdownOpen]=useState(false);
   const [isCreatorDropdownOpen,setCreatorDropdownOpen]=useState(false);
+  const [isCertifDropdownOpen,setCertifDropdownOpen]=useState(false);
 
   const toggleStudentDropdown = () => {
     setStudentDropdownOpen(!isStudentDropdownOpen);
@@ -21,6 +22,9 @@ function Adminsidbar() {
 
   const toggleCreatorDropdown = () => {
     setCreatorDropdownOpen(!isCreatorDropdownOpen);
+  };
+  const toggleCertifDropdown = () => {
+    setCertifDropdownOpen(!isCertifDropdownOpen);
   };
 
   const toggleUserDropdown = () => {
@@ -132,12 +136,27 @@ function Adminsidbar() {
                   <span className="mtext">Partenaires</span>
                 </Link>
               </li>
-              <li>
-              <Link to="/certif" className="dropdown-toggle no-arrow">
-                    <FontAwesomeIcon icon={faCheckCircle} />{' '}
-                    <span className="mtext">Certifications</span>
-                </Link>
-              </li>
+              <li className="dropdown">
+                  <Link to="/certif" className="dropdown-toggle" onClick={toggleCertifDropdown}>
+                  <FontAwesomeIcon icon={faCheckCircle} />{' '}
+                  <span className="mtext">Certifications</span>
+                    <FontAwesomeIcon icon={faChevronDown} className={`ml-auto ${isCertifDropdownOpen ? 'rotate-icon' : ''}`} />
+                  </Link>
+                  <ul className={`dropdown-menu ${isCertifDropdownOpen ? 'show' : ''}`}>
+                    <li>
+                      <Link to="/diplome" className="dropdown-toggle no-arrow">
+                        <FontAwesomeIcon icon={faCheckCircle} />{' '}
+                        <span className="mtext">Diplome</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/attestation" className="dropdown-toggle no-arrow">
+                        <FontAwesomeIcon icon={faCheckCircle} />{' '}
+                        <span className="mtext">Attestation</span>
+                      </Link>
+                    </li>
+                  </ul>
+                  </li>
             </ul>
           </div>
         </div>

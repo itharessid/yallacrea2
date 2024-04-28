@@ -63,6 +63,8 @@ import EventCompt from './Pages/About/eventcompt.jsx';
 import UploadVideo from './Pages/lesprofile/uplodvideo.jsx';
 import UpdateVideo from './Pages/lesprofile/updateVideo.jsx';
 import Certif from './Pages/Admin/Certification/certif.jsx';
+import Diplome from './Pages/Admin/Certification/diplome.jsx';
+import Attestation from './Pages/Admin/Certification/attestation.jsx';
 
 
 
@@ -141,6 +143,9 @@ function App() {
         <Route path="/upload" element={<UploadVideo/>}/>
         <Route path="/updateVideo/:id" element={<UpdateVideo/>}/>
         <Route path="/certif" element={<Certif/>}/>
+        <Route path="/diplome" element={<Diplome/>}/>
+        <Route path="/attestation" element={<Attestation/>}/>
+
          </Routes>
          </BrowserRouter>
          </>
