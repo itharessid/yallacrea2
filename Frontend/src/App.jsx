@@ -65,6 +65,11 @@ import UpdateVideo from './Pages/lesprofile/updateVideo.jsx';
 import Certif from './Pages/Admin/Certification/certif.jsx';
 import Diplome from './Pages/Admin/Certification/diplome.jsx';
 import Attestation from './Pages/Admin/Certification/attestation.jsx';
+import NAttestation from './Pages/Admin/Certification/nAttestation.jsx';
+import NCertif from './Pages/Admin/Certification/nCertif.jsx';
+import NDiplome from './Pages/Admin/Certification/nDiplome.jsx';
+import ImprDiplome from './Pages/Admin/Certification/imprimerCertif.jsx';
+import ImpCertif from './Pages/Admin/Certification/imprimerCertif.jsx';
 
 
 
@@ -145,6 +150,10 @@ function App() {
         <Route path="/certif" element={<Certif/>}/>
         <Route path="/diplome" element={<Diplome/>}/>
         <Route path="/attestation" element={<Attestation/>}/>
+        <Route path="/nattestation" element={<NAttestation/>}/>
+        <Route path="/ncertif" element={<NCertif/>}/>
+        <Route path="/ndiplome" element={<NDiplome/>}/>
+        <Route path="/imprimerCertif/:id" element={<ImpCertif/>}/>
 
          </Routes>
          </BrowserRouter>
