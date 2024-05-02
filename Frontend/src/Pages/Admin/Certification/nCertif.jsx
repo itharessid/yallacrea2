@@ -4,54 +4,54 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Adminsidbar from "../Sidbar/Adminsidbar";
 import './nCertif.css';
 import axios from 'axios';
-import Certif from './certif';
+import { Link } from 'react-router-dom'; // Importez Link depuis react-router-dom
+
 
 function NCertif() {
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [NCertifData, setNCertifData] = useState([]);
+    const [date, setSelectedDate] = useState(null);
+    const [Data,setData]=useState([]);
+    const [successMessage, setSuccessMessage] = useState(""); // Nouvel état pour stocker le message de succès
+
+
     useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const result = await axios("http://localhost:3001/certif");
-            setNCertifData(result.data);
-        } catch (err) {
-            console.log("Quelque chose qui cloche");
-        }
+      fetchData();
+    }, [])
+    const fetchData=async()=>{
+      try{
+        const result =await axios("http://localhost:3001/certif");
+        //console.log(result.data);
+        setData(result.data)
+      }catch(err){
+        console.log("qu'elle que chose qui cloche");
+      }
     }
-
-    const [NCertifField, setNCertifField] = useState({
-        nom: "",
-        prenom: "",
-        formation: "",
-        date: "",
-        directeur: ""
+    const[Field,setField]=useState({
+        nom:"",
+        prenom:"",
+        type:"",
+        formation:"",
+        date:"",
+        directeur:""
     });
-
-    const changeNCertifFieldHandler = (e) => {
-        setNCertifField({
-            ...NCertifField,
-            [e.target.name]: e.target.value
+    const changeFieldHandler=(e)=>{
+        setField({
+            ...Field,
+            [e.target.name]:e.target.value
         });
+        //console.log(NEtudiantField)
     }
-
-    const [loading, setLoading] = useState(false);
 
     const onsubmitChange = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/certif", NCertifField);
-            setLoading(true);
+            const response = await axios.post("http://localhost:3001/certif", Field);
+            console.log(response);
+            setSuccessMessage("Une nouvelle certification a été ajoutée avec succès.");
         } catch (err) {
-            console.log("Quelque chose qui cloche");
+            console.log("quelque chose qui cloche");
         }
     }
 
-    if (loading) {
-        return <Certif />;
-    }
 
     return (
         <>
@@ -69,40 +69,43 @@ function NCertif() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label htmlFor="nom">Nom:</label>
-                                                        <input type="text" className="form-control" id="nom" name="nom" onChange={e => changeNCertifFieldHandler(e)} required />
+                                                        <input type="text" className="form-control" id="nom" name="nom" onChange={e=>changeFieldHandler(e)} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label htmlFor="prenom">Prénom:</label>
-                                                        <input type="text" className="form-control" id="prenom" name="prenom" onChange={e => changeNCertifFieldHandler(e)} required />
+                                                        <input type="text" className="form-control" id="prenom" name="prenom" onChange={e=>changeFieldHandler(e)} required  />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <div className="col-md-6">
+                                            <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label htmlFor="formation">Titre de formation:</label>
-                                                        <input type="text" className="form-control" id="formation" name="formation" onChange={e => changeNCertifFieldHandler(e)} required />
+                                                        <label htmlFor="formation">Titre:</label>
+                                                        <input type="text" className="form-control" id="formation" name="formation"  onChange={e=>changeFieldHandler(e)} required  />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label htmlFor="directeur">Directeur:</label>
-                                                        <input type="text" className="form-control" id="directeur" name="directeur" onChange={e => changeNCertifFieldHandler(e)} required />
+                                                        <label>Type:</label>
+                                                        <select className="custom-select form-control" name="type"onChange={e=>changeFieldHandler(e)}required>
+                                                            <option value="vide">--</option>
+                                                            <option value="Attestation">Attestation</option>
+                                                            <option value="Certificat">Certificat de réussite</option>
+                                                            <option value="Diplome">Diplome</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="row justify-content-center"> 
                                                 <div className="col-md-6"> 
                                                     <div className="form-group text-purple">
                                                         <label>Date de formation:</label>
                                                         <DatePicker
                                                             className="form-control date-picker"
-                                                            selected={selectedDate}
+                                                            selected={date}
                                                             onChange={(date) => {
                                                                 setSelectedDate(date);
-                                                                changeNCertifFieldHandler({
+                                                                changeFieldHandler({
                                                                     target: { name: "date", value: date }
                                                                 });
                                                             }}
@@ -113,15 +116,30 @@ function NCertif() {
                                                         />
                                                     </div>
                                                 </div>
-                                            </div>
-
+                                                <div className="col-md-6">
+                                                    <div className="form-group text-purple">
+                                                        <label htmlFor="directeur">Directeur:</label>
+                                                        <input type="text" className="form-control" id="directeur" name="directeur" onChange={e=>changeFieldHandler(e)}required />
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                
                                             <div className="row">
                                                 <div className="col-md-6 text-center">
                                                     <div className="form-group">
-                                                        <button className="btn-purple" onClick={e => onsubmitChange(e)}>Ajouter</button>
+                                                        <button className="btn-purple" onClick={e=>onsubmitChange(e)}>Ajouter</button>                 
                                                     </div>
                                                 </div>
                                             </div>
+                                            {successMessage && (
+                                              <div className="row">
+                                                <div className="col-md-12 text-center">
+                                                  <div className="alert alert-success">{successMessage}</div>
+                                                    {/* Rediriger vers la page "/certif" */}
+                                                    <Link to="/certif" className="btn btn-primary">Retourner à la page de certification</Link>
+                                                </div>
+                                              </div>
+                                            )}
                                         </section>
                                     </form>
                                 </div>

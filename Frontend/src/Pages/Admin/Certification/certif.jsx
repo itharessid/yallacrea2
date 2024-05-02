@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEye,faPrint } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, certifToDelete }) {
@@ -29,9 +29,10 @@ function Certif() {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [selectedCertifId, setSelectedCertifId] = useState(null);
     const [certifToDelete, setCertifToDelete] = useState(null);
-    const [CertifData, setCertifData] = useState([]);
+    const [certifData, setCertifData] = useState([]);
     const [blurBackground, setBlurBackground] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+
 
     useEffect(() => {
         fetchData();
@@ -73,26 +74,16 @@ function Certif() {
     };
 
     const filteredCertif = searchTerm
-        ? CertifData.filter(
-            (certif) =>
-                `${certif.titre.toLowerCase()}`.includes(searchTerm.toLowerCase())
-        )
-        : CertifData;
+    ? certifData.filter(
+        (certif) =>
+          `${certif.type.toLowerCase()} ${certif.nom.toLowerCase()} ${certif.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
+      )
+    : certifData;
 
-    const handlePrint = () => {
-        const printableArea = document.querySelector('.printable-area');
-        const htmlContent = printableArea.innerHTML;
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write('<html><head><title>Imprimer</title><link rel="stylesheet" type="text/css" href="impression.css"></head><body>');
-        printWindow.document.write(htmlContent);
-        printWindow.document.write('</body></html>');
-        printWindow.document.close();
-
-        printWindow.onload = () => {
-            printWindow.print();
-        };
-    };
-
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
     return (
         <div>
             <Adminsidbar/>
@@ -110,11 +101,21 @@ function Certif() {
                     </div>
                 </div>
             </div>
-                <button className="button1 noprint" style={{ marginRight: '10px' }}>
-                    <Link to="/ncertif" className="dropdown-toggle">
-                        <span className="mtext">Nouveau</span>
-                    </Link>
-                </button>
+            <div className="DataTables_Table_2_filter">
+          <label style={{ marginRight: '10px' }}>Rechercher:<input
+            type="search"
+            className="form-control form-control-sm"
+            placeholder="Recherchez par type"
+            aria-controls="DataTables_Table_2"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          /></label>
+          <button className="button1" style={{ marginLeft: '10px' }}>
+            <Link to="/nCertif" className="dropdown-toggle">
+              <span className="mtext">Nouveau</span>
+            </Link>
+          </button>
+        </div>
                 <div className="row">
                     <div className="card-box mb-30 bigger-card1">
                         <div className="pd-20">
@@ -127,7 +128,8 @@ function Certif() {
                                         <th className="table-plus datatable-nosort text-purple"></th>
                                         <th className="text-purple">Nom</th>
                                         <th className="text-purple">Prénom</th>
-                                        <th className="text-purple">Titre</th>
+                                        <th className="text-purple">Type</th>
+                                        <th className="text-purple">Formation</th>
                                         <th className="text-purple">Date</th>
                                         <th className="text-purple">Action</th>
                                     </tr>
@@ -136,19 +138,26 @@ function Certif() {
                                     {filteredCertif.map((certif, index) => (
                                         <tr key={index}>
                                             <td>{index + 1}</td>
-                                            <td>{certif.nom}</td>
-                                            <td>{certif.prenom}</td>
+                                            <td>{certif.nom.toUpperCase()}</td>
+                                            <td>{capitalizeFirstLetter(certif.prenom)}</td>
+                                            <td>{certif.type}</td>
                                             <td>{certif.formation}</td>
                                             <td>{certif.date ? new Date(certif.date).toLocaleDateString('fr-FR') : '-'}</td>
                                             <td style={{ display: 'flex', flexDirection: 'row' }}>
-                                                <button className="button1" style={{ marginRight: '10px' }}>
+                                                <button className="button3" style={{ marginRight: '10px' }}>
                                                     <Link to={`/imprimerCertif/${certif.idCertif}`} className="dropdown-toggle">
+                                                        <FontAwesomeIcon icon={faPrint} style={{ color: 'white' }}/>
+                                                    </Link>
+                                                </button>
+                                                <button className="button1" style={{ marginRight: '10px' }}>
+                                                    <Link to={`/modifCertif/${certif.idCertif}`} className="dropdown-toggle">
                                                         <FontAwesomeIcon icon={faEye} />
                                                     </Link>
                                                 </button>
                                                 <button className="button2" onClick={() => handleDeleteClick(certif)}>
                                                     <FontAwesomeIcon icon={faTrashAlt} />
                                                 </button>
+
                                             </td>
                                         </tr>
                                     ))}
@@ -157,7 +166,6 @@ function Certif() {
                         </div>
                     </div>
                 </div>
-                <button className="noprint" onClick={handlePrint}>Imprimer</button>
             </div>
             <ConfirmationDialog
                     showDeleteConfirmation={showDeleteConfirmation}

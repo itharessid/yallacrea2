@@ -52,6 +52,7 @@ app.use('/temp', express.static('../frontend/public/temps'));
 app.use(videoRouter);
 app.use(commentRouter);
 app.use(certifRouter);
+app.use('/certifications', express.static('../frontend/public/certifications'));
 
 const PORT = 3001;
 app.listen(PORT, () => {

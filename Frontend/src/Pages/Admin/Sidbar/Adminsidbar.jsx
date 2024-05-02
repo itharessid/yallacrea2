@@ -136,27 +136,12 @@ function Adminsidbar() {
                   <span className="mtext">Partenaires</span>
                 </Link>
               </li>
-              <li className="dropdown">
-                  <Link to="/certif" className="dropdown-toggle" onClick={toggleCertifDropdown}>
+              <li>
+                <Link to="/certif" className="dropdown-toggle no-arrow">
                   <FontAwesomeIcon icon={faCheckCircle} />{' '}
                   <span className="mtext">Certifications</span>
-                    <FontAwesomeIcon icon={faChevronDown} className={`ml-auto ${isCertifDropdownOpen ? 'rotate-icon' : ''}`} />
-                  </Link>
-                  <ul className={`dropdown-menu ${isCertifDropdownOpen ? 'show' : ''}`}>
-                    <li>
-                      <Link to="/diplome" className="dropdown-toggle no-arrow">
-                        <FontAwesomeIcon icon={faCheckCircle} />{' '}
-                        <span className="mtext">Diplome</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/attestation" className="dropdown-toggle no-arrow">
-                        <FontAwesomeIcon icon={faCheckCircle} />{' '}
-                        <span className="mtext">Attestation</span>
-                      </Link>
-                    </li>
-                  </ul>
-                  </li>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

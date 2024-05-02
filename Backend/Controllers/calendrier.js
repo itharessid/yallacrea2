@@ -29,6 +29,20 @@ router.get('/calendrier', (req, res) => {
     }
   });
 });
+router.get('/calendrier/:eventId', (req, res) => {
+  const eventId = req.params.eventId;
+  const sql = 'SELECT * FROM calendrier WHERE id = ?';
+  db.query(sql, eventId, (err, result) => {
+      if (err) {
+          console.error("Erreur lors de la récupération des données :", err);
+          return res.status(500).json({ error: "Erreur lors de la récupération des données" });
+      }
+      if (result.length === 0) {
+          return res.status(404).json({ error: "évènement non trouvé" });
+      }
+      return res.status(200).json(result[0]);
+  });
+});
 
 
 // Suppression d'un événement par ID
