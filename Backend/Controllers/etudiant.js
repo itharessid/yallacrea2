@@ -17,9 +17,9 @@ router.get("/etudiant", (req, res) => {
   });
 
 router.post("/etudiant", (req, res) => {
-    const { nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo } = req.body;
-    const sql = "INSERT INTO etudiants (nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    const values = [nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo];
+    const { nom, prenom, email, adresse, num, anniversaire, niveau, programme, codePromo } = req.body;
+    const sql = "INSERT INTO etudiants (nom, prenom, email, adresse, num, anniversaire, niveau, programme, codePromo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const values = [nom, prenom, email, adresse, num, anniversaire, niveau, programme, codePromo];
     db.query(sql, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -44,10 +44,10 @@ router.delete("/etudiant/:id", (req, res) => {
   });
   router.put('/etudiant/:id', (req, res) => {
     const id = req.params.id;
-    const { nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo } = req.body;
+    const { nom, prenom, email, adresse, num, anniversaire, niveau, programme, codePromo } = req.body;
 
-    const sql = "UPDATE etudiants SET nom=?, prenom=?, email=?, adresse=?, numero=?, anniversaire=?, niveau=?, programme=?, codePromo=? WHERE id=?";
-    const values = [nom, prenom, email, adresse, numero, anniversaire, niveau, programme, codePromo,id];
+    const sql = "UPDATE etudiants SET nom=?, prenom=?, email=?, adresse=?, num=?, anniversaire=?, niveau=?, programme=?, codePromo=? WHERE id=?";
+    const values = [nom, prenom, email, adresse, num, anniversaire, niveau, programme, codePromo,id];
 
     db.query(sql, values, (err, result) => {
         if (err) {

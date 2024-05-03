@@ -26,7 +26,7 @@ function NouveauEtud() {
         prenom:"",
         email:"",
         adresse:"",
-        numero:"",
+        num:"",
         anniversaire:"",
         niveau:"",
         programme:"",
@@ -99,7 +99,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Numéro:</label>
-                                                        <input type="number" className="form-control" name="numero" onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <input type="number" className="form-control" name="num" onChange={e=>changeNEtudiantFieldHandler(e)} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 pl-md-5">

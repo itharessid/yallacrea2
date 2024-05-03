@@ -125,7 +125,7 @@ function Etudiants() {
                   <th className="text-purple">Prénom</th>
                   <th className="text-purple">Email</th>
                   <th className="text-purple">Adresse</th>
-                  <th className="text-purple">Numero</th>
+                  <th className="text-purple">num</th>
                   <th className="text-purple">Niveau</th>
                   <th className="text-purple">Programme</th>
                   <th className="text-purple">Code Promo</th>
@@ -144,7 +144,7 @@ function Etudiants() {
                       </a>
                     </td>
                     <td>{etudiant.adresse}</td>
-                    <td>{etudiant.numero}</td>
+                    <td>{etudiant.num}</td>
                     <td>{etudiant.niveau}</td>
                     <td>{etudiant.programme}</td>
                     <td>{etudiant.codePromo}</td>

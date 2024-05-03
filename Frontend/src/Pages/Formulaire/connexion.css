@@ -21,17 +21,11 @@
     color: purple;
 }
 .logo-img1{
-    margin-top: 5px;
-    height: 700px;
-    width: 500px;
+    margin-top: 120px;
+    height: 500px;
+    width: 800px;
 }
-.logo-img2 {
-    height: 200px;
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
+
 
 .col-md-6 {
     display: flex;
