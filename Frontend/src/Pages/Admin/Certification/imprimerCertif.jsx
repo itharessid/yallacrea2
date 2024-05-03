@@ -63,7 +63,7 @@ function ImpCertif() {
                     <p style={{ fontSize: '25px', color: 'black' }}><strong>{nom.toUpperCase()} {prenom.charAt(0).toUpperCase() + prenom.slice(1)}</strong></p>
                 </div>
                 <div style={{ position: "absolute", top: "240px", left: "270px" }}>
-                    <p style={{ fontSize: '11px', color: 'black',color:'#4F0041' }}><strong>{formation.toUpperCase()}</strong></p>
+                    <p style={{ fontSize: '11px',color:'#4F0041' }}><strong>{formation.toUpperCase()}</strong></p>
                 </div>
                 <div style={{ position: "absolute", top: "295px", left: "100px" }}>
                     <p style={{ fontSize: '10px', color: 'black' }}><strong>{date? new Date(date).toLocaleDateString('fr-FR') : '-'}</strong></p>

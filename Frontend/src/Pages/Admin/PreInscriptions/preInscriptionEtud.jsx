@@ -109,6 +109,10 @@ function PreInscriptionEtud() {
       )
     : PEtudiantData;
 
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <>
       <Adminsidbar />
@@ -160,8 +164,8 @@ function PreInscriptionEtud() {
                 {filteredPEtudiants.map((etudiant, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{etudiant.nom}</td>
-                    <td>{etudiant.prenom}</td>
+                    <td>{etudiant.nom.toUpperCase()}</td>
+                    <td>{capitalizeFirstLetter(etudiant.prenom)}</td>
                     <td>{etudiant.anniversaire ? new Date(etudiant.anniversaire).toLocaleDateString('fr-FR') : '-'}</td>
                     <td>
                       <a href={`mailto:${etudiant.email}`}>

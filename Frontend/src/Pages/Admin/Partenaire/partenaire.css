@@ -73,4 +73,9 @@ background-color: purple; /* Pour changer la couleur du fond lorsque le bouton e
   filter: blur(5px); /* Appliquer un flou au fond */
   pointer-events: none; /* Empêcher les événements sur le fond flou */
 }
+.button-container {
+  display: flex; /* Utilisez Flexbox pour aligner les boutons horizontalement */
+  justify-content: space-between; /* Pour espacer les boutons horizontalement */
+  margin-bottom: 10px; /* Espace entre les boutons et le reste du contenu */
+}
 

@@ -80,6 +80,10 @@ function Createurs() {
       )
     : createurData;
 
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <>
       <Adminsidbar />
@@ -137,8 +141,8 @@ function Createurs() {
                     <td>
                       <img src={`/photo/${createur.image}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
                     </td>
-                    <td>{createur.nom}</td>
-                    <td>{createur.prenom}</td>
+                    <td>{createur.nom.toUpperCase()}</td>
+                    <td>{capitalizeFirstLetter(createur.prenom)}</td>
                     <td>
                       <a href={`mailto:${createur.email}`}>
                         {createur.email}

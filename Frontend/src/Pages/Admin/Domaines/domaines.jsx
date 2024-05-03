@@ -76,6 +76,9 @@ function Domaines (){
               `${domaine.nomDomaine.toLowerCase()}`.includes(searchTerm.toLowerCase())
           )
         : DomaineData;
+        function capitalizeFirstLetter(string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+      }
     return (
         <>
         <Adminsidbar/>
@@ -125,7 +128,7 @@ function Domaines (){
                 {filteredDomaine.map((domaine, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{domaine.nomDomaine}</td>
+                    <td>{capitalizeFirstLetter(domaine.nomDomaine)}</td>
                     <td>
                       <button className="button2" onClick={() => handleDeleteClick(domaine)}>
                         <FontAwesomeIcon icon={faTrashAlt} />

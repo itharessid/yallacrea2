@@ -56,7 +56,9 @@ function Experts() {
         expert.nom.toLowerCase().includes(searchValue.toLowerCase()) ||
         expert.prenom.toLowerCase().includes(searchValue.toLowerCase())
     );
-
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     return (
         <>
             <Adminsidbar />
@@ -105,8 +107,8 @@ function Experts() {
                                         <td>
                                             <img src={`http://localhost:3001/photo/${expert.photo}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
                                         </td>
-                                        <td className="table-plus">{expert.nom}</td>
-                                        <td>{expert.prenom}</td>
+                                        <td className="table-plus">{expert.nom.toUpperCase()}</td>
+                                        <td>{capitalizeFirstLetter(expert.prenom)}</td>
                                         <td>
                                             <a href={`mailto:${expert.Email}`}>
                                                 {expert.Email}

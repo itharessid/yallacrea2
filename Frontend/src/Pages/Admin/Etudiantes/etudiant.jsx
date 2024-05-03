@@ -79,6 +79,9 @@ function Etudiants() {
           `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()} ${etudiant.programme.toLowerCase()} ${etudiant.niveau.toLowerCase()}`.includes(searchTerm.toLowerCase())
       )
     : EtudiantData;
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   return (
     <>
@@ -136,8 +139,8 @@ function Etudiants() {
                 {filteredEtudiants.map((etudiant, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{etudiant.nom}</td>
-                    <td>{etudiant.prenom}</td>
+                    <td>{etudiant.nom.toUpperCase()}</td>
+                    <td>{capitalizeFirstLetter(etudiant.prenom)}</td>
                     <td>
                       <a href={`mailto:${etudiant.email}`}>
                         {etudiant.email}

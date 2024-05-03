@@ -1,9 +1,9 @@
-
 import Chart from 'chart.js/auto';
 
-let myPieChart; // Déclarer une variable pour stocker l'instance du graphique
+let myPieChart = null; // Initialisez à null pour vérifier s'il existe déjà un graphique
 
 export function createPieChart(createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount) {
+  // Vérifier s'il existe déjà un graphique
   if (myPieChart) {
     // Si le graphique existe déjà, détruisez-le
     myPieChart.destroy();
@@ -28,7 +28,24 @@ export function createPieChart(createursCount, etudiantsCount, domainesCount, ex
           display: false
         }
       },
+      
       cutoutPercentage: 80,
+      events: ['mousemove'], // Activer les événements de souris pour le graphique
+      onHover: function(event, elements) {
+        if (elements.length) {
+          const index = elements[0].index;
+          // Appliquer l'effet 3D uniquement à la tranche survolée
+          myPieChart.getDatasetMeta(0).data[index].options.hoverOffset = 8;
+          myPieChart.update(); // Mettre à jour le graphique pour refléter les modifications
+        } else {
+          // Si la souris ne survole pas une tranche, laisser toutes les tranches en 2D
+          myPieChart.getDatasetMeta(0).data.forEach((slice) => {
+            slice.options.hoverOffset = 0;
+          });
+          myPieChart.update(); // Mettre à jour le graphique pour refléter les modifications
+        }
+      }
+      
     },
   });
 }

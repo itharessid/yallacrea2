@@ -92,8 +92,8 @@ function NCertif() {
                                                         <select className="custom-select form-control" name="type"onChange={e=>changeFieldHandler(e)}required>
                                                             <option value="vide">--</option>
                                                             <option value="Attestation">Attestation</option>
-                                                            <option value="Certificat">Certificat de réussite</option>
-                                                            <option value="Diplome">Diplome</option>
+                                                            <option value="Certificat de Réussite">Certificat de Réussite</option>
+                                                            <option value="Diplôme">Diplôme</option>
                                                         </select>
                                                     </div>
                                                 </div>

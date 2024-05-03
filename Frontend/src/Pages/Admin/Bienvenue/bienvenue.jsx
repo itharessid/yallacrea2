@@ -5,7 +5,6 @@ import './bienvenue.css';
 import { createPieChart } from './chart-pie-demo.js';
 import { Link } from 'react-router-dom';
 
-
 function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
   const [etudiantsCount, setEtudiantsCount] = useState(0);
@@ -15,13 +14,8 @@ function Bienvenue() {
   const [pEtudCount, setPEtudCount] = useState(0);
   const [pCreaCount, setPCreaCount] = useState(0);
   const [eventsCount, setEventsCount] = useState(0);
-  const imageStyle = {
-    width: '250px',
-    height: '180px',
-    borderRadius: '-200%',
-    objectFit: 'cover',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)'
-  };
+  const [hoveredSlice, setHoveredSlice] = useState(null); // État pour suivre la tranche survolée
+  const [isHovered, setIsHovered] = useState(false); // État pour suivre si la souris est sur la partie 3D
 
   useEffect(() => {
     fetchData();
@@ -61,6 +55,16 @@ function Bienvenue() {
     }
   };
 
+  const imageStyle = {
+    width: '250px',
+    height: '180px',
+    borderRadius: '-200%',
+    objectFit: 'cover',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)',
+    transition: 'transform 0.3s ease', // Animation de transition pour la transformation
+    transform: isHovered ? 'rotateY(45deg)' : 'rotateY(0deg)' // Appliquer la transformation 3D lorsque la souris est sur la partie
+  };
+
   return (
     <>
       <Adminsidbar />
@@ -69,7 +73,13 @@ function Bienvenue() {
           <div className="card-box pd-10 mb-30">
             <div className="row align-items-center">
               <div className="col-md-3 d-flex justify-content-center">
-                <img src="src/assets/images/wajdi.jpg" alt="" style={imageStyle} />
+                <img 
+                  src="src/assets/images/wajdi.jpg" 
+                  alt="" 
+                  style={imageStyle}
+                  onMouseEnter={() => setIsHovered(true)} // Lorsque la souris entre dans l'image, définir isHovered à true
+                  onMouseLeave={() => setIsHovered(false)} // Lorsque la souris quitte l'image, définir isHovered à false
+                />
               </div>
               <div className="col-md-9">
                 <h4 className="font-18 mb-10 text-capitalize">

@@ -34,60 +34,93 @@ function Calendrier() {
   const fetchData = async () => {
     try {
       const result = await axios.get("http://localhost:3001/calendrier");
-      setCalendrierData(result.data); // Mettre à jour l'état calendrierData avec les données récupérées
-      setEvents(result.data); // Mettre à jour l'état events avec les données récupérées
+      const formattedEvents = result.data.map(event => ({
+        ...event,
+        start: new Date(event.date), // Assurez-vous que event.date est une chaîne de date au format ISO ou une date valide
+        end: new Date(event.date), // Si la durée de l'événement est différente, ajustez la propriété end en conséquence
+      }));
+      setCalendrierData(formattedEvents);
+      setEvents(formattedEvents);
     } catch (err) {
       console.error("Erreur lors de la récupération des données du calendrier :", err);
     }
   };
-  
+
   const toggleEventsTable = () => {
     setShowEventsTable(!showEventsTable);
   };
-  // Fonction pour gérer l'édition d'un événement
-const handleEditEvent = (eventId) => {
-  const eventToEdit = events.find(event => event.id === eventId);
-  if (eventToEdit) {
-    setShowModal(true);
-    setSelectEvent(eventToEdit);
-    setEventTitle(eventToEdit.titre);
-    setEventStartTime(moment(eventToEdit.heureDebut).format('HH:mm'));
-    setEventEndTime(moment(eventToEdit.heureFin).format('HH:mm'));
-    setEventStartDate(moment(eventToEdit.date).format('YYYY-MM-DD'));
-  }
-};
 
-// Fonction pour soumettre les modifications ou ajouts d'événement
-const onsubmitChange = async () => {
-  try {
-    const eventData = {
-      id: selectEvent ? selectEvent.id : null,
-      titre: eventTitle,
-      date: eventStartDate,
-      heureDebut: eventStartTime,
-      heureFin: eventEndTime,
-    };
-
-    let response;
-    if (selectEvent) {
-      response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
-    } else {
-      response = await axios.post('http://localhost:3001/calendrier', eventData);
+  const handleEditEvent = (eventId) => {
+    const eventToEdit = events.find(event => event.id === eventId);
+    if (eventToEdit) {
+      setShowModal(true);
+      setSelectEvent(eventToEdit);
+      setEventTitle(eventToEdit.titre);
+      setEventStartTime(moment(eventToEdit.heureDebut).format('HH:mm'));
+      setEventEndTime(moment(eventToEdit.heureFin).format('HH:mm'));
+      setEventStartDate(moment(eventToEdit.date).format('DD-MM-YYYY'));
     }
+  };
 
-    if (response && response.status === 200) {
-      fetchData(); // Actualiser les événements après la modification/ajout
-      closeModal(); // Fermer la modal et réinitialiser les champs du formulaire
-    } else {
-      console.error('Erreur lors de la création/modification de l\'événement');
+  const handleSelectedEvent = async (event) => {
+    try {
+      setShowModal(true);
+      const eventDetails = await fetchEventData(event.id);
+      setSelectEvent(eventDetails);
+      setEventTitle(eventDetails.titre);
+      setEventStartTime(moment(eventDetails.heureDebut).format('HH:mm'));
+      setEventEndTime(moment(eventDetails.heureFin).format('HH:mm'));
+      setEventStartDate(moment(eventDetails.date).format('YYYY-MM-DD'));
+    } catch (error) {
+      console.error('Erreur lors de la récupération des détails de l\'événement :', error);
     }
-  } catch (error) {
-    console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
-  }
-};
-
-
+  };
   
+  const fetchEventData = async (eventId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/calendrier/${eventId}`);
+      return response.data;
+    } catch (error) {
+      throw new Error('Erreur lors de la récupération des détails de l\'événement :', error);
+    }
+  };
+  
+
+  const onsubmitChange = async () => {
+    try {
+      const eventData = {
+        id: selectEvent ? selectEvent.id : null,
+        titre: eventTitle,
+        date: moment(selectedDate).format('YYYY-MM-DD'),
+        heureDebut: eventStartTime,
+        heureFin: eventEndTime,
+      };
+
+      const eventDateTime = moment(`${eventData.date} ${eventStartTime}`, 'YYYY-MM-DD HH:mm');
+      const currentDateTime = moment();
+      if (eventDateTime.isBefore(currentDateTime)) {
+        alert("Vérifier la date et les heures de l'évènement !");
+        return;
+      }
+
+      let response;
+      if (selectEvent) {
+        response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
+      } else {
+        response = await axios.post('http://localhost:3001/calendrier', eventData);
+      }
+
+      if (response && response.status === 200) {
+        fetchData();
+        closeModal();
+      } else {
+        console.error('Erreur lors de la création/modification de l\'événement');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+    }
+  };
+
   const formatTime = (timeString) => {
     return moment(timeString, 'HH:mm:ss').format('HH:mm');
   };
@@ -105,15 +138,6 @@ const onsubmitChange = async () => {
     setShowModal(true);
     setSelectedDate(slotInfo.start);
     setSelectEvent(null);
-  };
-
-  const handleSelectedEvent = (event) => {
-    setShowModal(true);
-    setSelectEvent(event);
-    setEventTitle(event.title);
-    setEventStartTime(moment(event.start).format('HH:mm'));
-    setEventEndTime(moment(event.end).format('HH:mm'));
-    setEventStartDate(moment(event.start).format('YYYY-MM-DD'));
   };
 
   const deleteEvent = async (eventId) => {
@@ -153,34 +177,34 @@ const onsubmitChange = async () => {
             </button>
             {showEventsTable && (
               <table className="custom-table">
-              <thead>
-                <tr>
-                  <th>Titre</th>
-                  <th>Date</th>
-                  <th>Heure début</th>
-                  <th>Heure fin</th>
-                  <th>Opérations</th>
-                </tr>
-              </thead>
-              <tbody>
-                {events.map((event, index) => (
-                  <tr key={index}>
-                    <td>{event.titre}</td>
-                    <td>{moment(event.date).format('DD/MM/YYYY')}</td>
-                    <td>{formatTime(event.heureDebut)}</td>
-                    <td>{formatTime(event.heureFin)}</td>
-                    <td>
-                      <button onClick={() => deleteEvent(event.id)}>
-                        <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }}/>
-                      </button>
-                      <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>
-                        <FontAwesomeIcon icon={faEdit}style={{ color: 'white' }} />
-                      </button>
-                    </td>
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Heure début</th>
+                    <th>Heure fin</th>
+                    <th>Opérations</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {events.map((event, index) => (
+                    <tr key={index}>
+                      <td>{event.titre}</td>
+                      <td>{moment(event.date).format('DD/MM/YYYY')}</td>
+                      <td>{formatTime(event.heureDebut)}</td>
+                      <td>{formatTime(event.heureFin)}</td>
+                      <td>
+                        <button onClick={() => deleteEvent(event.id)}>
+                          <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }}/>
+                        </button>
+                        <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>
+                          <FontAwesomeIcon icon={faEdit}style={{ color: 'white' }} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
             {!showEventsTable && (
               <Calendar
@@ -275,7 +299,7 @@ const onsubmitChange = async () => {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title">
-                        {selectEvent ? 'Modifier l\'événement' : 'Ajouter un événement'}
+                        {selectEvent ? 'Modifier l\'affaire' : 'Ajouter un affaire'}
                       </h5>
                       <button className="btnCloture" onClick={closeModal}>Fermer</button>
                     </div>
@@ -298,10 +322,10 @@ const onsubmitChange = async () => {
                         className='form-control'
                         id="eventStartDate"
                         type="date"
-                        value={eventStartDate}
+                        value={selectedDate ? moment(selectedDate).format('YYYY-MM-DD') : ''}
                         name="date"
                         onChange={(e) => {
-                          setEventStartDate(e.target.value);
+                          setSelectedDate(e.target.value);
                         }}
                       />
                     </div>
@@ -336,7 +360,7 @@ const onsubmitChange = async () => {
                         <button
                           type="button"
                           className="btnSupp"
-                          onClick={() => deleteEvent(selectEvent.id)} // Fix: Pass the event ID to deleteEvent function*
+                          onClick={() => deleteEvent(selectEvent.id)}
                         >
                           Supprimer
                         </button>
@@ -350,7 +374,7 @@ const onsubmitChange = async () => {
               </div>
             )}
           </div>
-        </div>
+        </div> 
       </div>
     </>
   );

@@ -119,6 +119,7 @@ function Partenaire() {
                                             </a>
                                             </td>
                                         <td >
+                                        <div className="button-container">
                                             <button className="button1">
                                                 <Link to={`/profilpart/${partenaire.id}`} className="dropdown-toggle">
                                                     <FontAwesomeIcon icon={faEye} />
@@ -127,6 +128,7 @@ function Partenaire() {
                                             <button className="button2" onClick={() => handleDeleteClick(partenaire)}>
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
+                                        </div>
                                         </td>
                                     </tr>
                                 ))}
