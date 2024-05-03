@@ -122,7 +122,7 @@ function Calendrier() {
   };
 
   const formatTime = (timeString) => {
-    return moment(timeString, 'HH:mm:ss').format('HH:mm');
+    return moment(timeString, 'HH:mm').format('HH:mm');
   };
 
   const handleMonthViewClick = (event) => {
