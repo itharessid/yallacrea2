@@ -140,6 +140,7 @@ const onsubmitChange = async () => {
     setEventStartDate('');
     setSelectEvent(null);
   };
+  
 
   return (
     <>
@@ -170,10 +171,10 @@ const onsubmitChange = async () => {
                     <td>{formatTime(event.heureFin)}</td>
                     <td>
                       <button onClick={() => deleteEvent(event.id)}>
-                        <FontAwesomeIcon icon={faTrash} />
+                        <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }}/>
                       </button>
                       <button style={{ backgroundColor: "rgba(121, 21, 99, 0.67)" }} onClick={() => handleEditEvent(event.id)}>
-                        <FontAwesomeIcon icon={faEdit} />
+                        <FontAwesomeIcon icon={faEdit}style={{ color: 'white' }} />
                       </button>
                     </td>
                   </tr>
@@ -335,7 +336,7 @@ const onsubmitChange = async () => {
                         <button
                           type="button"
                           className="btnSupp"
-                          onClick={() => deleteEvent(selectEvent.id)} // Fix: Pass the event ID to deleteEvent function
+                          onClick={() => deleteEvent(selectEvent.id)} // Fix: Pass the event ID to deleteEvent function*
                         >
                           Supprimer
                         </button>

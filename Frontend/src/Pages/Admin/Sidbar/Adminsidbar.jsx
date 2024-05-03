@@ -14,6 +14,7 @@ function Adminsidbar() {
   const [isNotificationDropdownOpen, setNotificationDropdownOpen] = useState(false);
   const [isStudentDropdownOpen,setStudentDropdownOpen]=useState(false);
   const [isCreatorDropdownOpen,setCreatorDropdownOpen]=useState(false);
+  const [isCertifDropdownOpen,setCertifDropdownOpen]=useState(false);
 
   const toggleStudentDropdown = () => {
     setStudentDropdownOpen(!isStudentDropdownOpen);
@@ -21,6 +22,9 @@ function Adminsidbar() {
 
   const toggleCreatorDropdown = () => {
     setCreatorDropdownOpen(!isCreatorDropdownOpen);
+  };
+  const toggleCertifDropdown = () => {
+    setCertifDropdownOpen(!isCertifDropdownOpen);
   };
 
   const toggleUserDropdown = () => {
@@ -133,9 +137,9 @@ function Adminsidbar() {
                 </Link>
               </li>
               <li>
-              <Link to="/certif" className="dropdown-toggle no-arrow">
-                    <FontAwesomeIcon icon={faCheckCircle} />{' '}
-                    <span className="mtext">Certifications</span>
+                <Link to="/certif" className="dropdown-toggle no-arrow">
+                  <FontAwesomeIcon icon={faCheckCircle} />{' '}
+                  <span className="mtext">Certifications</span>
                 </Link>
               </li>
             </ul>

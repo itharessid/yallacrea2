@@ -29,8 +29,6 @@ const eventsRouter=require('./Controllers/evenement.js');
 const emploisRouter =require('./Controllers/emplois.js');
 const videoRouter=require('./Controllers/video.js');
 const commentRouter=require('./Controllers/commentaire.js');
-const loginRouter=require('./Controllers/loginetud.js');
-
 
 
 const app = express();
@@ -75,7 +73,8 @@ app.use (emploisRouter);
 app.use('/temp', express.static('../frontend/public/temps'));
 app.use(videoRouter);
 app.use(commentRouter);
-
+app.use(certifRouter);
+app.use('/certifications', express.static('../frontend/public/certifications'));
 
 const PORT = 3001;
 app.listen(PORT, () => {
