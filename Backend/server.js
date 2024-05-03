@@ -23,7 +23,8 @@ const sendMdpCreaRouter=require('./Controllers/sendMdpCrea.js')
 const moveStudentToStudentsTable=require('./Controllers/mvetud.js');
 const transfertPreinscriCrea=require('./Controllers/mvcrea.js');
 const storePasswordInDatabase=require('./Controllers/datapassetud.js');
-
+const loginRouter=require('./Controllers/loginetud.js');
+const certifRouter=require('./Controllers/certif.js');
 
 const eventsRouter=require('./Controllers/evenement.js');
 const emploisRouter =require('./Controllers/emplois.js');
