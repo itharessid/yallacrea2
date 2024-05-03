@@ -22,15 +22,15 @@ const upload = multer({ storage: storage });
 
 // Endpoint pour télécharger une image d'createurs
 router.post('/createur', upload.single('photo'), (req, res) => {
-    const { nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description } = req.body;
+    const { nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description } = req.body;
     if (!req.file) {
         return res.status(400).json({ error: "Aucune image n'a été téléchargée" });
     }
     
     const photoName = req.file.filename;
 
-    const sql = "INSERT INTO createurs (nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description ,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
-    const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description ,photoName];
+    const sql = "INSERT INTO createurs (nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description ,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+    const values = [nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description ,photoName];
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -45,15 +45,15 @@ router.post('/createur', upload.single('photo'), (req, res) => {
 
 router.put('/createur/:id', upload.single('photo'), (req, res) => {
     const id = req.params.id;
-    const { nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description } = req.body;
+    const { nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description } = req.body;
     let photoName = null;
 
     if (req.file) {
         photoName = req.file.filename;
     }
 
-    const sql = "UPDATE createurs SET nom=?, prenom=?, email=?, adresse=?, numero=?, anniversaire=?, lienInsta=?, lienFace=?, lienTik=?, domaine=?, nbFollowers=?, description=?, image=? WHERE idCreateur=?";
-    const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description, photoName, id]; 
+    const sql = "UPDATE createurs SET nom=?, prenom=?, email=?, adresse=?, num=?, anniversaire=?, lienInsta=?, lienFace=?, lienTik=?, domaine=?, nbFollowers=?, description=?, image=? WHERE idCreateur=?";
+    const values = [nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description, photoName, id]; 
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -92,15 +92,15 @@ router.get('/createur', (req, res) => {
     
     // Endpoint pour télécharger une image d'createurs
     router.post('/createur', upload.single('photo'), (req, res) => {
-        const { nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description  } = req.body;
+        const { nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description  } = req.body;
         if (!req.file) {
             return res.status(400).json({ error: "Aucune image n'a été téléchargée" });
         }
         
         const photoName = req.file.filename;
     
-        const sql = "INSERT INTO createurs (nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        const values = [nom, prenom, email, adresse, numero, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , photoName];
+        const sql = "INSERT INTO createurs (nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        const values = [nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , photoName];
     
         db.query(sql, values, (err, result) => {
             if (err) {

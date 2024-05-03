@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import './preInscription.css';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEye, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-
-function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, etudiantToDelete,handleDelete  }) {
+function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, etudiantToDelete, handleDelete }) {
   return (
     showDeleteConfirmation && (
       <div className="cardconfirmation-dialog">
         <div className="card-body confirmation-dialog-content">
           <p>Êtes-vous sûr de vouloir supprimer {etudiantToDelete.nom} {etudiantToDelete.prenom} ?</p>
           <div className="confirmation-buttons">
-          <button onClick={()=>{
-                          handleDelete(etudiantToDelete); // Appeler handleDelete avec l'étudiant à supprimer
-                          handleConfirmDelete()}} 
-                          className="confirm-button">
-                            Oui
-                        </button>
+            <button onClick={() => {
+              handleDelete(etudiantToDelete); // Appeler handleDelete avec l'étudiant à supprimer
+              handleConfirmDelete()
+            }}
+              className="confirm-button">
+              Oui
+            </button>
             <button onClick={handleCancelDelete} className="cancel-button">
               Non
             </button>
@@ -29,6 +28,7 @@ function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handl
     )
   );
 }
+
 function PreInscriptionEtud() {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [selectedPEtudiantId, setSelectedPEtudiantId] = useState(null);
@@ -38,11 +38,8 @@ function PreInscriptionEtud() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleValidation = async (etudiant) => {
-    // Afficher une alerte avec le message approprié
     alert(`La pré-inscription de ${etudiant.nom} ${etudiant.prenom} est validée.`);
-    
     try {
-      // Envoyer une requête POST à votre backend pour envoyer l'e-mail
       await axios.post('http://localhost:3001/sendEmailEtud', {
         etudiant: etudiant
       });
@@ -51,18 +48,60 @@ function PreInscriptionEtud() {
       console.error("Erreur lors de l'envoi de l'e-mail :", error);
     }
   };
+
   const handleDelete = async (etudiant) => {
     alert(`La pré-inscription de ${etudiant.nom} ${etudiant.prenom} n'est pas validée.`);
-    
     try {
-        await axios.post('http://localhost:3001/refutationEmailEtud', {
-            etudiant: etudiant
-        });
-        console.log("E-mail envoyé avec succès !");
+      await axios.post('http://localhost:3001/refutationEmailEtud', {
+        etudiant: etudiant,
+        sender: 'ons' // ou 'ithar' selon le cas
+      });
+      console.log("E-mail envoyé avec succès !");
     } catch (error) {
-        console.error("Erreur lors de l'envoi de l'e-mail :", error);
+      console.error("Erreur lors de l'envoi de l'e-mail :", error);
     }
-};
+  };
+
+  const handleValidationClick = async (etudiant) => {
+    try {
+      const password = generateRandomPassword(); // Générer un mot de passe aléatoire
+      await axios.post('http://localhost:3001/sendPasswordEmail', {
+        studentEmail: etudiant.email, // Passer l'adresse e-mail de l'étudiant
+        password: password, // Passer le mot de passe aléatoire
+        sender: 'ons' // ou 'ithar' selon le cas
+      });
+      // Stocker le mot de passe haché dans la base de données
+      await axios.post('http://localhost:3001/storePasswordInDatabase', {
+        studentId: etudiant.id, // Passer l'identifiant de l'étudiant
+        password: password // Passer le mot de passe aléatoire
+    });
+
+      console.log("E-mail envoyé avec succès !");
+      alert(`Un e-mail a été envoyé à ${etudiant.nom} ${etudiant.prenom} avec le mot de passe : ${password}`);
+
+      // Déplacer l'étudiant de la table des pré-inscriptions vers la table des étudiants
+      await axios.post('http://localhost:3001/moveStudentToStudentsTable', {
+        etudiant: etudiant
+      });
+
+      // Rafraîchir les données après avoir déplacé l'étudiant
+      fetchData();
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail ou du déplacement de l'étudiant :", error);
+    }
+  };
+
+  const generateRandomPassword = () => {
+    const length = 8; // Longueur du mot de passe
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Caractères possibles
+    let password = "";
+    for (let i = 0; i < length; ++i) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -104,9 +143,9 @@ function PreInscriptionEtud() {
 
   const filteredPEtudiants = searchTerm
     ? PEtudiantData.filter(
-        (etudiant) =>
-          `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()} ${etudiant.programme.toLowerCase()} ${etudiant.niveau.toLowerCase()}`.includes(searchTerm.toLowerCase())
-      )
+      (etudiant) =>
+        `${etudiant.nom.toLowerCase()} ${etudiant.prenom.toLowerCase()} ${etudiant.programme.toLowerCase()} ${etudiant.niveau.toLowerCase()}`.includes(searchTerm.toLowerCase())
+    )
     : PEtudiantData;
 
     function capitalizeFirstLetter(string) {
@@ -117,7 +156,7 @@ function PreInscriptionEtud() {
     <>
       <Adminsidbar />
       <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
-      <div className="row">
+        <div className="row">
           <div className="col-xl-3 mb-20">
             <div className="card-box-Etud height-100-p widget-style1">
               <div className="d-flex flex-wrap align-items-center">
@@ -154,7 +193,7 @@ function PreInscriptionEtud() {
                   <th className="text-purple">Anniversaire</th>
                   <th className="text-purple">Email</th>
                   <th className="text-purple">Adresse</th>
-                  <th className="text-purple">Numero</th>
+                  <th className="text-purple">num</th>
                   <th className="text-purple">Niveau</th>
                   <th className="text-purple">Programme</th>
                   <th className="text-purple">Action</th>
@@ -177,8 +216,11 @@ function PreInscriptionEtud() {
                     <td>{etudiant.niveau}</td>
                     <td>{etudiant.programme}</td>
                     <td style={{ display: 'flex', flexDirection: 'row' }}>
-                    <button className="button1" onClick={() => handleValidation(etudiant)}>
-                          <FontAwesomeIcon icon={faCheck} />
+                      <button className="button1" onClick={() => handleValidation(etudiant)}>
+                        <FontAwesomeIcon icon={faCheck} />
+                      </button>
+                      <button className="button2" onClick={() => handleValidationClick(etudiant)}>
+                        <FontAwesomeIcon icon={faEnvelope} />
                       </button>
                       <button className="button2" onClick={() => handleDeleteClick(etudiant)}>
                         <FontAwesomeIcon icon={faTrashAlt} />
@@ -191,13 +233,13 @@ function PreInscriptionEtud() {
           </div>
         </div>
       </div>
-        <ConfirmationDialog
-          showDeleteConfirmation={showDeleteConfirmation}
-          handleConfirmDelete={handleConfirmDelete}
-          handleCancelDelete={handleCancelDelete}
-          etudiantToDelete={PetudiantToDelete} // Passer l'étudiant à supprimer au composant ConfirmationDialog
-          handleDelete={handleDelete}
-        />
+      <ConfirmationDialog
+        showDeleteConfirmation={showDeleteConfirmation}
+        handleConfirmDelete={handleConfirmDelete}
+        handleCancelDelete={handleCancelDelete}
+        etudiantToDelete={PetudiantToDelete} // Passer l'étudiant à supprimer au composant ConfirmationDialog
+        handleDelete={handleDelete}
+      />
     </>
   );
 }

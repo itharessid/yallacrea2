@@ -14,7 +14,7 @@ function ProfileEtud() {
         prenom: '',
         email: '',
         adresse: '',
-        numero: '',
+        num: '',
         anniversaire: new Date(), // Mettez une valeur par défaut si nécessaire
         niveau: '',
         programme: '',
@@ -64,7 +64,7 @@ function ProfileEtud() {
                         <h2>{etudiantData.nom} {etudiantData.prenom}</h2>
                         <br/>
                         <p>Email: {etudiantData.email}</p>
-                        <p>Numéro: {etudiantData.numero}</p>
+                        <p>Numéro: {etudiantData.num}</p>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Nom:</label>
@@ -111,8 +111,8 @@ function ProfileEtud() {
                                 <input
                                     type="tel"
                                     className="form-control"
-                                    name="numero"
-                                    value={editedData.numero}
+                                    name="num"
+                                    value={editedData.num}
                                     onChange={handleInputChange}
                                 />
                             </div>

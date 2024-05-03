@@ -1,120 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import './preInscription.css';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEye, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, creaToDelete, handleDelete }) {
-    return (
-        showDeleteConfirmation && (
-            <div className="cardconfirmation-dialog">
-                <div className="card-body confirmation-dialog-content">
-                    <p>Êtes-vous sûr de vouloir supprimer {creaToDelete.nom} {creaToDelete.prenom} ?</p>
-                    <div className="confirmation-buttons">
-                        <button onClick={()=>{
-                          handleDelete(creaToDelete); // Appeler handleDelete avec l'étudiant à supprimer
-                          handleConfirmDelete()}} 
-                          className="confirm-button">
-                            Oui
-                        </button>
-                        <button onClick={() => {  
-                            handleCancelDelete(); // Ensuite, annuler la suppression
-                        }} 
-                        className="cancel-button">
-                            Non
-                        </button>
-                    </div>
-                </div>
-            </div>
-        )
-    );
-}
-
 function PreInscriptionCrea() {
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-    const [selectedPCreaId, setSelectedPCreaId] = useState(null);
-    const [PCreaToDelete, setPCreaToDelete] = useState(null);
-    const [PCreaData, setPCreaData] = useState([]);
-    const [blurBackground, setBlurBackground] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [createurData, setCreateurData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const handleValidation = async (createur) => {
-        alert(`La pré-inscription de ${createur.nom} ${createur.prenom} est validée.`);
-        
-        try {
-            await axios.post('http://localhost:3001/sendEmailCrea', {
-                createur: createur
-            });
-            console.log("E-mail envoyé avec succès !");
-        } catch (error) {
-            console.error("Erreur lors de l'envoi de l'e-mail :", error);
-        }
-    };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const handleDelete = async (createur) => {
-        alert(`La pré-inscription de ${createur.nom} ${createur.prenom} n'est pas validée.`);
-        
-        try {
-            await axios.post('http://localhost:3001/refutationEmailCrea', {
-                createur: createur
-            });
-            console.log("E-mail envoyé avec succès !");
-        } catch (error) {
-            console.error("Erreur lors de l'envoi de l'e-mail :", error);
-        }
-    };
-  
-    useEffect(() => {
-        fetchData();
-    }, []);
-  
-    const fetchData = async () => {
-        try {
-            const result = await axios("http://localhost:3001/preinscriCrea");
-            setPCreaData(result.data);
-        } catch (err) {
-            console.log("Quelque chose s'est mal passé lors de la récupération des données créateur:", err);
-        }
-    };
-  
-    const handleDeleteClick = (createur) => {
-        setSelectedPCreaId(createur.id);
-        setPCreaToDelete(createur);
-        setShowDeleteConfirmation(true);
-        setBlurBackground(true);
-    };
-  
-    const handleCancelDelete = () => {
-        setSelectedPCreaId(null);
-        setPCreaToDelete(null);
-        setShowDeleteConfirmation(false);
-        setBlurBackground(false);
-    };
-  
-    const handleConfirmDelete = async () => {
-        try {
-            await axios.delete(`http://localhost:3001/preinscriCrea/${selectedPCreaId}`);
-            setShowDeleteConfirmation(false);
-            setBlurBackground(false);
-            setPCreaToDelete(null);
-            fetchData();
-        } catch (error) {
-            console.error("Erreur lors de la suppression de créateur :", error);
-        }
-    };
-  
-    const filteredPCreateurs = searchTerm
-        ? PCreaData.filter(
-            (createur) =>
-            `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
-        )
-        : PCreaData;
+  const fetchData = async () => {
+    try {
+      const result = await axios("http://localhost:3001/preinscriCrea");
+      setCreateurData(result.data);
+    } catch (err) {
+      console.log("Quelque chose s'est mal passé lors de la récupération des données créateur:", err);
+    }
+  };
 
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
+  const handleValidation = async (createur) => {
+    alert(`La pré-inscription de ${createur.nom} ${createur.prenom} est validée.`);
+    try {
+      await axios.post('http://localhost:3001/sendEmailCrea', {
+        createur: createur
+      });
+      console.log("E-mail envoyé avec succès !");
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail :", error);
+    }
+  };
+
+  const handleValidationClick = async (createur) => {
+    try {
+      const password = generateRandomPassword(); // Générer un mot de passe aléatoire
+      await axios.post('http://localhost:3001/sendPasswordEmailCrea', {
+        creaEmail: createur.email, // Passer l'adresse e-mail du créateur
+        password: password, // Passer le mot de passe aléatoire
+        sender: 'ithar' // ou 'ons' selon le cas
+      });
+      console.log("E-mail envoyé avec succès !");
+      alert(`Un e-mail a été envoyé à ${createur.nom} ${createur.prenom} avec le mot de passe : ${password}`);
+  
+      // Déplacer uniquement le créateur sur lequel le bouton d'enveloppe a été cliqué
+      await axios.post('http://localhost:3001/transferPreinscriToCreateur', {
+        createur: createur
+      });
+  
+      // Rafraîchir les données après avoir déplacé le créateur
+      fetchData();
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail ou du déplacement du créateur :", error);
+    }
+  };
+  const generateRandomPassword = () => {
+    const length = 8; // Longueur du mot de passe
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Caractères possibles
+    let password = "";
+    for (let i = 0; i < length; ++i) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
+  const filteredCreateurs = searchTerm
+    ? createurData.filter(
+      (createur) =>
+        `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
+    )
+    : createurData;
 
     return (
         <>
@@ -168,8 +126,8 @@ function PreInscriptionCrea() {
                                 {filteredPCreateurs.map((createur, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{createur.nom.toUpperCase()}</td>
-                                        <td>{capitalizeFirstLetter(createur.prenom)}</td>
+                                        <td>{createur.nom}</td>
+                                        <td>{createur.prenom}</td>
                                         <td>{createur.anniversaire ? new Date(createur.anniversaire).toLocaleDateString('fr-FR') : '-'}</td>
                                         <td>
                                             <a href={`mailto:${createur.email}`}>

@@ -62,7 +62,7 @@ function ProfileCrea() {
             formData.append("prenom", editedData.prenom);
             formData.append("adresse", editedData.adresse);
             formData.append("email", editedData.email);
-            formData.append("numero", editedData.numero);
+            formData.append("num", editedData.num);
             formData.append("anniversaire", formatDate(anniversaire)); // Utiliser la fonction formatDate
             formData.append("lienInsta", editedData.lienInsta);
             formData.append("lienFace", editedData.lienFace);
@@ -113,7 +113,7 @@ function ProfileCrea() {
                         <h2>{createurData.nom} {createurData.prenom}</h2>
                         <br/>
                         <p>Email: {createurData.email}</p>
-                        <p>Numéro: {createurData.numero}</p>
+                        <p>Numéro: {createurData.num}</p>
                         <p>Domaine: {createurData.domaine}</p>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
@@ -161,8 +161,8 @@ function ProfileCrea() {
                                 <input
                                     type="tel"
                                     className="form-control"
-                                    name="numero"
-                                    value={editedData.numero}
+                                    name="num"
+                                    value={editedData.num}
                                     onChange={handleInputChange}
                                 />
                             </div>

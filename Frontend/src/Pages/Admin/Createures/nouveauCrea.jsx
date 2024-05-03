@@ -12,7 +12,7 @@ function NouveauCrea() {
   const [prenom, setPrenom] = useState("");
   const [adresse, setAdresse] = useState("");
   const [email, setEmail] = useState("");
-  const [numero, setNumero] = useState("");
+  const [num, setnum] = useState("");
   const [lienInsta, setLienInsta] = useState(""); // Nouveau champ poste
   const [lienFace, setLienFace] = useState("");
   const [lienTik, setLienTik] = useState("");
@@ -51,7 +51,7 @@ const handleUpload = () => {
     formData.append("prenom", prenom);
     formData.append("adresse", adresse);
     formData.append("email", email);
-    formData.append("numero", numero);
+    formData.append("num", num);
     // Convertir la date en format ISO avec le décalage horaire correct
     const anniversaireValue = anniversaire ? new Date(anniversaire.getTime() - anniversaire.getTimezoneOffset() * 60000).toISOString().split('T')[0] : null;
     formData.append("anniversaire", anniversaireValue);// Assurez-vous de convertir la date au format ISO si elle est sélectionnée
@@ -121,7 +121,7 @@ const handleUpload = () => {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Numéro:</label>
-                                                        <input type="number" className="form-control" name="numero" required value={numero} onChange={(e) => setNumero(e.target.value)}/>
+                                                        <input type="number" className="form-control" name="num" required value={num} onChange={(e) => setnum(e.target.value)}/>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 pl-md-5">
