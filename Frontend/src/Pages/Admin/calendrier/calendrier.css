@@ -58,7 +58,11 @@
 .modal-footer {
   padding-top: 10px; /* Ajoute un espace en haut du pied de page de la modal */
 }
-
+/* calendrier.css */
+.custom-event {
+  background-color: purple; /* Change la couleur de fond de la bande en violet */
+  border-color: purple; /* Change la couleur de la bordure en violet pour une meilleure cohérence */
+}
 
 
   
