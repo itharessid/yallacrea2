@@ -245,6 +245,7 @@ const onsubmitChange = async () => {
               eventPropGetter={(event) => ({
                 className: 'custom-event', // Ajoute la classe personnalisée aux événements
               })}
+              titleAccessor={(event) => event.titre} // Ajoute le titre de l'évènement
                 formats={{
                   monthHeaderFormat: 'DD MMMM YYYY',
                   agendaTimeRangeFormat: ({ start, end }, culture, localizer) =>
@@ -277,6 +278,7 @@ const onsubmitChange = async () => {
                 onSelectEvent={handleSelectedEvent}
                 components={{
                   month: {
+                    
                     header: ({ label }) => (
                       <div className="rbc-month-header">
                         <span className="rbc-header-label">{label}</span>
