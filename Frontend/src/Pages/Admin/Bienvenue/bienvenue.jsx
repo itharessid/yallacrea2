@@ -90,7 +90,7 @@ function Bienvenue() {
             </div>
           </div>
 
-          <div className="row justify-content-center"> {/* Centrer le contenu */}
+          <div className="row"> {/* Centrer le contenu */}
             <div className="col-xl-6 col-lg-8"> {/* Utilisez les classes Bootstrap pour centrer le contenu */}
               <div className="card-body">
                 <div className="chart-pie pt-4 pb-2">
