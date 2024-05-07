@@ -167,14 +167,24 @@ function Video() {
     }
   };
 
-  const filteredVideo = searchTerm
-    ? video.filter((video) => video.titre.toLowerCase() === searchTerm.toLowerCase())
-    : video;
+// Fonction pour vérifier si un mot contient une syllabe spécifique
+const containsSyllable = (word, syllable) => {
+  // Divise le mot en syllabes
+  const syllables = word.split('-'); // Adapter cette logique selon la structure des mots dans votre cas
+  // Vérifie si l'une des syllabes correspond à la syllabe spécifiée
+  return syllables.some(s => s.includes(syllable));
+};
+
+const filteredVideo = searchTerm
+  ? video.filter((video) => containsSyllable(video.titre.toLowerCase(), searchTerm.toLowerCase()))
+  : video;
+
+
 
   return (
     <div>
       <header id="site-header" className="fixed-top">
-        <div className={`container ${blurBackground ? 'blur-background' : ''}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className={`container ${blurBackground ? 'blur-background' : ''}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
           <nav className="navbar navbar-expand-lg stroke">
             <h1>
               <a className="navbar-brand" href="index.html">
@@ -254,7 +264,7 @@ function Video() {
                         <div key={video.idVid} style={{ flexBasis: '33%', padding: '10px' }}>
                           <div className="heading">{video.titre}</div>
                           <video controls className="cardv-video">
-                            <source src={`http://localhost:3001/video/${video.video}`} type="video/mp4" />
+                            <source src={`http://localhost:3001/videos/${video.video}`} type="video/mp4" />
                           </video>
                           <div className="description">
                             {video.description}<br />

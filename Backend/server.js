@@ -6,6 +6,7 @@ const rout = require("./routes/route");
 
 const textRouter = require('./Controllers/texte'); // Importez le routeur text
 const imageRouter = require('./Controllers/image'); // Importez le routeur image
+const videosRouter=require('./Controllers/videos.js');
 const calendrierRouter = require('./Controllers/calendrier');
 const etudiantRouter=require('./Controllers/etudiant')
 const expertRouter=require('./Controllers/expertcontrolllers.js')
@@ -76,6 +77,7 @@ app.use(videoRouter);
 app.use(commentRouter);
 app.use(certifRouter);
 app.use('/certifications', express.static('../frontend/public/certifications'));
+app.use('/videos', express.static('../frontend/public/videos'));
 
 const PORT = 3001;
 app.listen(PORT, () => {

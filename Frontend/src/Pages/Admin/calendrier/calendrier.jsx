@@ -369,28 +369,32 @@ const onsubmitChange = async () => {
                         }}
                       />
                     </div>
-                    <input
-  className='form-control'
-  id="eventStartTime"
-  type="time"
-  name="heureDebut"
-  value={eventStartTime}
-  onChange={(e) => {
-    setEventStartTime(e.target.value);
-  }}
-/>
-
-<input
-  className='form-control'
-  id="eventEndTime"
-  type="time"
-  value={eventEndTime}
-  name="heureFin"
-  onChange={(e) => {
-    setEventEndTime(e.target.value);
-  }}
-/>
-
+                    <div className="form-group">
+                      <label>Heure Début</label>
+                      <input
+                        className='form-control'
+                        id="eventStartTime"
+                        type="time"
+                        name="heureDebut"
+                        value={eventStartTime}
+                        onChange={(e) => {
+                          setEventStartTime(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Heure Fin</label>
+                      <input
+                        className='form-control'
+                        id="eventEndTime"
+                        type="time"
+                        value={eventEndTime}
+                        name="heureFin"
+                        onChange={(e) => {
+                          setEventEndTime(e.target.value);
+                        }}
+                    />
+                    </div>
                     <div className="modal-footer">
                       {selectEvent && (
                         <button

@@ -93,8 +93,8 @@ function App() {
         <Route path="/gprofil" element={< Gprofile/>} />
         <Route path="/profiluser" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
-        <Route path="/video/:id/like" element={<Videouser />}/>
-        <Route path="/video/:id/commentaire" element={<Videouser/>}/>
+        <Route path="/video/:idVid/like" element={<Videouser />}/>
+        <Route path="/video/:idVid/commentaire" element={<Videouser/>}/>
         <Route path="/afvideo" element={<Video />}/>
         <Route path="/emploi" element={<Emplois/>}/>
         <Route path="/pres" element={<Preseneteil/>}/>

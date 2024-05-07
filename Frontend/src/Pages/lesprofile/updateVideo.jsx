@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Assurez-vous d'importer Link depuis react-router-dom
+
 
 const UpdateVideo = () => {
     const { id } = useParams();
@@ -51,7 +53,7 @@ const UpdateVideo = () => {
             formData.append('titre', editedData.titre);
             formData.append('description', editedData.description);
             formData.append('date', uploadDate);
-
+    
             const response = await axios.put(`http://localhost:3001/video/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -64,8 +66,13 @@ const UpdateVideo = () => {
                 // Si aucune nouvelle image n'est sélectionnée, conservez l'image existante
                 setVideoData(null);
             }
-
-            setAlert(response.data.message);
+    
+            // Affichez le message de succès avec le lien pour retourner à la page des vidéos
+            setAlert(
+                <div>
+                    {response.data.message}. <Link to="/afvideo">Retour à la page des vidéos</Link>
+                </div>
+            );
             // Mettez à jour les données vidéo avec les nouvelles données retournées par le serveur
             setVideoData(response.data.updatedVideo);
         } catch (error) {

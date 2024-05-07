@@ -40,12 +40,16 @@ function UploadVideo() {
         formData.append("titre", titre);
         formData.append("description", description);
         formData.append("date", uploadDate);
-
+    
         axios.post('http://localhost:3001/video', formData)
         .then(res => {
             if (res.data.message === "Données insérées avec succès") {
                 console.log("Successed");
-                setAlert("Le vidéo est bien enregistré");
+                setAlert(
+                    <div>
+                        Le vidéo est bien enregistré. <Link to="/afvideo">Retour à la page des vidéos</Link>
+                    </div>
+                );
                 // Efface l'alerte après quelques secondes
                 setTimeout(() => {
                     setAlert('');
@@ -60,6 +64,7 @@ function UploadVideo() {
         })
         .catch(err => console.log(err));
     }
+    
 
 
     const handleModification = () => {
