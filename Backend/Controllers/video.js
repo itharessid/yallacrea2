@@ -24,7 +24,7 @@ const upload = multer({ storage: storage });
 router.post('/video', upload.single('video'), (req, res) => {
     const { titre, description } = req.body;
     const videoName = req.file ? req.file.filename : null;
-    const date = new Date().toISOString().slice(0, 10); // Génération automatique de la date
+    const date = new Date().toISOString().slice(0, 10);
 
     const sql = "INSERT INTO video (video, titre, description, date) VALUES (?, ?, ?, ?)";
     const values = [videoName, titre, description, date];
@@ -39,8 +39,8 @@ router.post('/video', upload.single('video'), (req, res) => {
 });
 
 // Endpoint pour mettre à jour les données d'une vidéo
-router.put('/video/:id', upload.single('video'), (req, res) => {
-    const id = req.params.id;
+router.put('/video/:idVid', upload.single('video'), (req, res) => {
+    const idVid = req.params.idVid;
     const { titre, description } = req.body;
     let videoName = null;
 
@@ -48,10 +48,10 @@ router.put('/video/:id', upload.single('video'), (req, res) => {
         videoName = req.file.filename;
     }
 
-    const date = new Date().toISOString().slice(0, 10); // Génération automatique de la date
+    const date = new Date().toISOString().slice(0, 10);
 
     const sql = "UPDATE video SET video=?, titre=?, description=?, date=? WHERE idVid=?";
-    const values = [videoName, titre, description, date, id]; 
+    const values = [videoName, titre, description, date, idVid]; 
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -76,10 +76,10 @@ router.get('/video', (req, res) => {
 });
 
 // Endpoint pour récupérer les données d'une vidéo par son ID
-router.get('/video/:id', (req, res) => {
-    const id = req.params.id;
+router.get('/video/:idVid', (req, res) => {
+    const idVid = req.params.idVid;
     const sql = 'SELECT * FROM video WHERE idVid = ?';
-    db.query(sql, id, (err, result) => {
+    db.query(sql, idVid, (err, result) => {
         if (err) {
             console.error("Erreur lors de la récupération des données de la vidéo :", err);
             return res.status(500).json({ error: "Erreur lors de la récupération des données de la vidéo" });
@@ -92,10 +92,10 @@ router.get('/video/:id', (req, res) => {
 });
 
 // Endpoint pour supprimer une vidéo par son ID
-router.delete('/video/:id', (req, res) => {
-    const id = req.params.id;
+router.delete('/video/:idVid', (req, res) => {
+    const idVid = req.params.idVid;
     const sql = 'DELETE FROM video WHERE idVid = ?';
-    db.query(sql, id, (err, result) => {
+    db.query(sql, idVid, (err, result) => {
         if (err) {
             console.error("Erreur lors de la suppression de la vidéo :", err);
             return res.status(500).json({ error: "Erreur lors de la suppression de la vidéo" });
@@ -105,12 +105,12 @@ router.delete('/video/:id', (req, res) => {
 });
 
 // Endpoint pour mettre à jour le nombre de likes d'une vidéo
-router.put('/video/:id/like', (req, res) => {
-    const id = req.params.id;
+router.put('/video/:idVid/like', (req, res) => {
+    const idVid = req.params.idVid;
     const { likes } = req.body;
 
     const sql = 'UPDATE video SET likes = ? WHERE idVid = ?';
-    const values = [likes, id];
+    const values = [likes, idVid];
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -122,12 +122,12 @@ router.put('/video/:id/like', (req, res) => {
 });
 
 // Endpoint pour récupérer le nombre de likes d'une vidéo par son ID
-router.get('/video/:id/like', (req, res) => {
-    const id = req.params.id;
+router.get('/video/:idVid/like', (req, res) => {
+    const idVid = req.params.idVid;
 
     const sql = 'SELECT likes FROM video WHERE idVid = ?';
     
-    db.query(sql, id, (err, result) => {
+    db.query(sql, idVid, (err, result) => {
         if (err) {
             console.error("Erreur lors de la récupération du nombre de likes depuis la base de données :", err);
             return res.status(500).json({ error: "Erreur lors de la récupération du nombre de likes depuis la base de données" });

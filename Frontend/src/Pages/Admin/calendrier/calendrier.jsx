@@ -3,14 +3,14 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Adminsidbar from '../Sidbar/Adminsidbar';
 import moment from 'moment';
-import 'moment/locale/fr'; // Importez la locale française pour moment
+import 'moment/locale/fr';
 import './calendrier.css';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 function Calendrier() {
-  moment.locale('fr'); // Définir la locale française pour moment
+  moment.locale('fr');
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -21,11 +21,11 @@ function Calendrier() {
   const [eventStartDate, setEventStartDate] = useState('');
   const [selectEvent, setSelectEvent] = useState(null);
   const [view, setView] = useState('month');
-  const [currentDate, setCurrentDate] = useState(new Date()); // État pour suivre la date actuelle
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [calendrierData, setCalendrierData] = useState([]);
-  const [showEventsTable, setShowEventsTable] = useState(false); // Nouvel état pour afficher le tableau des événements
+  const [showEventsTable, setShowEventsTable] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showEventDetailsModal, setShowEventDetailsModal] = useState(false); // Nouvel état pour afficher la modal des détails de l'événement
+  const [showEventDetailsModal, setShowEventDetailsModal] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -36,8 +36,8 @@ function Calendrier() {
       const result = await axios.get("http://localhost:3001/calendrier");
       const formattedEvents = result.data.map(event => ({
         ...event,
-        start: new Date(event.date), // Assurez-vous que event.date est une chaîne de date au format ISO ou une date valide
-        end: new Date(event.date), // Si la durée de l'événement est différente, ajustez la propriété end en conséquence
+        start: new Date(event.date),
+        end: new Date(event.date),
       }));
       setCalendrierData(formattedEvents);
       setEvents(formattedEvents);
@@ -46,6 +46,25 @@ function Calendrier() {
     }
   };
 
+  const fetchEventsByDate = async (selectedDate) => {
+    try {
+      const result = await axios.get(`http://localhost:3001/calendrier?date=${selectedDate}`);
+      const formattedEvents = result.data.map(event => ({
+        ...event,
+        start: new Date(event.date),
+        end: new Date(event.date),
+      }));
+      setEvents(formattedEvents);
+    } catch (err) {
+      console.error("Erreur lors de la récupération des données du calendrier pour la date spécifique :", err);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedDate) {
+      fetchEventsByDate(selectedDate);
+    }
+  }, [selectedDate]);
   const toggleEventsTable = () => {
     setShowEventsTable(!showEventsTable);
   };
@@ -56,24 +75,31 @@ function Calendrier() {
       setShowModal(true);
       setSelectEvent(eventToEdit);
       setEventTitle(eventToEdit.titre);
-      setEventStartTime(moment(eventToEdit.heureDebut).format('HH:mm'));
-      setEventEndTime(moment(eventToEdit.heureFin).format('HH:mm'));
-      setEventStartDate(moment(eventToEdit.date).format('DD-MM-YYYY'));
+      setEventStartTime(eventToEdit.heureDebut); // Pas besoin de formater ici
+      setEventEndTime(eventToEdit.heureFin); // Pas besoin de formater ici
+      setEventStartDate(moment(eventToEdit.date).format('YYYY-MM-DD'));
+      setSelectedDate(eventToEdit.start); // Nouvelle ligne pour stocker la date
     }
   };
-
+  
   const handleSelectedEvent = async (event) => {
     try {
       setShowModal(true);
       const eventDetails = await fetchEventData(event.id);
       setSelectEvent(eventDetails);
       setEventTitle(eventDetails.titre);
-      setEventStartTime(moment(eventDetails.heureDebut).format('HH:mm'));
-      setEventEndTime(moment(eventDetails.heureFin).format('HH:mm'));
+      setEventStartTime(eventDetails.heureDebut); // Pas besoin de formater ici
+      setEventEndTime(eventDetails.heureFin); // Pas besoin de formater ici
       setEventStartDate(moment(eventDetails.date).format('YYYY-MM-DD'));
+      setSelectedDate(convertToDate(eventDetails.date)); // Convertir la date au format Date
     } catch (error) {
       console.error('Erreur lors de la récupération des détails de l\'événement :', error);
     }
+  };
+  
+
+  const convertToDate = (dateString) => {
+    return new Date(dateString);
   };
   
   const fetchEventData = async (eventId) => {
@@ -86,40 +112,42 @@ function Calendrier() {
   };
   
 
-  const onsubmitChange = async () => {
-    try {
-      const eventData = {
-        id: selectEvent ? selectEvent.id : null,
-        titre: eventTitle,
-        date: moment(selectedDate).format('YYYY-MM-DD'),
-        heureDebut: eventStartTime,
-        heureFin: eventEndTime,
-      };
+const onsubmitChange = async () => {
+  try {
+    const eventData = {
+      id: selectEvent ? selectEvent.id : null,
+      titre: eventTitle,
+      date: moment(selectedDate).format('YYYY-MM-DD'),
+      heureDebut: eventStartTime,
+      heureFin: eventEndTime,
+    };
 
-      const eventDateTime = moment(`${eventData.date} ${eventStartTime}`, 'YYYY-MM-DD HH:mm');
-      const currentDateTime = moment();
-      if (eventDateTime.isBefore(currentDateTime)) {
-        alert("Vérifier la date et les heures de l'évènement !");
-        return;
-      }
-
-      let response;
-      if (selectEvent) {
-        response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
-      } else {
-        response = await axios.post('http://localhost:3001/calendrier', eventData);
-      }
-
-      if (response && response.status === 200) {
-        fetchData();
-        closeModal();
-      } else {
-        console.error('Erreur lors de la création/modification de l\'événement');
-      }
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+    const eventDateTime = moment(`${eventData.date} ${eventData.heureDebut}`, 'YYYY-MM-DD HH:mm');
+    const currentDateTime = moment();
+    if (eventDateTime.isBefore(currentDateTime)) {
+      alert("Vérifier la date et les heures de l'évènement !");
+      return;
     }
-  };
+
+    let response;
+    if (selectEvent) {
+      response = await axios.put(`http://localhost:3001/calendrier/${selectEvent.id}`, eventData);
+    } else {
+      response = await axios.post('http://localhost:3001/calendrier', eventData);
+    }
+
+    if (response && response.status === 200) {
+      fetchData();
+      closeModal();
+    } else {
+      console.error('Erreur lors de la création/modification de l\'événement');
+    }
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour/ajout de l\'événement :', error);
+  }
+};
+
+
 
   const formatTime = (timeString) => {
     return moment(timeString, 'HH:mm').format('HH:mm');
@@ -164,6 +192,11 @@ function Calendrier() {
     setEventStartDate('');
     setSelectEvent(null);
   };
+  const isEventPassed = (eventDate) => {
+    const eventDateTime = moment(eventDate);
+    const currentDateTime = moment();
+    return eventDateTime.isBefore(currentDateTime); // Vérifie si la date de l'événement est passée
+  };
   
 
   return (
@@ -194,6 +227,7 @@ function Calendrier() {
                       <td>{formatTime(event.heureDebut)}</td>
                       <td>{formatTime(event.heureFin)}</td>
                       <td>
+                      {isEventPassed(event.date) && <p>L'événement est déjà passé, vous pouvez le supprimer.</p>}
                         <button onClick={() => deleteEvent(event.id)}>
                           <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }}/>
                         </button>
@@ -208,6 +242,10 @@ function Calendrier() {
             )}
             {!showEventsTable && (
               <Calendar
+              eventPropGetter={(event) => ({
+                className: 'custom-event', // Ajoute la classe personnalisée aux événements
+              })}
+              titleAccessor={(event) => event.titre} // Ajoute le titre de l'évènement
                 formats={{
                   monthHeaderFormat: 'DD MMMM YYYY',
                   agendaTimeRangeFormat: ({ start, end }, culture, localizer) =>
@@ -240,6 +278,7 @@ function Calendrier() {
                 onSelectEvent={handleSelectedEvent}
                 components={{
                   month: {
+                    
                     header: ({ label }) => (
                       <div className="rbc-month-header">
                         <span className="rbc-header-label">{label}</span>
@@ -272,6 +311,7 @@ function Calendrier() {
                         </span>
                       );
                     };
+                    
 
                     return (
                       <div className="rbc-toolbar">
@@ -330,7 +370,7 @@ function Calendrier() {
                       />
                     </div>
                     <div className="form-group">
-                      <label>Heure début</label>
+                      <label>Heure Début</label>
                       <input
                         className='form-control'
                         id="eventStartTime"
@@ -343,7 +383,7 @@ function Calendrier() {
                       />
                     </div>
                     <div className="form-group">
-                      <label>Heure de fin</label>
+                      <label>Heure Fin</label>
                       <input
                         className='form-control'
                         id="eventEndTime"
@@ -353,7 +393,7 @@ function Calendrier() {
                         onChange={(e) => {
                           setEventEndTime(e.target.value);
                         }}
-                      />
+                    />
                     </div>
                     <div className="modal-footer">
                       {selectEvent && (

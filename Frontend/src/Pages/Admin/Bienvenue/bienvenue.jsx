@@ -90,8 +90,8 @@ function Bienvenue() {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-xl-4 col-lg-5">
+          <div className="row"> {/* Centrer le contenu */}
+            <div className="col-xl-6 col-lg-8"> {/* Utilisez les classes Bootstrap pour centrer le contenu */}
               <div className="card-body">
                 <div className="chart-pie pt-4 pb-2">
                   <canvas id="myPieChart"></canvas>
@@ -102,54 +102,54 @@ function Bienvenue() {
         </div>
       </div>
       <div className="container">
-            <div className="row justify-content-end">
-              <div className="col-lg-6">
-                {/* Votre contenu existant ici */}
-                <div className="mt-4 text-right small">
-                <span className="mr-2">
-                    <Link to="/evenements" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Event"></i> {eventsCount} Événements
-                    </Link>
-                  </span>
-                <span className="mr-2">
-                    <Link to="/createures" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Crea"></i> {createursCount} Créateurs
-                    </Link>
-                  </span>
-                  <span className="mr-2">
-                    <Link to="/etudiants" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Etud"></i> {etudiantsCount} Étudiants
-                    </Link>
-                  </span><br/>
-                  <span className="mr-2">
-                    <Link to="/domaines" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Dom"></i> {domainesCount} Domaines
-                    </Link>
-                  </span>
-                  <span className="mr-2">
-                    <Link to="/expert" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Exp"></i> {expertCount} Experts
-                    </Link>
-                  </span>
-                  <span className="mr-2">
-                    <Link to="/partenaire" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-Part"></i> {partenaireCount} Partenaires
-                    </Link>
-                  </span><br/>
-                  <span className="mr-2">
-                  <Link to="/preInscriptionEtud" className="text-decoration-none text-dark">
-                    <i className="fas fa-circle text-PEtud"></i> {pEtudCount} Pré-inscriptions des étudiants
-                  </Link>
-                  </span><br/>
-                  <span className="mr-2">
-                    <Link to="/preInscriptionCrea" className="text-decoration-none text-dark">
-                      <i className="fas fa-circle text-PCrea"></i> {pCreaCount} Pré-inscriptions des créateurs
-                    </Link>
-                  </span><br/>
-                </div>
-              </div>
+        <div className="row justify-content-end">
+          <div className="col-lg-6">
+            {/* Votre contenu existant ici */}
+            <div className="mt-4 text-right small">
+              <span className="mr-2">
+                <Link to="/evenements" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Event"></i> {eventsCount} Événements
+                </Link>
+              </span>
+              <span className="mr-2">
+                <Link to="/createures" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Crea"></i> {createursCount} Créateurs
+                </Link>
+              </span>
+              <span className="mr-2">
+                <Link to="/etudiants" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Etud"></i> {etudiantsCount} Étudiants
+                </Link>
+              </span><br/>
+              <span className="mr-2">
+                <Link to="/domaines" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Dom"></i> {domainesCount} Domaines
+                </Link>
+              </span>
+              <span className="mr-2">
+                <Link to="/expert" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Exp"></i> {expertCount} Experts
+                </Link>
+              </span>
+              <span className="mr-2">
+                <Link to="/partenaire" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-Part"></i> {partenaireCount} Partenaires
+                </Link>
+              </span><br/>
+              <span className="mr-2">
+                <Link to="/preInscriptionEtud" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-PEtud"></i> {pEtudCount} Pré-inscriptions des étudiants
+                </Link>
+              </span><br/>
+              <span className="mr-2">
+                <Link to="/preInscriptionCrea" className="text-decoration-none text-dark">
+                  <i className="fas fa-circle text-PCrea"></i> {pCreaCount} Pré-inscriptions des créateurs
+                </Link>
+              </span><br/>
             </div>
           </div>
+        </div>
+      </div>
     </>
   );
 }
