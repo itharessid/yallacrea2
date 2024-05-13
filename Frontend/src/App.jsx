@@ -26,6 +26,7 @@ import Calendrier from './Pages/Admin/calendrier/calendrier';
 import Event from './Pages/Admin/evenementes/event.jsx';
 
 import Detail from './Pages/detailcrea/detail.jsx';
+import ParentComponent from './Pages/detailcrea/ParentComponent.jsx'
 
 
 
@@ -40,6 +41,12 @@ import ProfileCrea from './Pages/Admin/Createures/profilCrea.jsx';
 import PreInscri from './Pages/Formulaire/preInscri.jsx';
 import PreInscriEtud from './Pages/Formulaire/preInscriEtud.jsx';
 import Connexion from './Pages/Formulaire/connexion.jsx';
+import Connexione from './Pages/Formulaire/connexione.jsx';
+import Connexionc from './Pages/Formulaire/connexionc.jsx';
+import Oubliermdp from './Pages/Formulaire/oubliermdp.jsx';
+
+
+
 import NouveauEvent from './Pages/Admin/evenementes/nouveauEvent.jsx';
 import Gprofile from './Pages/lesprofile/gprofile.jsx';
 import Profiluser from './Pages/lesprofile/profileuser.jsx';
@@ -72,6 +79,8 @@ import ModifCertif from './Pages/Admin/Certification/modifCertif.jsx';
 
 
 
+
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -86,12 +95,15 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/createur" element ={< Createur/>} />
         <Route path="/crea" element ={< Crea />} />
-        <Route path="/detail" element ={<Detail/>} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/detaile" element ={<ParentComponent/>} />
+
+
         <Route path="/formation" element={<Formation/>} />
         <Route path="/Accelerer" element={< Acceler />} />
         <Route path="/complet" element={< Complet />} />
         <Route path="/gprofil" element={< Gprofile/>} />
-        <Route path="/profiluser" element={< Profiluser/>} />
+        <Route path="/profiluser/:id" element={< Profiluser/>} />
         <Route path="/IMG" element={<ImageUpload />} />
         <Route path="/video/:id/like" element={<Videouser />}/>
         <Route path="/video/:id/commentaire" element={<Videouser/>}/>
@@ -106,7 +118,14 @@ function App() {
         <Route path="/sidbar" element={<Sidbar />} />
         <Route path="/preinscri" element={< PreInscri/>} />
         <Route path="/preinscriEtud" element={<PreInscriEtud/>} />
-        <Route path="/connexion" element={<Connexion/>} />
+        <Route path="/connexion/:id" element={<Connexion/>} />
+        <Route path="/connexione" element={<Connexione/>} />
+
+        <Route path="/connexionc" element={<Connexionc/>} />
+
+
+        <Route path="/mdp" element={<Oubliermdp/>} />
+
 
 
 

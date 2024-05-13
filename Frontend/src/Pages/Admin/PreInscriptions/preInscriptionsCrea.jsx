@@ -6,85 +6,86 @@ import { faTrashAlt, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-ico
 import axios from 'axios';
 
 function PreInscriptionCrea() {
-  const [createurData, setCreateurData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+    const [createurData, setCreateurData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-  const fetchData = async () => {
-    try {
-      const result = await axios("http://localhost:3001/preinscriCrea");
-      setCreateurData(result.data);
-    } catch (err) {
-      console.log("Quelque chose s'est mal passé lors de la récupération des données créateur:", err);
-    }
-  };
+    const fetchData = async () => {
+        try {
+            const result = await axios("http://localhost:3001/preinscriCrea");
+            setCreateurData(result.data);
+        } catch (err) {
+            console.log("Quelque chose s'est mal passé lors de la récupération des données créateur:", err);
+        }
+    };
 
-  const handleValidation = async (createur) => {
-    alert(`La pré-inscription de ${createur.nom} ${createur.prenom} est validée.`);
-    try {
-      await axios.post('http://localhost:3001/sendEmailCrea', {
-        createur: createur
-      });
-      console.log("E-mail envoyé avec succès !");
-    } catch (error) {
-      console.error("Erreur lors de l'envoi de l'e-mail :", error);
-    }
-  };
+    const handleValidation = async (createur) => {
+        alert(`La pré-inscription de ${createur.nom} ${createur.prenom} est validée.`);
+        try {
+            await axios.post('http://localhost:3001/sendEmailCrea', {
+                createur: createur
+            });
+            console.log("E-mail envoyé avec succès !");
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de l'e-mail :", error);
+        }
+    };
 
-  const handleValidationClick = async (createur) => {
-    try {
-      const password = generateRandomPassword(); // Générer un mot de passe aléatoire
-      await axios.post('http://localhost:3001/sendPasswordEmailCrea', {
-        creaEmail: createur.email, // Passer l'adresse e-mail du créateur
-        password: password, // Passer le mot de passe aléatoire
-        sender: 'ithar' // ou 'ons' selon le cas
-      });
-      console.log("E-mail envoyé avec succès !");
-      alert(`Un e-mail a été envoyé à ${createur.nom} ${createur.prenom} avec le mot de passe : ${password}`);
+    const handleValidationClick = async (createur) => {
+        try {
+            const password = generateRandomPassword(); // Générer un mot de passe aléatoire
+            await axios.post('http://localhost:3001/sendPasswordEmailCrea', {
+                creaEmail: createur.email, // Passer l'adresse e-mail du créateur
+                password: password, // Passer le mot de passe aléatoire
+                sender: 'ithar' // ou 'ons' selon le cas
+            });
+            console.log("E-mail envoyé avec succès !");
+            alert(`Un e-mail a été envoyé à ${createur.nom} ${createur.prenom} avec le mot de passe : ${password}`);
   
-      // Déplacer uniquement le créateur sur lequel le bouton d'enveloppe a été cliqué
-      await axios.post('http://localhost:3001/transferPreinscriToCreateur', {
-        createur: createur
-      });
+            // Déplacer uniquement le créateur sur lequel le bouton d'enveloppe a été cliqué
+            await axios.post('http://localhost:3001/transferPreinscriToCreateur', {
+                createur: createur
+            });
   
-      // Rafraîchir les données après avoir déplacé le créateur
-      fetchData();
-    } catch (error) {
-      console.error("Erreur lors de l'envoi de l'e-mail ou du déplacement du créateur :", error);
-    }
-  };
-  const generateRandomPassword = () => {
-    const length = 8; // Longueur du mot de passe
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Caractères possibles
-    let password = "";
-    for (let i = 0; i < length; ++i) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-    }
-    return password;
-  };
+            // Rafraîchir les données après avoir déplacé le créateur
+            fetchData();
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de l'e-mail ou du déplacement du créateur :", error);
+        }
+    };
 
-  const filteredCreateurs = searchTerm
-    ? createurData.filter(
-      (createur) =>
-        `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
-    )
-    : createurData;
+    const generateRandomPassword = () => {
+        const length = 8; // Longueur du mot de passe
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Caractères possibles
+        let password = "";
+        for (let i = 0; i < length; ++i) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            password += charset[randomIndex];
+        }
+        return password;
+    };
+
+    const filteredCreateurs = searchTerm
+        ? createurData.filter(
+              (createur) =>
+                  `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
+          )
+        : createurData;
 
     return (
         <>
-            <Adminsidbar/>
-            <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
+            <Adminsidbar />
+            <div className={`main-container`}>
                 <div className="row">
                     <div className="col-xl-3 mb-20">
                         <div className="card-box-Etud height-100-p widget-style1">
                             <div className="d-flex flex-wrap align-items-center">
                                 <div className="widget-data">
                                     <div className="weight-600 font-14 text-purple text-center text-nowrap">Pré-inscriptions</div>
-                                    <div className="h6 mb-0 text-center">{filteredPCreateurs.length}</div>
+                                    <div className="h6 mb-0 text-center">{filteredCreateurs.length}</div>
                                 </div>
                                 <img src="src/assets/images/creation.png" alt="" style={{ marginLeft: '40px' }} />
                             </div>
@@ -95,7 +96,7 @@ function PreInscriptionCrea() {
                     <label style={{ marginRight: '10px' }}>Rechercher:<input
                         type="search"
                         className="form-control form-control-sm"
-                        placeholder="Trouver un étudiant"
+                        placeholder="Trouver un créateur"
                         aria-controls="DataTables_Table_2"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -123,7 +124,7 @@ function PreInscriptionCrea() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredPCreateurs.map((createur, index) => (
+                                {filteredCreateurs.map((createur, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{createur.nom}</td>
@@ -143,6 +144,9 @@ function PreInscriptionCrea() {
                                             <button className="button1" onClick={() => handleValidation(createur)}>
                                                 <FontAwesomeIcon icon={faCheck} />
                                             </button>
+                                            <button className="button2" onClick={() => handleValidationClick(createur)}>
+                                                <FontAwesomeIcon icon={faEnvelope} />
+                                            </button>
                                             <button className="button2" onClick={() => handleDeleteClick(createur)}>
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
@@ -154,13 +158,6 @@ function PreInscriptionCrea() {
                     </div>
                 </div>
             </div>
-            <ConfirmationDialog
-                showDeleteConfirmation={showDeleteConfirmation}
-                handleConfirmDelete={handleConfirmDelete}
-                handleCancelDelete={handleCancelDelete}
-                creaToDelete={PCreaToDelete}
-                handleDelete={handleDelete}
-            />
         </>
     );
 }

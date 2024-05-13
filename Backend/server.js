@@ -23,7 +23,13 @@ const sendMdpCreaRouter=require('./Controllers/sendMdpCrea.js')
 const moveStudentToStudentsTable=require('./Controllers/mvetud.js');
 const transfertPreinscriCrea=require('./Controllers/mvcrea.js');
 const storePasswordInDatabase=require('./Controllers/datapassetud.js');
+
+
 const loginRouter=require('./Controllers/loginetud.js');
+const logincrRouter=require('./Controllers/logincre.js');
+const resetPassword=require('./Controllers/resetmdp.js')
+
+
 const certifRouter=require('./Controllers/certif.js');
 
 const eventsRouter=require('./Controllers/evenement.js');
@@ -66,6 +72,8 @@ app.use(transfertPreinscriCrea);
 app.use(storePasswordInDatabase);
 //login
 app.use(loginRouter) ;
+app.use(logincrRouter);
+app.use(resetPassword);
 
 
 //

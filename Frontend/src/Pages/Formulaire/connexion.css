@@ -13,7 +13,7 @@
     background-color: purple;
     color: white;
     width: 150px;
-    height: 25px;
+    height: 45px;
     font-weight: bold;
 }
 
@@ -47,3 +47,7 @@
     font-size: 1.25rem; /* Taille de l'icône */
     margin-right: 0.5rem; /* Marge à droite pour l'espacement */
 }
+.input-error {
+    border-color: red;
+  }
+  

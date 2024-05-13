@@ -1,0 +1,64 @@
+.password-reset-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.password-reset-container {
+    text-align: center; /* Centrer le texte horizontalement */
+    max-width: 800px; /* Ajustez la largeur selon vos besoins */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btns-primary {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btns-primary:hover {
+    background-color: #800080;
+}
+
+.message {
+    margin-top: 20px;
+    font-style: italic;
+}
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    margin-right: 100px;
+    font-style: italic;
+    text-size-adjust: 20px;
+    /* Centrer le texte horizontalement */
+}
+form {
+    text-align: center; /* Centrer le contenu du formulaire horizontalement */
+}
+.custom-input {
+    /* Ajoutez vos styles personnalisés ici */
+    width: 500px; /* Par exemple, ajustez la largeur */
+    height: 40px; /* Ajustez la hauteur */
+    border-radius: 5px; /* Ajoutez des bordures arrondies */
+    border: 1px solid #ccc; /* Ajoutez une bordure */
+    padding: 10px; /* Ajoutez un espacement intérieur */
+    margin-bottom: 10px;
+    margin-left: 10px; /* Ajoutez un espacement en bas */
+    /* Vous pouvez ajouter d'autres styles selon vos besoins */
+}
+

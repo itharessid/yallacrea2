@@ -208,7 +208,7 @@ function PreInscri() {
                 <button type="submit" className="btnInscri" onClick={handlePréInscriClick}>Pré-Inscrit gratuitement</button>
                 <span className="compteExist">Avez-vous déjà un compte ?</span>
                 <button type="button" className="btnConnexion">
-                    <Link to="/connexion" className="dropdown-toggle">
+                    <Link to="/connexionc" className="dropdown-toggle">
                         <span className="mtext">Se connecter</span>
                     </Link>
                 </button>

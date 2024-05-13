@@ -3,3 +3,6 @@
     justify-content: center;
     align-items: center;
 }
+.custom-block-info p {
+    margin-bottom: 1px; /* Ajustez la valeur selon vos besoins */
+}

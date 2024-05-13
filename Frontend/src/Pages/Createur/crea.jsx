@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
 import './createur.css';
+import { Link } from 'react-router-dom';
+
 
 function Crea() {
     const [createurs, setCreateurs] = useState([]);
@@ -69,38 +71,40 @@ function Crea() {
         return fullName.includes(searchKeyword.toLowerCase());
     });
 
+    const handleButtonClick = (createurId) => {
+        // Rediriger l'utilisateur vers la page de connexion avec l'ID du créateur
+        window.location.href = `/connexion/${createurId}`;
+    };
     // Filtrer les créateurs par domaine sélectionné
     const filteredByDomaine = selectedDomaine ? filteredCreateurs.filter(createur => createur.domaine === selectedDomaine) : filteredCreateurs;
 
     return (
         <section className="trending-podcast-section section-padding">
             <div className="container">
-            <div className="search-form">
-    <form onSubmit={handleSubmit}>
-        <input
-            type="text"
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-            placeholder="Rechercher par nom de créateur"
-            className="search-input"
-        />
-       <select
-    value={selectedDomaine}
-    onChange={handleDomaineChange}
-    className="search-select"
->
-    <option value="">Tous les domaines</option>
-    {domaines.map(domaine => (
-        <option key={domaine.idDomaine} value={domaine.nomDomaine}>{domaine.nomDomaine}</option>
-    ))}
-</select>
-<button type="submit" className="search-button">Rechercher</button>
-    </form>
-
-
-</div>
-<br/>
-<br/>
+                <div className="search-form">
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            value={searchKeyword}
+                            onChange={(e) => setSearchKeyword(e.target.value)}
+                            placeholder="Rechercher par nom de créateur"
+                            className="search-input"
+                        />
+                        <select
+                            value={selectedDomaine}
+                            onChange={handleDomaineChange}
+                            className="search-select"
+                        >
+                            <option value="">Tous les domaines</option>
+                            {domaines.map(domaine => (
+                                <option key={domaine.idDomaine} value={domaine.nomDomaine}>{domaine.nomDomaine}</option>
+                            ))}
+                        </select>
+                        <button type="submit" className="search-button">Rechercher</button>
+                    </form>
+                </div>
+                <br />
+                <br />
 
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     {filteredByDomaine.map(createur => (
@@ -108,7 +112,7 @@ function Crea() {
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
                                     <a href="/connexion">
-                                        <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt=""/>
+                                        <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
                                     </a>
                                 </div>
                                 <div className="custom-block-info">
@@ -128,6 +132,7 @@ function Crea() {
                                             <FontAwesomeIcon icon={faTiktok} className="tiktok-icon-black" />
                                         </a>
                                     </div>
+                                    <button onClick={() => handleButtonClick(createur.idCreateur)}>Voir plus</button>
                                 </div>
                             </div>
                         </div>

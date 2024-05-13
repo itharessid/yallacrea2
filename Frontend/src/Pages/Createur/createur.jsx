@@ -3,6 +3,7 @@ import { Dropdown } from 'react-bootstrap';
 import './createur.css'
 import Crea from './crea';
 
+
 function createur() {
   return (
     <div>
@@ -100,12 +101,11 @@ function createur() {
                     <div className="container">
                         <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2 text-center">Découvrez Certains de Nos <em><span className="highlight">Créateurs</span></em></h4>
                     </div>
+                    
                 </section>
-
                 <Crea/>
 
 
-       
            
         </div>
         
@@ -181,6 +181,7 @@ function createur() {
           </div>
         </div>
       </footer>
+
       
     </div>
   )

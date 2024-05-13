@@ -20,33 +20,34 @@ function ImageUpload() {
         Domaine: '',
         nbFollowers: '',
         description: '',
-        anniversaire: '', // Ajoutez le champ anniversaire
+        anniversaire: '', 
     });
     const [profileData, setProfileData] = useState(null);
     const [domaines, setDomaines] = useState([]);
-    const [anniversaire, setAnniversaire] = useState(null); // Initialisez l'état de la date de naissance
+    const [anniversaire, setAnniversaire] = useState(null); 
     const [showModal, setShowModal] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const fileInputRef = useRef(null);
-
-    const fetchData = async () => {
-        try {
-            const [domainesResponse, createurResponse] = await Promise.all([
-                axios.get('http://localhost:3001/domaine'),
-                axios.get('http://localhost:3001/createur')
-            ]);
-            setDomaines(domainesResponse.data);
-            setData(createurResponse.data[0]);
-            setProfileData(createurResponse.data[0]);
-            setFormData(createurResponse.data[0]);
-            setAnniversaire(createurResponse.data[0].anniversaire); // Mettez à jour la date de naissance
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
 
     useEffect(() => {
         fetchData();
     }, []);
+
+    const fetchData = async () => {
+        try {
+            // Extraire l'ID du créateur à partir de l'URL
+            const userId = window.location.pathname.split('/').pop();
+            // Envoyer une requête HTTP pour obtenir les informations du créateur
+            const response = await axios.get(`http://localhost:3001/createur/${userId}`);
+            // Mettre à jour les données du profil avec les informations du créateur
+            setProfileData(response.data);
+            setFormData(response.data);
+            setAnniversaire(response.data.anniversaire);
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     const handleFile = (event) => {
         setFile(event.target.files[0]);
@@ -55,20 +56,17 @@ function ImageUpload() {
     const handleFormChange = (event) => {
         const { name, value } = event.target;
         if (name === 'anniversaire') {
-            // Mettez à jour l'état de l'anniversaire avec la date sélectionnée
             setAnniversaire(value);
-            // Mettez à jour la date de naissance dans formData avec la date sélectionnée
             setFormData({ ...formData, [name]: value });
         } else {
-            // Mettez à jour les autres champs du formulaire dans formData
             setFormData({ ...formData, [name]: value });
         }
     };
+    
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        setShowModal(false); // Masquer la modal de modification
+        setShowModal(false);
         try {
-            // Formatez la date de naissance avant de l'envoyer
             const formDataToSend = { ...formData, anniversaire: anniversaire ? new Date(anniversaire).toISOString().split('T')[0] : null };
             await updateProfileData(formDataToSend);
         } catch (error) {
@@ -78,15 +76,14 @@ function ImageUpload() {
     
     const handleDateChange = (date) => {
         const formattedDate = date ? date.toISOString().split('T')[0] : null;
-        setAnniversaire(formattedDate); // Mettez à jour l'état de la date de naissance
-        setFormData({ ...formData, anniversaire: formattedDate }); // Mettez à jour formData avec la date formatée
+        setAnniversaire(formattedDate);
+        setFormData({ ...formData, anniversaire: formattedDate });
     };
 
     const updateProfileData = async (formDataToUpdate) => {
         try {
             const idCreateur = profileData && profileData.idCreateur;
             const formData = new FormData();
-            // Ajoutez les champs au FormData
             Object.entries(formDataToUpdate).forEach(([key, value]) => {
                 formData.append(key, value);
             });
@@ -150,11 +147,22 @@ function ImageUpload() {
                                 transform: "translate(450%, 450%)", cursor: "pointer", zIndex: "1",
                                 backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
                         </div>
-                        <div className="col-lg-5">
-                            <div className="text-right">
-                                <h2>{profileData && profileData.nom}</h2>
-                                <p>{profileData && profileData.description}</p>
-                            </div>
+                        <div className="col-lg-5 d-flex justify-content-center align-items-center">
+    <div className="text-center">
+        <h2>{profileData && profileData.nom}{profileData && profileData.prenom}</h2>
+<br/>
+        <p>{profileData && profileData.description}</p>
+        <p>Email: {profileData && profileData.email}</p>
+        <p>Adresse: {profileData && profileData.adresse}</p>
+        <p>Numéro de téléphone: {profileData && profileData.num}</p>
+        <p>Date de naissance: {profileData && profileData.anniversaire}</p>
+        <p>Lien Instagram: {profileData && profileData.lienInsta}</p>
+        <p>Lien Facebook: {profileData && profileData.lienFace}</p>
+        <p>Lien TikTok: {profileData && profileData.lienTik}</p>
+        <p>Domaine de création: {profileData && profileData.domaine}</p>
+        <p>Nombre de followers: {profileData && profileData.nbFollowers}</p>
+    </div>
+
                         </div>
                         <div className="col-lg-7">
                             <div className="custom-block-icon-wrap">
