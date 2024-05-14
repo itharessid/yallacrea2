@@ -178,7 +178,50 @@ function Video() {
 
   return (
     <div>
+      <header id="site-header" className="fixed-top">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg stroke">
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul className="navbar-nav ml-lg-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="apropos">Apropos</a>
+                </li>
+                <li className="nav-item dropdown">
+                  <Dropdown>
+                    <Dropdown.Toggle id="navbarDropdown">
+                      Formation
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
+                      <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="createur">Créateur</a>
+                </li>
+                <li className="nav-item">
+                  <Link to={`/profiluser/${idCrea}`} className="nav-link">Mon Profil</Link> {/* Utilisez Link */}
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/afvideo">Vidéos</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="contact">Contact</a>
+                </li>
+                <div className="search-right">
+                  <a href="preInscri" className="btn button-style">Sortir</a>
 
+                </div>
+              </ul>
+            </div>
+
+          </nav>
+        </div>
+      </header>
       <section className="w3l-breadcrumb">
         <div className="container">
           <div className="col-xl-3 mb-20">

@@ -49,7 +49,7 @@ function gprofile() {
                         <a className="nav-link" href="contact">Contact</a>
                     </li>
                     <div className="search-right">
-                    <Link to={`/preInscri`} className="btn button-style">S'inscrire</Link> {/* Utilisez Link */}
+                    <Link to={`/preInscri`} className="btn button-style">Sortir</Link> {/* Utilisez Link */}
                     </div>
                 </ul>
             </div>
