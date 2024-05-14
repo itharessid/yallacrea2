@@ -20,14 +20,15 @@ const storage = multer.diskStorage({
 // Initialisation de Multer avec la configuration de stockage
 const upload = multer({ storage: storage });
 
-// Endpoint pour télécharger une vidéo
-router.post('/video', upload.single('video'), (req, res) => {
+// Endpoint pour télécharger une vidéo pour un créateur spécifique
+router.post('/video/:idCreateur', upload.single('video'), (req, res) => {
     const { titre, description } = req.body;
     const videoName = req.file ? req.file.filename : null;
     const date = new Date().toISOString().slice(0, 10);
+    const idCreateur = req.params.idCreateur; // Récupérer l'ID du créateur depuis les paramètres de la requête
 
-    const sql = "INSERT INTO video (video, titre, description, date) VALUES (?, ?, ?, ?)";
-    const values = [videoName, titre, description, date];
+    const sql = "INSERT INTO video (video, titre, description, date, idCreateur) VALUES (?, ?, ?, ?, ?)";
+    const values = [videoName, titre, description, date, idCreateur];
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -37,6 +38,7 @@ router.post('/video', upload.single('video'), (req, res) => {
         return res.status(200).json({ message: "Données insérées avec succès" });
     });
 });
+
 
 // Endpoint pour mettre à jour les données d'une vidéo
 router.put('/video/:idVid', upload.single('video'), (req, res) => {
@@ -141,5 +143,18 @@ router.get('/video/:idVid/like', (req, res) => {
         return res.status(200).json({ likes: likes });
     });
 });
+// Endpoint pour récupérer les vidéos d'un créateur par son ID
+router.get('/createur/videos/:idCreateur', (req, res) => {
+    const idCreateur = req.params.idCreateur;
+    const sql = 'SELECT * FROM video WHERE idCreateur = ?';
+    db.query(sql, idCreateur, (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des vidéos du créateur :", err);
+            return res.status(500).json({ error: "Erreur lors de la récupération des vidéos du créateur" });
+        }
+        return res.status(200).json(results);
+    });
+});
+
 
 module.exports = router;

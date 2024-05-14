@@ -58,10 +58,13 @@ function Connexionc() {
             const response = await axios.post('http://localhost:3001/login', { email });
 
             if (response.data.exists) {
-                // Si l'email existe, récupère l'ID du créateur
-                const userId = response.data.userId;
-                // Redirige l'utilisateur vers la page du profil utilisateur avec l'ID du créateur
-                window.location.href = `/profiluser/${userId}`;
+// Si l'email existe, récupère l'ID du créateur
+const userId = response.data.userId;
+// Stocke l'ID du créateur dans le stockage local
+localStorage.setItem('userId', userId);
+// Redirige l'utilisateur vers la page du profil utilisateur avec l'ID du créateur
+window.location.href = `/profiluser/${userId}`;
+
             } else {
                 // Si l'email n'existe pas dans la base de données
                 setErrorMessage("L'email n'existe pas.");

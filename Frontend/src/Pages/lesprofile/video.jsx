@@ -35,77 +35,75 @@ function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handl
 }
 
 function Video() {
+  const [videos, setVideos] = useState([]);
+  const idCrea = localStorage.getItem('userId'); // Récupère l'ID du créateur depuis le stockage local
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [videoToDelete, setVideoToDelete] = useState(null);
-  const [video, setVideo] = useState([]);
-  const [videoData, setVideoData] = useState([]);
   const [blurBackground, setBlurBackground] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [likes, setLikes] = useState({});
   const [comments, setComments] = useState({});
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/video');
-      setVideo(response.data);
-      setVideoData(response.data);
-      response.data.forEach(async (video) => {
-        await fetchLikes(video.idVid);
-        await fetchComments(video.idVid);
-      });
-    } catch (error) {
-      console.error("Erreur lors de la récupération des vidéos :", error);
+    const fetchCreatorVideos = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/createur/videos/${idCrea}`);
+        setVideos(response.data);
+        // Récupérer le nombre de likes pour chaque vidéo
+        response.data.forEach(video => fetchLikes(video.idVid));
+        // Récupérer les commentaires pour chaque vidéo
+        response.data.forEach(video => fetchComments(video.idVid, idCrea));
+      } catch (error) {
+        console.error("Erreur lors de la récupération des vidéos du créateur :", error);
+      }
+    };
+    if (idCrea) {
+      fetchCreatorVideos();
     }
-  };
+  }, [idCrea]);
 
-  const fetchLikes = async (videoId) => {
+  const fetchLikes = async (idVid) => {
     try {
-      const response = await axios.get(`http://localhost:3001/video/${videoId}/like`);
+      const response = await axios.get(`http://localhost:3001/video/${idVid}/like`);
       setLikes(prevLikes => ({
         ...prevLikes,
-        [videoId]: response.data.likes
+        [idVid]: response.data.likes
       }));
     } catch (error) {
       console.error("Erreur lors de la récupération des likes :", error);
     }
   };
-  
-  const fetchComments = async (videoId) => {
+
+  const fetchComments = async (idVid, idCrea) => {
     try {
-      const response = await axios.get(`http://localhost:3001/video/commentaire/${videoId}`);
+      const response = await axios.get(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`);
       setComments(prevComments => ({
         ...prevComments,
-        [videoId]: response.data
+        [idVid]: response.data
       }));
     } catch (error) {
       console.error("Erreur lors de la récupération des commentaires :", error);
     }
   };
-
-  const addComment = async (videoId, textComment, dateComment) => {
+  
+  const handleAddComment = async (idVid, textComment) => {
     try {
-      await axios.post(`http://localhost:3001/video/commentaire`, {
-        textComment,
-        dateComment,
-        idVideo: videoId
-      });
-      fetchComments(videoId);
+      const idCrea = localStorage.getItem('userId'); // Récupère l'ID du créateur depuis le stockage local
+      const response = await axios.post(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`, { textComment });
+      // Rafraîchir les commentaires après l'ajout
+      fetchComments(idVid);
     } catch (error) {
       console.error("Erreur lors de l'ajout du commentaire :", error);
     }
   };
-  const handleDeleteComment = async (videoId, commentId) => {
+  const handleDeleteComment = async (idVid, idComment) => {
     try {
-      await axios.delete(`http://localhost:3001/video/commentaire/${videoId}/${commentId}`);
+      await axios.delete(`http://localhost:3001/video/commentaire/${idVid}/${idComment}/${idCrea}`); // Ajoutez idCrea si nécessaire
       // Mettre à jour les commentaires après suppression
-      const updatedComments = comments[videoId].filter(comment => comment.idComment !== commentId);
+      const updatedComments = comments[idVid].filter(comment => comment.idComment !== idComment);
       setComments(prevComments => ({
         ...prevComments,
-        [videoId]: updatedComments
+        [idVid]: updatedComments
       }));
     } catch (error) {
       console.error("Erreur lors de la suppression du commentaire :", error);
@@ -113,16 +111,16 @@ function Video() {
   };
   
 
-  const handleLikeClick = async (videoId, event) => {
+  const handleLikeClick = async (idVid, event) => {
     if (event.detail === 2) {
       // Double clique
-      const updatedLikes = (likes[videoId] || 0) - 2;
+      const updatedLikes = (likes[idVid] || 0) - 2;
       setLikes(prevLikes => ({
         ...prevLikes,
-        [videoId]: updatedLikes >= 0 ? updatedLikes : 0
+        [idVid]: updatedLikes >= 0 ? updatedLikes : 0
       }));
       try {
-        await axios.put(`http://localhost:3001/video/${videoId}/like`, { likes: updatedLikes });
+        await axios.put(`http://localhost:3001/video/${idVid}/like`, { likes: updatedLikes });
       } catch (error) {
         console.error("Erreur lors de l'envoi du nombre de likes au backend :", error);
       }
@@ -130,19 +128,19 @@ function Video() {
       event.currentTarget.style.color = 'gray';
     } else {
       // Clic simple
-      const updatedLikes = (likes[videoId] || 0) + 1;
+      const updatedLikes = (likes[idVid] || 0) + 1;
       setLikes(prevLikes => ({
         ...prevLikes,
-        [videoId]: updatedLikes
+        [idVid]: updatedLikes
       }));
       try {
-        await axios.put(`http://localhost:3001/video/${videoId}/like`, { likes: updatedLikes });
+        await axios.put(`http://localhost:3001/video/${idVid}/like`, { likes: updatedLikes });
       } catch (error) {
         console.error("Erreur lors de l'envoi du nombre de likes au backend :", error);
       }
     }
   };
-  
+
   const handleDeleteClick = (video) => {
     setVideoToDelete(video);
     setShowDeleteConfirmation(true);
@@ -167,69 +165,19 @@ function Video() {
     }
   };
 
-// Fonction pour vérifier si un mot contient une syllabe spécifique
-const containsSyllable = (word, syllable) => {
-  // Divise le mot en syllabes
-  const syllables = word.split('-'); // Adapter cette logique selon la structure des mots dans votre cas
-  // Vérifie si l'une des syllabes correspond à la syllabe spécifiée
-  return syllables.some(s => s.includes(syllable));
-};
-
-const filteredVideo = searchTerm
-  ? video.filter((video) => containsSyllable(video.titre.toLowerCase(), searchTerm.toLowerCase()))
-  : video;
-
-
+  // Fonction pour vérifier si un mot contient une syllabe spécifique
+  const containsSyllable = (word, syllable) => {
+    // Divise le mot en syllabes
+    const syllables = word.split('-'); // Adapter cette logique selon la structure des mots dans votre cas
+    // Vérifie si l'une des syllabes correspond à la syllabe spécifiée
+    return syllables.some(s => s.includes(syllable));
+  };
+  const filteredVideo = searchTerm
+    ? videos.filter((video) => containsSyllable(video.titre.toLowerCase(), searchTerm.toLowerCase()))
+    : videos;
 
   return (
     <div>
-      <header id="site-header" className="fixed-top">
-      <div className={`container ${blurBackground ? 'blur-background' : ''}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <nav className="navbar navbar-expand-lg stroke">
-            <h1>
-              <a className="navbar-brand" href="index.html">
-                <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
-              </a>
-            </h1>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul className="navbar-nav ml-lg-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/">Accueil <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="apropos">A propos</a>
-                </li>
-                <li className="nav-item dropdown">
-                  <Dropdown>
-                    <Dropdown.Toggle id="navbarDropdown">
-                      Formation
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
-                      <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="createur">Créateur</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/profiluser">Mon Profil</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/afvideo">Vidéos</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="contact">Contact</a>
-                </li>
-                <div className="search-right">
-                  <a href="preInscri" className="btn button-style">S'inscrire</a>
-                </div>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </header>
 
       <section className="w3l-breadcrumb">
         <div className="container">
@@ -238,7 +186,7 @@ const filteredVideo = searchTerm
               <div className="d-flex flex-wrap align-items-center">
                 <div className="widget-data">
                   <div className="weight-600 font-14 text-purple text-center text-nowrap">Vidéos</div>
-                  <div className="h6 mb-0 text-center">{filteredVideo.length}</div> 
+                  <div className="h6 mb-0 text-center">{filteredVideo.length}</div>
                 </div>
                 <img src="src/assets/images/video.png" alt="" style={{ marginLeft: '40px' }} />
               </div>
@@ -254,9 +202,9 @@ const filteredVideo = searchTerm
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="search-input"
                 />
-                  <button className="search-button">
-                    <Link to="/upload" className="white-text">Ajouter une nouvelle vidéo</Link>
-                  </button>
+                <button className="search-button">
+                  <Link to="/upload" className="white-text">Ajouter une nouvelle vidéo</Link>
+                </button>
                 <section className="w3l-teams-32-main py-5">
                   <div className="teams-32 py-md-4">
                     <div className={`container ${blurBackground ? 'blur-background' : ''}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -279,33 +227,32 @@ const filteredVideo = searchTerm
                           <div className="interaction-container">
                             {/* Conteneur pour les likes */}
                             <div className="like-container">
-                              <FontAwesomeIcon 
-                                icon={faThumbsUp} 
-                                onClick={(event) => handleLikeClick(video.idVid, event)} 
-                                style={{ color: likes[video.idVid] ? '#70218f' : 'gray' }} 
+                              <FontAwesomeIcon
+                                icon={faThumbsUp}
+                                onClick={(event) => handleLikeClick(video.idVid, event)}
+                                style={{ color: likes[video.idVid] ? '#70218f' : 'gray' }}
                               />
                               <span>{likes[video.idVid] || 0}</span>
                             </div>
-                            
+
                             {/* Conteneur pour les commentaires */}
                             <div className="comment-container">
-            {comments[video.idVid] && comments[video.idVid].map(comment => (
-              <div key={comment.idComment} className="comment-item">
-                <div>{comment.textComment}</div>
-                <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
-              </div>
-            ))}
+                              {comments[video.idVid] && comments[video.idVid].map(comment => (
+                                <div key={comment.idComment} className="comment-item">
+                                  <div>{comment.textComment}</div>
+                                  <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
+                                </div>
+                              ))}
+                            </div>
+                                        {/* Ajouter un formulaire pour ajouter un nouveau commentaire */}
             <form onSubmit={(e) => {
               e.preventDefault();
-              const textComment = e.target.elements.comment.value;
-              const dateComment = new Date().toISOString();
-              addComment(video.idVid, textComment, dateComment);
+              handleAddComment(video.idVid, e.target.textComment.value);
               e.target.reset();
             }}>
-              <input type="text" name="comment" placeholder="Ajouter un commentaire" />
-              <button type="submit" className="white-text">Ajouter</button>
+              <input type="text" name="textComment" placeholder="Ajouter un commentaire..." />
+              <button type="submit">Ajouter</button>
             </form>
-          </div>
                           </div>
                         </div>
                       ))}

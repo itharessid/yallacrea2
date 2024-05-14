@@ -6,6 +6,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 
 import './imageuplod.css';
 
+// Fonction pour formater la date
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 function ImageUpload() {
     const [file, setFile] = useState(null);
     const [data, setData] = useState({});
@@ -13,14 +22,14 @@ function ImageUpload() {
         nom: '',
         prenom: '',
         email: '',
-        numero: '',
+        num: '',
         lienFace: '',
         lienInsta: '',
         lienTik: '',
         Domaine: '',
         nbFollowers: '',
         description: '',
-        anniversaire: '', 
+        anniversaire: ''
     });
     const [profileData, setProfileData] = useState(null);
     const [domaines, setDomaines] = useState([]);
@@ -155,7 +164,7 @@ function ImageUpload() {
         <p>Email: {profileData && profileData.email}</p>
         <p>Adresse: {profileData && profileData.adresse}</p>
         <p>Numéro de téléphone: {profileData && profileData.num}</p>
-        <p>Date de naissance: {profileData && profileData.anniversaire}</p>
+        <p>Date de naissance: {profileData && formatDate(profileData.anniversaire)}</p> {/* Utilisation de formatDate */}
         <p>Lien Instagram: {profileData && profileData.lienInsta}</p>
         <p>Lien Facebook: {profileData && profileData.lienFace}</p>
         <p>Lien TikTok: {profileData && profileData.lienTik}</p>
@@ -197,7 +206,7 @@ function ImageUpload() {
                             </div>
                             <div className="form-row">
                                 <label htmlFor="numero"> Numéro de téléphone :</label>
-                                <input type="tel" id="numero" name="numero" value={formData.numero} onChange={handleFormChange} className="large-input" />
+                                <input type="tel" id="numero" name="num" value={formData.num} onChange={handleFormChange} className="large-input" />
                             </div>
                             <div className="form-row">
                                 <label>Date de naissance:</label>

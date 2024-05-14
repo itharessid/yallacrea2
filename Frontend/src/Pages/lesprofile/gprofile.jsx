@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import './gprofile.css'
+import { Link } from 'react-router-dom';
 
 
 function gprofile() {
-
+    const idCreateur = localStorage.getItem('userId'); // Récupère l'ID du créateur depuis le stockage local
   return (
     <div>
      <header id="site-header" className="fixed-top">
@@ -39,8 +40,8 @@ function gprofile() {
                         <a className="nav-link" href="createur">Créateur</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/profiluser">Mon Profil</a>
-                    </li>
+                <Link to={`/profiluser/${idCreateur}`} className="nav-link">Mon Profil</Link> {/* Utilisez Link */}
+                </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/afvideo">Vidéos</a>
                     </li>
@@ -48,8 +49,7 @@ function gprofile() {
                         <a className="nav-link" href="contact">Contact</a>
                     </li>
                     <div className="search-right">
-                        <a href="preInscri" className="btn button-style">S'inscrire</a>
-                       
+                    <Link to={`/preInscri`} className="btn button-style">S'inscrire</Link> {/* Utilisez Link */}
                     </div>
                 </ul>
             </div>
