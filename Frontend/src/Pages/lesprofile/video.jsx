@@ -213,7 +213,7 @@ function Video() {
                   <a className="nav-link" href="contact">Contact</a>
                 </li>
                 <div className="search-right">
-                  <a href="preInscri" className="btn button-style">Sortir</a>
+                  <a href="/" className="btn button-style">Sortir</a>
 
                 </div>
               </ul>
