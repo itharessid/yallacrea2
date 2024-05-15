@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import './detail.css'
 import { FaFacebook, FaInstagram, FaTiktok, FaLinkedin, FaYoutube } from 'react-icons/fa';
@@ -36,17 +36,17 @@ function Detail() {
                 <div className="container">
                     <nav className="navbar navbar-expand-lg stroke">
                         <h1>
-                            <a className="navbar-brand" href="index.html">
+                        <Link className="navbar-brand" to="/">
                                 <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
-                            </a>
+                            </Link>
                         </h1>
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                             <ul className="navbar-nav ml-lg-auto">
-                                <li className="nav-item active">
-                                    <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
+                            <li className="nav-item active">
+                                    <Link className="nav-link" to="/">Acceuil <span className="sr-only">(current)</span></Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="apropos">Apropos</a>
+                                    <Link className="nav-link" to="/apropos">Apropos</Link>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <Dropdown>
@@ -54,16 +54,16 @@ function Detail() {
                                             Formation
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
-                                            <Dropdown.Item href="/complet">Cours Complet</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/Accelerer">Cours Accéléré</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/complet">Cours Complet</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="createur">Créateur</a>
+                                    <Link className="nav-link" to="/createur">Créateur</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="contact">Contact</a>
+                                    <Link className="nav-link" to="/contact">Contact</Link>
                                 </li>
                                 <div className="search-right">
                                     <a href="preInscri" className="btn button-style">S'inscrire</a>
@@ -165,7 +165,7 @@ function Detail() {
                         <div className="text-txt">
                             <div className="row sub-columns align-items-center">
                                 <div className="col-lg-4 col-md-4 col-sm-12 sub-one-left">
-                                    <img src="src/assets/images/yallalogo.png" className="footer-image img-fluid" alt="Footer Image" style={{ maxWidth: '200px' }} />
+                                    <img src="" className="footer-image img-fluid" alt="Footer Image" style={{ maxWidth: '200px' }} />
                                     <p>Dans notre école dynamique et novatrice, nous visons à développer les compétences clés pour créer des contenus exceptionnels, riches en inspiration</p>
                                     <div className="columns-2">
                                         <ul className="social">

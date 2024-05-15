@@ -112,8 +112,6 @@ function App() {
         <Route path="/pres" element={<Preseneteil/>}/>
         <Route path="/enligne" element={<Enligne/>}/>
         
-
-        
       
         <Route path="/sidbar" element={<Sidbar />} />
         <Route path="/preinscri" element={< PreInscri/>} />
