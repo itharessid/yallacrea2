@@ -156,20 +156,25 @@ function ImageUpload() {
                                 transform: "translate(450%, 450%)", cursor: "pointer", zIndex: "1",
                                 backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
                         </div>
-                        <div className="col-lg-5 d-flex justify-content-center align-items-center">
+                        <br/>
+                        <div className="col-lg-5 d-flex justify-content-center align-items-left">
     <div className="text-center">
-        <h2>{profileData && profileData.nom}{profileData && profileData.prenom}</h2>
-<br/>
-        <p>{profileData && profileData.description}</p>
-        <p>Email: {profileData && profileData.email}</p>
-        <p>Adresse: {profileData && profileData.adresse}</p>
-        <p>Numéro de téléphone: {profileData && profileData.num}</p>
-        <p>Date de naissance: {profileData && formatDate(profileData.anniversaire)}</p> {/* Utilisation de formatDate */}
-        <p>Lien Instagram: {profileData && profileData.lienInsta}</p>
-        <p>Lien Facebook: {profileData && profileData.lienFace}</p>
-        <p>Lien TikTok: {profileData && profileData.lienTik}</p>
-        <p>Domaine de création: {profileData && profileData.domaine}</p>
-        <p>Nombre de followers: {profileData && profileData.nbFollowers}</p>
+        <h2>{profileData && profileData.nom} {profileData && profileData.prenom}</h2>
+        <br/>
+        <p style={{ textAlign: 'center', fontWeight: 'bold' ,color:'black'}}>
+        {profileData && profileData.nbFollowers}</p>
+        <p style={{ textAlign: 'left' }}>{profileData && profileData.description}</p>
+        <p style={{ textAlign: 'left', fontWeight: 'bold' }}>Email:
+        <a href={`mailto:${profileData && profileData.email}`}>{profileData && profileData.email}</a></p>
+        <p style={{ textAlign: 'left' }}>{profileData && profileData.adresse}</p>
+        <p style={{ textAlign: 'left', fontWeight: 'bold' }}>Lien Instagram:
+       <a href={profileData && profileData.lienInsta}>{profileData && profileData.lienInsta}</a></p>
+        <p style={{ textAlign: 'left', fontWeight: 'bold' }}>Lien Facebook:
+        <a href={profileData && profileData.lienFace}>{profileData && profileData.lienFace}</a></p>
+        <p style={{ textAlign: 'left', fontWeight: 'bold' }}>Lien TikTok:
+        <a href={profileData && profileData.lienTik}>{profileData && profileData.lienTik}</a></p>
+        <p style={{ textAlign: 'left' }}>{profileData && profileData.domaine}</p>
+       
     </div>
 
                         </div>
