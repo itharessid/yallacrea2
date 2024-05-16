@@ -6,3 +6,19 @@
 .custom-block-info p {
     margin-bottom: 1px; /* Ajustez la valeur selon vos besoins */
 }
+.space-div {
+    height: 20px; /* ou la hauteur que vous souhaitez */
+}
+.video-card {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+.video-details {
+    margin-bottom: 10px; /* Add some space between video details and video */
+}
+
+.likes-count {
+    align-self: flex-start; /* Align likes count to the start (left) of the container */
+}
+

@@ -1,23 +1,59 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
-import './detail.css'
-import { FaFacebook, FaInstagram, FaTiktok, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import './detail.css';
+import { FaFacebook, FaInstagram, FaTiktok, FaLinkedin, FaYoutube, FaThumbsUp } from 'react-icons/fa';
 
 function Detail() {
     const { id } = useParams();
     const [createur, setCreateur] = useState(null);
-   
+    const [videos, setVideos] = useState([]);
+    const [likes, setLikes] = useState({});
+    const [likedVideos, setLikedVideos] = useState({});
 
     useEffect(() => {
         const fetchCreateurDetails = async () => {
             try {
                 const response = await axios.get(`http://localhost:3001/createur/${id}`);
                 setCreateur(response.data);
+                fetchCreatorVideos(response.data.idCreateur);
             } catch (error) {
-                console.error('Error fetching createur details:', error);
+                console.error('Erreur lors de la récupération des détails du créateur :', error);
+            }
+        };
+
+        const fetchCreatorVideos = async (idCreateur) => {
+            try {
+                const response = await axios.get(`http://localhost:3001/createur/videos/${idCreateur}`);
+                const videosWithLikes = await Promise.all(response.data.map(async (video) => {
+                    const likesResponse = await axios.get(`http://localhost:3001/video/${video.idVid}/like`);
+                    const likes = likesResponse.data.likes;
+                    return { ...video, likes };
+                }));
+                setVideos(videosWithLikes);
+                response.data.forEach(video => fetchLikes(video.idVid));
+            } catch (error) {
+                console.error('Erreur lors de la récupération des vidéos du créateur :', error);
+            }
+        };
+
+        const fetchLikes = async (idVid) => {
+            try {
+                const response = await axios.get(`http://localhost:3001/video/${idVid}/like`);
+                setLikes(prevLikes => ({
+                    ...prevLikes,
+                    [idVid]: response.data.likes
+                }));
+
+                // Vérifiez si l'utilisateur a aimé cette vidéo précédemment et mettez à jour l'état en conséquence
+                const liked = localStorage.getItem(`liked_${idVid}`);
+                setLikedVideos(prevLikedVideos => ({
+                    ...prevLikedVideos,
+                    [idVid]: liked === 'true' ? true : false
+                }));
+            } catch (error) {
+                console.error("Erreur lors de la récupération des likes :", error);
             }
         };
 
@@ -26,8 +62,53 @@ function Detail() {
         }
     }, [id]);
 
+    // Fonction pour gérer les clics sur le bouton de like
+    const handleLike = async (videoId) => {
+        try {
+            const alreadyLiked = likedVideos[videoId];
+
+            // Si la vidéo est déjà aimée, diminuez le nombre de likes et supprimez-la de la liste des vidéos aimées
+            if (alreadyLiked) {
+                const updatedLikes = (likes[videoId] || 0) - 1;
+                const response = await axios.put(`http://localhost:3001/video/${videoId}/like`, { likes: updatedLikes });
+                if (response.status === 200) {
+                    setLikes((prevLikes) => ({
+                        ...prevLikes,
+                        [videoId]: updatedLikes >= 0 ? updatedLikes : 0,
+                    }));
+                    // Mettre à jour l'état pour indiquer que la vidéo n'est plus aimée
+                    setLikedVideos((prevLikedVideos) => ({
+                        ...prevLikedVideos,
+                        [videoId]: false,
+                    }));
+                    // Supprimez la vidéo de la liste des vidéos aimées dans le stockage local
+                    localStorage.setItem(`liked_${videoId}`, 'false');
+                }
+            } else {
+                // Si la vidéo n'est pas déjà aimée, augmentez le nombre de likes et ajoutez-la à la liste des vidéos aimées
+                const updatedLikes = (likes[videoId] || 0) + 1;
+                const response = await axios.put(`http://localhost:3001/video/${videoId}/like`, { likes: updatedLikes });
+                if (response.status === 200) {
+                    setLikes((prevLikes) => ({
+                        ...prevLikes,
+                        [videoId]: updatedLikes,
+                    }));
+                    // Mettre à jour l'état pour indiquer que la vidéo est aimée
+                    setLikedVideos((prevLikedVideos) => ({
+                        ...prevLikedVideos,
+                        [videoId]: true,
+                    }));
+                    // Enregistrez la vidéo dans la liste des vidéos aimées dans le stockage local
+                    localStorage.setItem(`liked_${videoId}`, 'true');
+                }
+            }
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour des likes :", error);
+        }
+    };
+
     if (!createur) {
-        return <div>Loading...</div>;
+        return <div>Chargement...</div>;
     }
 
     return (
@@ -36,14 +117,14 @@ function Detail() {
                 <div className="container">
                     <nav className="navbar navbar-expand-lg stroke">
                         <h1>
-                        <Link className="navbar-brand" to="/">
+                            <Link className="navbar-brand" to="/">
                                 <img className="img-fluid" src="src/assets/images/yallalogo.png" alt="" style={{ maxWidth: '100px' }} />
                             </Link>
                         </h1>
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                             <ul className="navbar-nav ml-lg-auto">
-                            <li className="nav-item active">
-                                    <Link className="nav-link" to="/">Acceuil <span className="sr-only">(current)</span></Link>
+                                <li className="nav-item active">
+                                    <Link className="nav-link" to="/">Accueil <span className="sr-only">(current)</span></Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/apropos">À propos</Link>
@@ -66,16 +147,16 @@ function Detail() {
                                     <Link className="nav-link" to="/contact">Contact</Link>
                                 </li>
                                 <div className="search-right">
-                                    <a href="preInscri" className="btn button-style">S'inscrire</a>
+                                    <a href="/" className="btn button-style">Sortir</a>
                                     <div id="search" className="pop-overlay">
                                         <div className="popup">
-                                            <h4 className="search-pop-text-w3 text-white text-center mb-4">Search Here Your Online Course</h4>
+                                            <h4 className="search-pop-text-w3 text-white text-center mb-4">Recherchez ici votre cours en ligne</h4>
                                             <form action="#error" method="GET" className="search-box">
                                                 <div className="input-search">
                                                     <span className="fa fa-search mr-2" aria-hidden="true"></span>
-                                                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autoFocus />
+                                                    <input type="search" placeholder="Entrer un mot-clé" name="search" required="required" autoFocus />
                                                 </div>
-                                                <button type="submit" className="btn button-style">Search</button>
+                                                <button type="submit" className="btn button-style">Recherche</button>
                                             </form>
                                         </div>
                                         <a className="close" href="#close">×</a>
@@ -86,77 +167,87 @@ function Detail() {
                     </nav>
                 </div>
             </header>
-            <br/>
+            <br />
 
             <div className="inner-banner">
-        <section className="w3l-breadcrumb">
-            <div className="container">
-                <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Détail de créateur </h4>
-                <ul className="breadcrumbs-custom-path">
-                  <br/>
-                  
-                    <li><a href="/">Acceuil</a></li>
-                    <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Détail de créateur</li>
-                </ul>
+                <section className="w3l-breadcrumb">
+                    <div className="container">
+                        <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Détail du créateur</h4>
+                        <ul className="breadcrumbs-custom-path">
+                            <br />
+                            <li><a href="/">Accueil</a></li>
+                            <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Détail du créateur</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
-        </section>
-        </div>
 
             <div className="inner-banner">
-                        <section className="w3l-breadcrumb">
-                                <div className="row justify-content-center">
-                                    <div className="col-lg-10 col-12">
-                                        <div className="row">
-                                            <div className="col-lg-3 col-12">
-                                                <div className="custom-block-icon-wrap">
-                                                    <div className="custom-block-image-wrap custom-block-image-detail-page">
-                                                        <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-9 col-12">
-                                    <div className="custom-block-info">
-                                     <div className="custom-block-top d-flex mb-1"></div>
-                                  <h2 className="mb-2">{createur.nom} </h2>
-                                  <br/>
-                                  <h2 className="mb-2"> {createur.prenom}</h2>
-
-                                  <div style={{ textAlign: "left" }}>
-                                      <p>{createur.description}</p>
-                                  <p><strong>Email:</strong> {createur.email}</p>
-                                <p><strong>Adresse:</strong> {createur.adresse}</p>
-                                 <p><strong>Domaine:</strong> {createur.domaine}</p>
-                                <div>
-            <p><strong>Nombre de followers:</strong> {createur.nbFollowers}</p>
-        </div>
-        <ul className="social-icon ms-lg-auto ms-md-auto">
-
-                {createur.lienFace && (
-                    <li className="social-icon-item">
-                        <a href={createur.lienFace} className="social-icon-link"><FaFacebook /></a>
-                    </li>
-                )}
-                {createur.lienInsta && (
-                    <li className="social-icon-item">
-                        <a href={createur.lienInsta} className="social-icon-link"><FaInstagram /></a>
-                    </li>
-                )}
-                {createur.lienTik && (
-                    <li className="social-icon-item">
-                        <a href={createur.lienTik} className="social-icon-link"><FaTiktok /></a>
-                    </li>
-                )}
-            </ul>
-        </div>
-    </div>
-</div>
-
-                           </div>
+                <section className="w3l-breadcrumb">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-10 col-12">
+                            <div className="row">
+                                <div className="col-lg-3 col-12">
+                                    <div className="custom-block-icon-wrap">
+                                        <div className="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
+                                        </div>
                                     </div>
                                 </div>
-                            
-                        </section>
-                    
+                                <div className="col-lg-9 col-12">
+                                    <div className="custom-block-info">
+                                        <div className="custom-block-top d-flex mb-1"></div>
+                                        <h2 className="mb-2">{createur.nom}</h2>
+                                        <br />
+                                        <h2 className="mb-2">{createur.prenom}</h2>
+                                        <div style={{ textAlign: "left" }}>
+                                            <p>{createur.description}</p>
+                                            <p><strong>Email:</strong> {createur.email}</p>
+                                            <p><strong>Adresse:</strong> {createur.adresse}</p>
+                                            <p><strong>Domaine:</strong> {createur.domaine}</p>
+                                            <div>
+                                                <p><strong>Nombre de followers:</strong> {createur.nbFollowers}</p>
+                                            </div>
+                                            <ul className="social-icon ms-lg-auto ms-md-auto">
+                                                {createur.lienFace && (
+                                                    <li className="social-icon-item">
+                                                        <a href={createur.lienFace} className="social-icon-link"><FaFacebook /></a>
+                                                    </li>
+                                                )}
+                                                {createur.lienInsta && (
+                                                    <li className="social-icon-item">
+                                                        <a href={createur.lienInsta} className="social-icon-link"><FaInstagram /></a>
+                                                    </li>
+                                                )}
+                                                {createur.lienTik && (
+                                                    <li className="social-icon-item">
+                                                        <a href={createur.lienTik} className="social-icon-link"><FaTiktok /></a>
+                                                    </li>
+                                                )}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="video-section">
+                                    <div className="videos">
+                                        {videos.map(video => (
+                                            <div key={video.idVid} className="video-card">
+                                                <div className="video-details">
+                                                    <h3>{video.titre}</h3>
+                                                    <p>{video.description}</p>
+                                                </div>
+                                                <video src={`http://localhost:3001/videos/${video.video}`} controls />
+                                                <p className="likes-count">
+                                                    <FaThumbsUp onClick={() => handleLike(video.idVid)} style={{ cursor: 'pointer', color: likedVideos[video.idVid] ? '#70218f' : 'grey' }} /> {likes[video.idVid] || 0}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
@@ -182,7 +273,7 @@ function Detail() {
                                         <div className="col-lg-6 col-md col-sm-6 sub-two-right">
                                             <h6>Liens rapides</h6>
                                             <ul>
-                                                <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
+                                                <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Accueil</a></li>
                                                 <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>À propos</a></li>
                                                 <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Créateurs</a></li>
                                                 <li><a href="contact"><span className="fa fa-angle-double-right mr-2"></span>Contact</a></li>
@@ -216,8 +307,3 @@ function Detail() {
 }
 
 export default Detail;
-
-
-
-
-
