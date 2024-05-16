@@ -74,6 +74,9 @@ function PreInscriptionCrea() {
                   `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
           )
         : createurData;
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <>
@@ -127,8 +130,8 @@ function PreInscriptionCrea() {
                                 {filteredCreateurs.map((createur, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{createur.nom}</td>
-                                        <td>{createur.prenom}</td>
+                                        <td>{createur.nom.toUpperCase()}</td>
+                                        <td>{capitalizeFirstLetter(createur.prenom)}</td>
                                         <td>{createur.anniversaire ? new Date(createur.anniversaire).toLocaleDateString('fr-FR') : '-'}</td>
                                         <td>
                                             <a href={`mailto:${createur.email}`}>

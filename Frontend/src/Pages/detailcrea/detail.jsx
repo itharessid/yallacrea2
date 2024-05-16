@@ -46,12 +46,12 @@ function Detail() {
                                     <Link className="nav-link" to="/">Acceuil <span className="sr-only">(current)</span></Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/apropos">Apropos</Link>
+                                    <Link className="nav-link" to="/apropos">À propos</Link>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <Dropdown>
                                         <Dropdown.Toggle id="navbarDropdown">
-                                            Formation
+                                            Formations
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
                                             <Dropdown.Item as={Link} to="/Accelerer">Cours Accéléré</Dropdown.Item>
@@ -60,7 +60,7 @@ function Detail() {
                                     </Dropdown>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/createur">Créateur</Link>
+                                    <Link className="nav-link" to="/createur">Créateurs</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/contact">Contact</Link>
@@ -165,7 +165,7 @@ function Detail() {
                         <div className="text-txt">
                             <div className="row sub-columns align-items-center">
                                 <div className="col-lg-4 col-md-4 col-sm-12 sub-one-left">
-                                    <img src="" className="footer-image img-fluid" alt="Footer Image" style={{ maxWidth: '200px' }} />
+                                    <img src="src/assets/images/nourch.jpg" className="footer-image img-fluid" alt="Footer Image" style={{ maxWidth: '200px' }} />
                                     <p>Dans notre école dynamique et novatrice, nous visons à développer les compétences clés pour créer des contenus exceptionnels, riches en inspiration</p>
                                     <div className="columns-2">
                                         <ul className="social">
@@ -180,11 +180,11 @@ function Detail() {
                                 <div className="col-lg-6 col-md-6 col-sm-12">
                                     <div className="row">
                                         <div className="col-lg-6 col-md col-sm-6 sub-two-right">
-                                            <h6>Quick links</h6>
+                                            <h6>Liens rapides</h6>
                                             <ul>
                                                 <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
-                                                <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>Apropos</a></li>
-                                                <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Createur</a></li>
+                                                <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>À propos</a></li>
+                                                <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Créateurs</a></li>
                                                 <li><a href="contact"><span className="fa fa-angle-double-right mr-2"></span>Contact</a></li>
                                             </ul>
                                         </div>
