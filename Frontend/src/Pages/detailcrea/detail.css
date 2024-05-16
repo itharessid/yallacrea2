@@ -21,4 +21,6 @@
 .likes-count {
     align-self: flex-start; /* Align likes count to the start (left) of the container */
 }
-
+.comments-section {
+    align-self: flex-start; /* Align comments section to the start (left) of the container */
+}

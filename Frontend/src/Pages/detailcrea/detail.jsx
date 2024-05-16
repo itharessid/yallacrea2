@@ -11,6 +11,8 @@ function Detail() {
     const [videos, setVideos] = useState([]);
     const [likes, setLikes] = useState({});
     const [likedVideos, setLikedVideos] = useState({});
+        const [commentText, setCommentText] = useState(''); // Define and initialize commentText state
+
 
     useEffect(() => {
         const fetchCreateurDetails = async () => {
@@ -62,6 +64,15 @@ function Detail() {
         }
     }, [id]);
 
+    useEffect(() => {
+        // Fonction pour récupérer les commentaires de chaque vidéo
+        const fetchCommentsForAllVideos = () => {
+            videos.forEach(video => fetchVideoComments(video.idVid));
+        };
+    
+        fetchCommentsForAllVideos();
+    }, [videos]);
+
     // Fonction pour gérer les clics sur le bouton de like
     const handleLike = async (videoId) => {
         try {
@@ -106,6 +117,46 @@ function Detail() {
             console.error("Erreur lors de la mise à jour des likes :", error);
         }
     };
+    const fetchVideoComments = async (idVid) => {
+        try {
+            const response = await axios.get(`http://localhost:3001/video/commentaire/${idVid}/${createur.idCreateur}`);
+            const comments = response.data;
+            setVideos(prevVideos => prevVideos.map(video => {
+                if (video.idVid === idVid) {
+                    return { ...video, comments: comments };
+                }
+                return video;
+            }));
+        } catch (error) {
+            console.error("Erreur lors de la récupération des commentaires de la vidéo :", error);
+        }
+    };
+    const handleCommentSubmit = async (e, videoId) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`http://localhost:3001/video/commentaire/${videoId}/${createur.idCreateur}`, { textComment: commentText });
+            if (response.status === 200) {
+                // Rafraîchir les commentaires après l'ajout réussi
+                fetchVideoComments(videoId);
+                // Effacer le champ de texte du commentaire après l'ajout
+                setCommentText('');
+            }
+        } catch (error) {
+            console.error("Erreur lors de l'ajout du commentaire :", error);
+        }
+    };
+    const deleteComment = async (commentId, videoId) => {
+        try {
+            const response = await axios.delete(`http://localhost:3001/video/commentaire/${videoId}/${commentId}/${createur.idCreateur}`);
+            if (response.status === 200) {
+                // Mettez à jour les commentaires après la suppression
+                fetchVideoComments(videoId);
+            }
+        } catch (error) {
+            console.error("Erreur lors de la suppression du commentaire :", error);
+        }
+    };
+    
 
     if (!createur) {
         return <div>Chargement...</div>;
@@ -240,6 +291,23 @@ function Detail() {
                                                 <p className="likes-count">
                                                     <FaThumbsUp onClick={() => handleLike(video.idVid)} style={{ cursor: 'pointer', color: likedVideos[video.idVid] ? '#70218f' : 'grey' }} /> {likes[video.idVid] || 0}
                                                 </p>
+                                                <div className="comments-section" style={{ textAlign: "left" }}>
+                                                    <form onSubmit={(e) => handleCommentSubmit(e, video.idVid)}>
+                                                        <input type="text" value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Écrire un commentaire..." />
+                                                        <button type="submit" style={{color: "white"}}>Commenter</button>
+                                                    </form>
+                                                    {/* Afficher les commentaires existants */}
+                                                    <ul>
+                                                        {video.comments && video.comments.map(comment => (
+                                                            <li key={comment.idComment}>
+                                                                {comment.textComment}
+                                                                {/* Affichez le bouton de suppression uniquement pour les commentaires de l'utilisateur actuel */}
+                                                                {comment.idCrea === createur.idCreateur && (
+                                                                <button onClick={() => deleteComment(comment.idComment, video.idVid)} style={{ marginLeft: "160px",marginTop: "10px",color: "white" }}>Supprimer</button>)}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -249,7 +317,6 @@ function Detail() {
                     </div>
                 </section>
             </div>
-
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
                 <div className="footer-sub">
                     <div className="container">
