@@ -15,11 +15,7 @@ function Experts() {
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:3001/experget')
-            .then(res => {
-                setExpertsData(res.data);
-            })
-            .catch(err => console.log(err));
+        fetchData();
     }, []);
 
     const handleDeleteClick = (expertId) => {
@@ -59,6 +55,17 @@ function Experts() {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    // Dans la fonction fetchData, triez les données récupérées par nom avant de les stocker dans expertsData
+const fetchData = async () => {
+    try {
+      const result = await axios.get("http://localhost:3001/experget");
+      // Tri des données par nom
+      result.data.sort((a, b) => a.nom.localeCompare(b.nom));
+      setExpertsData(result.data);
+    } catch (err) {
+      console.log("Quelque chose s'est mal passé lors de la récupération des données expert :", err);
+    }
+  };
     return (
         <>
             <Adminsidbar />
@@ -102,33 +109,33 @@ function Experts() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredExperts.map((expert, index) => (
-                                    <tr key={index}>
-                                        <td>
-                                            <img src={`http://localhost:3001/photo/${expert.photo}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
-                                        </td>
-                                        <td className="table-plus">{expert.nom.toUpperCase()}</td>
-                                        <td>{capitalizeFirstLetter(expert.prenom)}</td>
-                                        <td>
-                                            <a href={`mailto:${expert.Email}`}>
-                                                {expert.Email}
-                                            </a>
-                                        </td>
-                                        <td>{expert.telef}</td>
-                                        <td>{expert.poste}</td> {/* Affichage du poste */}
-                                        <td>
-                                            <button className="button1">
-                                                <Link to={`/profilexp/${expert.id}`} className="dropdown-toggle">
-                                                    <FontAwesomeIcon icon={faEye} />
-                                                </Link>
-                                            </button>
-                                            <button className="button2" onClick={() => handleDeleteClick(expert.id)}>
-                                                <FontAwesomeIcon icon={faTrashAlt} />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
+  {filteredExperts.map((expert, index) => (
+    <tr key={index}>
+      <td>
+        <img src={`http://localhost:3001/photo/${expert.photo}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
+      </td>
+      <td className="table-plus">{expert.nom.toUpperCase()}</td>
+      <td>{capitalizeFirstLetter(expert.prenom)}</td>
+      <td>
+        <a href={`mailto:${expert.Email}`}>
+          {expert.Email}
+        </a>
+      </td>
+      <td>{expert.telef}</td>
+      <td>{expert.poste}</td>
+      <td>
+        <button className="button1">
+          <Link to={`/profilexp/${expert.id}`} className="dropdown-toggle">
+            <FontAwesomeIcon icon={faEye} />
+          </Link>
+        </button>
+        <button className="button2" onClick={() => handleDeleteClick(expert.id)}>
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
                         </table>
                     </div>
                 </div>

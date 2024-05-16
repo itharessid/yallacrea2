@@ -38,14 +38,17 @@ function Createurs() {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const result = await axios.get("http://localhost:3001/createur");
-      setCreateurData(result.data);
-    } catch (err) {
-      console.log("Quelque chose s'est mal passé lors de la récupération des données créateurs :", err);
-    }
-  };
+// Dans la fonction fetchData, triez les données récupérées par nom de famille
+const fetchData = async () => {
+  try {
+    const result = await axios.get("http://localhost:3001/createur");
+    // Tri des données par nom de famille
+    result.data.sort((a, b) => a.nom.localeCompare(b.nom));
+    setCreateurData(result.data);
+  } catch (err) {
+    console.log("Quelque chose s'est mal passé lors de la récupération des données créateurs :", err);
+  }
+};
 
   const handleDeleteClick = (createur) => {
     setSelectedCreateurId(createur.idCreateur);
@@ -119,7 +122,7 @@ function Createurs() {
         </div>
         <div className="card-box mb-30">
           <div className="pd-20">
-            <h4 className="h4">createurs</h4>
+            <h4 className="h4">Createurs</h4>
           </div>
           <div className="pb-20">
             <table className="table hover multiple-select-row data-table-export nowrap">
@@ -134,34 +137,34 @@ function Createurs() {
                   <th className="text-purple">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {filteredCreateurs.map((createur, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <img src={`/photo/${createur.image}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
-                    </td>
-                    <td>{createur.nom.toUpperCase()}</td>
-                    <td>{capitalizeFirstLetter(createur.prenom)}</td>
-                    <td>
-                      <a href={`mailto:${createur.email}`}>
-                        {createur.email}
-                      </a>
-                    </td>
-                    <td>{createur.domaine}</td>
-                    <td>
-                      <button className="button1">
-                        <Link to={`/profilCrea/${createur.idCreateur}`} className="dropdown-toggle">
-                          <FontAwesomeIcon icon={faEye} />
-                        </Link>
-                      </button>
-                      <button className="button2" onClick={() => handleDeleteClick(createur)}>
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+                <tbody>
+                  {filteredCreateurs.map((createur, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img src={`/photo/${createur.image}`} alt="Photo de profil" style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
+                      </td>
+                      <td>{createur.nom.toUpperCase()}</td>
+                      <td>{capitalizeFirstLetter(createur.prenom)}</td>
+                      <td>
+                        <a href={`mailto:${createur.email}`}>
+                          {createur.email}
+                        </a>
+                      </td>
+                      <td>{createur.domaine}</td>
+                      <td>
+                        <button className="button1">
+                          <Link to={`/profilCrea/${createur.idCreateur}`} className="dropdown-toggle">
+                            <FontAwesomeIcon icon={faEye} />
+                          </Link>
+                        </button>
+                        <button className="button2" onClick={() => handleDeleteClick(createur)}>
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
             </table>
           </div>
         </div>

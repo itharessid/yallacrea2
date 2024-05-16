@@ -15,12 +15,7 @@ function Partenaire() {
     const [nombrePartenaires, setNombrePartenaires] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/partenaireget')
-            .then(res => {
-                setPartenaires(res.data); // Utilisez setPartenaires au lieu de setExpertsData
-                setNombrePartenaires(res.data.length);
-            })
-            .catch(err => console.log(err));
+        fetchData();
     }, []);
 
     const handleDeleteClick = (partenaire) => {
@@ -57,6 +52,17 @@ function Partenaire() {
     const filteredPartenaires = partenaires.filter(partenaire =>
         partenaire.nomSociete.toLowerCase().includes(searchValue.toLowerCase())
     );
+    const fetchData = async () => {
+        try {
+          const result = await axios.get("http://localhost:3001/partenaireget");
+          // Tri des données par nom de société
+          result.data.sort((a, b) => a.nomSociete.localeCompare(b.nomSociete));
+          setPartenaires(result.data);
+          setNombrePartenaires(result.data.length);
+        } catch (err) {
+          console.log("Quelque chose s'est mal passé lors de la récupération des données partenaire :", err);
+        }
+      };
 
     return (
         <>
@@ -103,36 +109,36 @@ function Partenaire() {
                             <tbody>
                                 {filteredPartenaires.map(partenaire => (
                                     <tr key={partenaire.id}>
-                                        <td>
-                                            <img src={`/photo/${partenaire.logo}`} alt="Photo de profil"  style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
-                                        </td>
-                                        <td className="table-plus">{partenaire.nomSociete}</td>
-                                        <td>{partenaire.numero}</td>
-                                        <td>
-                                            <a href={`mailto:${partenaire.email}`}>
-                                                {partenaire.email}
-                                            </a>
-                                            </td>
-                                        <td>
-                                            <a href={partenaire.lien} target="_blank" rel="noopener noreferrer">
-                                                {partenaire.lien}
-                                            </a>
-                                            </td>
-                                        <td >
+                                    <td>
+                                        <img src={`/photo/${partenaire.logo}`} alt="Photo de profil"  style={{ maxWidth: '80px', maxHeight: '80px', borderRadius: '80%' }} />
+                                    </td>
+                                    <td className="table-plus">{partenaire.nomSociete}</td>
+                                    <td>{partenaire.numero}</td>
+                                    <td>
+                                        <a href={`mailto:${partenaire.email}`}>
+                                        {partenaire.email}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href={partenaire.lien} target="_blank" rel="noopener noreferrer">
+                                        {partenaire.lien}
+                                        </a>
+                                    </td>
+                                    <td>
                                         <div className="button-container">
-                                            <button className="button1">
-                                                <Link to={`/profilpart/${partenaire.id}`} className="dropdown-toggle">
-                                                    <FontAwesomeIcon icon={faEye} />
-                                                </Link>
-                                            </button>
-                                            <button className="button2" onClick={() => handleDeleteClick(partenaire)}>
-                                                <FontAwesomeIcon icon={faTrashAlt} />
-                                            </button>
+                                        <button className="button1">
+                                            <Link to={`/profilpart/${partenaire.id}`} className="dropdown-toggle">
+                                            <FontAwesomeIcon icon={faEye} />
+                                            </Link>
+                                        </button>
+                                        <button className="button2" onClick={() => handleDeleteClick(partenaire)}>
+                                            <FontAwesomeIcon icon={faTrashAlt} />
+                                        </button>
                                         </div>
-                                        </td>
+                                    </td>
                                     </tr>
                                 ))}
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>

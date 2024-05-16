@@ -23,12 +23,12 @@ function apropos() {
                             <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="apropos">Apropos</a>
+                            <a className="nav-link" href="apropos">A propos</a>
                         </li>
                         <li className="nav-item dropdown">
                 <Dropdown>
                   <Dropdown.Toggle id="navbarDropdown">
-                    Formation
+                    Formations
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
@@ -37,7 +37,7 @@ function apropos() {
                 </Dropdown></li>
 
                         <li className="nav-item">
-                            <a className="nav-link" href="createur">Créateur</a>
+                            <a className="nav-link" href="createur">Créateurs</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="contact">Contact</a>
@@ -144,8 +144,7 @@ function apropos() {
                 <p>Yalla Digital Academy a récemment introduit un programme de certification Udemy 
                     pour fournir des compétences clés dans le domaine technologique en constante évolution.<br/> 
                     Cette certification vous donne les connaissances nécessaires pour utiliser efficacement les technologies associées, 
-                    ajoutant ainsi de la 
-                    valeur à votre entreprise et vous aidant à relever les défis pratiques au quotidien.</p>
+                    ajoutant ainsi de la valeur à votre entreprise et vous aidant à relever les défis pratiques au quotidien.</p>
             </div>
         </div>
     </div>
@@ -188,11 +187,11 @@ function apropos() {
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
                     <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
-                      <h6>Quick links</h6>
+                      <h6>Liens rapides</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
-                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>Apropos</a></li>
-                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Createur</a></li>
+                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>A propos</a></li>
+                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Createurs</a></li>
                         <li><a href="contact"><span className="fa fa-angle-double-right mr-2"></span>Contact</a></li>
                       </ul>
                     </div>

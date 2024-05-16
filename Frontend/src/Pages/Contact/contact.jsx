@@ -53,7 +53,7 @@ function Contact() {
                 <li className="nav-item dropdown">
                   <Dropdown>
                     <Dropdown.Toggle id="navbarDropdown">
-                      Formation
+                      Formations
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="/accelerer">Cours Accéléré</Dropdown.Item>
@@ -62,7 +62,7 @@ function Contact() {
                   </Dropdown>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="createur">Créateur</a>
+                  <a className="nav-link" href="createur">Créateurs</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="contact">Contact</a>
@@ -164,11 +164,11 @@ function Contact() {
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
                     <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
-                      <h6>Quick links</h6>
+                      <h6>Liens rapides</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
-                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>Apropos</a></li>
-                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Createur</a></li>
+                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>À propos</a></li>
+                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Créateurs</a></li>
                         <li><a href="contact"><span className="fa fa-angle-double-right mr-2"></span>Contact</a></li>
                       </ul>
                     </div>

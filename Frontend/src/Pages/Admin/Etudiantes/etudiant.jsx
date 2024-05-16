@@ -38,9 +38,12 @@ function Etudiants() {
     fetchData();
   }, []);
 
+  // Dans la fonction fetchData, triez les données récupérées par nom avant de les stocker dans EtudiantData
   const fetchData = async () => {
     try {
-      const result = await axios("http://localhost:3001/etudiant");
+      const result = await axios.get("http://localhost:3001/etudiant");
+      // Tri des données par nom
+      result.data.sort((a, b) => a.nom.localeCompare(b.nom));
       setEtudiantData(result.data);
     } catch (err) {
       console.log("Quelque chose s'est mal passé lors de la récupération des données étudiant :", err);

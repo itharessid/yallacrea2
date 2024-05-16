@@ -36,10 +36,13 @@ function Domaines (){
     useEffect(() => {
         fetchData();
       }, []);
-    
+
+      // Dans la fonction fetchData, triez les données récupérées par nom de domaine
       const fetchData = async () => {
         try {
-          const result = await axios("http://localhost:3001/domaine");
+          const result = await axios.get("http://localhost:3001/domaine");
+          // Tri des données par nom de domaine
+          result.data.sort((a, b) => a.nomDomaine.localeCompare(b.nomDomaine));
           setDomaineData(result.data);
         } catch (err) {
           console.log("Quelque chose s'est mal passé lors de la récupération des données domaine :", err);
@@ -124,19 +127,19 @@ function Domaines (){
                   <th className="text-purple">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {filteredDomaine.map((domaine, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{capitalizeFirstLetter(domaine.nomDomaine)}</td>
-                    <td>
-                      <button className="button2" onClick={() => handleDeleteClick(domaine)}>
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+                <tbody>
+                  {filteredDomaine.map((domaine, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{capitalizeFirstLetter(domaine.nomDomaine)}</td>
+                      <td>
+                        <button className="button2" onClick={() => handleDeleteClick(domaine)}>
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
             </table>
           </div>
         </div>

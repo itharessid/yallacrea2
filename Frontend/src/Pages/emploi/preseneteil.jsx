@@ -104,12 +104,12 @@ function preseneteil() {
                   <a className="nav-link" href="/">Acceuil <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="apropos">Apropos</a>
+                  <a className="nav-link" href="apropos">À propos</a>
                 </li>
                 <li className="nav-item dropdown">
                   <Dropdown>
                     <Dropdown.Toggle id="navbarDropdown">
-                      Formation
+                      Formations
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="/Accelerer">Cours Accéléré</Dropdown.Item>
@@ -118,7 +118,7 @@ function preseneteil() {
                   </Dropdown>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="createur">Créateur</a>
+                  <a className="nav-link" href="createur">Créateurs</a>
                 </li>
                 <li className="nav-item dropdown">
                   <Dropdown>
@@ -146,7 +146,7 @@ function preseneteil() {
       <div className="inner-banner">
         <section className="w3l-breadcrumb">
           <div className="container">
-            <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Emploi du temps</h4>
+            <h4 className="inner-text-title font-weight-bold mb-sm-3 mb-2">Emplois du temps</h4>
             <ul className="breadcrumbs-custom-path">
               <li><a href="index.html">Acceuil</a></li>
               <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Emploi du temps</li>
@@ -227,11 +227,11 @@ function preseneteil() {
                   <div className="row">
                     {/* Sous-colonne pour "Quick links" */}
                     <div className="col-lg-6 col-md- col-sm-6 sub-two-right">
-                      <h6>Quick links</h6>
+                      <h6>Liens rapides</h6>
                       <ul>
                         <li><a href="/"><span className="fa fa-angle-double-right mr-2"></span>Acceuil</a></li>
-                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>Apropos</a></li>
-                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Createur</a></li>
+                        <li><a href="apropos"><span className="fa fa-angle-double-right mr-2"></span>À propos</a></li>
+                        <li><a href="createur"><span className="fa fa-angle-double-right mr-2"></span>Créateurs</a></li>
                         <li><a href="contact"><span className="fa fa-angle-double-right mr-2"></span>Contact</a></li>
                       </ul>
                     </div>
