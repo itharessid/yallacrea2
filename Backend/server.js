@@ -86,6 +86,7 @@ app.use(commentRouter);
 app.use(certifRouter);
 app.use('/certifications', express.static('../frontend/public/certifications'));
 app.use('/videos', express.static('../frontend/public/videos'));
+app.use('/avatar',express.static('../frontend/public/avatar'));
 
 const PORT = 3001;
 app.listen(PORT, () => {

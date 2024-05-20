@@ -37,7 +37,7 @@ function gprofile() {
                         </Dropdown>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="createur">Créateur</a>
+                        <a className="nav-link" href="/createur">Créateur</a>
                     </li>
                     <li className="nav-item">
                 <Link to={`/profiluser/${idCreateur}`} className="nav-link">Mon Profil</Link> {/* Utilisez Link */}
@@ -57,7 +57,12 @@ function gprofile() {
         </nav>
     </div>
 </header>   
+
     </div>
+
+
+
+
   )
 }
 

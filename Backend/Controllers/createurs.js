@@ -91,16 +91,16 @@ router.get('/createur', (req, res) => {
     const upload = multer({ storage: storage });
     
     // Endpoint pour télécharger une image d'createurs
-    router.post('/createur', upload.single('photo'), (req, res) => {
-        const { nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description  } = req.body;
+    router.post('/createur', upload.single('avatar'), (req, res) => {
+        const { nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description } = req.body;
         if (!req.file) {
-            return res.status(400).json({ error: "Aucune image n'a été téléchargée" });
+            return res.status(400).json({ error: "Aucun fichier n'a été téléchargé" });
         }
         
-        const photoName = req.file.filename;
-    
-        const sql = "INSERT INTO createurs (nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        const values = [nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers,description , photoName];
+        const avatarData = req.file.buffer; // Données binaires du fichier
+        
+        const sql = "INSERT INTO createurs (nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description, avatar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        const values = [nom, prenom, email, adresse, num, anniversaire, lienInsta, lienFace, lienTik, domaine, nbFollowers, description, avatarData];
     
         db.query(sql, values, (err, result) => {
             if (err) {
@@ -179,7 +179,24 @@ router.delete('/createur/:id', (req, res) => {
 });
 
 
+router.put('/createur/photo/:id', upload.single('photo'), (req, res) => {
+    const id = req.params.id;
+    if (!req.file) {
+        return res.status(400).json({ error: "Aucune image n'a été téléchargée" });
+    }
 
+    const photoName = req.file.filename;
 
+    const sql = "UPDATE createurs SET image=? WHERE idCreateur=?";
+    const values = [photoName, id];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Erreur lors de la mise à jour de l'image dans la base de données :", err);
+            return res.status(500).json({ error: "Erreur lors de la mise à jour de l'image dans la base de données" });
+        }
+        return res.status(200).json({ message: "Image mise à jour avec succès" });
+    });
+});
 module.exports = router;
 

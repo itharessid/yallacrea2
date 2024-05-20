@@ -73,6 +73,7 @@ import Certif from './Pages/Admin/Certification/certif.jsx';
 import NCertif from './Pages/Admin/Certification/nCertif.jsx';
 import ImpCertif from './Pages/Admin/Certification/imprimerCertif.jsx';
 import ModifCertif from './Pages/Admin/Certification/modifCertif.jsx';
+import Khouava from './Pages/avatar/khouava.jsx';
 
 
 
@@ -164,6 +165,19 @@ function App() {
         <Route path="/ncertif" element={<NCertif/>}/>
         <Route path="/imprimerCertif/:idCertif" element={<ImpCertif/>}/>
         <Route path="/modifCertif/:idCertif" element={<ModifCertif/>}/>
+
+
+
+        <Route path="/khav" element={<Khouava/>}/>
+
+
+
+
+
+
+
+
+
 
          </Routes>
          </BrowserRouter>

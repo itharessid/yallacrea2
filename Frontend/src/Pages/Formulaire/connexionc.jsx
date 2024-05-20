@@ -1,3 +1,4 @@
+// Connexionc.jsx
 import React, { useState } from 'react';
 import './connexion.css';
 import axios from 'axios';
@@ -8,6 +9,7 @@ function Connexionc() {
     const [password, setPassword] = useState(''); // State pour stocker le mot de passe
     const [showPassword, setShowPassword] = useState(false); // State pour gérer la visibilité du mot de passe
     const [errorMessage, setErrorMessage] = useState(''); // State pour gérer les messages d'erreur
+    const [isEmailValid, setIsEmailValid] = useState(true); // State pour gérer la validité de l'adresse e-mail
 
     // Fonction pour basculer la visibilité du mot de passe
     const togglePasswordVisibility = () => {
@@ -16,7 +18,9 @@ function Connexionc() {
 
     // Fonction pour gérer le changement de l'adresse e-mail
     const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+        const email = e.target.value;
+        setEmail(email);
+        setIsEmailValid(validateEmail(email)); // Met à jour l'état de la validité de l'email
     };
 
     // Fonction pour gérer le changement du mot de passe
@@ -37,7 +41,7 @@ function Connexionc() {
 
         // Vérifie que l'adresse e-mail est valide
         if (!validateEmail(email)) {
-            alert('Veuillez entrer une adresse e-mail valide.');
+            setIsEmailValid(false); // Met à jour l'état de la validité de l'email
             return;
         }
 
@@ -58,13 +62,12 @@ function Connexionc() {
             const response = await axios.post('http://localhost:3001/login', { email });
 
             if (response.data.exists) {
-// Si l'email existe, récupère l'ID du créateur
-const userId = response.data.userId;
-// Stocke l'ID du créateur dans le stockage local
-localStorage.setItem('userId', userId);
-// Redirige l'utilisateur vers la page du profil utilisateur avec l'ID du créateur
-window.location.href = `/profiluser/${userId}`;
-
+                // Si l'email existe, récupère l'ID du créateur
+                const userId = response.data.userId;
+                // Stocke l'e-mail de l'utilisateur dans le stockage local
+                localStorage.setItem('userEmail', email);
+                // Redirige l'utilisateur vers la page du profil utilisateur avec l'ID du créateur
+                window.location.href = `/profiluser/${userId}`;
             } else {
                 // Si l'email n'existe pas dans la base de données
                 setErrorMessage("L'email n'existe pas.");
@@ -93,7 +96,7 @@ window.location.href = `/profiluser/${userId}`;
                                         <div className="connectemail">
                                             <input 
                                                 type="email"
-                                                className="form-control form-control-lg input-lg"
+                                                className={`form-control form-control-lg input-lg ${!isEmailValid ? 'input-error' : ''}`}
                                                 placeholder="Adresse e-mail"
                                                 value={email}
                                                 onChange={handleEmailChange}
