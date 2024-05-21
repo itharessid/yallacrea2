@@ -73,6 +73,7 @@ function ImageUpload() {
 
     const handleFile = (event) => {
         setFile(event.target.files[0]);
+        handleUpload(); // Ajoutez cet appel pour déclencher le téléchargement de l'image lorsque vous sélectionnez un fichier
     };
 
     const handleFormChange = (event) => {
@@ -158,7 +159,7 @@ function ImageUpload() {
         console.log("Inside handleVoirAvatar");
         if (userEmail === 'khoubaib@tawa.digital') {
             console.log("User is authorized. Opening link...");
-            return <Link to="/khav">Voir Avatar</Link>;
+            return <Link to="/khav"  className="white-textee">Voir Avatar</Link>;
         } else {
             console.log("User is not authorized.");
             return <button onClick={handleNonAuthorized}>Vous n'avez pas un avatar.</button>;
@@ -192,11 +193,11 @@ function ImageUpload() {
                                 transform: "translate(600%, 550%)", cursor: "pointer", zIndex: "1",
                                 backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
                         </div>
+                        <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
                 
                         <div className="col-lg-7">
                             <div className="custom-block-icon-wrap">
-                                <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
-                                <button onClick={handleUpload} style={{ marginTop: "5px", marginBottom: "5px" }} className="white-text">Envoyer</button>
+                            <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
                             </div>
                         </div>
 
@@ -305,7 +306,6 @@ function ImageUpload() {
     <div className="photo-modal-overlay">
         <div className="photo-modal-content">
             <span className="close" onClick={() => setShowPhotoModal(false)}>&times;</span>
-            <button onClick={handleVoirPhoto} className="white-text">Voir Photo</button>
             <div>
             {handleVoirAvatar()}
         </div>
