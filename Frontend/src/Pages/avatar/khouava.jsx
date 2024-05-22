@@ -100,22 +100,9 @@ function Model(props) {
 
 function Khouava() {
 
-  const [showModel, setShowModel] = useState(false);
+  
+ 
 
-  const handleClick = () => {
-    setShowModel(true);
-  };
-
-  const handleConfirm = () => {
-    // Mettre ici la logique à exécuter lorsque l'utilisateur clique sur "Définir"
-    alert("Votre photo est définie comme avatar !");
-    setShowModel(false);
-  };
-
-  const handleCancel = () => {
-    // Mettre ici la logique à exécuter lorsque l'utilisateur clique sur "Annuler"
-    setShowModel(false);
-  };
 
   return (
     <div className='avakhou' style={{ width: '100%', height: '100vh', position: 'relative' }}>
@@ -129,19 +116,9 @@ function Khouava() {
           <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
         </Suspense>
       </Canvas>
-      {showModel && (
-  <div className='photo-modal-overlay'>
-    <div className='photo-modal-content'>
-      <p>Voulez-vous définir votre photo comme avatar ?</p>
-      <button className="modal-button" onClick={handleConfirm}>Définir</button>
-      <button className="modal-button" onClick={handleCancel}>Annuler</button>
-    </div>
-  </div>
-)}
+   
 
-      <div style={{ textAlign: 'center', position: 'absolute', bottom: '20px', width: '100%' }}>
-      <p style={{ marginTop: '-200px', cursor: 'pointer', textDecoration: 'underline' }} onClick={handleClick}>Cliquez pour transformer votre photo en avatar</p>
-      </div>
+      
     </div>
   );
 }

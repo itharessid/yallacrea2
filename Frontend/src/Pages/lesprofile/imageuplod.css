@@ -155,7 +155,7 @@
     color: #ffffff;
     background-color: #70218f; /* Couleur identique pour les deux boutons */
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -163,6 +163,11 @@
     background-color: #5a1a70; /* Couleur un peu plus foncée au survol */
 }
 
+  .white-textee{
+    border-radius: 100px;
+    width: 180px; /* Largeur fixe pour les boutons */
+
+  }
 
 
 
