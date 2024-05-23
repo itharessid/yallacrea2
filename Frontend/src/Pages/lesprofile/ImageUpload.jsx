@@ -5,10 +5,10 @@ import { faPlus, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker'; 
 import 'react-datepicker/dist/react-datepicker.css'; 
 import './imageuplod.css';
-import { Link, useNavigate } from 'react-router-dom';
-import Khouava from '../avatar/khouava'; // Make sure to import your avatar component
+import { Link } from 'react-router-dom';
 
-// Function to format the date
+
+// Fonction pour formater la date
 function formatDate(dateString) {
   const date = new Date(dateString);
   const day = date.getDate();
@@ -38,22 +38,28 @@ function ImageUpload() {
     const [anniversaire, setAnniversaire] = useState(null); 
     const [showModal, setShowModal] = useState(false);
     const [showPhotoModal, setShowPhotoModal] = useState(false);
-    const [showAvatar, setShowAvatar] = useState(false); // New state to toggle avatar
+    
     const fileInputRef = useRef(null);
     const userEmail = localStorage.getItem('userEmail');
     console.log("User Email:", userEmail);
 
+
+
+   
     useEffect(() => {
         fetchData();
+        const userEmail = localStorage.getItem('userEmail'); // Récupérez l'e-mail stocké dans le localStorage
+        // Autres actions à effectuer avec l'e-mail...
     }, []);
+
 
     const fetchData = async () => {
         try {
-            // Extract the creator ID from the URL
+            // Extraire l'ID du créateur à partir de l'URL
             const userId = window.location.pathname.split('/').pop();
-            // Send an HTTP request to get the creator's information
+            // Envoyer une requête HTTP pour obtenir les informations du créateur
             const response = await axios.get(`http://localhost:3001/createur/${userId}`);
-            // Update profile data with the creator's information
+            // Mettre à jour les données du profil avec les informations du créateur
             setProfileData(response.data);
             setFormData(response.data);
             setAnniversaire(response.data.anniversaire);
@@ -68,7 +74,7 @@ function ImageUpload() {
 
     const handleFile = (event) => {
         setFile(event.target.files[0]);
-        handleUpload();
+        handleUpload(); // Ajoutez cet appel pour déclencher le téléchargement de l'image lorsque vous sélectionnez un fichier
     };
 
     const handleFormChange = (event) => {
@@ -88,7 +94,7 @@ function ImageUpload() {
             console.error('Error updating profile data:', error);
         }
     };
-
+    
     const handleDateChange = (date) => {
         const formattedDate = date ? date.toISOString().split('T')[0] : null;
         setAnniversaire(formattedDate);
@@ -117,11 +123,13 @@ function ImageUpload() {
         try {
             const formData = new FormData();
             formData.append('photo', file);
-            const userId = window.location.pathname.split('/').pop();
-            const response = await axios.put(`http://localhost:3001/createur/photo/${userId}`, formData);
+            const userId = window.location.pathname.split('/').pop(); // Extraire l'ID de l'utilisateur à partir de l'URL
+            console.log("User ID: ", userId); // Ajoutez cette ligne pour vérifier l'ID utilisateur
+            const response = await axios.put(`http://localhost:3001/createur/photo/${userId}`, formData); // Mise à jour de l'URL pour inclure l'ID de l'utilisateur
+            console.log("Response: ", response); // Ajoutez cette ligne pour vérifier la réponse
             if (response.status === 200) {
                 alert("Image téléchargée avec succès!");
-                fetchData();
+                fetchData(); // Rafraîchir les données après le téléchargement de l'image
             } else {
                 alert("Échec du téléchargement de l'image!");
             }
@@ -130,44 +138,71 @@ function ImageUpload() {
         }
     };
 
+    const handleClick = () => {
+        setShowPhotoModal(true);
+    };
+
     const handleEditProfile = () => {
         setShowModal(true);
     };
 
+    const handleVoirPhoto = () => {
+        // Action pour "Voir Photo"
+        setShowPhotoModal(false);
+        alert("Voir Photo action");
+    };
+    const handleNonAuthorized = () => {
+        // Logique à exécuter lorsque l'utilisateur n'est pas autorisé
+        alert("Vous n'êtes pas autorisé à voir cet avatar.");
+    };
+    
     const handleVoirAvatar = () => {
+        console.log("Inside handleVoirAvatar");
         if (userEmail === 'khoubaib@tawa.digital') {
-            setShowAvatar(!showAvatar); // Toggle the avatar view state
+            console.log("User is authorized. Opening link...");
+            return <Link to={`/av/${profileData && profileData.idCreateur}`} className="white-textee">Voir Avatar</Link>;
         } else {
-            alert("Vous n'êtes pas autorisé à voir cet avatar.");
+            console.log("User is not authorized.");
+            return <button onClick={handleNonAuthorized}>Vous n'avez pas un avatar.</button>;
         }
     };
+    
+    
+    
+    
+    
+    
 
     return (
         <div className="inner-banner">
             <section className="w3l-breadcrumb">
                 <div className="container">
                     <div className="row">
-                    {showAvatar ? (
-                            // Afficher l'avatar
-                            <div className="col-lg-7 d-flex justify-content-center align-items-center">
-                                <Khouava />
+                        {/* Formulaire de mise à jour de l'image */}
+                        <div className="col-lg-7 d-flex justify-content-center align-items-center">
+                            <div style={{ position: "relative", width: "300px", height: "300px", overflow: "hidden", borderRadius: "50%", display: "inline-block", border: "8px solid #70218f" }}>
+                                <img src={"http://localhost:3001/photo/" + (data && data.image)} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
                             </div>
-                        ) : (
-                            // Afficher l'image de profil et le bouton d'upload
-                            <div className="col-lg-7 d-flex justify-content-center align-items-center">
-                                <div style={{ position: "relative", width: "300px", height: "300px", overflow: "hidden", borderRadius: "50%", display: "inline-block", border: "8px solid #70218f" }}>
-                                    <img src={"http://localhost:3001/photo/" + (data && data.image)} alt="" style={{ maxWidth: "100%", height: "auto", borderRadius: "50%" }} />
-                                </div>
-                                <FontAwesomeIcon 
-                                    icon={faPlus} onClick={() => fileInputRef.current.click()}
-                                    style={{ position: "absolute", top: "50%", left: "50%",
-                                    transform: "translate(450%, 450%)", cursor: "pointer", zIndex: "1",
-                                    backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
-                                <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
+                            
+                            <FontAwesomeIcon 
+                                icon={faPlus} onClick={() => fileInputRef.current.click()}
+                                style={{ position: "absolute", top: "50%", left: "50%",
+                                transform: "translate(450%, 450%)", cursor: "pointer", zIndex: "1",
+                                backgroundColor: "#70218f", borderRadius: "50%", fontSize: "26px" }} className="white-text"/>
+                            
+                        </div>
+                        
+                       
+                        <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
+                       
+                        <div className="col-lg-7">
+                            <div className="custom-block-icon-wrap">
+                            <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFile} />
                             </div>
-                        )}
-                        {/* Profile information */}
-                        <div className="col-lg-5 d-flex justify-content-center align-items-start" style={{ marginTop: '-50px' }}>
+                        </div>
+
+                        {/* Informations du profil */}
+                        <div className="col-lg-5 d-flex justify-content-center align-items-start" style={{ marginTop: '-350px' }}>
                             <div className="text-center">
                                 <h2>{profileData && profileData.nom} {profileData && profileData.prenom}</h2>
                                 <br/>
@@ -190,89 +225,99 @@ function ImageUpload() {
                                 <p style={{ textAlign: 'left' }}>{profileData && profileData.domaine}</p>
                                 <br/>
                                 <br/>
+
                             </div>
+                            
                         </div>
 
-                        {/* Buttons */}
+
+                        {/* Bouton pour éditer le profil */}
                         <div className="col-lg-5 d-flex justify-content-end align-items-">
+
                             <div className="additional-button-div" style={{ position: "absolute", bottom: "0", right: "100px" }}>
-                                <button style={{ marginTop: "5px", marginBottom: "5px", marginRight: "-900px" }} onClick={handleEditProfile} className="white-text">Modifier le profil</button>
+                                <button style={{ marginTop: "5px", marginBottom: "5px" ,marginRight:"-900px"}} onClick={handleEditProfile} className="white-text">Modifier le profil</button>
+                               
+  
                             </div>
-                            <div className="avatar-button-container">
-                                <button onClick={handleVoirAvatar} className="white-text">Voir Avatar</button>
-                            </div>
+                            <div   className="avatar-button-container" >
+    {handleVoirAvatar()}
+  </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* Profile edit modal */}
             {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <form onSubmit={handleFormSubmit} className="white-text">
-                            <h2>Modifier le profil</h2>
-                            <label>
-                                Nom:
-                                <input type="text" name="nom" value={formData.nom} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Prenom:
-                                <input type="text" name="prenom" value={formData.prenom} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Email:
-                                <input type="email" name="email" value={formData.email} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Numéro de téléphone:
-                                <input type="text" name="num" value={formData.num} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Lien Facebook:
-                                <input type="text" name="lienFace" value={formData.lienFace} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Lien Instagram:
-                                <input type="text" name="lienInsta" value={formData.lienInsta} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Lien TikTok:
-                                <input type="text" name="lienTik" value={formData.lienTik} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Domaine:
-                                <select name="Domaine" value={formData.Domaine} onChange={handleFormChange}>
-                                    {domaines.map((domaine) => (
-                                        <option key={domaine} value={domaine}>
-                                            {domaine}
-                                        </option>
+                <div className="modale">
+                    <div className="modal-contente">
+                        <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+                        <form onSubmit={handleFormSubmit} className="form">
+                            <div className="form-row">
+                                <label htmlFor="nom">Nom :</label>
+                                <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="prenom">Prénom :</label>
+                                <input type="text" id="prenom" name="prenom" value={formData.prenom} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="email">Email :</label>
+                                <input type="email" id="email" name="email" value={formData.email} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="num">Numéro de téléphone :</label>
+                                <input type="tel" id="num" name="num" value={formData.num} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="lienFace">Lien Facebook :</label>
+                                <input type="url" id="lienFace" name="lienFace" value={formData.lienFace} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="lienInsta">Lien Instagram :</label>
+                                <input type="url" id="lienInsta" name="lienInsta" value={formData.lienInsta} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="lienTik">Lien TikTok :</label>
+                                <input type="url" id="lienTik" name="lienTik" value={formData.lienTik} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="Domaine">Domaine :</label>
+                                <select id="Domaine" name="Domaine" value={formData.Domaine} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }}>
+                                    <option value="">Sélectionner un domaine</option>
+                                    {domaines.map((domaine, index) => (
+                                        <option key={index} value={domaine.nom}>{domaine.nom}</option>
                                     ))}
                                 </select>
-                            </label>
-                            <label>
-                                Nombre de Followers:
-                                <input type="text" name="nbFollowers" value={formData.nbFollowers} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Description:
-                                <textarea name="description" value={formData.description} onChange={handleFormChange} />
-                            </label>
-                            <label>
-                                Anniversaire:
-                                <DatePicker 
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="nbFollowers">Nombre de followers :</label>
+                                <input type="number" id="nbFollowers" name="nbFollowers" value={formData.nbFollowers} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="description">Description :</label>
+                                <textarea id="description" name="description" value={formData.description} onChange={handleFormChange} className="large-inputee" style={{ marginLeft: '10px' }} />
+                            </div>
+                            <div className="form-row">
+                                <label htmlFor="anniversaire">Anniversaire :</label>
+                                <DatePicker
                                     selected={anniversaire ? new Date(anniversaire) : null}
-                                    onChange={handleDateChange} 
-                                    dateFormat="yyyy-MM-dd"
-                                    placeholderText="Sélectionnez une date"
+                                    onChange={handleDateChange}
+                                    dateFormat="dd/MM/yyyy"
+                                    className="large-input"
+                                    style={{ marginLeft: '10px' }}
                                 />
-                            </label>
-                            <button type="submit">Enregistrer</button>
-                            <button type="button" onClick={() => setShowModal(false)}>Annuler</button>
+                            </div>
+                            <div className="form-row">
+                                <button type="submit" className="white-textmod">Mettre à jour</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             )}
+            {showPhotoModal && (
+    <div className="photo-modal-overlay">
+       
+    </div>
+)}  
         </div>
     );
 }

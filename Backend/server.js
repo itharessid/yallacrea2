@@ -28,7 +28,8 @@ const storePasswordInDatabase=require('./Controllers/datapassetud.js');
 
 const loginRouter=require('./Controllers/loginetud.js');
 const logincrRouter=require('./Controllers/logincre.js');
-const resetPassword=require('./Controllers/resetmdp.js')
+const resetPassword=require('./Controllers/resetmdp.js');
+
 
 
 const certifRouter=require('./Controllers/certif.js');
@@ -86,7 +87,9 @@ app.use(commentRouter);
 app.use(certifRouter);
 app.use('/certifications', express.static('../frontend/public/certifications'));
 app.use('/videos', express.static('../frontend/public/videos'));
-app.use('/avatar',express.static('../frontend/public/avatar'));
+app.use('/avatar', express.static('../frontend/public/avatar'));
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
