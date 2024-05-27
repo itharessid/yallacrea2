@@ -23,7 +23,15 @@
     max-height: 80%; /* Définir une hauteur maximale */
     overflow: auto; /* Activer le défilement*/
 }
-
+.large-inputee{
+    width: 300px; 
+    height: 100px;
+}
+.white-textmod{
+    height: 50px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
 .close {
     position: absolute;
     top: 10px;

@@ -74,7 +74,7 @@ import NCertif from './Pages/Admin/Certification/nCertif.jsx';
 import ImpCertif from './Pages/Admin/Certification/imprimerCertif.jsx';
 import ModifCertif from './Pages/Admin/Certification/modifCertif.jsx';
 import Khouava from './Pages/avatar/khouava.jsx';
-
+import Av from './Pages/lesprofile/av.jsx'
 
 
 
@@ -119,6 +119,7 @@ function App() {
         <Route path="/preinscriEtud" element={<PreInscriEtud/>} />
         <Route path="/connexion/:id" element={<Connexion/>} />
         <Route path="/connexione" element={<Connexione/>} />
+        
 
         <Route path="/connexionc" element={<Connexionc/>} />
 
@@ -166,9 +167,9 @@ function App() {
         <Route path="/imprimerCertif/:idCertif" element={<ImpCertif/>}/>
         <Route path="/modifCertif/:idCertif" element={<ModifCertif/>}/>
 
-
-
         <Route path="/khav" element={<Khouava/>}/>
+        <Route path="/av/:id" element={<Av />}/>
+
 
 
 
