@@ -76,12 +76,12 @@ function PreInscri() {
             <div className="min-height-200px">
                 <div className="wizard-content text-center"> 
                     
-                <div className="inscription">
+                <div className="inscription1">
                     <h3>S'inscrire</h3>
                        </div>
                        <br/>
                     <div className="logo-container">
-                        <img className="logoYalla" src="/src/assets/images/yallalogo.png" alt="Logo" />
+                        <img className="logoYalla1" src="/src/assets/images/yallalogo.png" alt="Logo" />
                     </div>
                 </div>
             </div>
@@ -93,13 +93,13 @@ function PreInscri() {
 
             <div className="row justify-content-center">
                 <div className="col-md-6 text--center"> {/* Utilisez col-md-6 pour aligner à gauche */}
-                    <button className="buttonCrea" type="button">
+                    <button className="buttonCre" type="button">
                     <Link to="/preInscri" className="dropdown-toggle">
                     <span className="mtext">Créateur</span>
                     </Link>
                     </button>
-                    <p className="choix text-center"> Ou bien</p>
-                    <button className="buttonEtud" type="button">            
+                    <p className="choix1"> Ou bien</p>
+                    <button className="buttonEtud1" type="button">            
                     <Link to="/preInscriEtud" className="dropdown-toggle">
                     <span className="mtext">Etudiant</span>
                     </Link></button>

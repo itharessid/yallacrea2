@@ -55,9 +55,11 @@ function ImageUpload() {
 
     const fetchData = async () => {
         try {
-            // Extraire l'ID du créateur à partir de l'URL
-            const userId = window.location.pathname.split('/').pop();
-            // Envoyer une requête HTTP pour obtenir les informations du créateur
+           // Extraire l'ID du créateur à partir de l'URL
+        const userId = window.location.pathname.split('/').pop();
+        console.log("User ID:", userId); // Afficher l'ID de l'utilisateur dans la console
+        localStorage.setItem('userId', userId); // Déplacer cette ligne après avoir récupéré l'ID utilisateur
+        // Envoyer une requête HTTP pour obtenir les informations du créateur
             const response = await axios.get(`http://localhost:3001/createur/${userId}`);
             // Mettre à jour les données du profil avec les informations du créateur
             setProfileData(response.data);

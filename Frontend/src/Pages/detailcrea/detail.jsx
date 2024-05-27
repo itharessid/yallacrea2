@@ -218,8 +218,7 @@ function Detail() {
                     </nav>
                 </div>
             </header>
-            <br />
-
+         
             <div className="inner-banner">
                 <section className="w3l-breadcrumb">
                     <div className="container">
@@ -230,10 +229,7 @@ function Detail() {
                             <li className="active"><span className="fa fa-chevron-right mx-2" aria-hidden="true"></span>Détail du créateur</li>
                         </ul>
                     </div>
-                </section>
-            </div>
-
-            <div className="inner-banner">
+                    <div className="inner-banner">
                 <section className="w3l-breadcrumb">
                     <div className="row justify-content-center">
                         <div className="col-lg-10 col-12">
@@ -317,6 +313,10 @@ function Detail() {
                     </div>
                 </section>
             </div>
+                </section>
+            </div>
+
+            
             <footer className="w3l-footer-22 position-relative mt-5 pt-5">
                 <div className="footer-sub">
                     <div className="container">

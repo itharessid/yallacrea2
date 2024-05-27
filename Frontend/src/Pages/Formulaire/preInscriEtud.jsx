@@ -88,7 +88,7 @@ function PreInscriEtud() {
                             <span className="mtext">Créateur</span>
                         </Link>
                     </button>
-                    <p className="choix text-center"> Ou bien</p>
+                    <p className="choix2"> Ou bien</p>
                     <button className="buttonEtud" type="button">            
                         <Link to="/preInscriEtud" className="dropdown-toggle">
                             <span className="mtext">Etudiant</span>

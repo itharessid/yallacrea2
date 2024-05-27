@@ -5,11 +5,16 @@
     margin-left: -600px;
     margin-bottom: -370px;
 }
-.logoYalla {
+.logoYalla1{
     margin-top: -100px;
     width: 200px;
     height: 200px;
-    margin-left: 130px;
+    margin-left: 200px;
+}
+.inscription1{
+    color: black;
+    margin-top: -20px;
+    margin-left: 200px;
 }
 
 
@@ -21,7 +26,7 @@
 .buttonEtud {
     background-color: rgba(121, 21, 99, 0.671);
     margin-left: 950px;
-    margin-right: 50px;
+    margin-right: 500px;
     margin-top: -450px;
     position: absolute;
     top: 0%;
@@ -78,13 +83,13 @@
 .min-height-200px{
     min-height: 500px;
 }
-.choix{
+.choix1{
     font-size: smaller; /* ou une taille de police plus petite de votre choix */
     color: gray;
     text-align: center;
     margin-top: -1700px;
     margin-bottom: -100px;
-    margin-right: -1500px;
+    margin-right: -1700px;
     margin-left: -850px;
 
 }
@@ -105,6 +110,28 @@
     color: white;
 }
 .btnConnexion .dropdown-toggle {
+    color: white;
+}
+.buttonCre{
+    margin-left: 650px;
+    margin-right: 50px;
+    margin-top: -450px;
+    position: absolute;
+    top: 0%;
+    color: white;
+}
+.buttonEtud1{
+    background-color: rgba(121, 21, 99, 0.671);
+    margin-left: 1100px;
+    margin-right: 50px;
+    margin-top: -450px;
+    position: absolute;
+    top: 0%;
+    color: white;
+    
+
+}
+.mtext{
     color: white;
 }
 

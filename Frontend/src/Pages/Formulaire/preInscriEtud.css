@@ -60,7 +60,6 @@ mtext{
 
 
 
-
 .buttonText {
     background-color: white;
     border-color: purple;
@@ -102,9 +101,20 @@ mtext{
 .action-btns .btnInscri,.btnConnexion{
     font-family: 'Roboto', sans-serif;
     color: white;
+    width: 400px;
 }
 .action-btns .compteExist{
     color: gray;
     text-align: center;
+    margin-right: 80px;
+}
+.choix2{
+    font-size: smaller; /* ou une taille de police plus petite de votre choix */
+    color: gray;
+    text-align: center;
+    margin-top: -1700px;
+    margin-bottom: -100px;
+    margin-right: -1500px;
+    margin-left: -850px;
 }
 
