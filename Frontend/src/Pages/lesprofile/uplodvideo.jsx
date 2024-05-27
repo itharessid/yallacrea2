@@ -9,6 +9,8 @@ function UploadVideo() {
     const [titre, setTitre] = useState('');
     const [description, setDescription] = useState('');
     const [alert, setAlert] = useState('');
+    const [videoFile, setVideoFile] = useState(null); // New state variable for the selected video file
+    const [uploadDate, setUploadDate] = useState(''); // Add a state variable for upload date
 
     useEffect(() => {
         const userEmail = localStorage.getItem('userEmail'); // Récupère l'email du créateur depuis le stockage local
@@ -23,10 +25,10 @@ function UploadVideo() {
             setVideos(res.data);
         })
         .catch(err => console.log(err));
-    }, []); // Run only once when the component mounts
+    }, [idCreateur]); // Add idCreateur as a dependency
 
     const handleFileChange = (e) => {
-        // Logic for handling file change
+        setVideoFile(e.target.files[0]); // Save the selected file in the state
     }
 
     const handleDescriptionChange = (e) => {
@@ -34,12 +36,16 @@ function UploadVideo() {
     }
 
     const handleUpload = () => {
-        // Logic for uploading video
+        if (!videoFile || !titre || !description) {
+            setAlert('Please fill all fields and select a video file.');
+            return;
+        }
+
         const formData = new FormData();
         formData.append("video", videoFile);
         formData.append("titre", titre);
         formData.append("description", description);
-        formData.append("date", uploadDate);
+        formData.append("date", new Date().toISOString()); // Set the current date as the upload date
         formData.append("userId", idCreateur); // Utilise directement l'ID du créateur
 
         axios.post(`http://localhost:3001/video/${idCreateur}`, formData)
@@ -58,12 +64,17 @@ function UploadVideo() {
                 // Réinitialiser les champs après le téléchargement réussi
                 setTitre('');
                 setDescription('');
+                setVideoFile(null); // Reset the video file
                 setUploadDate('');
             } else {
                 console.log("Failed");
+                setAlert('Failed to upload the video.');
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+            setAlert('An error occurred while uploading the video.');
+        });
     }
 
     return (
