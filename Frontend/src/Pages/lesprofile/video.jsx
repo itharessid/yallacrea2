@@ -208,21 +208,7 @@ const handleAddReply = async (idVid, parentId, replyText) => { // Renommez idPar
     console.error("Erreur lors de l'ajout de la réponse au commentaire :", error);
   }
 };
-// Fonction pour afficher les réponses d'un commentaire lorsqu'il est sélectionné
-const handleShowReplies = (idComment) => {
-  // Mettre à jour l'état avec l'ID du commentaire sélectionné
-  setSelectedComment(idComment);
-  // Récupérer les réponses du commentaire sélectionné
-  fetchReplies(video.idVid, idComment);
-};
 
-// Fonction pour masquer les réponses et réinitialiser l'état
-const handleHideReplies = () => {
-  // Réinitialiser l'état pour masquer les réponses
-  setSelectedComment(null);
-  // Réinitialiser les réponses
-  setReplies([]);
-};
 
 // Dans la section où vous affichez les commentaires
 {comments[videos.idVid] &&
