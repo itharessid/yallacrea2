@@ -36,6 +36,7 @@ function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handl
 
 function Video() {
   const [videos, setVideos] = useState([]);
+  const [showReplyForm, setShowReplyForm] = useState(null);
   const idCrea = localStorage.getItem('userId'); // Récupère l'ID du créateur depuis le stockage local
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [videoToDelete, setVideoToDelete] = useState(null);
@@ -43,6 +44,8 @@ function Video() {
   const [searchTerm, setSearchTerm] = useState('');
   const [likes, setLikes] = useState({});
   const [comments, setComments] = useState({});
+  const [selectedComment, setSelectedComment] = useState(null); // État pour stocker l'ID du commentaire sélectionné
+
 
   useEffect(() => {
     const fetchCreatorVideos = async () => {
@@ -74,17 +77,24 @@ function Video() {
     }
   };
 
-  const fetchComments = async (idVid, idCrea) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`);
-      setComments(prevComments => ({
-        ...prevComments,
-        [idVid]: response.data
-      }));
-    } catch (error) {
-      console.error("Erreur lors de la récupération des commentaires :", error);
-    }
-  };
+// Mettez à jour fetchComments pour inclure la récupération des réponses
+const fetchComments = async (idVid, idCrea) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`);
+    // Mettez à jour la structure des commentaires pour inclure les réponses
+    const updatedComments = response.data.map(comment => ({
+      ...comment,
+      reponse: '', // Ajoutez une propriété pour stocker la réponse
+      replies: [] // Ajoutez un tableau pour stocker les réponses à ce commentaire
+    }));
+    setComments(prevComments => ({
+      ...prevComments,
+      [idVid]: updatedComments
+    }));
+  } catch (error) {
+    console.error("Erreur lors de la récupération des commentaires :", error);
+  }
+};
   
   const handleAddComment = async (idVid, textComment) => {
     try {
@@ -175,6 +185,76 @@ function Video() {
   const filteredVideo = searchTerm
     ? videos.filter((video) => containsSyllable(video.titre.toLowerCase(), searchTerm.toLowerCase()))
     : videos;
+    
+    const handleReplyComment = async (idVid, idParent, replyText) => {
+      try {
+        const idCrea = localStorage.getItem('userId');
+        const response = await axios.post(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`, { textComment: replyText, idParent });
+        fetchComments(idVid, idCrea); // Rafraîchir les commentaires après l'ajout de la réponse
+      } catch (error) {
+        console.error("Erreur lors de l'ajout de la réponse au commentaire :", error);
+      }
+    };
+    
+// Frontend (React)
+
+// Dans la fonction handleAddReply
+const handleAddReply = async (idVid, parentId, replyText) => { // Renommez idParent en parentId
+  try {
+    const idCrea = localStorage.getItem('userId');
+    const response = await axios.post(`http://localhost:3001/video/commentaire/${idVid}/${idCrea}`, { textComment: replyText, idRepondre: parentId }); // Utilisez idRepondre pour spécifier le commentaire parent
+    fetchComments(idVid, idCrea); // Rafraîchir les commentaires après l'ajout de la réponse
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de la réponse au commentaire :", error);
+  }
+};
+// Fonction pour afficher les réponses d'un commentaire lorsqu'il est sélectionné
+const handleShowReplies = (idComment) => {
+  // Mettre à jour l'état avec l'ID du commentaire sélectionné
+  setSelectedComment(idComment);
+  // Récupérer les réponses du commentaire sélectionné
+  fetchReplies(video.idVid, idComment);
+};
+
+// Fonction pour masquer les réponses et réinitialiser l'état
+const handleHideReplies = () => {
+  // Réinitialiser l'état pour masquer les réponses
+  setSelectedComment(null);
+  // Réinitialiser les réponses
+  setReplies([]);
+};
+
+// Dans la section où vous affichez les commentaires
+{comments[videos.idVid] &&
+  comments[videos.idVid].map((comment) => (
+    <div key={comment.idComment} className="comment-item">
+      <div className="comment-content">{comment.textComment}</div>
+      <div className="comment-actions">
+        {/* Bouton pour afficher les réponses */}
+        <button
+          onClick={() => handleShowReplies(comment.idComment)}
+          className="show-replies-button"
+        >
+          Afficher les réponses
+        </button>
+      </div>
+      {/* Afficher les réponses si le commentaire est sélectionné */}
+      {selectedComment === comment.idComment && (
+        <div className="replies-container">
+          {replies.map((reply) => (
+            <div key={reply.idComment} className="reply-item">
+              <div className="reply-content">{reply.textComment}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+
+
+    
+    
+    
 
   return (
     <div>
@@ -280,21 +360,59 @@ function Video() {
 
                             {/* Conteneur pour les commentaires */}
                             <div className="comment-container">
-                              {comments[video.idVid] && comments[video.idVid].map(comment => (
-                                <div key={comment.idComment} className="comment-item">
-                                  <div>{comment.textComment}</div>
-                                  <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} className="delete-button">Supprimer</button>
-                                </div>
-                              ))}
-                            </div>
-                                        {/* Ajouter un formulaire pour ajouter un nouveau commentaire */}
+                            {comments[video.idVid] &&
+  comments[video.idVid].map((comment) => (
+    <div key={comment.idComment} className="comment-item">
+      <div className="comment-content">{comment.textComment}</div>
+      <div className="comment-actions">
+        <button
+          onClick={() => handleDeleteComment(video.idVid, comment.idComment)}
+          className="delete-button"
+        >
+          Supprimer
+        </button>
+        <button
+  onClick={() => setShowReplyForm(comment.idComment)}
+  className="reply-button"
+  style={{ color: 'white' }}
+>
+  Répondre
+</button>
+
+      </div>
+      {showReplyForm === comment.idComment && (
+  <form
+    onSubmit={(e) => {
+      e.preventDefault();
+      handleAddReply(
+        video.idVid,
+        comment.idComment,
+        e.target.replyText.value
+      );
+      setShowReplyForm(null);
+      e.target.reset();
+    }}
+    className="reply-form comment-reply"
+  >
+    {/* Add a hidden field for the parent comment ID */}
+    <input type="hidden" name="parentId" value={comment.idComment} />
+    <input type="text" name="replyText" placeholder="Votre réponse..." />
+    <button type="submit">Répondre</button>
+  </form>
+)}
+
+
+    </div>
+  ))}
+</div>
+{/* Ajouter un formulaire pour ajouter un nouveau commentaire */}
             <form onSubmit={(e) => {
               e.preventDefault();
               handleAddComment(video.idVid, e.target.textComment.value);
               e.target.reset();
             }}>
               <input type="text" name="textComment" placeholder="Ajouter un commentaire..." />
-              <button type="submit">Ajouter</button>
+              <button type="submit" style={{color:'white'}}>Ajouter</button>
             </form>
                           </div>
                         </div>
