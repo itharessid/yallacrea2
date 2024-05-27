@@ -15,7 +15,7 @@ function ProfileEtud() {
         email: '',
         adresse: '',
         num: '',
-        anniversaire: new Date(), // Mettez une valeur par défaut si nécessaire
+        anniversaire: '', // Initialiser comme une chaîne vide
         niveau: '',
         programme: '',
         codePromo: ''
@@ -26,8 +26,10 @@ function ProfileEtud() {
         const fetchEtudiantData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3001/etudiant/${id}`);
-                setEtudiantData(response.data);
-                setEditedData({ ...response.data });
+                const data = response.data;
+                data.anniversaire = convertDateToDMY(new Date(data.anniversaire)); // Convertir la date au format jour/mois/année
+                setEtudiantData(data);
+                setEditedData(data);
             } catch (error) {
                 setError(error.response ? error.response.data.error : "Erreur lors de la récupération des données de l'étudiant");
             }
@@ -39,6 +41,18 @@ function ProfileEtud() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
+    };
+
+    const handleDateChange = (date) => {
+        const formattedDate = convertDateToDMY(date);
+        setEditedData({ ...editedData, anniversaire: formattedDate });
+    };
+
+    const convertDateToDMY = (date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     };
 
     const handleSubmit = async (e) => {
@@ -120,29 +134,38 @@ function ProfileEtud() {
                                 <label>Date de naissance:</label>
                                 <DatePicker
                                     className="form-control"
-                                    selected={editedData.anniversaire}
-                                    onChange={(date) => setEditedData({ ...editedData, anniversaire: date })}
+                                    selected={new Date(editedData.anniversaire.split('/').reverse().join('/'))}
+                                    onChange={handleDateChange}
+                                    dateFormat="dd/MM/yyyy"
                                 />
                             </div>
                             <div className="form-group">
                                 <label>Niveau:</label>
-                                <select className="custom-select form-control" name="niveau" required                                     value={editedData.niveau}
-                                    onChange={handleInputChange}>
-                                                            <option value="vide">--</option>
-                                                            <option value="Avec Bac">Avec Bac</option>
-                                                            <option value="Sans Bac">Sans Bac</option>
-                                                        </select>
+                                <select 
+                                    className="custom-select form-control" 
+                                    name="niveau" 
+                                    value={editedData.niveau} 
+                                    onChange={handleInputChange}
+                                    required
+                                >
+                                    <option value="vide">--</option>
+                                    <option value="Avec Bac">Avec Bac</option>
+                                    <option value="Sans Bac">Sans Bac</option>
+                                </select>
                             </div>
                             <div className="form-group">
-    <label>Programme:</label>
-    <select className="custom-select form-control" name="programme"  value={editedData.programme} onChange={handleInputChange}>
-        <option value="vide">--</option>
-        <option value="Complet">Complet</option>
-        <option value="Accelere">Accéléré</option>
-    </select>
-</div>
-
-
+                                <label>Programme:</label>
+                                <select 
+                                    className="custom-select form-control" 
+                                    name="programme" 
+                                    value={editedData.programme} 
+                                    onChange={handleInputChange}
+                                >
+                                    <option value="vide">--</option>
+                                    <option value="Complet">Complet</option>
+                                    <option value="Accelere">Accéléré</option>
+                                </select>
+                            </div>
                             <div className="form-group">
                                 <label>Code Promo:</label>
                                 <input
@@ -153,7 +176,7 @@ function ProfileEtud() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'purple' }}>Enregistrer</button>                    
+                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'purple', color: 'white' }}>Enregistrer</button>                    
                         </form>
                     </div>
                 )}

@@ -181,7 +181,7 @@ function PreInscriptionEtud() {
         </div>
         <div className="card-box mb-30 bigger-card1">
           <div className="pd-20">
-            <h4 className="h4">Etudiants</h4>
+            <h4 className="h4">Les pré-inscriptions des étudiants</h4>
           </div>
           <div className="pb-20">
             <table className="table hover multiple-select-row data-table-export nowrap">

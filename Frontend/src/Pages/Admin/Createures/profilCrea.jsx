@@ -243,7 +243,7 @@ function ProfileCrea() {
                                 <label>Photo:</label>
                                 <input type="file" name="photo" onChange={handleFileChange} required />
                             </div>
-                            <Link to="/createures" onClick={handleSubmit} className="btn btn-primary" style={{ backgroundColor: 'purple' }}> Enregistrer</Link> 
+                            <Link to="/createures" onClick={handleSubmit} className="btn btn-primary" style={{ backgroundColor: 'purple',color:'white' }}> Enregistrer</Link> 
                         </form>
                     </div>
                 )}

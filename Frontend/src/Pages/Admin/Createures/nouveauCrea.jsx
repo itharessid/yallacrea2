@@ -128,7 +128,7 @@ const handleUpload = () => {
                                                 <div className="form-group text-purple">
                                                 <label>Anniversaire:</label>
                                                 <hr/>
-                                                <DatePicker
+                                                <DatePicker 
                                                 className="form-control date-picker anniversaire"
                                                 selected={anniversaire}
                                                 onChange={(date) => setAnniversaire(date)}
@@ -136,6 +136,7 @@ const handleUpload = () => {
                                                 placeholderText="Sélectionner une date"
                                                 name="anniversaire"
                                                 required
+                                                
                                                 />
                                             </div>
                                                 </div>
@@ -209,7 +210,7 @@ const handleUpload = () => {
                                           <div className="row">
                                               <div className="col-md-6t">
                                               <div className="form-group">
-                                              <Link to="/createures" onClick={handleUpload} className="btn btn-primary" style={{ backgroundColor: 'purple' }}> Ajouter</Link> 
+                                              <Link to="/createures" onClick={handleUpload} className="btn btn-primary" style={{ backgroundColor: 'purple',color:'white' }}> Ajouter</Link> 
                                             </div>
                                               </div>
                                           </div>

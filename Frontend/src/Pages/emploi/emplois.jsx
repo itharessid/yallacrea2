@@ -136,7 +136,7 @@ function EmploiDuTemps({ emploi }) {
                   <a className="nav-link" href="contact">Contact</a>
                 </li>
                 <div className="search-right">
-                  <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
+                  <a href="/" className="btn button-style" title="search">Sortir</a>
                 </div>
               </ul>
             </div>

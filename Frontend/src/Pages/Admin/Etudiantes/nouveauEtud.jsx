@@ -8,51 +8,71 @@ import Etudiants from './etudiant';
 
 function NouveauEtud() {
     const [selectedDate, setSelectedDate] = useState(null);
-    const [NEtudiantData,setNEtudiantData]=useState([]);
+    const [NEtudiantData, setNEtudiantData] = useState([]);
+    
     useEffect(() => {
-      fetchData();
-    }, [])
-    const fetchData=async()=>{
-      try{
-        const result =await axios("http://localhost:3001/etudiant");
-        //console.log(result.data);
-        setNEtudiantData(result.data)
-      }catch(err){
-        console.log("qu'elle que chose qui cloche");
-      }
+        fetchData();
+    }, []);
+    
+    const fetchData = async () => {
+        try {
+            const result = await axios("http://localhost:3001/etudiant");
+            setNEtudiantData(result.data);
+        } catch (err) {
+            console.log("qu'il y a quelque chose qui cloche");
+        }
     }
-    const[NEtudiantField,setNEtudiantField]=useState({
-        nom:"",
-        prenom:"",
-        email:"",
-        adresse:"",
-        num:"",
-        anniversaire:"",
-        niveau:"",
-        programme:"",
-        codePromo:"" 
+    
+    const [NEtudiantField, setNEtudiantField] = useState({
+        nom: "",
+        prenom: "",
+        email: "",
+        adresse: "",
+        num: "",
+        anniversaire: "",
+        niveau: "",
+        programme: "",
+        codePromo: "" 
     });
-    const changeNEtudiantFieldHandler=(e)=>{
+
+    const changeNEtudiantFieldHandler = (e) => {
         setNEtudiantField({
             ...NEtudiantField,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         });
-        //console.log(NEtudiantField)
     }
-    const [loading,setLoading]=useState(false)
 
-    const onsubmitChange=async(e)=>{
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        const formattedDate = convertDateToDMY(date);
+        setNEtudiantField({
+            ...NEtudiantField,
+            anniversaire: formattedDate
+        });
+    }
+
+    const convertDateToDMY = (date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
+    const [loading, setLoading] = useState(false);
+
+    const onsubmitChange = async (e) => {
         e.preventDefault();
-        try{
-            const response=await axios.post("http://localhost:3001/etudiant",NEtudiantField);
+        try {
+            const response = await axios.post("http://localhost:3001/etudiant", NEtudiantField);
             console.log(response);
             setLoading(true);
-        }catch(err){
+        } catch (err) {
             console.log("quelque chose qui cloche");
         }
     }
-    if(loading){
-        return<Etudiants/>
+
+    if (loading) {
+        return <Etudiants />
     }
 
     return (
@@ -71,13 +91,13 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Nom:</label>
-                                                        <input type="text" className="form-control" name="nom" onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <input type="text" className="form-control" name="nom" onChange={changeNEtudiantFieldHandler} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Prénom:</label>
-                                                        <input type="text" className="form-control" name="prenom" onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <input type="text" className="form-control" name="prenom" onChange={changeNEtudiantFieldHandler} required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,13 +105,13 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Email:</label>
-                                                        <input type="email" className="form-control" name="email" onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <input type="email" className="form-control" name="email" onChange={changeNEtudiantFieldHandler} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
-                                                        <label>Adresse</label>
-                                                        <input type="text" className="form-control" name="adresse"onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <label>Adresse:</label>
+                                                        <input type="text" className="form-control" name="adresse" onChange={changeNEtudiantFieldHandler} required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,34 +119,29 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Numéro:</label>
-                                                        <input type="number" className="form-control" name="num" onChange={e=>changeNEtudiantFieldHandler(e)} required />
+                                                        <input type="number" className="form-control" name="num" onChange={changeNEtudiantFieldHandler} required />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 pl-md-5">
-                                                <div className="form-group text-purple">
-                                                <label>Anniversaire:</label>
-                                                <DatePicker
-                                                    className="form-control date-picker"
-                                                    selected={selectedDate}
-                                                    onChange={(date) => {
-                                                        setSelectedDate(date);
-                                                        changeNEtudiantFieldHandler({
-                                                            target: { name: "anniversaire", value: date }
-                                                        });
-                                                    }}
-                                                    placeholderText="Select Date"
-                                                    name="anniversaire"
-                                                    required
-                                                />
-                                            </div>
-
+                                                    <div className="form-group text-purple">
+                                                        <label>Anniversaire:</label>
+                                                        <DatePicker
+                                                            className="form-control date-picker"
+                                                            selected={selectedDate}
+                                                            onChange={handleDateChange}
+                                                            dateFormat="dd/MM/yyyy"
+                                                            placeholderText="Sélectionnez une date"
+                                                            name="anniversaire"
+                                                            required
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Niveau:</label>
-                                                        <select className="custom-select form-control" name="niveau" onChange={e=>changeNEtudiantFieldHandler(e)} required>
+                                                        <select className="custom-select form-control" name="niveau" onChange={changeNEtudiantFieldHandler} required>
                                                             <option value="vide">--</option>
                                                             <option value="bac">Avec Bac</option>
                                                             <option value="sansBac">Sans Bac</option>
@@ -136,7 +151,7 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Programme:</label>
-                                                        <select className="custom-select form-control" name="programme" onChange={e=>changeNEtudiantFieldHandler(e)} required>
+                                                        <select className="custom-select form-control" name="programme" onChange={changeNEtudiantFieldHandler} required>
                                                             <option value="vide">--</option>
                                                             <option value="complet">Complet</option>
                                                             <option value="accelere">Accéléré</option>
@@ -148,14 +163,14 @@ function NouveauEtud() {
                                                 <div className="col-md-6">
                                                     <div className="form-group text-purple">
                                                         <label>Code Promo:</label>
-                                                        <input type="text" className="form-control" name="codePromo"onChange={e=>changeNEtudiantFieldHandler(e)} />
+                                                        <input type="text" className="form-control" name="codePromo" onChange={changeNEtudiantFieldHandler} />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <div className="col-md-6t">
+                                                <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <button className="btn-purple" onClick={e=>onsubmitChange(e)}>Ajouter</button>
+                                                        <button className="btn-purple" onClick={onsubmitChange}>Ajouter</button>
                                                     </div>
                                                 </div>
                                             </div>

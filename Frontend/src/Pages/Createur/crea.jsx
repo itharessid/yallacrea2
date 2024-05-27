@@ -111,15 +111,11 @@ function Crea() {
                         <div className="col mb-4" key={createur.idCreateur}>
                             <div className="custom-block custom-block-full">
                                 <div className="custom-block-image-wrap">
-                                    <a href="/connexion">
                                         <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
-                                    </a>
                                 </div>
                                 <div className="custom-block-info">
-                                    <h5 className="mb-2">
-                                        <a href="/connexion">
-                                            {createur.nom} {createur.prenom}
-                                        </a>
+                                    <h5 className="mb-2" style={{color:'black',fontWeight:'500',textDecoration:'inherit'}}>
+                                        {createur.nom} {createur.prenom}
                                     </h5>
                                     <div className="custom-block-bottom d-flex justify-content-between mt-3">
                                         <a href={createur.lienFace} className="fa fa-facebook">

@@ -92,7 +92,7 @@ function UploadVideo() {
                                         onChange={handleDescriptionChange}
                                         className="form-control mb-3"
                                     />
-                                    <button onClick={handleUpload} className="white-text">Upload</button>
+                                    <button onClick={handleUpload} className="white-text">Télécharger</button>
                                 </div>
                             </div>
                         </div>

@@ -194,6 +194,17 @@ function Detail() {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/createur">Créateurs</Link>
                                 </li>
+                                <li className="nav-item dropdown">
+                  <Dropdown>
+                    <Dropdown.Toggle id="navbarDropdown">
+                      Emplois du temps
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/pres">Emplois Présenteil</Dropdown.Item>
+                      <Dropdown.Item href="/enligne">Emplois en Ligne</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/contact">Contact</Link>
                                 </li>
@@ -237,16 +248,16 @@ function Detail() {
                                 <div className="col-lg-3 col-12">
                                     <div className="custom-block-icon-wrap">
                                         <div className="custom-block-image-wrap custom-block-image-detail-page">
-                                            <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
+                                            <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt=""  style={{ width: '294px', height: '300px' }} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-9 col-12">
                                     <div className="custom-block-info">
                                         <div className="custom-block-top d-flex mb-1"></div>
-                                        <h2 className="mb-2">{createur.nom}</h2>
+                                        <h2 className="mb-2" style={{ marginRight:'190px'}}>{createur.nom}</h2>
                                         <br />
-                                        <h2 className="mb-2">{createur.prenom}</h2>
+                                        <h2 className="mb-2" style={{ marginRight:'190px'}}>{createur.prenom}</h2>
                                         <div style={{ textAlign: "left" }}>
                                             <p>{createur.description}</p>
                                             <p><strong>Email:</strong> {createur.email}</p>
