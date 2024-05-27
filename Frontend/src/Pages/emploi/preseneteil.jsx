@@ -53,7 +53,7 @@ function EmploiDuTemps({ emploi }) {
           <h5>{emploi.titre}</h5>
           <br/>
           <h4><a href={`http://localhost:3001/temp/${emploi.emplois}`} src={`http://localhost:3001/temp/${emploi.emplois}`}>Voir l'emplois de temps </a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
-          <button onClick={handleDownload}>Télécharger l'image</button> {/* Ajouter un bouton pour télécharger l'image */}
+          <button onClick={handleDownload} style={{color:'white'}}>Télécharger l'emploi</button> {/* Ajouter un bouton pour télécharger l'image */}
 
           <p>Description: {emploi.description} </p>
           <p>Type de cours: {emploi.typedecour}</p>
@@ -135,7 +135,7 @@ function preseneteil() {
                   <a className="nav-link" href="contact">Contact</a>
                 </li>
                 <div className="search-right">
-                  <a href="preInscri" className="btn button-style" title="search">S'inscrire</a>
+                <a href="/" className="btn button-style" title="search">Sortir</a>
                 </div>
               </ul>
             </div>
