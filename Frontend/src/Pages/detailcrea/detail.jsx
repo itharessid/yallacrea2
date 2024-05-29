@@ -11,7 +11,8 @@ function Detail() {
     const [videos, setVideos] = useState([]);
     const [likes, setLikes] = useState({});
     const [likedVideos, setLikedVideos] = useState({});
-        const [commentText, setCommentText] = useState(''); // Define and initialize commentText state
+    const [commentText, setCommentText] = useState(''); // Define and initialize commentText state
+    const [repliesDisplayed, setRepliesDisplayed] = useState({});
 
 
     useEffect(() => {
@@ -156,7 +157,9 @@ function Detail() {
             console.error("Erreur lors de la suppression du commentaire :", error);
         }
     };
-    
+    const handleShowReplies = (commentId) => {
+        setRepliesDisplayed(prevState => ({ ...prevState, [commentId]: !prevState[commentId] }));
+      };
 
     if (!createur) {
         return <div>Chargement...</div>;
@@ -195,16 +198,16 @@ function Detail() {
                                     <Link className="nav-link" to="/createur">Créateurs</Link>
                                 </li>
                                 <li className="nav-item dropdown">
-                  <Dropdown>
-                    <Dropdown.Toggle id="navbarDropdown">
-                      Emplois du temps
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="/pres">Emplois Présenteil</Dropdown.Item>
-                      <Dropdown.Item href="/enligne">Emplois en Ligne</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </li>
+                                    <Dropdown>
+                                        <Dropdown.Toggle id="navbarDropdown">
+                                        Emplois du temps
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                        <Dropdown.Item href="/pres">Emplois Présenteil</Dropdown.Item>
+                                        <Dropdown.Item href="/enligne">Emplois en Ligne</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/contact">Contact</Link>
                                 </li>
@@ -308,9 +311,22 @@ function Detail() {
                                                         {video.comments && video.comments.map(comment => (
                                                             <li key={comment.idComment}>
                                                                 {comment.textComment}
-                                                                {/* Affichez le bouton de suppression uniquement pour les commentaires de l'utilisateur actuel */}
-                                                                {comment.idCrea === createur.idCreateur && (
-                                                                <button onClick={() => deleteComment(comment.idComment, video.idVid)} style={{ marginLeft: "160px",marginTop: "10px",color: "white" }}>Supprimer</button>)}
+                                                                {/*{comment.idCrea === createur.idCreateur && (
+                                                                <button onClick={() => deleteComment(comment.idComment, video.idVid)} style={{ marginLeft: "160px",marginTop: "10px",color: "white" }}>Supprimer</button>)}*/}
+                                                                {comment.replies && comment.replies.length > 0 && (
+                                                                    <>
+                                                                        <button onClick={() => handleShowReplies(comment.idComment)} style={{ color: 'white', marginTop: '10px',marginLeft:'100px' }}>{repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}</button>
+                                                                        {repliesDisplayed[comment.idComment] && (
+                                                                        <div className="replies" style={{ textAlign: 'left' }}>
+                                                                            {comment.replies.map((reply) => (
+                                                                            <div key={reply.idComment} className="reply" style={{ display: 'flex', alignItems: 'center' }}>
+                                                                                <p style={{ color: 'grey', marginRight: '50px',marginTop: '10px'}}>{reply.textComment}</p>
+                                                                            </div>
+                                                                            ))}
+                                                                        </div>
+                                                                        )}
+                                                                    </>
+                                                                )}
                                                             </li>
                                                         ))}
                                                     </ul>

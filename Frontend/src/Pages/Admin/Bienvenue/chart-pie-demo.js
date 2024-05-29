@@ -1,5 +1,6 @@
 import Chart from 'chart.js/auto';
 
+
 let myPieChart = null; // Initialisez à null pour vérifier s'il existe déjà un graphique
 
 export function createPieChart(createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount) {
@@ -8,12 +9,16 @@ export function createPieChart(createursCount, etudiantsCount, domainesCount, ex
     // Si le graphique existe déjà, détruisez-le
     myPieChart.destroy();
   }
+  const data = [createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount];
+  const total = data.reduce((acc, value) => acc + value, 0);
+  const percentages = data.map(value => ((value / total) * 100).toFixed(2));
+
 
   var ctx = document.getElementById("myPieChart");
   myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ["Createurs", "Etudiants", "Domaines", "Experts", "Partenaires", "Pre-inscriptions Etudiants", "Pre-inscriptions Createurs", "Evenements"],
+      labels: ["Createurs", "Etudiants", "Domaines", "Experts", "Partenaires", "Pre-inscriptions Etudiants", "Pre-inscriptions Createurs", "Evenements"].map((label, index) => `${label}: ${percentages[index]}%`),
       datasets: [{
         data: [createursCount, etudiantsCount, domainesCount, expertCount, partenaireCount, pEtudCount, pCreaCount, eventsCount],
         backgroundColor: ['purple', '#FF02BC', '#4F0041', '#9b59b6', '#702595', '#9966ff', '#C51B96', 'rgb(168, 118, 168)'],
