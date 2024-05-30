@@ -128,7 +128,7 @@ function Crea() {
                                             <FontAwesomeIcon icon={faTiktok} className="tiktok-icon-black" />
                                         </a>
                                     </div>
-                                    <button onClick={() => handleButtonClick(createur.idCreateur)}>Voir plus</button>
+                                    <button className='btnv' onClick={() => handleButtonClick(createur.idCreateur)}>Voir plus</button>
                                 </div>
                             </div>
                         </div>

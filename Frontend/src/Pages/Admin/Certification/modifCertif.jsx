@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios'; 
 import './certif.css';
 
-function ModifCertif(){
+function ModifCertif() {
     const { idCertif } = useParams(); // Utilisation de "idCertif" pour récupérer le paramètre d'URL
     const [certifData, setCertifData] = useState(null);
     const [error, setError] = useState(null);
@@ -19,7 +19,7 @@ function ModifCertif(){
                 const response = await axios.get(`http://localhost:3001/certif/${idCertif}`);
                 setCertifData(response.data);
                 setEditedData({ ...response.data });
-    
+
                 // Mettre à jour la date dans le state en tant qu'objet Date
                 setDate(new Date(response.data.date));
             } catch (error) {
@@ -35,20 +35,24 @@ function ModifCertif(){
         setEditedData({ ...editedData, [name]: value });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page lors de la soumission du formulaire
         try {
             const response = await axios.put(`http://localhost:3001/certif/${idCertif}`, editedData);
-    
+
             // Mettre à jour les données après la mise à jour réussie
             setCertifData({ ...editedData });
             // Mettre à jour les données éditées également si nécessaire
             setEditedData({ ...editedData });
+
+            // Redirection vers la page de certificat
+            window.location.href = '/certif';
         } catch (error) {
             setError(error.response ? error.response.data.error : "Erreur lors de la mise à jour des données");
         }
     };
-   
-    return(
+
+    return (
         <div>
             <Adminsidbar />
             <div className="main-container">
@@ -117,11 +121,14 @@ function ModifCertif(){
                                 <DatePicker
                                     className="form-control"
                                     selected={date}
-                                    onChange={(date) => setDate(date)} // Mettre à jour la variable d'état "date"
+                                    onChange={(date) => {
+                                        setDate(date);
+                                        setEditedData({ ...editedData, date: date.toISOString() }); // Mettre à jour la date dans editedData
+                                    }} // Mettre à jour la variable d'état "date"
                                     dateFormat="dd/MM/yyyy" // Format de date jj/mm/aaaa
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'purple' }}>Enregistrer</button> 
+                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'purple', color: 'white' }}>Enregistrer</button>
                         </form>
                     </div>
                 )}

@@ -6,8 +6,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  
-  
   .profile-info ul {
     list-style-type: none;
     padding: 0;
@@ -33,5 +31,76 @@
   .required::after {
     content: "*";
     color: red;
-  }
-  
+  }/* Style général pour le document d'impression */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style pour le conteneur principal de la zone imprimable */
+.printable-area {
+  position: relative;
+  margin: 0 auto;
+  width: 800px; /* Largeur de la zone imprimable */
+  padding: 20px;
+}
+
+/* Style pour l'image */
+.printable-area img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+/* Style pour le texte */
+.printable-area p {
+  margin: 0;
+}
+
+/* Autres styles spécifiques au texte positionné */
+.printable-area .text-container {
+  position: absolute;
+}
+
+/* Ajoutez d'autres styles au besoin */
+/* Style général pour le document d'impression */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style pour le conteneur principal de la zone imprimable */
+.printable-area {
+    position: relative;
+    margin: 0 auto;
+    width: 800px; /* Largeur de la zone imprimable */
+    padding: 20px;
+}
+
+/* Style pour l'image */
+.printable-area img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+/* Style pour le texte */
+.printable-area p {
+    margin: 0;
+}
+
+/* Autres styles spécifiques au texte positionné */
+.printable-area .text-container {
+    position: absolute;
+}
+
+/* Ajoutez d'autres styles au besoin */
+
+ .noprint{
+  color: white;
+  width: 200px;
+  margin-left: 250px;
+  margin-top: 5px;
+ } 
