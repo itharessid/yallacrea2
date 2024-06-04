@@ -190,7 +190,7 @@ function complet() {
                           à travers des programmes d'échange à l'étranger. Rencontrez des professionnels de la création de contenu,
                            élargissez vos connaissances et vivez des expériences 
                           uniques dans des destinations exotiques. Nous vous accompagnons tout au long de votre parcours</p>
-                        <a href="#blog"className="btn button-style mt-sm-5 mt-4">S'inscrire<i
+                        <a href="/preInscri"className="btn button-style mt-sm-5 mt-4">S'inscrire<i
                             className="fa fa-angle-double-right" aria-hidden="true"></i></a>
                     </div>
                 </div>

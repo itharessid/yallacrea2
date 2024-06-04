@@ -283,41 +283,88 @@ function Video() {
                         </div>
                       </div>
                       <div className="comments-section">
-                        {comments[video.idVid] && comments[video.idVid].map((comment) => (
-                          <div key={comment.idComment} className="comment" style={{ textAlign: 'left' }}>
-                            <p style={{ color: 'black' }}>{comment.textComment}</p>
-                            <button onClick={() => setShowReplyForm(comment.idComment)} style={{ color: 'white', marginRight: '10px' }}>Répondre</button>
-                            <button onClick={() => handleDeleteComment(video.idVid, comment.idComment)} style={{ color: 'white' }}>Supprimer</button>
-                            {showReplyForm === comment.idComment && (
-                              <form onSubmit={(e) => { e.preventDefault(); handleAddReply(video.idVid, comment.idComment, e.target.elements.replyText.value); setShowReplyForm(null); }}>
-                                <textarea name="replyText" placeholder="Votre réponse..." required></textarea>
-                                <button type="submit" style={{ color: 'white' }}>Ajouter la réponse</button>
-                              </form>
-                            )}
-                            {comment.replies && comment.replies.length > 0 && (
-                              <>
-                                <button onClick={() => handleShowReplies(comment.idComment)} style={{ color: 'white', marginTop: '10px' }}>{repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}</button>
-                                {repliesDisplayed[comment.idComment] && (
-                                  <div className="replies" style={{ textAlign: 'left' }}>
-                                    {comment.replies.map((reply) => (
-                                      <div key={reply.idComment} className="reply" style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ color: 'grey', marginRight: '50px',marginTop: '10px'}}>{reply.textComment}</p>
-                                        <button onClick={() => handleDeleteComment(video.idVid, reply.idComment)} style={{ color: 'white',marginRight: '25px' }}>Supprimer</button>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </>
-                            )}
-                          </div>
-                        ))}
+  {comments[video.idVid] && comments[video.idVid].map((comment) => (
+    <div key={comment.idComment} className="comment" style={{ textAlign: 'left' }}>
+      <p style={{ color: 'black' }}>{comment.textComment}</p>
+      <button
+        onClick={() => setShowReplyForm(comment.idComment)}
+        style={{ color: 'white', backgroundColor: '#70218F', padding: '5px 10px', marginRight: '10px', marginTop: '10px' }}
+      >
+        Répondre
+      </button>
+      <button
+        onClick={() => handleDeleteComment(video.idVid, comment.idComment)}
+        style={{ color: 'white', backgroundColor: '#c200cc', padding: '5px 10px' }}
+      >
+        Supprimer
+      </button>
 
-                        <form style={{ marginTop: '15px', textAlign: 'left' }} onSubmit={(e) => { e.preventDefault(); handleAddComment(video.idVid, e.target.elements.commentText.value); e.target.reset(); }}>
-                          <textarea name="commentText" placeholder="Votre commentaire..." required style={{ height: '30px', resize: 'vertical' }}></textarea>
-                          <button type="submit" style={{ color: 'white' }}>Ajouter le commentaire</button>
-                        </form>
+      {showReplyForm === comment.idComment && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddReply(video.idVid, comment.idComment, e.target.elements.replyText.value);
+            setShowReplyForm(null);
+          }}
+        >
+          <br />
+          <textarea
+            name="replyText"
+            placeholder="Votre réponse..."
+            required
+            style={{ color: 'white', width: '200px', height: '60px', marginLeft: '200px' }}
+          ></textarea>
+          <button type="submit" style={{ color: 'white', padding: '5px 10px' }}>Ajouter la réponse</button>
+        </form>
+      )}
+      {comment.replies && comment.replies.length > 0 && (
+        <>
+          <button
+            onClick={() => handleShowReplies(comment.idComment)}
+            style={{ color: 'white', backgroundColor: '#008CBA', padding: '5px 10px', marginTop: '10px' }}
+          >
+            {repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}
+          </button>
+          {repliesDisplayed[comment.idComment] && (
+            <div className="replies" style={{ textAlign: 'left' }}>
+              {comment.replies.map((reply) => (
+                <div key={reply.idComment} className="reply" style={{ display: 'flex', alignItems: 'center' }}>
+                  <p style={{ color: 'grey', marginRight: '50px', marginTop: '10px' }}>{reply.textComment}</p>
+                  <button
+                    onClick={() => handleDeleteComment(video.idVid, reply.idComment)}
+                    style={{ color: 'white', backgroundColor: '#f44336', padding: '5px 10px', marginRight: '25px' }}
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  ))}
 
-                      </div>
+  <form
+    style={{ marginTop: '15px', textAlign: 'left' }}
+    onSubmit={(e) => {
+      e.preventDefault();
+      handleAddComment(video.idVid, e.target.elements.commentText.value);
+      e.target.reset();
+    }}
+  >
+    <textarea
+      name="commentText"
+      placeholder="Votre commentaire..."
+      required
+      style={{ height: '30px', resize: 'vertical', width: '250px' }}
+    ></textarea>
+    <button type="submit" style={{ color: 'white', padding: '5px 10px', backgroundColor: '#70218F', marginTop: '10px' }}>
+      Ajouter le commentaire
+    </button>
+  </form>
+</div>
+
                     </div>
                   ))}
                 </div>
