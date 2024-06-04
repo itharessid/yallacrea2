@@ -56,8 +56,8 @@ function Bienvenue() {
   };
 
   const imageStyle = {
-    width: '250px',
-    height: '180px',
+    width: '150px',
+    height: '200px',
     borderRadius: '-200%',
     objectFit: 'cover',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, .18)',

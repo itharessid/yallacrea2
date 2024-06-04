@@ -109,7 +109,7 @@ function Crea() {
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     {filteredByDomaine.map(createur => (
                         <div className="col mb-4" key={createur.idCreateur}>
-                            <div className="custom-block custom-block-full">
+                            <div className="custom-block custom-block-full" style={{width:'200px'}}>
                                 <div className="custom-block-image-wrap">
                                         <img src={`/photo/${createur.image}`} className="custom-block-image img-fluid" alt="" />
                                 </div>
