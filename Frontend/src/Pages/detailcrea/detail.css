@@ -23,4 +23,58 @@
 }
 .comments-section {
     align-self: flex-start; /* Align comments section to the start (left) of the container */
+    color:white;
 }
+.video-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* espace entre les vidéos */
+    justify-content: center; /* centrer les vidéos */
+}
+
+.videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+.video-card {
+    flex: 1 1 300px; /* largeur minimale de 300px pour chaque vidéo, ajuste selon tes besoins */
+    max-width: 300px; /* largeur maximale pour chaque vidéo */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* espace en bas de chaque vidéo */
+    padding: 10px;
+    background-color: #eed8f5; /* couleur de fond pour chaque carte vidéo */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ombre pour chaque carte vidéo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-details {
+    margin-bottom: 10px; /* espace entre les détails de la vidéo et la vidéo elle-même */
+    text-align: center; /* centrer le texte des détails */
+}
+
+.video-card video {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.comments-section {
+    width: 100%;
+    
+}
+.bt{
+    color: white;
+}
+.comment-input{
+    width: 250px;
+    text-align: center;
+    height: 40px;
+}
+

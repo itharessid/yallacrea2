@@ -53,7 +53,7 @@ function EmploiDuTemps({ emploi }) {
           <h5>{emploi.titre}</h5>
           <br/>
           <h4><a href={`http://localhost:3001/temp/${emploi.emplois}`} src={`http://localhost:3001/temp/${emploi.emplois}`}>Voir l'emplois de temps </a></h4> {/* Utiliser l'URL de l'image pour rediriger vers l'image */}
-          <button onClick={handleDownload}>Télécharger l'image</button> {/* Ajouter un bouton pour télécharger l'image */}
+          <button    style={{ color:'white' }} onClick={handleDownload}>Télécharger l'image</button> {/* Ajouter un bouton pour télécharger l'image */}
 
           <p>Description: {emploi.description} </p>
           <p>Type de cours: {emploi.typedecour}</p>
@@ -168,7 +168,7 @@ function EmploiDuTemps({ emploi }) {
             <br/>
       <br/>
       {/* Render section for présentiel */}
-      <section className="section-presentiels">
+      <section className="section-presentiels"style={{textAlign:'center'}}>
         <h2>Emplois du temps en présentiel</h2>
         <br/>
         <br/>
@@ -190,7 +190,7 @@ function EmploiDuTemps({ emploi }) {
       {/* Render section for en ligne */}
       <br/>
       <br/>
-      <section className="section-en-ligne">
+      <section className="section-en-ligne"  style={{textAlign:'center'}}>
         <h2>Emplois du temps en ligne</h2>
         <br/>
         <div className="container">

@@ -11,7 +11,7 @@ function Detail() {
     const [videos, setVideos] = useState([]);
     const [likes, setLikes] = useState({});
     const [likedVideos, setLikedVideos] = useState({});
-    const [commentText, setCommentText] = useState(''); // Define and initialize commentText state
+    const [commentText, setCommentText] = useState({});
     const [repliesDisplayed, setRepliesDisplayed] = useState({});
 
 
@@ -135,17 +135,16 @@ function Detail() {
     const handleCommentSubmit = async (e, videoId) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:3001/video/commentaire/${videoId}/${createur.idCreateur}`, { textComment: commentText });
+            const response = await axios.post(`http://localhost:3001/video/commentaire/${videoId}/${createur.idCreateur}`, { textComment: commentText[videoId] });
             if (response.status === 200) {
-                // Rafraîchir les commentaires après l'ajout réussi
                 fetchVideoComments(videoId);
-                // Effacer le champ de texte du commentaire après l'ajout
-                setCommentText('');
+                setCommentText(prevText => ({ ...prevText, [videoId]: '' }));
             }
         } catch (error) {
             console.error("Erreur lors de l'ajout du commentaire :", error);
         }
     };
+    
     const deleteComment = async (commentId, videoId) => {
         try {
             const response = await axios.delete(`http://localhost:3001/video/commentaire/${videoId}/${commentId}/${createur.idCreateur}`);
@@ -164,6 +163,10 @@ function Detail() {
     if (!createur) {
         return <div>Chargement...</div>;
     }
+    const handleCommentTextChange = (e, videoId) => {
+        setCommentText(prevText => ({ ...prevText, [videoId]: e.target.value }));
+    };
+    
 
     return (
         <div>
@@ -289,52 +292,64 @@ function Detail() {
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div className="video-section">
-                                    <div className="videos">
-                                        {videos.map(video => (
-                                            <div key={video.idVid} className="video-card">
-                                                <div className="video-details">
-                                                    <h3>{video.titre}</h3>
-                                                    <p>{video.description}</p>
-                                                </div>
-                                                <video src={`http://localhost:3001/videos/${video.video}`} controls />
-                                                <p className="likes-count">
-                                                    <FaThumbsUp onClick={() => handleLike(video.idVid)} style={{ cursor: 'pointer', color: likedVideos[video.idVid] ? '#70218f' : 'grey' }} /> {likes[video.idVid] || 0}
-                                                </p>
-                                                <div className="comments-section" style={{ textAlign: "left" }}>
-                                                    <form onSubmit={(e) => handleCommentSubmit(e, video.idVid)}>
-                                                        <input type="text" value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Écrire un commentaire..." />
-                                                        <button type="submit" style={{color: "white"}}>Commenter</button>
-                                                    </form>
-                                                    {/* Afficher les commentaires existants */}
-                                                    <ul>
-                                                        {video.comments && video.comments.map(comment => (
-                                                            <li key={comment.idComment}>
-                                                                {comment.textComment}
-                                                                {/*{comment.idCrea === createur.idCreateur && (
-                                                                <button onClick={() => deleteComment(comment.idComment, video.idVid)} style={{ marginLeft: "160px",marginTop: "10px",color: "white" }}>Supprimer</button>)}*/}
-                                                                {comment.replies && comment.replies.length > 0 && (
-                                                                    <>
-                                                                        <button onClick={() => handleShowReplies(comment.idComment)} style={{ color: 'white', marginTop: '10px',marginLeft:'100px' }}>{repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}</button>
-                                                                        {repliesDisplayed[comment.idComment] && (
-                                                                        <div className="replies" style={{ textAlign: 'left' }}>
-                                                                            {comment.replies.map((reply) => (
-                                                                            <div key={reply.idComment} className="reply" style={{ display: 'flex', alignItems: 'center' }}>
-                                                                                <p style={{ color: 'grey', marginRight: '50px',marginTop: '10px'}}>{reply.textComment}</p>
-                                                                            </div>
-                                                                            ))}
-                                                                        </div>
-                                                                        )}
-                                                                    </>
-                                                                )}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
+                                    <br />
+    <div className="videos">
+        
+        {videos.map(video => (
+            <div key={video.idVid} className="video-card">
+                <div className="video-details">
+                    <h3>{video.titre}</h3>
+                    <p>{video.description}</p>
+                </div>
+                <video src={`http://localhost:3001/videos/${video.video}`} controls />
+                <p className="likes-count">
+                    <FaThumbsUp onClick={() => handleLike(video.idVid)} style={{ cursor: 'pointer', color: likedVideos[video.idVid] ? '#70218f' : 'grey' }} /> {likes[video.idVid] || 0}
+                </p>
+                <div className="comments-section">
+                <form onSubmit={(e) => handleCommentSubmit(e, video.idVid)}>
+    <textarea
+        value={commentText[video.idVid] || ''}
+        onChange={(e) => handleCommentTextChange(e, video.idVid)}
+        placeholder="Ajouter un commentaire"
+        className="comment-input"
+    />
+
+    <button  className='bt'type="submit">Commenter</button>
+</form>
+
+                    {/* Afficher les commentaires existants */}
+                    <ul>
+                        {video.comments && video.comments.map(comment => (
+                            <li key={comment.idComment}>
+                                {comment.textComment}
+                                {comment.replies && comment.replies.length > 0 && (
+                                    <>
+                                        <button onClick={() => handleShowReplies(comment.idComment)} style={{ color: 'white', marginTop: '10px', marginLeft: '10px' }}>
+                                            {repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}
+                                        </button>
+                                        {repliesDisplayed[comment.idComment] && (
+                                            <div className="replies" style={{ textAlign: 'left' }}>
+                                                {comment.replies.map((reply) => (
+                                                    <div key={reply.idComment} className="reply" style={{ display: 'flex', alignItems: 'center' }}>
+                                                        <p style={{ color: 'grey', marginRight: '10px', marginTop: '10px' }}>{reply.textComment}</p>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                        )}
+                                    </>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+
                             </div>
                         </div>
                     </div>
