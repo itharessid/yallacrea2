@@ -44,7 +44,7 @@ function EventCompt() {
             <div>
                 <button className="button2">
                     <a href={event.lienphotos}>
-                        <FontAwesomeIcon icon={faPhotoFilm} />
+                        <FontAwesomeIcon icon={faPhotoFilm} style={{color:'white'}} />
                     </a>
                 </button>
             </div>

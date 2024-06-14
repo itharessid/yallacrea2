@@ -321,7 +321,7 @@ function Video() {
         <>
           <button
             onClick={() => handleShowReplies(comment.idComment)}
-            style={{ color: 'white', backgroundColor: '#008CBA', padding: '5px 10px', marginTop: '10px' }}
+            style={{ color: 'white', backgroundColor: '#010157', padding: '5px 10px', marginTop: '10px' }}
           >
             {repliesDisplayed[comment.idComment] ? 'Masquer les réponses' : 'Afficher les réponses'}
           </button>
@@ -332,7 +332,7 @@ function Video() {
                   <p style={{ color: 'grey', marginRight: '50px', marginTop: '10px' }}>{reply.textComment}</p>
                   <button
                     onClick={() => handleDeleteComment(video.idVid, reply.idComment)}
-                    style={{ color: 'white', backgroundColor: '#f44336', padding: '5px 10px', marginRight: '25px' }}
+                    style={{ color: 'white', backgroundColor: '#C11C96', padding: '5px 10px', marginRight: '25px' }}
                   >
                     Supprimer
                   </button>

@@ -4,9 +4,6 @@ import axios from 'axios';
 import './bienvenue.css';
 import { createPieChart } from './chart-pie-demo.js';
 import { Link } from 'react-router-dom';
-import Chart from 'chart.js/auto';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-
 
 function Bienvenue() {
   const [createursCount, setCreateursCount] = useState(0);
@@ -97,7 +94,7 @@ function Bienvenue() {
             <div className="col-xl-6 col-lg-8"> {/* Utilisez les classes Bootstrap pour centrer le contenu */}
               <div className="card-body">
                 <div className="chart-pie pt-4 pb-2">
-                <canvas id="myPieChart"></canvas>
+                  <canvas id="myPieChart"></canvas>
                 </div>
               </div>
             </div>

@@ -87,7 +87,7 @@ function acceuil() {
                        <p className="smaller-text">Vous avez perturbé dans votre route, alors donnez vie à votre créativité.
                       <br/> <strong><span className="bigger-word">Yalla,</span></strong> rejoignez-nous dès maintenant pour débuter votre parcours créatif.</p>
             <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-              <a className="btn button-style" href="About.jsx">S'inscrire<i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
+              <a className="btn button-style" href="preInscri">S'inscrire<i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
             </div>
           </div>
           <div className="col-md-6 banner-right mt-md-0 mt-4">
