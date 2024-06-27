@@ -5,9 +5,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
+function ConfirmationDialog({ showDeleteConfirmation, handleConfirmDelete, handleCancelDelete, createurToDelete, handleDelete }) {
+    return (
+        showDeleteConfirmation && createurToDelete && (
+            <div className="cardconfirmation-dialog">
+                <div className="card-body confirmation-dialog-content">
+                    <p>Êtes-vous sûr de vouloir supprimer {createurToDelete.nom} {createurToDelete.prenom} ?</p>
+                    <div className="confirmation-buttons">
+                        <button onClick={() => {
+                            handleDelete(createurToDelete); // Appeler handleDelete avec l'étudiant à supprimer
+                            handleConfirmDelete()
+                        }}
+                            className="confirm-button">
+                            Oui
+                        </button>
+                        <button onClick={handleCancelDelete} className="cancel-button">
+                            Non
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    );
+}
+
 function PreInscriptionCrea() {
     const [createurData, setCreateurData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedPCreateurId, setSelectedPCreateurId] = useState(null);
+    const [PCreateurToDelete, setPCreateurToDelete] = useState(null);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [blurBackground, setBlurBackground] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -74,14 +102,54 @@ function PreInscriptionCrea() {
                   `${createur.nom.toLowerCase()} ${createur.prenom.toLowerCase()}`.includes(searchTerm.toLowerCase())
           )
         : createurData;
+
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const handleDeleteClick = (createur) => {
+        setSelectedPCreateurId(createur.id);
+        setPCreateurToDelete(createur); 
+        setShowDeleteConfirmation(true);
+        setBlurBackground(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        try {
+            await axios.delete(`http://localhost:3001/preinscriCrea/${selectedPCreateurId}`);
+            setShowDeleteConfirmation(false);
+            setBlurBackground(false);
+            setPCreateurToDelete(null); // Remettre à null le créateur à supprimer après suppression
+            fetchData(); // Mettre à jour les données après suppression
+        } catch (error) {
+            console.error("Erreur lors de la suppression du créateur :", error);
+        }
+    };
+
+    const handleCancelDelete = () => {
+        setSelectedPCreateurId(null);
+        setPCreateurToDelete(null); // Remettre à null le créateur à supprimer
+        setShowDeleteConfirmation(false);
+        setBlurBackground(false);
+    };
+
+    const handleDelete = async (createur) => {
+        alert(`La pré-inscription de ${createur.nom} ${createur.prenom} n'est pas validée.`);
+        try {
+            await axios.post('http://localhost:3001/refutationEmailCrea', {
+                createur: createur,
+                sender: 'ons' // ou 'ithar' selon le cas
+            });
+            console.log("E-mail envoyé avec succès !");
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de l'e-mail :", error);
+        }
+    };
+
     return (
         <>
             <Adminsidbar />
-            <div className={`main-container`}>
+            <div className={`main-container ${blurBackground ? 'blur-background' : ''}`}>
                 <div className="row">
                     <div className="col-xl-3 mb-20">
                         <div className="card-box-Etud height-100-p widget-style1">
@@ -161,8 +229,16 @@ function PreInscriptionCrea() {
                     </div>
                 </div>
             </div>
+            <ConfirmationDialog
+                showDeleteConfirmation={showDeleteConfirmation}
+                handleConfirmDelete={handleConfirmDelete}
+                handleCancelDelete={handleCancelDelete}
+                createurToDelete={PCreateurToDelete} // Passer le créateur à supprimer au composant ConfirmationDialog
+                handleDelete={handleDelete}
+            />
         </>
     );
 }
 
 export default PreInscriptionCrea;
+

@@ -8,12 +8,14 @@ function nouveaupartenaire() {
     const [numero, setNumero] = useState('');
     const [email, setEmail] = useState('');
     const [lien, setLien] = useState('');
+    const [successMessage, setSuccessMessage] = useState(""); // Nouvel état pour stocker le message de succès
+
 
     const [photo, setPhoto] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setSuccessMessage("Un nouveau partenaire a été ajoutée avec succès.");
         const formData = new FormData();
         formData.append('nomSociete', nomSociete);
         formData.append('numero', numero);
@@ -106,7 +108,7 @@ function nouveaupartenaire() {
                 <button
                     type="button" // Change type to "button"
                     className="btn btn-primary"
-                    style={{ backgroundColor: 'purple' }}
+                    style={{ backgroundColor: 'purple',color:'white' }}
                     onClick={handleSubmit}
                 >
                     Ajouter
@@ -114,6 +116,15 @@ function nouveaupartenaire() {
             </div>
     </div>
 </div>
+{successMessage && (
+                                              <div className="row">
+                                                <div className="col-md-12 text-center">
+                                                  <div className="alert alert-success">{successMessage}</div>
+                                                    {/* Rediriger vers la page "/certif" */}
+                                                    <Link to="/partenaire" className="btn btn-primary">Retourner à la page des partenaires</Link>
+                                                </div>
+                                              </div>
+                                            )}
                                         </section>
                                     </form>
                                 </div>

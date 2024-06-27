@@ -28,16 +28,16 @@ function ImageUpload() {
         lienFace: '',
         lienInsta: '',
         lienTik: '',
-        Domaine: '',
+        domaine: '',
         nbFollowers: '',
         description: '',
         anniversaire: ''
     });
     const [profileData, setProfileData] = useState(null);
-    const [domaines, setDomaines] = useState([]);
     const [anniversaire, setAnniversaire] = useState(null); 
     const [showModal, setShowModal] = useState(false);
     const [showPhotoModal, setShowPhotoModal] = useState(false);
+    const [domainesList, setDomainesList] = useState([]);
     
     const fileInputRef = useRef(null);
     const userEmail = localStorage.getItem('userEmail');
@@ -66,14 +66,18 @@ function ImageUpload() {
             setFormData(response.data);
             setAnniversaire(response.data.anniversaire);
             setData(response.data);
-            // Fetch domaines
-            const domainesResponse = await axios.get('http://localhost:3001/domaines');
-            setDomaines(domainesResponse.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
-
+    useEffect(() => {
+        axios.get('http://localhost:3001/domaine')
+          .then(res => {
+            setDomainesList(res.data);
+          })
+          .catch(err => console.log(err));
+      }, []);
+      
     const handleFile = (event) => {
         setFile(event.target.files[0]);
         handleUpload(); // Ajoutez cet appel pour déclencher le téléchargement de l'image lorsque vous sélectionnez un fichier
@@ -165,7 +169,7 @@ function ImageUpload() {
             return <Link to={`/av/${profileData && profileData.idCreateur}`} className="white-textee">Voir Avatar</Link>;
         } else {
             console.log("User is not authorized.");
-            return <button onClick={handleNonAuthorized}>Vous n'avez pas un avatar.</button>;
+            return <button onClick={handleNonAuthorized} style={{color:'white',marginTop:'300px'}}>Vous n'avez pas un avatar.</button>;
         }
     };
     
@@ -283,12 +287,15 @@ function ImageUpload() {
                             </div>
                             <div className="form-row">
                                 <label htmlFor="Domaine">Domaine :</label>
-                                <select id="Domaine" name="Domaine" value={formData.Domaine} onChange={handleFormChange} className="large-input" style={{ marginLeft: '10px' }}>
-                                    <option value="">Sélectionner un domaine</option>
-                                    {domaines.map((domaine, index) => (
-                                        <option key={index} value={domaine.nom}>{domaine.nom}</option>
-                                    ))}
-                                </select>
+  <select name="domaine" value={formData.domaine || ''} onChange={handleFormChange}>
+    <option value="">--</option>
+    {domainesList.map((domaine, index) => (
+      <option key={index} value={domaine.nomDomaine}>
+        {domaine.nomDomaine}
+      </option>
+    ))}
+  </select>
+
                             </div>
                             <div className="form-row">
                                 <label htmlFor="nbFollowers">Nombre de followers :</label>
